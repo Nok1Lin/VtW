@@ -95,14 +95,15 @@ function atlasMatchSeason(spot, seasonFilter) {
   return Array.isArray(info.seasons) && info.seasons.includes(seasonFilter);
 }
 
-// riben.cloud-inspired Japan 9 Regional Administrative Patches + 47 Prefectures Index
+// riben.cloud-inspired Japan 9 Regional Administrative Patches + China 7 Regions + USA 7 Regions
 const JAPAN_REGIONS_PATCHES = [
   {
     id: 'jp-hokkaido',
     name: '北海道',
+    chipName: '北海道',
     kana: 'HOKKAIDO',
     tone: '#6f97b0',
-    center: [43.35, 142.45],
+    center: [43.4, 142.8],
     bounds: [[41.35, 139.7], [45.55, 145.8]],
     summary: '粉雪流冰、百万夜景、薰衣草花丘与广阔北国开拓史。',
     seasons: '❄️ 1–2月雪祭流冰 · 🌿 7月富良野薰衣草',
@@ -113,9 +114,10 @@ const JAPAN_REGIONS_PATCHES = [
   {
     id: 'jp-tohoku',
     name: '东北地方',
+    chipName: '东北',
     kana: 'TOHOKU · 6县',
     tone: '#7ea06f',
-    center: [39.05, 140.55],
+    center: [39.3, 140.7],
     bounds: [[36.8, 139.1], [41.5, 142.1]],
     summary: '只狼苇名原型会津若松、银山温泉煤气灯雪景、奥入濑红叶与藏王树冰。',
     seasons: '❄️ 1–2月银山温泉/树冰 · 🌸 4月下旬弘前樱花 · 🍁 10月奥入濑红叶',
@@ -127,9 +129,10 @@ const JAPAN_REGIONS_PATCHES = [
   {
     id: 'jp-kanto',
     name: '关东地方',
+    chipName: '关东',
     kana: 'KANTO · 1都6县',
     tone: '#c8963e',
-    center: [35.85, 139.75],
+    center: [36.0, 140.2],
     bounds: [[34.9, 138.9], [37.0, 140.9]],
     summary: '东京秋叶原/新宿/涩谷/池袋全密度圣地，镰仓江之岛海岸、秩父与茨城粉蝶花海。',
     seasons: '🌸 3月末樱花 & 4月末粉蝶花 · 🌿 夏日湘南花火 · 🍁 11月秩父高尾红叶',
@@ -141,9 +144,10 @@ const JAPAN_REGIONS_PATCHES = [
   {
     id: 'jp-chubu',
     name: '中部·北陆',
+    chipName: '中部',
     kana: 'CHUBU & HOKURIKU · 9县',
     tone: '#c47a55',
-    center: [36.25, 137.35],
+    center: [36.6, 137.3],
     bounds: [[34.6, 135.9], [37.9, 139.1]],
     summary: '富士山摇曳露营、飞驒高山《冰菓》、白川乡《寒蝉/人狼村》、诹访湖与能登夏日海岸。',
     seasons: '❄️ 1–2月白川乡点灯/冬富士 · 🌸 4月立山雪墙 · 🍁 10–11月高山红叶',
@@ -156,9 +160,10 @@ const JAPAN_REGIONS_PATCHES = [
   {
     id: 'jp-kansai',
     name: '近畿·关西',
+    chipName: '关西',
     kana: 'KANSAI · 2府5县',
     tone: '#b5523f',
-    center: [34.80, 135.60],
+    center: [34.6, 135.7],
     bounds: [[33.4, 134.2], [35.8, 136.8]],
     summary: '京阿尼灵魂大本营（宇治《京吹》/京都/丰乡《轻音》/西宫《凉宫》/神户《Fate》/和歌山《夏日重现》）。',
     seasons: '🌸 3月末–4月上旬哲道夙川樱花 · 🌿 7月祇园祭/友岛海夏 · 🍁 11月京都红叶',
@@ -170,9 +175,10 @@ const JAPAN_REGIONS_PATCHES = [
   {
     id: 'jp-chugoku',
     name: '中国地方',
+    chipName: '中国地方',
     kana: 'CHUGOKU · 5县',
     tone: '#c6a36a',
-    center: [34.75, 132.75],
+    center: [35.2, 132.4],
     bounds: [[33.9, 130.8], [35.6, 134.5]],
     summary: '尾道坂道渡轮、竹原老街《玉响》、严岛海上大鸟居与出云神话之国。',
     seasons: '🌸 4月千光寺春樱 · 🌿 盛夏濑户内跳岛骑行 · 🍁 11月宫岛红叶谷',
@@ -184,9 +190,10 @@ const JAPAN_REGIONS_PATCHES = [
   {
     id: 'jp-shikoku',
     name: '四国·濑户内',
+    chipName: '四国',
     kana: 'SHIKOKU & SETOUCHI · 4县',
     tone: '#5e9484',
-    center: [33.75, 133.55],
+    center: [33.55, 133.55],
     bounds: [[32.7, 132.0], [34.55, 134.8]],
     summary: '直岛/男木岛/小豆岛《Summer Pockets》盛夏原型、青岛猫岛与道后温泉古汤。',
     seasons: '🌿 7–8月盛夏碧海艺术祭 · 🌸 春季濑户内温和海风',
@@ -198,9 +205,10 @@ const JAPAN_REGIONS_PATCHES = [
   {
     id: 'jp-kyushu',
     name: '九州地方',
+    chipName: '九州',
     kana: 'KYUSHU · 7县',
     tone: '#b56d78',
-    center: [32.75, 130.75],
+    center: [32.6, 130.7],
     bounds: [[30.9, 128.6], [34.0, 131.9]],
     summary: '夏目友人帐人吉球磨、天降之物福冈朝仓、元气囝仔五岛列岛、阿苏火山口与别府地狱温泉。',
     seasons: '🌸 3月末九州早樱 · 🌿 夏日五岛果冻海 · 🍁 11月球磨川红叶温泉',
@@ -213,6 +221,7 @@ const JAPAN_REGIONS_PATCHES = [
   {
     id: 'jp-okinawa',
     name: '冲绳',
+    chipName: '冲绳',
     kana: 'OKINAWA · 离岛群',
     tone: '#3d8b96',
     center: [26.35, 127.80],
@@ -225,6 +234,262 @@ const JAPAN_REGIONS_PATCHES = [
     ]
   }
 ];
+
+const CHINA_PROV_REGION_MAP = {
+  '黑龙江省': 'cn-dongbei', '吉林省': 'cn-dongbei', '辽宁省': 'cn-dongbei',
+  '北京市': 'cn-huabei', '天津市': 'cn-huabei', '河北省': 'cn-huabei', '山西省': 'cn-huabei', '内蒙古自治区': 'cn-huabei',
+  '上海市': 'cn-huadong', '江苏省': 'cn-huadong', '浙江省': 'cn-huadong', '安徽省': 'cn-huadong', '福建省': 'cn-huadong', '江西省': 'cn-huadong', '山东省': 'cn-huadong', '台湾省': 'cn-huadong',
+  '河南省': 'cn-huazhong', '湖北省': 'cn-huazhong', '湖南省': 'cn-huazhong',
+  '广东省': 'cn-huanan', '广西壮族自治区': 'cn-huanan', '海南省': 'cn-huanan', '香港特别行政区': 'cn-huanan', '澳门特别行政区': 'cn-huanan',
+  '重庆市': 'cn-xinan', '四川省': 'cn-xinan', '贵州省': 'cn-xinan', '云南省': 'cn-xinan', '西藏自治区': 'cn-xinan',
+  '陕西省': 'cn-xibei', '甘肃省': 'cn-xibei', '青海省': 'cn-xibei', '宁夏回族自治区': 'cn-xibei', '新疆维吾尔自治区': 'cn-xibei'
+};
+
+const CHINA_REGIONS_PATCHES = [
+  {
+    id: 'cn-dongbei',
+    name: '东北地区',
+    chipName: '东北',
+    kana: 'DONGBEI · 黑吉辽',
+    tone: '#6f97b0',
+    center: [44.8, 126.5],
+    bounds: [[38.7, 118.8], [53.6, 135.1]],
+    summary: '林海雪原、松花江雾凇、长白山天池与东北老工业近代建筑遗产。',
+    seasons: '❄️ 12–2月哈尔滨冰雪大世界/雪乡 · 🍁 9月末五花山红叶',
+    prefs: [
+      ['哈尔滨·黑龙江', 45.80, 126.53, 8], ['长春·长白山', 43.82, 125.32, 8], ['沈阳·大连', 41.80, 123.43, 8]
+    ]
+  },
+  {
+    id: 'cn-huabei',
+    name: '华北地区',
+    chipName: '华北',
+    kana: 'HUABEI · 京津冀晋蒙',
+    tone: '#c8963e',
+    center: [40.6, 114.2],
+    bounds: [[34.5, 97.2], [53.3, 126.1]],
+    summary: '故宫胡同与北京老字号、大同云冈/悬空寺古建奇迹、五台山与内蒙古辽阔草原。',
+    seasons: '🍁 9–11月北京香山银杏/内蒙额济纳 · 🌸 4月颐和园西堤春柳',
+    prefs: [
+      ['北京市', 39.90, 116.41, 9], ['天津市', 39.13, 117.20, 9], ['山西·大同太原', 37.87, 112.55, 8],
+      ['河北·承德张家口', 38.04, 114.51, 8], ['内蒙古·呼伦贝尔', 40.84, 111.75, 6]
+    ]
+  },
+  {
+    id: 'cn-huadong',
+    name: '华东地区',
+    chipName: '华东',
+    kana: 'HUADONG · 江浙沪皖闽赣鲁台',
+    tone: '#b5523f',
+    center: [30.6, 119.2],
+    bounds: [[21.8, 113.5], [38.4, 122.9]],
+    summary: '常驻大本营上海、江南园林与徽州绩溪古村、温州山海美食、厦门鼓浪屿与景德镇陶瓷。',
+    seasons: '🌸 3–4月江南烟雨春茶 · 🌿 7–8月浙闽海岛 · 🍁 10–11月梧桐与皖南塔川',
+    prefs: [
+      ['上海市', 31.23, 121.47, 10], ['南京·苏州', 32.06, 118.80, 9], ['温州·杭州', 27.99, 120.70, 9],
+      ['徽州·绩溪黄山', 30.07, 118.59, 9], ['厦门·福州', 24.48, 118.09, 9], ['南昌·景德镇', 28.68, 115.86, 8], ['济南·青岛', 36.65, 117.12, 8]
+    ]
+  },
+  {
+    id: 'cn-huazhong',
+    name: '华中地区',
+    chipName: '华中',
+    kana: 'HUAZHONG · 豫鄂湘',
+    tone: '#c47a55',
+    center: [30.8, 112.5],
+    bounds: [[24.6, 108.3], [36.4, 116.7]],
+    summary: '洛阳龙门石窟与十三朝古都、武汉江城樱花、张家界砂岩峰林奇观与湘西山水。',
+    seasons: '🌸 3–4月武汉樱花/洛阳牡丹 · 🍁 10–11月岳麓山与神农架秋色',
+    prefs: [
+      ['武汉·神农架', 30.59, 114.31, 8], ['长沙·张家界', 28.23, 112.94, 8], ['郑州·洛阳', 34.75, 113.62, 8]
+    ]
+  },
+  {
+    id: 'cn-huanan',
+    name: '华南地区',
+    chipName: '华南',
+    kana: 'HUANAN · 粤桂琼港澳',
+    tone: '#5e9484',
+    center: [23.4, 111.5],
+    bounds: [[18.1, 104.4], [26.4, 117.3]],
+    summary: '广府早茶骑楼、桂林漓江山水峰丛、海南热带环岛公路与港澳都市霓虹。',
+    seasons: '❄️ 11–2月暖冬早茶与避寒看海 · 🌿 5–9月桂林漓江盛夏云海',
+    prefs: [
+      ['广州·深圳', 23.13, 113.26, 9], ['香港·澳门', 22.32, 114.17, 10], ['桂林·南宁', 25.27, 110.29, 8], ['海口·三亚', 18.25, 109.51, 8]
+    ]
+  },
+  {
+    id: 'cn-xinan',
+    name: '西南地区',
+    chipName: '西南',
+    kana: 'XINAN · 川渝云贵藏',
+    tone: '#b56d78',
+    center: [29.2, 99.5],
+    bounds: [[21.1, 78.4], [34.3, 110.2]],
+    summary: '川西四姑娘山/萨武神山高海拔雪峰徒步、8D山城重庆、云南雪山古镇与青藏高原神山圣湖。',
+    seasons: '🌸 3–5月林芝桃花/川西杜鹃 · 🍁 10月川西彩林雪峰黄金季',
+    prefs: [
+      ['成都·川西小金', 30.67, 104.07, 8], ['重庆市', 29.56, 106.55, 9], ['昆明·丽江香格里拉', 25.04, 102.71, 7],
+      ['贵阳·黔东南', 26.65, 106.63, 8], ['拉萨·林芝', 29.65, 91.17, 7]
+    ]
+  },
+  {
+    id: 'cn-xibei',
+    name: '西北地区',
+    chipName: '西北',
+    kana: 'XIBEI · 陕甘青宁新',
+    tone: '#c6a36a',
+    center: [38.5, 95.5],
+    bounds: [[31.4, 73.5], [49.2, 111.2]],
+    summary: '西安长安古城、河西走廊敦煌莫高窟、2027 环线乌鲁木齐→伊宁出境口岸与天山草原雪岭。',
+    seasons: '🌿 6–8月伊犁独库草原花海（2027环线出发！） · 🍁 9–10月敦煌大漠胡杨金秋',
+    prefs: [
+      ['乌鲁木齐·天山', 43.83, 87.62, 8], ['伊宁·霍尔果斯', 43.92, 81.32, 8], ['西安·长安', 34.34, 108.94, 8],
+      ['敦煌·兰州', 40.14, 94.66, 7], ['西宁·青海湖', 36.62, 101.78, 7]
+    ]
+  }
+];
+
+const US_REGIONS_PATCHES = [
+  {
+    id: 'us-northeast',
+    name: '美东北部',
+    chipName: '东北部',
+    kana: 'NORTHEAST · 12州/特区',
+    tone: '#6f97b0',
+    center: [42.4, -74.5],
+    bounds: [[38.0, -80.5], [47.5, -66.9]],
+    summary: '纽约曼哈顿摩天楼与大都会博物馆、波士顿学术名城、华盛顿纪念碑与新英格兰红叶海岸。',
+    seasons: '🍁 10月新英格兰佛蒙特极限红叶 · ❄️ 12月纽约圣诞橱窗',
+    prefs: [
+      ['纽约·曼哈顿', 40.71, -74.01, 10], ['波士顿', 42.36, -71.06, 10], ['华盛顿特区', 38.91, -77.04, 10], ['费城', 39.95, -75.17, 10]
+    ]
+  },
+  {
+    id: 'us-southeast',
+    name: '美东南部',
+    chipName: '东南部',
+    kana: 'SOUTHEAST · 12州',
+    tone: '#7ea06f',
+    center: [33.2, -84.2],
+    bounds: [[24.5, -94.0], [39.5, -75.4]],
+    summary: '迈阿密海滩与大沼泽地、新奥尔良爵士老城、大烟山秋色与肯尼迪航天中心发射台。',
+    seasons: '❄️ 12–3月佛州阳光暖冬避寒 · 🌸 4月大烟山春日山谷',
+    prefs: [
+      ['迈阿密·佛罗里达', 25.76, -80.19, 9], ['奥兰多', 28.54, -81.38, 10], ['新奥尔良', 29.95, -90.07, 10], ['亚特兰大', 33.75, -84.39, 9]
+    ]
+  },
+  {
+    id: 'us-midwest',
+    name: '美中西部',
+    chipName: '中西部',
+    kana: 'MIDWEST · 12州',
+    tone: '#c8963e',
+    center: [42.5, -93.2],
+    bounds: [[36.0, -104.1], [49.4, -80.5]],
+    summary: '芝加哥摩天建筑群与密歇根湖风情、66号公路起点、五大湖岛屿与总统巨石雕像。',
+    seasons: '🌿 6–9月五大湖清凉避暑 · 🍁 10月湖畔秋林',
+    prefs: [
+      ['芝加哥', 41.88, -87.63, 10], ['底特律', 42.33, -83.05, 10], ['明尼阿波利斯', 44.98, -93.27, 9], ['圣路易斯', 38.63, -90.20, 9]
+    ]
+  },
+  {
+    id: 'us-southwest',
+    name: '美西南部',
+    chipName: '西南部',
+    kana: 'SOUTHWEST · 4州',
+    tone: '#c47a55',
+    center: [33.0, -103.5],
+    bounds: [[25.8, -114.8], [37.0, -93.5]],
+    summary: '163号公路纪念碑谷孤峰圣地、大峡谷与羚羊谷红岩光影、新墨西哥白沙国家公园。',
+    seasons: '🌸 4–5月 / 🍁 10月告别沙漠酷暑 · 奇观线红岩黄金光影',
+    prefs: [
+      ['纪念碑谷·亚利桑那', 37.00, -110.17, 9], ['凤凰城·大峡谷', 36.10, -112.11, 8], ['休斯顿', 29.76, -95.37, 9], ['奥斯汀', 30.27, -97.74, 9]
+    ]
+  },
+  {
+    id: 'us-mountain',
+    name: '落基山脉',
+    chipName: '落基山',
+    kana: 'MOUNTAIN WEST · 6州',
+    tone: '#b5523f',
+    center: [41.5, -110.5],
+    bounds: [[35.0, -120.0], [49.0, -102.0]],
+    summary: '黄石地热间歇泉与大提顿雪峰、锡安/布莱斯红岩峡谷群、拉斯维加斯与盐湖城。',
+    seasons: '🌿 6–9月黄石国家公园全线通车 · 🍁 9月末白桦秋叶',
+    prefs: [
+      ['黄石·怀俄明', 44.43, -110.59, 8], ['盐湖城·犹他五园', 40.76, -111.89, 8], ['丹佛·落基山', 39.74, -104.99, 8], ['拉斯维加斯', 36.17, -115.14, 9]
+    ]
+  },
+  {
+    id: 'us-pacific',
+    name: '美西海岸',
+    chipName: '西海岸',
+    kana: 'PACIFIC COAST · 3州',
+    tone: '#5e9484',
+    center: [40.5, -121.0],
+    bounds: [[32.5, -124.8], [49.0, -114.1]],
+    summary: '两千年红杉巨树将军雪曼（巨构/西幻线）、俄勒冈干草堆海岩、旧金山金门大桥与一号公路海崖。',
+    seasons: '🌿 6–9月加州海岸与西雅图无雨晴季 · 🍁 10月一号公路云海落日',
+    prefs: [
+      ['红杉公园·将军雪曼', 36.58, -118.75, 9], ['旧金山', 37.77, -122.42, 10], ['洛杉矶', 34.05, -118.24, 9],
+      ['俄勒冈海岸·波特兰', 45.88, -123.97, 8], ['西雅图', 47.61, -122.33, 9]
+    ]
+  },
+  {
+    id: 'us-akhi',
+    name: '阿拉斯加·夏威夷',
+    chipName: '阿拉斯加·夏威夷',
+    kana: 'ALASKA & HAWAII · 2州',
+    tone: '#3d8b96',
+    center: [63.0, -151.0],
+    bounds: [[18.9, -168.0], [71.4, -130.0]],
+    summary: '北极圈费尔班克斯极光与冰川峡湾，以及太平洋夏威夷火山熔岩与翡翠海崖。',
+    seasons: '❄️ 11–3月极光爆发 / 夏威夷避寒 · 🌿 7–8月阿拉斯加看棕熊捕鲑',
+    prefs: [
+      ['安克雷奇·阿拉斯加', 61.22, -149.90, 6], ['费尔班克斯·极光', 64.84, -147.72, 7], ['檀香山·夏威夷', 21.31, -157.86, 8]
+    ]
+  }
+];
+
+const ATLAS_COUNTRY_LOCKON_META = {
+  JPN: {
+    a3: 'JPN',
+    countryZh: '日本',
+    countryEn: 'Japan',
+    label: '🇯🇵 日本 9 大片区',
+    regions: JAPAN_REGIONS_PATCHES,
+    getGeo: () => (typeof JAPAN_PREFECTURES_GEOJSON === 'object' ? JAPAN_PREFECTURES_GEOJSON : null),
+    getRegionId: f => f?.properties?.region || '',
+    getSubName: f => f?.properties?.name || '',
+    fitBounds: [[25.0, 126.5], [45.6, 146.0]],
+    maxZoom: 7
+  },
+  CHN: {
+    a3: 'CHN',
+    countryZh: '中国',
+    countryEn: 'China',
+    label: '🇨🇳 中国 7 大片区',
+    regions: CHINA_REGIONS_PATCHES,
+    getGeo: () => (typeof CHINA_PROVINCES === 'object' ? CHINA_PROVINCES : null),
+    getRegionId: f => CHINA_PROV_REGION_MAP[f?.properties?.name || ''] || '',
+    getSubName: f => f?.properties?.name || '',
+    fitBounds: [[18.1, 73.5], [53.6, 135.1]],
+    maxZoom: 7
+  },
+  USA: {
+    a3: 'USA',
+    countryZh: '美国',
+    countryEn: 'United States of America',
+    label: '🇺🇸 美国 7 大片区',
+    regions: US_REGIONS_PATCHES,
+    getGeo: () => (typeof US_STATES_GEOJSON === 'object' ? US_STATES_GEOJSON : null),
+    getRegionId: f => f?.properties?.region || '',
+    getSubName: f => f?.properties?.name || f?.properties?.en || '',
+    fitBounds: [[24.5, -125.0], [49.5, -66.9]],
+    maxZoom: 5
+  }
+};
 
 // Curated Gourmet (🍜 美食) & Souvenirs (🎁 纪念品/伴手礼/圣地周边)
 const ATLAS_GOURMET_SOUVENIRS = {
@@ -417,6 +682,10 @@ const ATLAS_COUNTRY_GOODIES_FALLBACK = {
   '泰国': {
     gourmet: [{ id: 'th-fb-1', name: '泰北咖喱金面（Khao Soi）& 蝶豆花芒果糯米饭', tag: '清莱/清迈灵魂面食', price: '¥12–22', rating: '椰香浓汤配脆炸蛋面', verdict: '夯', note: '清莱白庙旁就能吃到超水准泰北金面，加酸菜、红葱头和青柠汁绝配。' }],
     souvenirs: [{ id: 'th-fb-2', name: '清莱白庙许愿银菩提叶 / 泰北小菠萝干与青草膏', tag: '东南亚手信', where: '清莱白庙 / 夜市', price: '¥15–40', note: '清莱产迷你小菠萝清甜爆汁，果干便携好带。' }]
+  },
+  '美国': {
+    gourmet: [{ id: 'us-fb-1', name: '美西 In-N-Out Double-Double 汉堡 & 东北波士顿龙虾卷', tag: '美式公路与海岸名物', price: '$12–34', rating: '公路旅行必吃补给', verdict: '必吃', note: '加州自驾必点 Animal Style 薯条；新英格兰海港现拆黄油温热龙虾卷超鲜甜。' }],
+    souvenirs: [{ id: 'us-fb-2', name: '美国国家公园护照盖章本（NPS Passport）& Trader Joe’s 帆布袋', tag: '美西奇观纪念', where: '各国家公园 Visitor Center', price: '$12–28', note: '每座国家公园都有专属日期印章，红杉与纪念碑谷必盖。' }]
   }
 };
 
@@ -480,4 +749,110 @@ function atlasWgsToGcj(lat, lng) {
   dLat = (dLat * 180.0) / ((a * (1 - ee)) / (magic * sqrtMagic) * pi);
   dLng = (dLng * 180.0) / (a / sqrtMagic * Math.cos(radLat) * pi);
   return [lat + dLat, lng + dLng];
+}
+
+// ============================================================================
+// Global Cuisine Spheres (🍜 菜系) & Language Spheres (🗣️ 语言) Overlays
+// ============================================================================
+const ATLAS_CUISINE_META = [
+  { id: 'chinese', name: '中华菜系', color: '#C84B31', desc: '五味调和', countries: ['CHN', 'TWN', 'HKG', 'MAC'] },
+  { id: 'japanese', name: '日本料理', color: '#D65DB1', desc: '清淡原味', countries: ['JPN'] },
+  { id: 'korean', name: '韩国料理', color: '#1B9AAA', desc: '辛辣发酵', countries: ['KOR', 'PRK'] },
+  { id: 'se-asian', name: '东南亚菜', color: '#2D936C', desc: '酸辣香草', countries: ['THA', 'VNM', 'MYS', 'SGP', 'IDN', 'PHL', 'KHM', 'LAO', 'MMR', 'BRN', 'TLS'] },
+  { id: 'south-asian', name: '南亚菜系', color: '#D9822B', desc: '香料咖喱', countries: ['IND', 'PAK', 'LKA', 'NPL', 'BGD', 'BTN', 'MDV', 'AFG'] },
+  { id: 'central-caucasus', name: '中亚·高加索', color: '#B56576', desc: '烤肉手抓', countries: ['KAZ', 'KGZ', 'UZB', 'TKM', 'TJK', 'GEO', 'ARM', 'AZE', 'MNG'] },
+  { id: 'med-mideast', name: '地中海·中东', color: '#C69C3A', desc: '橄榄鲜烤', countries: ['TUR', 'GRC', 'ITA', 'ESP', 'PRT', 'CYP', 'MLT', 'EGY', 'MAR', 'TUN', 'DZA', 'LBY', 'LBN', 'JOR', 'SYR', 'IRQ', 'ISR', 'PSE', 'SAU', 'ARE', 'OMN', 'QAT', 'KWT', 'BHR', 'YEM', 'IRN'] },
+  { id: 'west-nordic-eu', name: '西欧·北欧', color: '#3B6FA0', desc: '黄油乳酪', countries: ['FRA', 'DEU', 'GBR', 'IRL', 'NLD', 'BEL', 'LUX', 'CHE', 'AUT', 'DNK', 'NOR', 'SWE', 'FIN', 'ISL', 'MCO', 'AND', 'LIE', 'GRL', 'FRO'] },
+  { id: 'east-slavic-eu', name: '东欧·巴尔干', color: '#6C5B7B', desc: '浓郁炖肉', countries: ['RUS', 'UKR', 'BLR', 'POL', 'CZE', 'SVK', 'HUN', 'ROU', 'BGR', 'SRB', 'BIH', 'HRV', 'SVN', 'MNE', 'ALB', 'MKD', 'MDA', 'LTU', 'LVA', 'EST', 'KOS'] },
+  { id: 'north-american', name: '北美·澳新', color: '#2E86AB', desc: '多元烧烤', countries: ['USA', 'CAN', 'AUS', 'NZL'] },
+  { id: 'latin-american', name: '拉美菜系', color: '#E05A47', desc: '玉米酸辣', countries: ['MEX', 'PER', 'BRA', 'ARG', 'CHL', 'COL', 'ECU', 'BOL', 'VEN', 'URY', 'PRY', 'CUB', 'GTM', 'CRI', 'PAN', 'DOM', 'HND', 'SLV', 'NIC', 'JAM', 'HTI'] },
+  { id: 'sub-saharan', name: '非洲菜系', color: '#8D6A4F', desc: '炭烤炖煮', countries: ['KEN', 'TZA', 'ETH', 'ZAF', 'NGA', 'GHA', 'SEN', 'UGA', 'RWA', 'NAM', 'BWA', 'ZWE', 'ZMB', 'MDG', 'MOZ', 'AGO', 'CMR', 'CIV', 'SDN', 'COD', 'COG', 'MLI', 'NER'] }
+];
+
+const ATLAS_LANGUAGE_META = [
+  { id: 'zh', name: '汉语圈', color: '#C84B31', desc: '中文普通话/粤语/繁体直接通行（含新加坡华语通用）', countries: ['CHN', 'TWN', 'HKG', 'MAC', 'SGP'] },
+  { id: 'en', name: '英语母语/强通用圈', color: '#2E86AB', desc: '美/英/加/澳/新及前英联邦高英语普及区，出行沟通无障碍', countries: ['USA', 'GBR', 'CAN', 'AUS', 'NZL', 'IRL', 'ZAF', 'IND', 'PHL', 'MYS', 'KEN', 'NGA', 'GHA', 'JAM', 'BHS', 'BRB', 'MLT', 'FJI'] },
+  { id: 'es', name: '西班牙语圈', color: '#E07A2F', desc: '西班牙及中南美洲西语国家（建议配合离线西语翻译词卡）', countries: ['ESP', 'MEX', 'COL', 'ARG', 'PER', 'VEN', 'CHL', 'ECU', 'GTM', 'CUB', 'BOL', 'DOM', 'HND', 'PRY', 'SLV', 'NIC', 'CRI', 'PAN', 'URY'] },
+  { id: 'fr', name: '法语圈', color: '#4B6CB7', desc: '法/比/卢/摩纳哥及西北非、印度洋法语通用地区', countries: ['FRA', 'BEL', 'LUX', 'MCO', 'HTI', 'SEN', 'CIV', 'CMR', 'COD', 'COG', 'MLI', 'NER', 'BFA', 'TCD', 'MDG', 'GIN', 'BEN', 'TGO', 'GAB'] },
+  { id: 'ar', name: '阿拉伯语圈', color: '#2D936C', desc: '埃及、摩洛哥与中东海湾国家，旅游区基础英语可用', countries: ['EGY', 'SAU', 'ARE', 'JOR', 'OMN', 'QAT', 'KWT', 'BHR', 'IRQ', 'SYR', 'LBN', 'YEM', 'PSE', 'MAR', 'DZA', 'TUN', 'LBY', 'SDN', 'MRT'] },
+  { id: 'ru', name: '俄语/斯拉夫圈', color: '#7A5195', desc: '俄罗斯、中亚五国、外高加索及东欧巴尔干斯拉夫语区', countries: ['RUS', 'BLR', 'UKR', 'KAZ', 'KGZ', 'UZB', 'TJK', 'TKM', 'GEO', 'ARM', 'AZE', 'SRB', 'BIH', 'BGR', 'MNE', 'MKD', 'POL', 'CZE', 'SVK', 'HRV', 'SVN'] },
+  { id: 'de-nordic', name: '德语 & 北欧高英语圈', color: '#5C7A52', desc: '德/奥/瑞/荷及北欧五国，当地母语外英语普及率极高', countries: ['DEU', 'AUT', 'CHE', 'NLD', 'DNK', 'NOR', 'SWE', 'FIN', 'ISL', 'LIE', 'GRL', 'FRO'] },
+  { id: 'ja', name: '日语圈', color: '#D65DB1', desc: '日本 · 汉字标识友好，铁路与都市指示清晰', countries: ['JPN'] },
+  { id: 'ko', name: '韩语圈', color: '#E05263', desc: '韩国/朝鲜 · 谚文表音文字，首尔/釜山商圈多中英双语', countries: ['KOR', 'PRK'] },
+  { id: 'pt-it-tr', name: '葡/意/土/希等欧陆语', color: '#C69C3A', desc: '葡语（葡/巴）、意语、土耳其语、希腊语及匈罗巴尔干非斯拉夫语', countries: ['PRT', 'BRA', 'ITA', 'TUR', 'GRC', 'CYP', 'ROU', 'HUN', 'ALB', 'AGO', 'MOZ', 'VAT', 'SMR'] },
+  { id: 'other-local', name: '东南亚/波斯/非洲本土语', color: '#8D6A4F', desc: '泰语、越南语、印尼语、波斯语、斯瓦希里语等本土多语区域', countries: ['THA', 'VNM', 'IDN', 'KHM', 'LAO', 'MMR', 'IRN', 'PAK', 'BGD', 'LKA', 'NPL', 'AFG', 'ETH', 'TZA', 'MNG'] }
+];
+
+const _atlasCuisineByA3 = new Map();
+const _atlasCuisineById = new Map();
+for (const c of ATLAS_CUISINE_META) {
+  _atlasCuisineById.set(c.id, c);
+  for (const a3 of c.countries) _atlasCuisineByA3.set(a3, c);
+}
+const _atlasLangByA3 = new Map();
+const _atlasLangById = new Map();
+for (const l of ATLAS_LANGUAGE_META) {
+  _atlasLangById.set(l.id, l);
+  for (const a3 of l.countries) _atlasLangByA3.set(a3, l);
+}
+
+function atlasGetCountryCuisine(props) {
+  if (!props || props.CONTINENT === 'Antarctica') return null;
+  const a3 = props.ADM0_A3 || '';
+  if (_atlasCuisineByA3.has(a3)) return _atlasCuisineByA3.get(a3);
+  const cont = props.CONTINENT || '';
+  if (cont === 'Europe') return _atlasCuisineById.get('west-nordic-eu');
+  if (cont === 'South America') return _atlasCuisineById.get('latin-american');
+  if (cont === 'North America') return _atlasCuisineById.get('latin-american');
+  if (cont === 'Africa') return _atlasCuisineById.get('sub-saharan');
+  if (cont === 'Oceania') return _atlasCuisineById.get('north-american');
+  if (cont === 'Asia') return _atlasCuisineById.get('med-mideast');
+  return _atlasCuisineById.get('sub-saharan');
+}
+
+function atlasGetCountryLanguage(props) {
+  if (!props || props.CONTINENT === 'Antarctica') return null;
+  const a3 = props.ADM0_A3 || '';
+  if (_atlasLangByA3.has(a3)) return _atlasLangByA3.get(a3);
+  const cont = props.CONTINENT || '';
+  if (cont === 'South America' || cont === 'North America') return _atlasLangById.get('en');
+  if (cont === 'Oceania') return _atlasLangById.get('en');
+  if (cont === 'Europe') return _atlasLangById.get('pt-it-tr');
+  if (cont === 'Africa') return _atlasLangById.get('fr');
+  return _atlasLangById.get('other-local');
+}
+
+const ATLAS_RELIGION_META = [
+  { id: 'catholic', name: '天主教圈', color: '#3B6FA0', desc: '法/意/西/葡/波/奥/匈/捷/拉美/菲 · 哥特大教堂、教廷艺术与圣母朝圣地', countries: ['FRA', 'ITA', 'ESP', 'PRT', 'POL', 'AUT', 'HUN', 'CZE', 'SVK', 'HRV', 'SVN', 'IRL', 'BEL', 'LUX', 'LTU', 'MLT', 'MCO', 'AND', 'LIE', 'VAT', 'SMR', 'PHL', 'TLS', 'MEX', 'BRA', 'ARG', 'COL', 'PER', 'CHL', 'ECU', 'BOL', 'VEN', 'URY', 'PRY', 'CUB', 'DOM', 'GTM', 'CRI', 'PAN', 'HND', 'SLV', 'NIC', 'HTI', 'COD', 'AGO'] },
+  { id: 'protestant', name: '新教圈', color: '#5C85B8', desc: '美/英/加/澳/新/德/荷/北欧 · 路德宗、圣公会与新教木构教堂传统', countries: ['USA', 'GBR', 'CAN', 'AUS', 'NZL', 'DEU', 'NLD', 'CHE', 'DNK', 'NOR', 'SWE', 'FIN', 'ISL', 'GRL', 'FRO', 'EST', 'LVA', 'ZAF', 'KEN', 'GHA', 'UGA', 'RWA', 'NAM', 'BWA', 'ZWE', 'ZMB', 'JAM', 'BHS', 'BRB', 'FJI'] },
+  { id: 'orthodox', name: '东正教圈', color: '#7A5195', desc: '俄/希/塞/保/罗/格/亚/埃塞 · 洋葱头穹顶、圣像画与高加索悬崖古修道院', countries: ['RUS', 'UKR', 'BLR', 'GRC', 'SRB', 'BGR', 'ROU', 'GEO', 'ARM', 'MNE', 'MKD', 'MDA', 'CYP', 'ETH'] },
+  { id: 'islam-sunni', name: '伊斯兰·逊尼派', color: '#2D936C', desc: '土/埃/摩/中亚/海湾/印尼/大马/波黑 · 宣礼塔、蓝釉清真寺与丝路清真饮食', countries: ['TUR', 'EGY', 'MAR', 'TUN', 'DZA', 'LBY', 'SAU', 'ARE', 'JOR', 'OMN', 'QAT', 'KWT', 'YEM', 'SYR', 'LBN', 'PSE', 'KAZ', 'KGZ', 'UZB', 'TKM', 'TJK', 'PAK', 'BGD', 'AFG', 'IDN', 'MYS', 'BRN', 'MDV', 'BIH', 'ALB', 'KOS', 'SDN', 'MRT', 'SEN', 'MLI', 'NER', 'BFA', 'TCD', 'GIN', 'SOM'] },
+  { id: 'islam-shia', name: '伊斯兰·什叶派', color: '#1A6B5C', desc: '伊朗/伊拉克/阿塞拜疆/巴林 · 波斯绿松石穹顶、伊玛目圣陵与两河遗产', countries: ['IRN', 'IRQ', 'AZE', 'BHR'] },
+  { id: 'buddhist', name: '佛教圈', color: '#D9822B', desc: '泰/缅/柬/老/斯/不丹/蒙/越 · 金塔佛寺、上座部晨钟布施与藏传文化', countries: ['THA', 'MMR', 'KHM', 'LAO', 'LKA', 'BTN', 'MNG', 'VNM'] },
+  { id: 'hindu', name: '印度教圈', color: '#C84B31', desc: '印度/尼泊尔 · 诸神神庙群雕、恒河祭典与梵天湿婆史诗传统', countries: ['IND', 'NPL', 'MUS'] },
+  { id: 'cn-folk-secular', name: '中华儒道佛·世俗', color: '#C69C3A', desc: '中/港澳台/新 · 儒释道融合、宗祠民俗与世俗传统为主', countries: ['CHN', 'TWN', 'HKG', 'MAC', 'SGP'] },
+  { id: 'shinto-buddhist', name: '日本神道·佛教', color: '#D65DB1', desc: '日本 · 神道神社鸟居、佛寺并存与传统四季祭典', countries: ['JPN'] },
+  { id: 'korean-plural', name: '韩国多教·世俗', color: '#1B9AAA', desc: '韩国 · 无宗教占半数，基督教与佛教并存', countries: ['KOR'] },
+  { id: 'dprk-secular', name: '朝鲜世俗·无宗教', color: '#7C8996', desc: '朝鲜 · 世俗化与无宗教为主', countries: ['PRK'] },
+  { id: 'judaism', name: '犹太教', color: '#2E86AB', desc: '以色列 · 耶路撒冷三教圣城哭墙与安息日传统', countries: ['ISR'] }
+];
+
+const _atlasRelByA3 = new Map();
+const _atlasRelById = new Map();
+for (const r of ATLAS_RELIGION_META) {
+  _atlasRelById.set(r.id, r);
+  for (const a3 of r.countries) _atlasRelByA3.set(a3, r);
+}
+
+function atlasGetCountryReligion(props) {
+  if (!props || props.CONTINENT === 'Antarctica') return null;
+  const a3 = props.ADM0_A3 || '';
+  if (_atlasRelByA3.has(a3)) return _atlasRelByA3.get(a3);
+  const cont = props.CONTINENT || '';
+  if (cont === 'South America') return _atlasRelById.get('catholic');
+  if (cont === 'Europe') return _atlasRelById.get('catholic');
+  if (cont === 'North America' || cont === 'Oceania') return _atlasRelById.get('protestant');
+  if (cont === 'Africa') return _atlasRelById.get('protestant');
+  if (cont === 'Asia') return _atlasRelById.get('islam-sunni');
+  return _atlasRelById.get('protestant');
 }

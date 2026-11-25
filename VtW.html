@@ -707,10 +707,23 @@ body[data-theme="fjord"] .leaflet-tile-pane{filter:brightness(.65) saturate(.75)
 .season-chip.is-on i{background:#FFF}
 .season-badge-pill{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;font-weight:700;padding:1.5px 7px;border-radius:999px;background:color-mix(in srgb,#0284C7 10%,var(--panel2));color:var(--txt);border:1px solid color-mix(in srgb,#0284C7 28%,var(--line))}
 .jp-region-pin{background:none!important;border:0!important}
-.jp-region-chip{display:inline-flex;align-items:center;gap:5px;padding:3.5px 10px;border-radius:999px;background:color-mix(in srgb,var(--panel) 95%,#FFFDF8);color:var(--txt);font-size:12px;font-weight:800;white-space:nowrap;border:1.5px solid var(--rtone,#B83B2A);box-shadow:0 4px 12px rgba(15,23,42,.2);transform:translate(-50%,-50%);transition:.15s;cursor:pointer}
-.jp-region-chip i{width:7.5px;height:7.5px;border-radius:50%;background:var(--rtone,#B83B2A);flex-shrink:0}
-.jp-region-chip:hover,.jp-region-chip.is-active{background:var(--rtone,#B83B2A);color:#FFF;transform:translate(-50%,-50%) scale(1.07)}
+.jp-region-chip{display:inline-flex;align-items:center;gap:6px;padding:4.5px 12px;border-radius:999px;background:rgba(36,30,22,.9);color:#FFFDF8;font-size:12px;font-weight:750;white-space:nowrap;border:1px solid rgba(255,253,248,.18);box-shadow:0 4px 14px rgba(15,12,8,.34);backdrop-filter:blur(4px);transform:translate(-50%,-50%);transition:.15s;cursor:pointer;letter-spacing:.02em}
+.jp-region-chip i{width:7.5px;height:7.5px;border-radius:50%;background:var(--rtone,#B83B2A);flex-shrink:0;box-shadow:0 0 0 1px rgba(255,255,255,.22)}
+.jp-region-chip:hover,.jp-region-chip.is-active{background:var(--rtone,#B83B2A);color:#FFF;border-color:rgba(255,255,255,.48);transform:translate(-50%,-50%) scale(1.07)}
 .jp-region-chip:hover i,.jp-region-chip.is-active i{background:#FFF}
+.atlas-sub-pin{background:none!important;border:0!important}
+.atlas-sub-pill{display:inline-flex;align-items:center;justify-content:center;padding:3px 9px;border-radius:999px;background:rgba(255,253,248,.96);color:#241e16;font-size:11.5px;font-weight:750;white-space:nowrap;border:1px solid rgba(36,30,22,.16);box-shadow:0 3px 10px rgba(15,12,8,.22);transform:translate(-50%,-50%);transition:.15s;cursor:pointer;letter-spacing:.02em}
+.atlas-sub-pin:hover .atlas-sub-pill,.atlas-sub-pin.is-picked .atlas-sub-pill{background:#b83b2a;color:#FFF;border-color:rgba(255,255,255,.7);box-shadow:0 0 0 2px #FFF,0 6px 16px rgba(184,59,42,.36);transform:translate(-50%,-50%) scale(1.07)}
+.atlas-overlay-legend{position:absolute;left:12px;bottom:40px;z-index:516;max-width:min(450px,calc(100% - 140px));padding:9px 11px;border-radius:12px;background:color-mix(in srgb,var(--panel) 95%,#FFFFFF);border:1px solid var(--line);box-shadow:0 8px 24px rgba(15,23,42,.18);backdrop-filter:blur(8px);display:flex;flex-direction:column;gap:6px}
+.atlas-overlay-legend[hidden]{display:none!important}
+.ov-head{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11.5px;font-weight:800;color:var(--txt)}
+.ov-grid{display:flex;flex-wrap:wrap;gap:4.5px}
+.ov-chip{display:inline-flex;align-items:center;gap:4px;padding:2.5px 8px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--txt);font-size:11px;font-weight:650;cursor:pointer;transition:.14s;white-space:nowrap}
+.ov-chip i{width:8px;height:8px;border-radius:50%;background:var(--oc,#3B6FA0);flex-shrink:0}
+.ov-chip:hover{border-color:var(--oc,#3B6FA0)}
+.ov-chip.is-on{background:var(--oc,#3B6FA0);border-color:var(--oc,#3B6FA0);color:#FFF}
+.ov-chip.is-on i{background:#FFF}
+.ov-desc{font-size:11px;line-height:1.45;color:var(--muted)}
 .vtw-jump-bar{display:flex;gap:5px;overflow-x:auto;padding:6px 0 8px;margin-bottom:8px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel);z-index:4;scrollbar-width:none}
 .vtw-jump-bar::-webkit-scrollbar{display:none}
 .vtw-jump-pill{border:1px solid var(--line);background:var(--bg);color:var(--muted);padding:3.5px 9px;border-radius:999px;font-size:11px;font-weight:700;white-space:nowrap;cursor:pointer;text-decoration:none}
@@ -763,7 +776,7 @@ body[data-theme="fjord"] .leaflet-tile-pane{filter:brightness(.65) saturate(.75)
 @media(max-width:1100px){.atlas-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.atlas-explorer-grid{grid-template-columns:1fr}}
 @media(max-width:600px){.atlas-kpi-grid{grid-template-columns:1fr}.atlas-cards-wall{grid-template-columns:1fr}.atlas-wish-spotlight{left:8px;right:8px;bottom:34px;width:auto;max-height:62%}}
 </style>
-<script src="travel-site/dist/vendor/leaflet/leaflet.js"></script><script src="travel-site/dist/data/world.js"></script><script src="travel-site/dist/data/china-provinces.js"></script><script src="travel-site/dist/data/country-detail.js"></script><script src="travel-site/dist/data/wishlist.js"></script><script src="travel-site/dist/data/seasons_gourmet.js"></script><script src="travel-site/dist/data/japan-prefectures.js"></script></head>
+<script src="travel-site/dist/vendor/leaflet/leaflet.js"></script><script src="travel-site/dist/data/world.js"></script><script src="travel-site/dist/data/china-provinces.js"></script><script src="travel-site/dist/data/country-detail.js"></script><script src="travel-site/dist/data/wishlist.js"></script><script src="travel-site/dist/data/seasons_gourmet.js"></script><script src="travel-site/dist/data/japan-prefectures.js"></script><script src="travel-site/dist/data/us-states.js"></script></head>
 <body data-theme="slate">
 <div class="app">
 <aside class="sidebar"><div class="brand"><div class="brandmark">↗</div><div><small>VtW · VISIT THE WORLD</small><strong>世界探索台</strong></div></div><div class="nav" id="nav"></div><div class="sidebar-note"><strong>本地自动保存</strong><br><span id="saveState">支持随时导出 JSON 备份</span></div></aside>
@@ -846,8 +859,9 @@ body[data-theme="fjord"] .leaflet-tile-pane{filter:brightness(.65) saturate(.75)
 <template id="atlasMapTemplate"><div id="atlasMapShell" class="atlas-map-shell">
 <div id="atlasLeafletMap" style="height:100%;width:100%" role="region" aria-label="旅行区域地图"></div>
 <div id="atlasCountryDrillBar" class="atlas-country-drillbar" hidden></div>
-<div class="atlas-basemap-bar" role="group" aria-label="底图切换"><button type="button" class="atlas-bm-btn" data-atlas-basemap="zh_g" title="Google 2x Retina 全球简体中文（WGS84无偏移）">中文高清</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="zh_amap" title="高德 2x Retina 极速中文（国内直连+大陆坐标自动对齐）">高德中文</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="street" title="Esri 地形图">地形</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="sat" title="高清卫星影像">卫星</button><span class="atlas-bm-sep"></span><button type="button" class="atlas-bm-btn" data-atlas-basemap="vector">足迹底色</button></div>
+<div class="atlas-basemap-bar" role="group" aria-label="底图切换"><button type="button" class="atlas-bm-btn" data-atlas-basemap="zh_g" title="Google 2x Retina 全球简体中文（WGS84无偏移）">中文高清</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="zh_amap" title="高德 2x Retina 极速中文（国内直连+大陆坐标自动对齐）">高德中文</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="street" title="Esri 地形图">地形</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="sat" title="高清卫星影像">卫星</button><span class="atlas-bm-sep"></span><button type="button" class="atlas-bm-btn" data-atlas-basemap="vector">足迹底色</button><span class="atlas-bm-sep"></span><button type="button" class="atlas-bm-btn" data-atlas-overlay="cuisine" title="按全球菜系文化圈上色（再点关闭）">🍜 菜系</button><button type="button" class="atlas-bm-btn" data-atlas-overlay="language" title="按全球主要语言/通用语圈上色（再点关闭）">🗣️ 语言</button><button type="button" class="atlas-bm-btn" data-atlas-overlay="religion" title="按全球主要宗教与文化圈上色（再点关闭）">🛐 宗教</button></div>
 <div id="atlasWishSpotlight" class="atlas-wish-spotlight" hidden></div>
+<div id="atlasOverlayLegend" class="atlas-overlay-legend" hidden></div>
 <div class="atlas-map-controls"><button class="btn tiny" id="atlasZoomIn" aria-label="放大地图">＋</button><button class="btn tiny" id="atlasZoomOut" aria-label="缩小地图">−</button><button class="btn tiny" id="atlasMapReset">足迹全览</button></div>
 <div class="atlas-map-caption"><span id="atlasMapStatus">节点颜色对应 Theme Tag（深红=哥特 · 钴蓝=西幻 · 古金=神代 · 紫=圣地）· 放大看节点标签与原画对比</span><span id="atlasMapLegend" class="atlas-map-legend-bar">已到访区域</span></div></div></template>
 <dialog id="atlasPhotoLightbox" class="wish-lightbox">
@@ -3364,9 +3378,43 @@ let atlasBasemap=(()=>{
     return localStorage.getItem('vtw_basemap')||'zh_g';
   }catch{return 'zh_g';}
 })();
-let atlasBaseTiles=null, atlasCapsuleLayer=null, atlasCapsuleEntries=[], atlasSubPatchLayer=null;
+let atlasBaseTiles=null, atlasCapsuleLayer=null, atlasCapsuleEntries=[], atlasSubPatchLayer=null, atlasLockOnGeoLayer=null, atlasLockOnStreetOn=false;
 let atlasSeasonFilter='all', atlasActiveSubPatch=null, atlasGoogleTileProbed=false;
+let atlasMapOverlay='none', atlasOverlayFilter='all';
 let atlasSpotMediaMode='anime', atlasAnitabiPtIdx=0;
+const atlasHasLockOnRegions=a3=>Boolean(typeof ATLAS_COUNTRY_LOCKON_META==='object'&&ATLAS_COUNTRY_LOCKON_META[a3]);
+function atlasGetOverlayMeta(mode=atlasMapOverlay){
+  if(mode==='cuisine')return {title:'🍜 全球菜系文化圈',items:typeof ATLAS_CUISINE_META!=='undefined'?ATLAS_CUISINE_META:[],lookup:typeof atlasGetCountryCuisine==='function'?atlasGetCountryCuisine:()=>null};
+  if(mode==='language')return {title:'🗣️ 全球语言与沟通圈',items:typeof ATLAS_LANGUAGE_META!=='undefined'?ATLAS_LANGUAGE_META:[],lookup:typeof atlasGetCountryLanguage==='function'?atlasGetCountryLanguage:()=>null};
+  if(mode==='religion')return {title:'🛐 全球宗教与文化圈',items:typeof ATLAS_RELIGION_META!=='undefined'?ATLAS_RELIGION_META:[],lookup:typeof atlasGetCountryReligion==='function'?atlasGetCountryReligion:()=>null};
+  return null;
+}
+function atlasRenderOverlayLegend(){
+  const box=$('atlasOverlayLegend');
+  if(!box)return;
+  const meta=atlasGetOverlayMeta(atlasMapOverlay);
+  if(!meta){box.hidden=true;box.innerHTML='';return;}
+  box.hidden=false;
+  const activeItem=atlasOverlayFilter!=='all'?meta.items.find(x=>x.id===atlasOverlayFilter):null;
+  box.innerHTML=`<div class="ov-head"><span>${esc(meta.title)}</span><div style="display:flex;gap:4px">${activeItem?'<button type="button" class="btn tiny ghost" data-overlay-group="all">全部显示</button>':''}<button type="button" class="btn tiny" data-overlay-close>关闭</button></div></div>
+    <div class="ov-grid">${meta.items.map(it=>`<button type="button" class="ov-chip ${atlasOverlayFilter===it.id?'is-on':''}" style="--oc:${it.color}" data-overlay-group="${esc(it.id)}"><i></i>${esc(it.name)}</button>`).join('')}</div>
+    <div class="ov-desc">${activeItem?`<b>${esc(activeItem.name)}：</b>${esc(activeItem.desc)}`:'点击上方色块可单独高亮该圈层，鼠标悬停任意国家查看详细说明。'}</div>`;
+}
+function atlasApplyOverlay(mode){
+  const next=atlasMapOverlay===mode?'none':mode;
+  atlasMapOverlay=next;
+  atlasOverlayFilter='all';
+  if(next!=='none'&&atlasDrilledCountry)atlasClearCountryDrill(false);
+  document.querySelectorAll('[data-atlas-overlay]').forEach(b=>b.classList.toggle('active',b.dataset.atlasOverlay===next));
+  atlasRefreshStyleSnapshot();
+  if(atlasWorldLayer)atlasWorldLayer.setStyle(atlasWorldCountryStyle);
+  if(atlasChinaLayer)atlasChinaLayer.setStyle(atlasChinaProvinceStyle);
+  atlasRenderOverlayLegend();
+  if($('atlasMapStatus')){
+    const meta=atlasGetOverlayMeta(next);
+    $('atlasMapStatus').textContent=meta?`${meta.title}模式（点击左下角图例可单选高亮 · 再点按钮或关闭退出）`:'Leaflet · 点击任意国家放大查看分区、省界与大城市';
+  }
+}
 const atlasAnitabiReq=new Map(), atlasAnitabiData=new Map();
 const ATLAS_BASEMAPS={
   zh_g:{url:'https://mt{s}.google.com/vt/lyrs=m&hl=zh-CN&scale=2&x={x}&y={y}&z={z}',opt:{subdomains:'0123',maxZoom:20,attribution:'© Google Maps · 2x 高清中文'}},
@@ -3424,6 +3472,9 @@ function atlasApplyBasemap(key,restyle=true){
     }else{
       if(atlasWorldLayer)atlasWorldLayer.setStyle(atlasWorldCountryStyle);
       if(atlasChinaLayer)atlasChinaLayer.setStyle(atlasChinaProvinceStyle);
+    }
+    if(atlasDrilledCountry&&atlasHasLockOnRegions(atlasDrilledCountry.a3)){
+      atlasRenderLockOnRegions(atlasDrilledCountry.a3,atlasDrilledCountry.lonOffset||0);
     }
   }
 }
@@ -4085,8 +4136,11 @@ function atlasRefreshStyleSnapshot(data=null,stats=null){
 function atlasWorldCountryStyle(feature){
   const st=atlasWorldCountryStyleBase(feature);
   if(atlasBasemap==='vector'||atlasMapContext!=='home')return st;
+  if(atlasMapOverlay!=='none'){
+    return {...st,fillOpacity:st.fillOpacity||0,opacity:st.opacity,weight:st.weight};
+  }
   const snap=atlasStyleSnapshot||{};
-  const lit=st.fillColor&&st.fillColor!==snap.land;
+  const lit=st.fillColor&&st.fillColor!==snap.land&&(st.fillOpacity||0)>0;
   const drilled=atlasDrilledCountry&&feature.properties?.ADM0_A3===atlasDrilledCountry.a3;
   return {...st,fillOpacity:lit?Math.min(.3,(st.fillOpacity||0)*.38):0,opacity:lit||drilled?Math.min(.85,st.opacity):0,weight:lit||drilled?st.weight:0};
 }
@@ -4095,8 +4149,18 @@ function atlasWorldCountryStyleBase(feature){
   const p=feature.properties;
   const a3=p.ADM0_A3||'';
   const isDrilled=atlasDrilledCountry&&a3===atlasDrilledCountry.a3;
+  if(atlasMapOverlay!=='none'&&atlasMapContext==='home'){
+    const meta=atlasGetOverlayMeta(atlasMapOverlay);
+    const item=meta?.lookup?meta.lookup(p):null;
+    if(!item)return {color:snap.stroke,weight:.35,opacity:.3,fillColor:'transparent',fillOpacity:0};
+    const matched=atlasOverlayFilter==='all'||atlasOverlayFilter===item.id;
+    return {color:matched?'#FFFFFF':snap.stroke,weight:matched?.85:.4,opacity:matched?.88:.35,fillColor:item.color,fillOpacity:matched?(atlasBasemap==='vector'?.84:.58):.1};
+  }
   if(!snap.showRegions||atlasMapContext!=='home'){
     return {color:isDrilled?snap.cityVis:snap.stroke,weight:isDrilled?1.6:.45,opacity:isDrilled?1:.72,fillColor:snap.land,fillOpacity:1};
+  }
+  if(isDrilled&&atlasHasLockOnRegions(a3)){
+    return {color:'transparent',weight:0,opacity:0,fillColor:'transparent',fillOpacity:0};
   }
   if(snap.wishFilterActive&&snap.wishColorByA3?.has(a3)){
     const col=snap.wishColorByA3.get(a3);
@@ -4115,6 +4179,9 @@ function atlasWorldCountryStyleBase(feature){
 }
 
 function atlasChinaProvinceStyle(feature){
+  if(atlasMapContext==='home'&&(atlasDrilledCountry?.a3==='CHN'||atlasMapOverlay!=='none')){
+    return {opacity:0,fillOpacity:0,weight:0,fill:false};
+  }
   const st=atlasChinaProvinceStyleBase(feature);
   if(atlasBasemap==='vector'||atlasMapContext!=='home')return st;
   if(st.fill===false)return {...st,opacity:Math.min(.3,st.opacity||.3)};
@@ -4151,6 +4218,7 @@ function atlasClearCountryDrill(shouldResetView=true){
   if(atlasAdmin1Layer)atlasAdmin1Layer.clearLayers();
   if(atlasMajorCitiesLayer)atlasMajorCitiesLayer.clearLayers();
   if(atlasSubPatchLayer)atlasSubPatchLayer.clearLayers();
+  atlasLockOnGeoLayer=null;atlasLockOnStreetOn=false;
   if(atlasLastSheet?.type==='region')atlasLastSheet=null;
   const bar=$('atlasCountryDrillBar');
   if(bar){bar.hidden=true;bar.innerHTML='';}
@@ -4183,9 +4251,16 @@ function atlasDrillIntoCountry(feature,clickedLayer=null,lonOffset=0){
   }
   const nameZh=p.NAME_ZH||p.ADMIN||'国家';
   const nameEn=p.ADMIN||'';
+  if(atlasMapOverlay!=='none'){
+    atlasMapOverlay='none';
+    atlasOverlayFilter='all';
+    document.querySelectorAll('[data-atlas-overlay]').forEach(b=>b.classList.remove('active'));
+    atlasRenderOverlayLegend();
+  }
   atlasDrilledCountry={a3,nameZh,nameEn,lonOffset};
   atlasActiveSubPatch=null;
   if(atlasSubPatchLayer)atlasSubPatchLayer.clearLayers();
+  atlasLockOnGeoLayer=null;atlasLockOnStreetOn=false;
 
   // 1. Zoom cleanly to the country's main territory bounds
   const MAINLAND_BOUNDS={
@@ -4200,11 +4275,11 @@ function atlasDrillIntoCountry(feature,clickedLayer=null,lonOffset=0){
     'NOR':[[57.9,4.5],[71.2,31.2]],
     'NZL':[[-47.3,166.4],[-34.4,178.6]],
     'CHL':[[-55.9,-75.6],[-17.5,-66.4]],
-    'JPN':[[30.0,129.0],[45.6,145.8]]
+    'JPN':[[25.0,126.5],[45.6,146.0]]
   };
   if(MAINLAND_BOUNDS[a3]){
     const mb=MAINLAND_BOUNDS[a3];
-    atlasMap.fitBounds([[mb[0][0],mb[0][1]+lonOffset],[mb[1][0],mb[1][1]+lonOffset]],{padding:[28,36],maxZoom:7,animate:true});
+    atlasMap.fitBounds([[mb[0][0],mb[0][1]+lonOffset],[mb[1][0],mb[1][1]+lonOffset]],{padding:[28,36],maxZoom:a3==='USA'?5:7,animate:true});
   }else if(clickedLayer&&typeof clickedLayer.getBounds==='function'){
     const b=clickedLayer.getBounds();
     if(b.isValid())atlasMap.fitBounds(b,{padding:[28,36],maxZoom:7,animate:true});
@@ -4218,7 +4293,7 @@ function atlasDrillIntoCountry(feature,clickedLayer=null,lonOffset=0){
   // 3. Draw Admin-1 (Province / State) boundary lines for this country
   if(atlasAdmin1Layer)atlasAdmin1Layer.clearLayers();
   const detail=(typeof ATLAS_COUNTRY_DETAIL==='object'&&ATLAS_COUNTRY_DETAIL)||null;
-  const adminLines=(a3==='JPN'&&typeof JAPAN_PREFECTURES_GEOJSON==='object')?[]:((detail?.admin1Lines?.[a3])||[]);
+  const adminLines=atlasHasLockOnRegions(a3)?[]:((detail?.admin1Lines?.[a3])||[]);
   if(adminLines.length&&atlasAdmin1Layer){
     for(const off of [-360,0,360]){
       const multiCoords=adminLines.map(ln=>ln.map(pt=>{
@@ -4293,7 +4368,7 @@ function atlasDrillIntoCountry(feature,clickedLayer=null,lonOffset=0){
 
   // 5. Update Country Drill-down Floating Banner & Map Caption
   const bar=$('atlasCountryDrillBar');
-  const provCountLabel=a3==='CHN'?'34 个省级行政区':adminLines.length?`一级行政区（省/州）分界`:'国家级视图';
+  const provCountLabel=a3==='JPN'?'47 个都道府县 · 9 大片区':a3==='CHN'?'34 个省级行政区 · 7 大片区':a3==='USA'?'51 个州/特区 · 7 大片区':adminLines.length?`一级行政区（省/州）分界`:'国家级视图';
   if(bar){
     bar.hidden=false;
     bar.innerHTML=`<span>🗺️ <b>${esc(nameZh)}</b> <span class="drill-meta">${esc(nameEn)} · ${provCountLabel}${capCity?` · 首都 ★ ${esc(capCity.zh)}`:''} · 滚轮放大自动展开更多城市（再点国家收回）</span></span>
@@ -4304,96 +4379,245 @@ function atlasDrillIntoCountry(feature,clickedLayer=null,lonOffset=0){
   if($('atlasMapStatus')){
     $('atlasMapStatus').textContent=`当前聚焦：${nameZh}（再点该国可收回放大 · 滚轮放大显示密集城市名）`;
   }
-  if(a3==='JPN')atlasRenderJapanPatches(lonOffset);
+  if(atlasHasLockOnRegions(a3))atlasRenderLockOnRegions(a3,lonOffset);
   atlasRenderRegionSheet({kind:'country',a3,nameZh,nameEn});
   atlasRenderMapQuickBar(data);
 }
 
-/* ===== riben.cloud 式片状渐进下钻：日本 9 大地方 47 都道府县真实轮廓 / 中国单省 ===== */
+/* ===== riben.cloud 式 Lock-On 片区上色 + 渐进下钻（日本 / 中国 / 美国） ===== */
 let atlasLastSheet=null;
-function atlasRenderJapanPatches(lonOffset=0){
+function atlasIsLockOnStreetOn(a3){
+  if(atlasBasemap==='vector')return false;
+  const z=atlasMap?.getZoom?.()||0;
+  return a3==='JPN'?z>=10:z>=8;
+}
+function atlasGetLockOnSelection(a3){
+  if(a3==='CHN'&&atlasActiveSubPatch?.kind==='cn-prov'){
+    const name=atlasActiveSubPatch.name||'';
+    const regId=atlasActiveSubPatch.reg?.id||(typeof CHINA_PROV_REGION_MAP==='object'?CHINA_PROV_REGION_MAP[name]||'':'');
+    return {actRegId:regId,selSubName:name};
+  }
+  if(atlasActiveSubPatch?.kind==='region-patch'&&atlasActiveSubPatch.a3===a3){
+    return {actRegId:atlasActiveSubPatch.reg?.id||'',selSubName:atlasActiveSubPatch.subName||''};
+  }
+  if(atlasActiveSubPatch?.kind==='jp-reg'&&a3==='JPN'){
+    return {actRegId:atlasActiveSubPatch.reg?.id||'',selSubName:atlasActiveSubPatch.subName||''};
+  }
+  return {actRegId:'',selSubName:''};
+}
+function atlasUpdateLockOnDrillBar(a3){
+  const bar=$('atlasCountryDrillBar');
+  const meta=ATLAS_COUNTRY_LOCKON_META?.[a3];
+  if(!bar||!meta)return;
+  const {actRegId,selSubName}=atlasGetLockOnSelection(a3);
+  const actReg=actRegId?meta.regions.find(r=>r.id===actRegId):null;
+  const unitWord=a3==='JPN'?'都道府县':a3==='USA'?'州/特区':'省区市';
+  const countLabel=a3==='JPN'?'47 个都道府县 · 9 大片区':a3==='CHN'?'34 个省级行政区 · 7 大片区':'51 个州/特区 · 7 大片区';
+  bar.hidden=false;
+  if(actReg&&selSubName){
+    bar.innerHTML=`<span>🗺️ <b>${esc(meta.countryZh)}</b> › <b>${esc(actReg.name)}</b> › <b>${esc(selSubName)}</b></span>
+      <div style="display:flex;gap:4px"><button type="button" class="btn tiny ghost" data-lockon-region="${a3}|${esc(actReg.id)}" style="padding:2px 8px;font-size:11px">← ${esc(actReg.chipName||actReg.name)}</button><button type="button" class="btn tiny ghost" data-lockon-back="${a3}" style="padding:2px 8px;font-size:11px">← ${esc(meta.countryZh)}全图</button><button type="button" class="btn tiny" id="atlasExitDrillBtn" style="padding:2px 8px;font-size:11px">← 收回放大</button></div>`;
+  }else if(actReg){
+    bar.innerHTML=`<span>🗺️ <b>${esc(meta.countryZh)}</b> › <b>${esc(actReg.name)}</b> <span class="drill-meta">· 点击任意${unitWord}聚焦</span></span>
+      <div style="display:flex;gap:4px"><button type="button" class="btn tiny ghost" data-lockon-back="${a3}" style="padding:2px 8px;font-size:11px">← ${esc(meta.countryZh)}全图</button><button type="button" class="btn tiny" id="atlasExitDrillBtn" style="padding:2px 8px;font-size:11px">← 收回放大</button></div>`;
+  }else{
+    bar.innerHTML=`<span>🗺️ <b>${esc(meta.countryZh)}</b> <span class="drill-meta">${esc(meta.countryEn)} · ${countLabel} · 点击片区展开细分</span></span>
+      <button type="button" class="btn tiny" id="atlasExitDrillBtn" style="padding:2px 8px;font-size:11px">← 收回放大</button>`;
+  }
+  const backReg=bar.querySelector('[data-lockon-region]');
+  if(backReg)backReg.onclick=(e)=>{e.stopPropagation();atlasFocusLockOnRegion(a3,actReg.id);};
+  const backAll=bar.querySelector('[data-lockon-back]');
+  if(backAll)backAll.onclick=(e)=>{
+    e.stopPropagation();
+    atlasActiveSubPatch=null;atlasCountryChip='all';
+    const off=atlasDrilledCountry?.lonOffset||0;
+    const [[s,w],[n,e2]]=meta.fitBounds;
+    if(atlasMap)atlasMap.fitBounds([[s,w+off],[n,e2+off]],{padding:[28,36],maxZoom:meta.maxZoom||7,animate:true});
+    if(atlasChinaLayer)atlasChinaLayer.setStyle(atlasChinaProvinceStyle);
+    atlasRenderLockOnRegions(a3,off);
+    atlasRenderRegionSheet({kind:'country',a3,nameZh:meta.countryZh,nameEn:meta.countryEn});
+    atlasRenderMapQuickBar();
+  };
+  const exitBtn=$('atlasExitDrillBtn');
+  if(exitBtn)exitBtn.onclick=(e)=>{e.stopPropagation();atlasClearCountryDrill(true);};
+}
+function atlasRefreshLockOnStreetFade(){
+  const a3=atlasDrilledCountry?.a3;
+  if(!a3||!atlasHasLockOnRegions(a3)||!atlasLockOnGeoLayer)return;
+  const cur=atlasIsLockOnStreetOn(a3);
+  if(cur===atlasLockOnStreetOn)return;
+  atlasLockOnStreetOn=cur;
+  if(typeof atlasLockOnGeoLayer.setStyle==='function'&&atlasLockOnGeoLayer._vtwStyleFn){
+    atlasLockOnGeoLayer.setStyle(atlasLockOnGeoLayer._vtwStyleFn);
+  }
+}
+function atlasRenderLockOnRegions(a3,lonOffset=0){
   if(!atlasSubPatchLayer)return;
   atlasSubPatchLayer.clearLayers();
-  if(typeof JAPAN_REGIONS_PATCHES==='undefined'||atlasDrilledCountry?.a3!=='JPN')return;
-  const actId=atlasActiveSubPatch?.kind==='jp-reg'?atlasActiveSubPatch.reg.id:'';
-  const regById=new Map(JAPAN_REGIONS_PATCHES.map(r=>[r.id,r]));
-  if(typeof JAPAN_PREFECTURES_GEOJSON==='object'&&Array.isArray(JAPAN_PREFECTURES_GEOJSON.features)){
-    const geo=lonOffset===0?JAPAN_PREFECTURES_GEOJSON:{
-      type:'FeatureCollection',
-      features:JAPAN_PREFECTURES_GEOJSON.features.map(f=>({
-        type:'Feature',
-        properties:f.properties,
-        geometry:{type:f.geometry.type,coordinates:wrapGeoCoords(f.geometry.coordinates,lonOffset)}
-      }))
+  atlasLockOnGeoLayer=null;
+  if(atlasDrilledCountry?.a3!==a3||!atlasHasLockOnRegions(a3))return;
+  const meta=ATLAS_COUNTRY_LOCKON_META[a3];
+  const geoRaw=meta.getGeo?.();
+  if(!geoRaw||!Array.isArray(geoRaw.features))return;
+  const isVec=atlasBasemap==='vector';
+  const {actRegId,selSubName}=atlasGetLockOnSelection(a3);
+  const regById=new Map(meta.regions.map(r=>[r.id,r]));
+  const geo=(a3==='CHN'||lonOffset!==0)?{
+    type:'FeatureCollection',
+    features:geoRaw.features.map(f=>({
+      type:'Feature',
+      properties:f.properties,
+      geometry:a3==='CHN'
+        ?atlasWrapGeometryForBasemap(f.geometry,lonOffset)
+        :{type:f.geometry.type,coordinates:wrapGeoCoords(f.geometry.coordinates,lonOffset)}
+    }))
+  }:geoRaw;
+  atlasLockOnStreetOn=atlasIsLockOnStreetOn(a3);
+  const subLayersByReg=new Map();
+  const subItems=[];
+  const styleFn=f=>{
+    const reg=regById.get(meta.getRegionId(f));
+    const tone=reg?.tone||'#b5523f';
+    const subName=meta.getSubName(f);
+    const inRegion=Boolean(actRegId&&reg?.id===actRegId);
+    const picked=Boolean(selSubName&&subName===selSubName);
+    const streetOn=atlasIsLockOnStreetOn(a3);
+    return {
+      color:picked?'#b83b2a':'#fffdf8',
+      weight:picked?3.6:(actRegId?(inRegion?2.4:1.0):1.45),
+      opacity:picked?1:(streetOn?.55:(actRegId?(inRegion?.96:.48):.92)),
+      fillColor:tone,
+      fillOpacity:streetOn?(picked?.22:.12):(picked?(isVec?.88:.68):(actRegId?(inRegion?(isVec?.84:.62):(isVec?.22:.18)):(isVec?.82:.72)))
     };
-    const prefLayersByReg=new Map();
-    const geoLayer=L.geoJSON(geo,{
-      style:f=>{
-        const reg=regById.get(f.properties?.region);
-        const tone=reg?.tone||'#B83B2A';
-        if(!actId)return {color:'#FFFFFF',weight:1,opacity:.88,fillColor:tone,fillOpacity:.26};
-        if(reg?.id===actId)return {color:tone,weight:1.5,opacity:.95,fillColor:tone,fillOpacity:.34};
-        return {color:'#FFFFFF',weight:.7,opacity:.5,fillColor:tone,fillOpacity:.09};
-      },
-      onEachFeature:(f,layer)=>{
-        const reg=regById.get(f.properties?.region);
-        if(!reg)return;
-        if(!prefLayersByReg.has(reg.id))prefLayersByReg.set(reg.id,[]);
-        prefLayersByReg.get(reg.id).push(layer);
-        layer.bindTooltip(esc(`${f.properties.name} · ${reg.name}｜${reg.seasons}`),{sticky:true});
-        layer.on('mouseover',()=>{
-          if(!actId){
-            for(const l of (prefLayersByReg.get(reg.id)||[]))l.setStyle({fillOpacity:.44,weight:1.6,color:reg.tone});
-          }else{
-            layer.setStyle({fillOpacity:reg.id===actId?.52:.25,weight:2.1,color:reg.tone});
-          }
-        });
-        layer.on('mouseout',()=>{
-          if(!actId){
-            for(const l of (prefLayersByReg.get(reg.id)||[]))geoLayer.resetStyle(l);
-          }else{
-            geoLayer.resetStyle(layer);
-          }
-        });
-        layer.on('click',ev=>{
-          L.DomEvent.stopPropagation(ev);
-          if(actId!==reg.id){
-            atlasFocusJapanRegion(reg.id);
-          }else if(atlasMap&&typeof layer.getBounds==='function'){
-            const b=layer.getBounds();
-            if(b.isValid())atlasMap.fitBounds(b,{padding:[26,32],maxZoom:10,animate:true});
-            if($('atlasMapStatus'))$('atlasMapStatus').textContent=`当前聚焦：${reg.name} · ${f.properties.name}（点「← 日本全图」或再点日本收回）`;
-          }
-        });
+  };
+  const geoLayer=L.geoJSON(geo,{
+    style:styleFn,
+    onEachFeature:(f,layer)=>{
+      const reg=regById.get(meta.getRegionId(f));
+      if(!reg)return;
+      const subName=meta.getSubName(f);
+      if(!subLayersByReg.has(reg.id))subLayersByReg.set(reg.id,[]);
+      subLayersByReg.get(reg.id).push(layer);
+      subItems.push({f,layer,reg,subName});
+      layer.bindTooltip(esc(`${subName} · ${reg.name}｜${reg.seasons}`),{sticky:true});
+      layer.on('mouseover',()=>{
+        if(!actRegId){
+          for(const l of (subLayersByReg.get(reg.id)||[]))l.setStyle({fillOpacity:isVec?.92:.78,weight:2.2,color:'#FFFFFF'});
+        }else{
+          layer.setStyle({fillOpacity:.84,weight:2.6,color:'#b83b2a'});
+        }
+      });
+      layer.on('mouseout',()=>{
+        if(!actRegId){
+          for(const l of (subLayersByReg.get(reg.id)||[]))geoLayer.resetStyle(l);
+        }else{
+          geoLayer.resetStyle(layer);
+        }
+      });
+      layer.on('click',ev=>{
+        L.DomEvent.stopPropagation(ev);
+        if(!actRegId||reg.id!==actRegId){
+          atlasFocusLockOnRegion(a3,reg.id);
+        }else if(a3==='CHN'){
+          atlasDrillIntoChinaProv(f,layer);
+        }else{
+          atlasPickLockOnSubUnit(a3,reg.id,subName,layer);
+        }
+      });
+    }
+  });
+  geoLayer._vtwStyleFn=styleFn;
+  atlasLockOnGeoLayer=geoLayer;
+  geoLayer.addTo(atlasSubPatchLayer);
+  if(typeof geoLayer.bringToBack==='function')geoLayer.bringToBack();
+  if(!actRegId){
+    for(const reg of meta.regions){
+      const [cLat,cLng]=a3==='CHN'?atlasMapCoord(reg.center[0],reg.center[1]):reg.center;
+      const chip=L.marker([cLat,cLng+lonOffset],{
+        icon:L.divIcon({className:'jp-region-pin',html:`<span class="jp-region-chip" style="--rtone:${reg.tone}"><i></i>${esc(reg.chipName||reg.name)}</span>`,iconSize:[0,0],iconAnchor:[0,0]}),
+        zIndexOffset:5200
+      });
+      chip.on('click',ev=>{L.DomEvent.stopPropagation(ev);atlasFocusLockOnRegion(a3,reg.id);});
+      chip.addTo(atlasSubPatchLayer);
+    }
+  }else{
+    for(const {f,layer,reg,subName} of subItems){
+      if(reg.id!==actRegId)continue;
+      const picked=Boolean(selSubName&&subName===selSubName);
+      const pillLabel=f.properties?.short||subName;
+      let pLat,pLng;
+      const ctr=f.properties?.center;
+      if(Array.isArray(ctr)&&ctr.length>=2){
+        const rawLat=a3==='CHN'?Number(ctr[1]):Number(ctr[0]);
+        const rawLng=a3==='CHN'?Number(ctr[0]):Number(ctr[1]);
+        const [mLat,mLng]=a3==='CHN'?atlasMapCoord(rawLat,rawLng):[rawLat,rawLng];
+        pLat=mLat;pLng=mLng+lonOffset;
+      }else{
+        const c=layer.getBounds().getCenter();
+        pLat=c.lat;pLng=c.lng;
       }
-    });
-    geoLayer.addTo(atlasSubPatchLayer);
+      const pill=L.marker([pLat,pLng],{
+        icon:L.divIcon({className:`atlas-sub-pin ${picked?'is-picked':''}`,html:`<span class="atlas-sub-pill">${esc(pillLabel)}</span>`,iconSize:[0,0],iconAnchor:[0,0]}),
+        zIndexOffset:picked?5600:5200
+      });
+      pill.on('click',ev=>{
+        L.DomEvent.stopPropagation(ev);
+        if(a3==='CHN')atlasDrillIntoChinaProv(f,layer);
+        else atlasPickLockOnSubUnit(a3,reg.id,subName,layer);
+      });
+      pill.addTo(atlasSubPatchLayer);
+    }
   }
-  for(const reg of JAPAN_REGIONS_PATCHES){
-    const on=reg.id===actId;
-    const chip=L.marker([reg.center[0],reg.center[1]+lonOffset],{
-      icon:L.divIcon({className:'jp-region-pin',html:`<span class="jp-region-chip ${on?'is-active':''}" style="--rtone:${reg.tone}"><i></i>${esc(reg.name)}</span>`,iconSize:[0,0],iconAnchor:[0,0]}),
-      zIndexOffset:5200
-    });
-    chip.on('click',ev=>{L.DomEvent.stopPropagation(ev);atlasFocusJapanRegion(reg.id);});
-    chip.addTo(atlasSubPatchLayer);
-  }
+  atlasUpdateLockOnDrillBar(a3);
 }
-function atlasFocusJapanRegion(regId){
-  if(typeof JAPAN_REGIONS_PATCHES==='undefined'||!atlasMap)return;
-  const reg=JAPAN_REGIONS_PATCHES.find(r=>r.id===regId);
+function atlasPickLockOnSubUnit(a3,regId,subName,layer){
+  if(!atlasHasLockOnRegions(a3)||!atlasMap)return;
+  const meta=ATLAS_COUNTRY_LOCKON_META[a3];
+  const reg=meta.regions.find(r=>r.id===regId);
   if(!reg)return;
-  if(atlasDrilledCountry?.a3!=='JPN'){
-    const jpn=ATLAS_WORLD_GEOJSON?.features?.find(f=>f.properties?.ADM0_A3==='JPN');
-    if(jpn)atlasDrillIntoCountry(jpn,null,0);
+  const cur=atlasGetLockOnSelection(a3);
+  if(cur.actRegId===regId&&cur.selSubName===subName){
+    atlasFocusLockOnRegion(a3,regId);
+    return;
   }
   const off=atlasDrilledCountry?.lonOffset||0;
-  atlasActiveSubPatch={kind:'jp-reg',reg};
-  atlasMap.fitBounds([[reg.bounds[0][0],reg.bounds[0][1]+off],[reg.bounds[1][0],reg.bounds[1][1]+off]],{padding:[24,30],maxZoom:9,animate:true});
-  atlasRenderJapanPatches(off);
-  atlasRenderRegionSheet({kind:'jp-reg',reg});
+  atlasActiveSubPatch={kind:'region-patch',a3,reg,subName};
+  atlasCountryChip='all';
+  if(layer&&typeof layer.getBounds==='function'){
+    const b=layer.getBounds();
+    if(b.isValid())atlasMap.fitBounds(b,{padding:[26,32],maxZoom:a3==='USA'?7:10,animate:true});
+  }
+  atlasRenderLockOnRegions(a3,off);
+  atlasRenderRegionSheet({kind:'region-patch',a3,reg});
+  atlasRenderMapQuickBar();
+  if($('atlasMapStatus'))$('atlasMapStatus').textContent=`当前聚焦：${reg.name} · ${subName}（再点取消单选 · 点上方「← ${meta.countryZh}全图」或再点${meta.countryZh}收回）`;
+}
+function atlasFocusLockOnRegion(a3,regId){
+  if(!atlasHasLockOnRegions(a3)||!atlasMap)return;
+  const meta=ATLAS_COUNTRY_LOCKON_META[a3];
+  const reg=meta.regions.find(r=>r.id===regId);
+  if(!reg)return;
+  if(atlasDrilledCountry?.a3!==a3){
+    const feat=ATLAS_WORLD_GEOJSON?.features?.find(f=>f.properties?.ADM0_A3===a3);
+    if(feat)atlasDrillIntoCountry(feat,null,0);
+  }
+  const off=atlasDrilledCountry?.lonOffset||0;
+  atlasActiveSubPatch={kind:'region-patch',a3,reg,subName:''};
+  atlasCountryChip='all';
+  if(a3==='CHN'){
+    const [[s,w],[n,e]]=reg.bounds;
+    const [swLat,swLng]=atlasMapCoord(s,w);
+    const [neLat,neLng]=atlasMapCoord(n,e);
+    atlasMap.fitBounds([[swLat,swLng+off],[neLat,neLng+off]],{padding:[24,30],maxZoom:6,animate:true});
+  }else{
+    atlasMap.fitBounds([[reg.bounds[0][0],reg.bounds[0][1]+off],[reg.bounds[1][0],reg.bounds[1][1]+off]],{padding:[24,30],maxZoom:a3==='USA'?6:9,animate:true});
+  }
+  atlasRenderLockOnRegions(a3,off);
+  atlasRenderRegionSheet({kind:'region-patch',a3,reg});
   atlasRenderMapQuickBar();
 }
+function atlasRenderJapanPatches(lonOffset=0){atlasRenderLockOnRegions('JPN',lonOffset);}
+function atlasFocusJapanRegion(regId){atlasFocusLockOnRegion('JPN',regId);}
 function atlasFindChinaProvLayer(name){
   let hit=null;
   if(atlasChinaLayer)atlasChinaLayer.eachLayer(l=>{
@@ -4410,18 +4634,28 @@ function atlasDrillIntoChinaProv(feature,layer){
     const chn=ATLAS_WORLD_GEOJSON?.features?.find(f=>f.properties?.ADM0_A3==='CHN');
     if(chn)atlasDrillIntoCountry(chn,null,0);
   }
+  const pRegId=typeof CHINA_PROV_REGION_MAP==='object'?CHINA_PROV_REGION_MAP[name]:'';
+  const pReg=pRegId?ATLAS_COUNTRY_LOCKON_META?.CHN?.regions?.find(r=>r.id===pRegId):null;
   if(atlasActiveSubPatch?.kind==='cn-prov'&&atlasActiveSubPatch.name===name){
+    if(pReg){
+      atlasFocusLockOnRegion('CHN',pReg.id);
+      const data=atlasCombinedFootprints();
+      atlasRenderExplorerList(data);
+      return;
+    }
     atlasActiveSubPatch=null;
     atlasCountryChip='all';
-    atlasMap.fitBounds([[18.1,73.5],[53.6,135.1]],{padding:[28,36],maxZoom:7,animate:true});
+    const off=atlasDrilledCountry?.lonOffset||0;
+    atlasMap.fitBounds([[18.1,73.5+off],[53.6,135.1+off]],{padding:[28,36],maxZoom:7,animate:true});
     if(atlasChinaLayer)atlasChinaLayer.setStyle(atlasChinaProvinceStyle);
+    atlasRenderLockOnRegions('CHN',off);
     const data=atlasCombinedFootprints();
     atlasRenderExplorerList(data);
     atlasRenderRegionSheet({kind:'country',a3:'CHN',nameZh:'中国',nameEn:'China'});
     atlasRenderMapQuickBar(data);
     return;
   }
-  atlasActiveSubPatch={kind:'cn-prov',name};
+  atlasActiveSubPatch={kind:'cn-prov',name,reg:pReg||null};
   atlasCountryChip='prov:'+name;
   const sel=$('atlasCountrySelect');
   if(sel&&[...sel.options].some(o=>o.value===atlasCountryChip))sel.value=atlasCountryChip;
@@ -4431,6 +4665,7 @@ function atlasDrillIntoChinaProv(feature,layer){
     if(b.isValid())atlasMap.fitBounds(b,{padding:[26,32],maxZoom:8,animate:true});
   }
   if(atlasChinaLayer)atlasChinaLayer.setStyle(atlasChinaProvinceStyle);
+  atlasRenderLockOnRegions('CHN',atlasDrilledCountry?.lonOffset||0);
   const data=atlasCombinedFootprints();
   atlasRenderExplorerList(data);
   atlasRenderRegionSheet({kind:'cn-prov',name});
@@ -4461,16 +4696,14 @@ function atlasRenderMapQuickBar(data=null){
     ${seasons.map(s=>`<button type="button" class="season-chip ${atlasSeasonFilter===s.id?'is-on':''}" style="--sc:${s.color}" data-season-pick="${s.id}" title="${esc(s.label||s.short)}"><i></i>${esc(s.icon+' '+s.short)} <small>${cnt(s.id)}</small></button>`).join('')}
   </div>`;
   let row2='';
-  if(atlasDrilledCountry?.a3==='JPN'&&typeof JAPAN_REGIONS_PATCHES!=='undefined'){
-    const act=atlasActiveSubPatch?.kind==='jp-reg'?atlasActiveSubPatch.reg.id:'';
-    row2=`<span class="quickbar-label">🇯🇵 日本 9 大片区</span>${JAPAN_REGIONS_PATCHES.map(r=>`<button type="button" class="season-chip ${act===r.id?'is-on':''}" style="--sc:${r.tone}" data-jp-region="${r.id}"><i></i>${esc(r.name)}</button>`).join('')}`;
-  }else if(atlasDrilledCountry?.a3==='CHN'){
-    const stats=atlasComputeStats(d);
-    const provs=[...new Set([...stats.visitedProvinces.keys(),...stats.plannedProvinces.keys()])];
-    const act=atlasActiveSubPatch?.kind==='cn-prov'?atlasActiveSubPatch.name:'';
-    row2=`<span class="quickbar-label">🇨🇳 已点亮 / 计划省份</span>${provs.map(p=>`<button type="button" class="season-chip ${act===p?'is-on':''}" style="--sc:${stats.visitedProvinces.has(p)?'#176953':'#C96A2B'}" data-cn-prov="${esc(p)}"><i></i>${esc(atlasShortProvince(p))}</button>`).join('')||'<span class="muted small">点击地图任一省份片块即可放大</span>'}`;
+  if(atlasDrilledCountry&&atlasHasLockOnRegions(atlasDrilledCountry.a3)){
+    const meta=ATLAS_COUNTRY_LOCKON_META[atlasDrilledCountry.a3];
+    const act=(atlasActiveSubPatch?.kind==='region-patch'&&atlasActiveSubPatch.a3===meta.a3)
+      ?atlasActiveSubPatch.reg.id
+      :(atlasActiveSubPatch?.kind==='jp-reg'&&meta.a3==='JPN'?atlasActiveSubPatch.reg.id:'');
+    row2=`<span class="quickbar-label">${esc(meta.label)}</span>${meta.regions.map(r=>`<button type="button" class="season-chip ${act===r.id?'is-on':''}" style="--sc:${r.tone}" data-lockon-region="${meta.a3}|${r.id}"><i></i>${esc(r.chipName||r.name)}</button>`).join('')}`;
   }else{
-    const presets=[['jp','🇯🇵 日本 9 大片区','#b5523f'],['cn','🇨🇳 中国 34 省片块','#176953'],['gothic','⛪ 欧洲哥特','#8E152A'],['fantasy','🛡️ 西幻奇境','#2457C5'],['ruins','🏛️ 古典神代','#B87D14'],['nature','🏔️ 自然奇观','#0891B2']];
+    const presets=[['jp','🇯🇵 日本 9 大片区','#b5523f'],['cn','🇨🇳 中国 7 大片区','#b5523f'],['us','🇺🇸 美国 7 大片区','#5e9484'],['gothic','⛪ 欧洲哥特','#8E152A'],['fantasy','🛡️ 西幻奇境','#2457C5'],['ruins','🏛️ 古典神代','#B87D14'],['nature','🏔️ 自然奇观','#0891B2']];
     row2=`<span class="quickbar-label">🗺️ 片状快切</span>${presets.map(([k,t,c])=>`<button type="button" class="season-chip" style="--sc:${c}" data-patch-preset="${k}"><i></i>${t}</button>`).join('')}`;
   }
   bar.innerHTML=row1+`<div class="quickbar-row">${row2}</div>`;
@@ -4547,16 +4780,20 @@ function atlasRenderRegionSheet(ctx){
   atlasLastSheet={type:'region',ctx};
   const data=atlasCombinedFootprints();
   let title='',sub='',country='',matchFn=null,customKey='',strip='',wishes=[],cities=[],seasonLine='';
-  if(ctx.kind==='jp-reg'){
+  if(ctx.kind==='region-patch'||ctx.kind==='jp-reg'){
+    const a3=ctx.a3||'JPN';
+    const meta=ATLAS_COUNTRY_LOCKON_META[a3];
     const r=ctx.reg;
-    country='日本';title=r.name;sub=`${r.kana} · ${r.summary}`;seasonLine=r.seasons;
-    customKey=`日本|${r.name}`;
+    country=meta?.countryZh||'日本';
+    title=r.name;sub=`${r.kana} · ${r.summary}`;seasonLine=r.seasons;
+    customKey=`${country}|${r.name}`;
     matchFn=kn=>r.prefs.some(p=>p[0].includes(kn))||r.summary.includes(kn);
     const [[s,w],[n,e]]=r.bounds;
     const inB=c=>Number(c.lat)>=s&&Number(c.lat)<=n&&Number(c.lng)>=w&&Number(c.lng)<=e;
-    wishes=data.wishSpots.filter(c=>c.country==='日本'&&inB(c));
-    cities=data.allCities.filter(c=>!c.isWish&&c.country==='日本'&&inB(c));
-    strip=`<div class="vtw-pref-strip"><div class="vtw-pref-strip-title"><span>🗾 都道府县 / 重点城市快切</span><button type="button" class="btn tiny ghost" data-jp-region-back>← 日本全图</button></div>
+    const isTargetCountry=c=>c.country===country||(a3==='CHN'&&c.province&&CHINA_PROV_REGION_MAP[c.province]===r.id);
+    wishes=data.wishSpots.filter(c=>isTargetCountry(c)&&(a3==='CHN'&&c.province?CHINA_PROV_REGION_MAP[c.province]===r.id:inB(c)));
+    cities=data.allCities.filter(c=>!c.isWish&&isTargetCountry(c)&&(a3==='CHN'&&c.province?CHINA_PROV_REGION_MAP[c.province]===r.id:inB(c)));
+    strip=`<div class="vtw-pref-strip"><div class="vtw-pref-strip-title"><span>${a3==='JPN'?'🗾 都道府县 / 重点城市快切':a3==='CHN'?'🏙️ 片区重点城市快切':'🗺️ 片区重点城市 / 州快切'}</span><button type="button" class="btn tiny ghost" data-lockon-back="${a3}">← ${esc(country)}全图</button></div>
       <div class="vtw-pref-list">${r.prefs.map(p=>`<button type="button" class="vtw-pref-btn" data-pref-jump="${esc(p.join('|'))}">${esc(p[0])}</button>`).join('')}</div></div>`;
   }else if(ctx.kind==='cn-prov'){
     country='中国';title=ctx.name;customKey=`中国|${ctx.name}`;
@@ -4565,7 +4802,7 @@ function atlasRenderRegionSheet(ctx){
     matchFn=kn=>names.some(n=>n.includes(kn)||kn.includes(n));
     wishes=data.wishSpots.filter(w=>w.province===ctx.name);
     sub=`${cities.filter(c=>c.visited).length} 城已到访 · ${cities.filter(c=>!c.visited).length} 城计划中 · 再点该省收回到全国`;
-    strip=cities.length?`<div class="vtw-pref-strip"><div class="vtw-pref-strip-title"><span>🏙️ 省内足迹城市</span></div><div class="vtw-pref-list">${cities.map(c=>`<button type="button" class="vtw-pref-btn" data-atlas-focus-only="${esc(c.id)}">${c.visited?'✓':'🧭'} ${esc(c.name)}</button>`).join('')}</div></div>`:'';
+    strip=`<div class="vtw-pref-strip"><div class="vtw-pref-strip-title"><span>🏙️ 省内足迹城市</span><button type="button" class="btn tiny ghost" data-lockon-back="CHN">← 中国全图</button></div>${cities.length?`<div class="vtw-pref-list">${cities.map(c=>`<button type="button" class="vtw-pref-btn" data-atlas-focus-only="${esc(c.id)}">${c.visited?'✓':'🧭'} ${esc(c.name)}</button>`).join('')}</div>`:''}</div>`;
   }else{
     country=ctx.nameZh;title=ctx.nameZh;customKey=`${ctx.nameZh}|*`;
     const fp=ATLAS_WORLD_GEOJSON?.features?.find(f=>f.properties?.ADM0_A3===ctx.a3)?.properties;
@@ -4573,10 +4810,9 @@ function atlasRenderRegionSheet(ctx){
     cities=data.allCities.filter(c=>!c.isWish&&inC(c));
     wishes=data.wishSpots.filter(inC);
     sub=`${ctx.nameEn||''} · ${cities.filter(c=>c.visited).length} 城已到访 · ✦ ${wishes.length} 处想去`;
-    if(ctx.a3==='JPN'&&typeof JAPAN_REGIONS_PATCHES!=='undefined'){
-      strip=`<div class="vtw-pref-strip"><div class="vtw-pref-strip-title"><span>🗾 日本 9 大地方片区（点击放大）</span></div><div class="vtw-pref-list">${JAPAN_REGIONS_PATCHES.map(r=>`<button type="button" class="vtw-pref-btn" style="border-color:${r.tone}" data-jp-region="${r.id}">${esc(r.name)}</button>`).join('')}</div></div>`;
-    }else if(ctx.a3==='CHN'){
-      strip=`<div class="vtw-pref-strip"><div class="vtw-pref-strip-title"><span>🇨🇳 点击地图上任意省份片块，放大查看单省手账</span></div></div>`;
+    if(atlasHasLockOnRegions(ctx.a3)){
+      const meta=ATLAS_COUNTRY_LOCKON_META[ctx.a3];
+      strip=`<div class="vtw-pref-strip"><div class="vtw-pref-strip-title"><span>${esc(meta.label)}（点击放大片区${ctx.a3==='CHN'?' · 或直接点击省份':''}）</span></div><div class="vtw-pref-list">${meta.regions.map(r=>`<button type="button" class="vtw-pref-btn" style="border-color:${r.tone}" data-lockon-region="${ctx.a3}|${r.id}">${esc(r.name)}</button>`).join('')}</div></div>`;
     }
   }
   const sm=atlasSeasonFilter!=='all'?atlasSeasonMeta(atlasSeasonFilter):null;
@@ -4584,7 +4820,7 @@ function atlasRenderRegionSheet(ctx){
   const goods=atlasCollectGoodies(country,matchFn,customKey);
   panel.innerHTML=atlasJumpBarHtml(goods,wishShown.length>0)+`
     <div class="atlas-detail-hero" id="vtwSecTop">
-      <span class="atlas-kpi-badge planned">${ctx.kind==='jp-reg'?'🗾 片区手账':ctx.kind==='cn-prov'?'🇨🇳 省份手账':'🗺️ 国家概览'}</span>
+      <span class="atlas-kpi-badge planned">${(ctx.kind==='region-patch'||ctx.kind==='jp-reg')?'🗺️ 片区手账':ctx.kind==='cn-prov'?'🇨🇳 省份手账':'🗺️ 国家概览'}</span>
       <h3>${esc(title)}</h3>
       <div class="muted small">${esc(sub)}</div>
       ${seasonLine?`<div style="margin-top:6px"><span class="season-badge-pill">${esc(seasonLine)}</span></div>`:''}
@@ -4606,7 +4842,16 @@ function atlasMount(){
    onEachFeature:(f,layer)=>{
      const nameZh=f.properties.NAME_ZH||f.properties.ADMIN;
      layer.bindTooltip(esc(`${nameZh}（点击放大查看省界与城市 · 再点收回）`),{sticky:true});
-     layer.on('mouseover',()=>{if(atlasMapContext==='home'&&typeof layer.setStyle==='function')layer.setStyle({weight:1.8,opacity:1,color:atlasThemeColor('--map-city-vis','#176953')});});
+     layer.on('mouseover',()=>{
+       if(atlasMapContext!=='home')return;
+       if(atlasMapOverlay!=='none'){
+         const ov=atlasGetOverlayMeta(atlasMapOverlay)?.lookup?.(f.properties);
+         if(ov&&typeof layer.setTooltipContent==='function')layer.setTooltipContent(esc(`${nameZh} · ${ov.name}（${ov.desc}）`));
+       }else if(typeof layer.setTooltipContent==='function'){
+         layer.setTooltipContent(esc(`${nameZh}（点击放大查看分区、省界与城市 · 再点收回）`));
+       }
+       if(typeof layer.setStyle==='function')layer.setStyle({weight:1.8,opacity:1,color:atlasMapOverlay!=='none'?'#FFFFFF':atlasThemeColor('--map-city-vis','#176953')});
+     });
      layer.on('mouseout',()=>{if(atlasWorldLayer&&typeof atlasWorldLayer.resetStyle==='function')atlasWorldLayer.resetStyle(layer);});
      layer.on('click',(e)=>{
        if(atlasMapContext!=='home')return;
@@ -4673,6 +4918,7 @@ function atlasMount(){
    atlasLayoutRaf=requestAnimationFrame(()=>{
      atlasLayoutRaf=0;
      atlasUpdateZoomClass();
+     atlasRefreshLockOnStreetFade();
      if(atlasMajorCityEntries.length)layoutMajorCityLabels(atlasMap,atlasMajorCityEntries);
      const isMacro=atlasMap.getZoom()<4&&atlasWishTheme==='all'&&atlasSeasonFilter==='all';
      if(atlasWishLabelEntries.length&&!isMacro)layoutMajorCityLabels(atlasMap,atlasWishLabelEntries);
@@ -5997,6 +6243,55 @@ document.addEventListener('click',event=>{
     }
     return;
   }
+  const ovBtn=event.target.closest('[data-atlas-overlay]');
+  if(ovBtn){
+    event.stopPropagation();
+    atlasApplyOverlay(ovBtn.dataset.atlasOverlay);
+    return;
+  }
+  const ovGrp=event.target.closest('[data-overlay-group]');
+  if(ovGrp){
+    event.stopPropagation();
+    const gid=ovGrp.dataset.overlayGroup||'all';
+    atlasOverlayFilter=(atlasOverlayFilter===gid&&gid!=='all')?'all':gid;
+    if(atlasWorldLayer)atlasWorldLayer.setStyle(atlasWorldCountryStyle);
+    atlasRenderOverlayLegend();
+    return;
+  }
+  if(event.target.closest('[data-overlay-close]')){
+    event.stopPropagation();
+    atlasApplyOverlay(atlasMapOverlay);
+    return;
+  }
+  const lockRegBtn=event.target.closest('[data-lockon-region]');
+  if(lockRegBtn){
+    event.stopPropagation();
+    atlasCloseWishSpotlight(false);
+    const [a3,regId]=String(lockRegBtn.dataset.lockonRegion||'').split('|');
+    if(a3&&regId)atlasFocusLockOnRegion(a3,regId);
+    return;
+  }
+  const lockBackBtn=event.target.closest('[data-lockon-back]');
+  if(lockBackBtn){
+    event.stopPropagation();
+    const a3=lockBackBtn.dataset.lockonBack||'JPN';
+    const meta=ATLAS_COUNTRY_LOCKON_META?.[a3];
+    if(!meta)return;
+    atlasActiveSubPatch=null;
+    atlasCountryChip='all';
+    const off=atlasDrilledCountry?.lonOffset||0;
+    if(atlasDrilledCountry?.a3===a3){
+      const [[s,w],[n,e]]=meta.fitBounds;
+      if(atlasMap)atlasMap.fitBounds([[s,w+off],[n,e+off]],{padding:[28,36],maxZoom:meta.maxZoom||7,animate:true});
+      atlasRenderLockOnRegions(a3,off);
+      atlasRenderRegionSheet({kind:'country',a3,nameZh:meta.countryZh,nameEn:meta.countryEn});
+      atlasRenderMapQuickBar();
+    }else{
+      const feat=ATLAS_WORLD_GEOJSON?.features?.find(f=>f.properties?.ADM0_A3===a3);
+      if(feat)atlasDrillIntoCountry(feat,null,0);
+    }
+    return;
+  }
   const jpRegBtn=event.target.closest('[data-jp-region]');
   if(jpRegBtn){
     event.stopPropagation();
@@ -6009,7 +6304,7 @@ document.addEventListener('click',event=>{
     atlasActiveSubPatch=null;
     const off=atlasDrilledCountry?.lonOffset||0;
     if(atlasDrilledCountry?.a3==='JPN'){
-      if(atlasMap)atlasMap.fitBounds([[30.0,129.0+off],[45.6,145.8+off]],{padding:[28,36],maxZoom:7,animate:true});
+      if(atlasMap)atlasMap.fitBounds([[25.0,126.5+off],[45.6,146.0+off]],{padding:[28,36],maxZoom:7,animate:true});
       atlasRenderJapanPatches(off);
       atlasRenderRegionSheet({kind:'country',a3:'JPN',nameZh:'日本',nameEn:'Japan'});
       atlasRenderMapQuickBar();
@@ -6038,7 +6333,8 @@ document.addEventListener('click',event=>{
       const off=atlasDrilledCountry?.lonOffset||0;
       const [mLat,mLng]=atlasMapCoord(lat,lng);
       atlasMap.flyTo([mLat,mLng+off],zoom,{duration:.65});
-      if($('atlasMapStatus')&&pName)$('atlasMapStatus').textContent=`当前聚焦：${pName}（点上方「← 日本全图」或再点日本收回）`;
+      const cZh=atlasDrilledCountry?.nameZh||'国家';
+      if($('atlasMapStatus')&&pName)$('atlasMapStatus').textContent=`当前聚焦：${pName}（点右侧「← ${cZh}全图」或再点${cZh}收回）`;
       $('atlasHomeMap')?.scrollIntoView({behavior:'smooth',block:'nearest'});
     }
     return;
@@ -6048,31 +6344,21 @@ document.addEventListener('click',event=>{
     event.stopPropagation();
     const k=presetBtn.dataset.patchPreset;
     atlasCloseWishSpotlight(false);
-    if(k==='jp'){
-      if(atlasDrilledCountry?.a3==='JPN'){
+    if(k==='jp'||k==='cn'||k==='us'){
+      const a3=k==='jp'?'JPN':k==='cn'?'CHN':'USA';
+      const meta=ATLAS_COUNTRY_LOCKON_META?.[a3];
+      if(atlasDrilledCountry?.a3===a3&&meta){
         atlasActiveSubPatch=null;
+        atlasCountryChip='all';
         const off=atlasDrilledCountry.lonOffset||0;
-        if(atlasMap)atlasMap.fitBounds([[30.0,129.0+off],[45.6,145.8+off]],{padding:[28,36],maxZoom:7,animate:true});
-        atlasRenderJapanPatches(off);
-        atlasRenderRegionSheet({kind:'country',a3:'JPN',nameZh:'日本',nameEn:'Japan'});
+        const [[s,w],[n,e]]=meta.fitBounds;
+        if(atlasMap)atlasMap.fitBounds([[s,w+off],[n,e+off]],{padding:[28,36],maxZoom:meta.maxZoom||7,animate:true});
+        atlasRenderLockOnRegions(a3,off);
+        atlasRenderRegionSheet({kind:'country',a3,nameZh:meta.countryZh,nameEn:meta.countryEn});
         atlasRenderMapQuickBar();
       }else{
-        const jpn=ATLAS_WORLD_GEOJSON?.features?.find(f=>f.properties?.ADM0_A3==='JPN');
-        if(jpn)atlasDrillIntoCountry(jpn,null,0);
-      }
-      return;
-    }
-    if(k==='cn'){
-      if(atlasDrilledCountry?.a3==='CHN'){
-        atlasActiveSubPatch=null;
-        if(atlasChinaLayer)atlasChinaLayer.setStyle(atlasChinaProvinceStyle);
-        const off=atlasDrilledCountry.lonOffset||0;
-        if(atlasMap)atlasMap.fitBounds([[18.1,73.5+off],[53.6,135.1+off]],{padding:[28,36],maxZoom:7,animate:true});
-        atlasRenderRegionSheet({kind:'country',a3:'CHN',nameZh:'中国',nameEn:'China'});
-        atlasRenderMapQuickBar();
-      }else{
-        const chn=ATLAS_WORLD_GEOJSON?.features?.find(f=>f.properties?.ADM0_A3==='CHN');
-        if(chn)atlasDrillIntoCountry(chn,null,0);
+        const feat=ATLAS_WORLD_GEOJSON?.features?.find(f=>f.properties?.ADM0_A3===a3);
+        if(feat)atlasDrillIntoCountry(feat,null,0);
       }
       return;
     }

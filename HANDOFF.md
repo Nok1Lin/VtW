@@ -18,8 +18,9 @@
 | `VtW.html` | **主入口**（本地 `file://` 打开），HTML + CSS + JS 都在这一个文件里 |
 | `travel-site/dist/index.html` | 部署用副本，内容应与 `VtW.html` 一致，**只有资源路径前缀不同**（这里用 `data/...`，主入口用 `travel-site/dist/data/...`） |
 | `travel-site/dist/data/wishlist.js` | 心愿圣地数据集 + 8 条主题线 `ATLAS_STORYLINES`（含配色） |
-| `travel-site/dist/data/seasons_gourmet.js` | **新增**：季节 Tag、日本 9 大地方片区（含冲绳独立，riben.cloud 配色）+ 都道府县索引、美食/纪念品数据、WGS-84→GCJ-02 坐标转换 |
-| `travel-site/dist/data/japan-prefectures.js` | **新增**：基于国土数値情報简化的日本 47 都道府县真实行政轮廓 GeoJSON（按 9 大地方着色） |
+| `travel-site/dist/data/seasons_gourmet.js` | **新增**：季节 Tag、日本 9 大地方 / 中国 7 大区 / 美国 7 大区配置、全球菜系/语言/宗教圈层分类、美食/纪念品数据、WGS-84→GCJ-02 坐标转换 |
+| `travel-site/dist/data/japan-prefectures.js` | **新增**：基于国土数値情報简化的日本 47 都道府县真实行政轮廓 GeoJSON |
+| `travel-site/dist/data/us-states.js` | **新增**：美国 50 州 + 华盛顿特区 GeoJSON（7 大片区） |
 | `docs/` | 使用说明与城市攻略索引文档（`docs/使用说明.md`、`docs/城市攻略索引.md`） |
 | `README.md` | 项目总览与目录说明 |
 | `references/riben.cloud_files/style.css` | 参考站 https://riben.cloud/ 的 CSS 源码（只作 UI 参考，未引用） |
@@ -27,15 +28,13 @@
 ## 3. 本轮改动（参考 riben.cloud）
 
 ### ✅ 已完成（`VtW.html` 与 `travel-site/dist/index.html` 已同步）
-1. **底图改成清晰的中文**
+1. **底图改成清晰的中文 + 菜系 / 语言 / 宗教世界专题视图**
    - 新增 `zh_g`（Google 中文 `hl=zh-CN&scale=2`，512px 高清瓦片，WGS-84）作为默认底图；2.6 秒加载不出来时自动切到 `zh_amap`（高德中文 `scale=2`，中国大陆为 GCJ-02 坐标，通过 `atlasMapCoord()` / `atlasWrapGeometryForBasemap()` 对齐图钉、心愿点、路线和城市边界）。
-   - `zoomSnap:.25` → `zoomSnap:1, zoomDelta:1`：瓦片只在整数缩放级别显示，不会被 CSS 拉伸，文字因此不再模糊。
-   - 标签描边从 `-webkit-text-stroke` 改为 8 个方向的 `text-shadow` 白边，小字号中文更锐利。
-   - 去掉 CartoDB（在 `file://` 下会出现 `API KEY REQUIRED` 水印）。
+   - 底图栏新增 **🍜 菜系**、**🗣️ 语言**、**🛐 宗教** 三个世界着色维度按钮，点击即按国家铺染文化/饮食/语言/宗教圈层色彩，并在地图左下角显示可单选高亮的交互式图例卡（`#atlasOverlayLegend`）与文字说明。
+   - `zoomSnap:.25` → `zoomSnap:1, zoomDelta:1`：瓦片只在整数缩放级别显示，文字锐利；标签描边改为 8 向 `text-shadow` 白边；去掉 CartoDB。
 2. **紧凑节点 + 纯色主题标记 + 国家底色铺染**：去掉节点文字前方的 `[哥特]` 等内联 Tag 与悬浮大洲胶囊，节点缩小为紧凑圆点/小头像（9px / 20px / 宏观 7.5px），仅保留主题色与底部图例色块；主题或季节筛选打开时，有匹配心愿点的国家同步铺染主题色。
-3. **日本 47 都道府县真实边界 & 片状渐进下钻**：
-   - `atlasRenderJapanPatches()` 改用 `JAPAN_PREFECTURES_GEOJSON`（47 个都道府县真实海岸线与县界）按 `riben.cloud` 9 大地方（北海道 / 东北 / 关东 / 中部·北陆 / 近畿·关西 / 中国地方 / 四国·濑户内 / 九州地方 / 冲绳）着色与悬停整区联动高亮；再次点击选中的都道府县可放大至单县边界。
-   - `atlasDrillIntoCountry()` / `atlasClearCountryDrill()` / `atlasDrillIntoChinaProv()` 完整接线。
+3. **riben.cloud 式 Lock-On 分区上色（日本 / 中国 / 美国）**：
+   - 未下钻时保持全球足迹底色；点击锁入（Lock-On）**日本**（9 大地方 × 47 都道府县）、**中国**（7 大片区 × 34 省级行政区）或**美国**（7 大片区 × 51 州/特区）时，底图自动屏蔽单调底色，呈现高饱和分区着色、米白内界线与深炭黑带色点胶囊标签；悬停整区联动高亮，点击片区放大并淡化其余区，再点击单省/县/州进一步放大聚焦。
 4. **侧边栏「我的路线」可展开菜单**：点击「我的路线」可展开/收起，内含「🧭 亚欧非环线」、全部规划中路线（`state.travelTrips`）及「📋 全部路线 / 新建」，并在新建/编辑路线保存后同步刷新导航。
 5. **季节快筛条与美食 / 纪念品手账**：`atlasRenderMapQuickBar`、季节徽章、`atlasRenderRegionSheet`、`atlasRenderPlaceInfo`（跳转条 + 美食/纪念品 + 打卡与自定义新增表单）及全套 DOM 事件均已接线。
 6. **性能优化**：
