@@ -717,7 +717,7 @@ body[data-theme="fjord"] .atlas-wish-pin .mc-label{color:#F2F6FA;text-shadow:-1.
 .is-macro .atlas-wish-pin.has-avatar .wish-gem{width:7.5px;height:7.5px;border-width:1.4px;background-image:none!important;background-color:var(--pin-col,#7A5AF8);box-shadow:0 1.5px 5px rgba(15,23,42,.38)}
 .caps-hidden .atlas-line-capsule{display:none!important}
 .leaflet-container .atlas-base-tiles{image-rendering:auto}
-body[data-theme="fjord"] .atlas-map-shell:not(.is-night-bm) .leaflet-tile-pane{filter:brightness(.65) saturate(.75) contrast(1.04)}
+body[data-theme="fjord"] .atlas-map-shell:not(.is-night-bm):not(.is-street-zoom) .leaflet-tile-pane{filter:brightness(.65) saturate(.75) contrast(1.04)}
 
 /* riben.cloud-inspired Map Quick Season & Patch Bar + Gourmet/Souvenirs Editorial Sheet */
 .atlas-map-quickbar{display:flex;flex-direction:column;gap:7px;margin-top:8px;padding:9px 12px;border-radius:12px;background:var(--panel);border:1px solid var(--line)}
@@ -918,7 +918,7 @@ body[data-theme="fjord"] .atlas-map-shell:not(.is-night-bm) .leaflet-tile-pane{f
 <template id="atlasMapTemplate"><div id="atlasMapShell" class="atlas-map-shell">
 <div id="atlasLeafletMap" style="height:100%;width:100%" role="region" aria-label="旅行区域地图"></div>
 <div id="atlasCountryDrillBar" class="atlas-country-drillbar" hidden></div>
-<div class="atlas-basemap-bar" role="group" aria-label="底图切换"><button type="button" class="atlas-bm-btn" data-atlas-basemap="zh_g" title="Google 2x Retina 全球简体中文（WGS84无偏移）">中文高清</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="zh_amap" title="高德 2x Retina 极速中文（国内直连+大陆坐标自动对齐）">高德中文</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="street" title="Esri 地形图">地形</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="sat" title="高清卫星影像">卫星</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="night" title="NASA Black Marble 全球卫星夜景灯光视图">🌙 夜景</button><span class="atlas-bm-sep"></span><button type="button" class="atlas-bm-btn" data-atlas-basemap="vector">足迹底色</button><span class="atlas-bm-sep"></span><button type="button" class="atlas-bm-btn" data-atlas-overlay="cuisine" title="按全球菜系文化圈上色（再点关闭）">🍜 菜系</button><button type="button" class="atlas-bm-btn" data-atlas-overlay="language" title="按全球主要语言/通用语圈上色（再点关闭）">🗣️ 语言</button><button type="button" class="atlas-bm-btn" data-atlas-overlay="religion" title="按全球主要宗教与文化圈上色（再点关闭）">🛐 宗教</button></div>
+<div class="atlas-basemap-bar" role="group" aria-label="底图切换"><button type="button" class="atlas-bm-btn" data-atlas-basemap="zh_g" title="Google Maps 2x 超清街区：建筑轮廓、商铺、地铁/公交站与门牌">Google 街区</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="osm" title="OpenStreetMap 全球精细街区建筑与商铺（无需代理直连）">OSM 街区</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="zh_amap" title="高德 2x 中文（仅中国大陆精细，海外推荐 Google/OSM 街区）">高德中文</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="street" title="Esri 地形图">地形</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="sat" title="高清卫星影像">卫星</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="night" title="NASA Black Marble 全球卫星夜景灯光视图">🌙 夜景</button><span class="atlas-bm-sep"></span><button type="button" class="atlas-bm-btn" data-atlas-basemap="vector">足迹底色</button><span class="atlas-bm-sep"></span><button type="button" class="atlas-bm-btn" data-atlas-overlay="cuisine" title="按全球菜系文化圈上色（再点关闭）">🍜 菜系</button><button type="button" class="atlas-bm-btn" data-atlas-overlay="language" title="按全球主要语言/通用语圈上色（再点关闭）">🗣️ 语言</button><button type="button" class="atlas-bm-btn" data-atlas-overlay="religion" title="按全球主要宗教与文化圈上色（再点关闭）">🛐 宗教</button></div>
 <div id="atlasWishSpotlight" class="atlas-wish-spotlight" hidden></div>
 <div id="atlasOverlayLegend" class="atlas-overlay-legend" hidden></div>
 <div class="atlas-map-controls"><button class="btn tiny" id="atlasZoomIn" aria-label="放大地图">＋</button><button class="btn tiny" id="atlasZoomOut" aria-label="缩小地图">−</button><button class="btn tiny" id="atlasMapReset">足迹全览</button></div>
@@ -1753,6 +1753,27 @@ if(!state.boundariesSimplified_20261124){
     if(b)stop.boundary=b;
   }
   state.boundariesSimplified_20261124=true;
+}
+function vtwUpgradeJapanOuterBoundaries(st){
+  if(!st||st.japanOuterBoundaryV3)return false;
+  const jpMap=new Map(requestedVisits20261118.filter(x=>x.country==='日本'&&x.boundary).map(x=>[x.name,x]));
+  const applyList=list=>{
+    for(const stop of (list||[])){
+      const src=stop.country==='日本'?jpMap.get(stop.name):null;
+      if(src){
+        stop.boundary=src.boundary;
+        stop.boundaryName=src.boundaryName;
+        stop.boundarySource=src.boundarySource;
+      }
+    }
+  };
+  for(const trip of (st.travelTrips||[]))applyList(trip.stops);
+  applyList(st.loopVisits);
+  st.japanOuterBoundaryV3=true;
+  return true;
+}
+if(vtwUpgradeJapanOuterBoundaries(state)){
+  try{localStorage.setItem(VERSION,JSON.stringify(state))}catch(e){}
 }
 const OBSIDIAN_FOOTPRINT_ARCHIVES={
   '中国|北京':{
@@ -2631,6 +2652,7 @@ function vtwApplyCloudState(payload){
   if(!Array.isArray(state.doneGoodieIds))state.doneGoodieIds=[];
   if(!state.customGoodies||typeof state.customGoodies!=='object')state.customGoodies={};
   if(!state.routeLayers)state.routeLayers={silk:false,mediterranean:false,ancient:false,guide:true};
+  vtwUpgradeJapanOuterBoundaries(state);
   persist(false);
   try{
     localStorage.setItem(CLOUD_TS_KEY,String(payload.updatedAt||Date.now()));
@@ -3757,8 +3779,16 @@ let atlasBasemap=(()=>{
   try{
     if(!localStorage.getItem('vtw_bm_zh_init')){
       localStorage.setItem('vtw_bm_zh_init','1');
+      localStorage.setItem('vtw_bm_gmap_hd_v1','1');
       localStorage.setItem('vtw_basemap','zh_g');
       return 'zh_g';
+    }
+    if(!localStorage.getItem('vtw_bm_gmap_hd_v1')){
+      localStorage.setItem('vtw_bm_gmap_hd_v1','1');
+      if(localStorage.getItem('vtw_basemap')==='zh_amap'){
+        localStorage.setItem('vtw_basemap','zh_g');
+        return 'zh_g';
+      }
     }
     return localStorage.getItem('vtw_basemap')||'zh_g';
   }catch{return 'zh_g';}
@@ -3802,11 +3832,11 @@ function atlasApplyOverlay(mode){
 }
 const atlasAnitabiReq=new Map(), atlasAnitabiData=new Map();
 const ATLAS_BASEMAPS={
-  zh_g:{url:'https://mt{s}.google.com/vt/lyrs=m&hl=zh-CN&scale=2&x={x}&y={y}&z={z}',opt:{subdomains:'0123',maxZoom:20,zIndex:2,keepBuffer:3,updateWhenZooming:false,attribution:'© Google Maps · 2x 高清中文'}},
+  zh_g:{url:'https://mt{s}.google.com/vt/lyrs=m&hl=zh-CN&scale=2&x={x}&y={y}&z={z}',opt:{subdomains:'0123',maxZoom:20,maxNativeZoom:20,zIndex:2,keepBuffer:3,updateWhenZooming:false,attribution:'© Google Maps · 2x 超清街区'}},
   zh_amap:{url:'https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=2&style=8&x={x}&y={y}&z={z}',opt:{subdomains:'1234',maxZoom:18,zIndex:2,keepBuffer:3,updateWhenZooming:false,attribution:'© 高德地图 · 2x 高清中文'}},
   street:{url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',opt:{maxZoom:19,zIndex:2,keepBuffer:3,updateWhenZooming:false,attribution:'© Esri, HERE, OpenStreetMap'}},
   light:{url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',opt:{maxZoom:19,maxNativeZoom:16,zIndex:2,keepBuffer:3,updateWhenZooming:false,attribution:'© Esri'}},
-  osm:{url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',opt:{maxZoom:19,zIndex:2,keepBuffer:3,updateWhenZooming:false,attribution:'© Esri, OpenStreetMap'}},
+  osm:{url:'https://tile.openstreetmap.org/{z}/{x}/{y}.png',opt:{maxZoom:20,maxNativeZoom:19,zIndex:2,keepBuffer:3,updateWhenZooming:false,attribution:'© OpenStreetMap contributors'}},
   sat:{url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',opt:{maxZoom:19,zIndex:2,keepBuffer:3,updateWhenZooming:false,attribution:'© Esri World Imagery'}},
   night:{
     underlay:{url:'https://gibs-{s}.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Black_Marble/default/2016-01-01/GoogleMapsCompatible_Level8/{z}/{y}/{x}.png',opt:{subdomains:'abc',minZoom:1,maxNativeZoom:8,maxZoom:19,tileSize:256,zoomOffset:0,zIndex:1,updateWhenZooming:false,keepBuffer:2,attribution:''}},
@@ -3839,9 +3869,9 @@ function atlasProbeGoogleTiles(){
   const fallback=()=>{
     if(settled)return;
     settled=true;
-    if(atlasBasemap==='zh_g')atlasApplyBasemap('zh_amap',true);
+    if(atlasBasemap==='zh_g')atlasApplyBasemap('osm',true,false);
   };
-  const timer=setTimeout(fallback,2600);
+  const timer=setTimeout(fallback,6500);
   img.onload=()=>{settled=true;clearTimeout(timer);};
   img.onerror=()=>{clearTimeout(timer);fallback();};
   img.src='https://mt1.google.com/vt/lyrs=m&hl=zh-CN&scale=2&x=1&y=1&z=2';
@@ -3865,12 +3895,12 @@ function atlasProbeNightLabels(){
   img.onerror=()=>{clearTimeout(timer);swap();};
   img.src='https://mt1.google.com/vt/lyrs=h&hl=zh-CN&scale=2&x=6&y=3&z=3';
 }
-function atlasApplyBasemap(key,restyle=true){
+function atlasApplyBasemap(key,restyle=true,persistChoice=true){
   const prevWasAmap=atlasBasemap==='zh_amap';
   if(!ATLAS_BASEMAPS[key])key='zh_g';
   atlasBasemap=key;
   atlasBasemapApplied=true;
-  try{localStorage.setItem('vtw_basemap',key);}catch{}
+  if(persistChoice){try{localStorage.setItem('vtw_basemap',key);}catch{}}
   if(atlasMap&&atlasBaseUnderlay){atlasMap.removeLayer(atlasBaseUnderlay);atlasBaseUnderlay=null;}
   if(atlasMap&&atlasBaseTiles){atlasMap.removeLayer(atlasBaseTiles);atlasBaseTiles=null;}
   if(atlasMap&&atlasBaseLabels){atlasMap.removeLayer(atlasBaseLabels);atlasBaseLabels=null;}
@@ -3906,6 +3936,7 @@ function atlasUpdateZoomClass(){
   if(!shell||!atlasMap)return;
   const z=atlasMap.getZoom();
   shell.classList.toggle('is-macro',z<4&&atlasWishTheme==='all'&&atlasSeasonFilter==='all');
+  shell.classList.toggle('is-street-zoom',z>=14);
   shell.classList.toggle('caps-hidden',true);
 }
 function atlasRenderCapsules(show){
@@ -4578,7 +4609,8 @@ let atlasStyleSnapshot=null, atlasStyleSig='';
 function atlasGetStyleSig(){
   const reg=$('atlasToggleRegions')?$('atlasToggleRegions').checked:true;
   const vf=$('atlasToggleVisitedFill')?$('atlasToggleVisitedFill').checked:true;
-  return [atlasBasemap,atlasMapOverlay,atlasOverlayFilter,atlasLayerMode,reg?1:0,vf?1:0,atlasDrilledCountry?.a3||'',atlasActiveSubPatch?.kind||'',atlasActiveSubPatch?.name||atlasActiveSubPatch?.subName||'',atlasWishTheme,atlasSeasonFilter,state.theme||'',atlasDataRev,atlasMapContext].join('|');
+  const stClear=(atlasMap?.getZoom?.()||0)>=13?1:0;
+  return [atlasBasemap,atlasMapOverlay,atlasOverlayFilter,atlasLayerMode,reg?1:0,vf?1:0,stClear,atlasDrilledCountry?.a3||'',atlasActiveSubPatch?.kind||'',atlasActiveSubPatch?.name||atlasActiveSubPatch?.subName||'',atlasWishTheme,atlasSeasonFilter,state.theme||'',atlasDataRev,atlasMapContext].join('|');
 }
 function atlasApplyPolygonStyles(force=false){
   const sig=atlasGetStyleSig();
@@ -4641,7 +4673,7 @@ function atlasWorldCountryStyle(feature){
   const snap=atlasStyleSnapshot||{};
   const lit=st.fillColor&&st.fillColor!==snap.land&&(st.fillOpacity||0)>0;
   const drilled=atlasDrilledCountry&&feature.properties?.ADM0_A3===atlasDrilledCountry.a3;
-  if(atlasBasemap==='night'){
+  if(atlasBasemap==='night'||(atlasMap?.getZoom?.()||0)>=13){
     return {...st,fillOpacity:0,opacity:0,weight:0,fill:true};
   }
   return {...st,fillOpacity:lit?Math.min(.3,(st.fillOpacity||0)*.38):0,opacity:lit||drilled?Math.min(.85,st.opacity):0,weight:lit||drilled?st.weight:0};
@@ -4681,7 +4713,8 @@ function atlasWorldCountryStyleBase(feature){
 }
 
 function atlasChinaProvinceStyle(feature){
-  if(atlasMapContext==='home'&&(atlasDrilledCountry?.a3==='CHN'||atlasMapOverlay!=='none'||atlasBasemap==='night')){
+  const z=atlasMap?.getZoom?.()||0;
+  if(atlasMapContext==='home'&&(atlasDrilledCountry?.a3==='CHN'||atlasMapOverlay!=='none'||atlasBasemap==='night'||(atlasBasemap!=='vector'&&z>=13))){
     return {opacity:0,fillOpacity:0,weight:0,fill:false};
   }
   const st=atlasChinaProvinceStyleBase(feature);
@@ -5017,12 +5050,14 @@ function atlasRenderLockOnRegions(a3,lonOffset=0){
     const inRegion=Boolean(actRegId&&reg?.id===actRegId);
     const picked=Boolean(selSubName&&subName===selSubName);
     const streetOn=atlasIsLockOnStreetOn(a3);
+    const curZ=atlasMap?.getZoom?.()||0;
+    const clearStreet=streetOn&&curZ>=13;
     return {
       color:picked?'#b83b2a':'#fffdf8',
       weight:picked?3.6:(actRegId?(inRegion?2.4:1.0):1.45),
-      opacity:picked?1:(streetOn?.55:(actRegId?(inRegion?.96:.48):.92)),
+      opacity:clearStreet?(curZ>=15?0:.35):(picked?1:(streetOn?.55:(actRegId?(inRegion?.96:.48):.92))),
       fillColor:tone,
-      fillOpacity:streetOn?(picked?.22:.12):(picked?(isVec?.88:.68):(actRegId?(inRegion?(isVec?.84:.62):(isVec?.22:.18)):(isVec?.82:.72)))
+      fillOpacity:clearStreet?0:(streetOn?(picked?.22:.12):(picked?(isVec?.88:.68):(actRegId?(inRegion?(isVec?.84:.62):(isVec?.22:.18)):(isVec?.82:.72))))
     };
   };
   const geoLayer=L.geoJSON(geo,{
@@ -5365,14 +5400,14 @@ function atlasTravelStyle(f){
   if(f?.properties?.kind==='route')return {color:planDot,weight:2,opacity:.82};
   const z=atlasMap?.getZoom?.()||3;
   if(atlasBasemap==='vector')return {color:cityStroke,weight:1,opacity:.92,fillColor:cityVis,fillOpacity:.82};
-  if(z>=12)return {color:cityStroke,weight:1.8,opacity:.95,fillColor:cityVis,fillOpacity:.10};
-  if(z>=10)return {color:cityStroke,weight:1.4,opacity:.92,fillColor:cityVis,fillOpacity:.22};
-  return {color:cityStroke,weight:.95,opacity:.92,fillColor:cityVis,fillOpacity:.54};
+  if(z>=14)return {color:cityStroke,weight:2.0,opacity:.82,dashArray:'6 4',fill:false,fillOpacity:0};
+  if(z>=11)return {color:cityStroke,weight:1.5,opacity:.9,fillColor:cityVis,fillOpacity:.12};
+  return {color:cityStroke,weight:1.0,opacity:.92,fillColor:cityVis,fillOpacity:.48};
 }
 function atlasRefreshTravelZoomStyle(){
   if(!atlasMap||!atlasTravelLayer)return;
   const z=atlasMap.getZoom();
-  const tier=z>=12?2:(z>=10?1:0);
+  const tier=z>=14?2:(z>=11?1:0);
   if(tier===atlasTravelZoomTier)return;
   atlasTravelZoomTier=tier;
   if(typeof atlasTravelLayer.setStyle==='function')atlasTravelLayer.setStyle(atlasTravelStyle);
@@ -5432,7 +5467,7 @@ function atlasFocusDistrict(dist,fly=true){
       if(featCountryA3&&atlasDrilledCountry.a3!==featCountryA3)atlasClearCountryDrill(false);
     }
     const [mLat,mLng]=atlasMapCoord(dist.lat,dist.lng);
-    const targetZ=Math.max(atlasMap.getZoom?.()||0,14);
+    const targetZ=Math.max(atlasMap.getZoom?.()||0,16);
     if(typeof atlasMap.flyTo==='function')atlasMap.flyTo([mLat,mLng],targetZ,{duration:1.15,easeLinearity:0.25});
     else if(typeof atlasMap.setView==='function')atlasMap.setView([mLat,mLng],targetZ,{animate:true});
     if(atlasSearchFocusLayer&&typeof L.marker==='function'){
@@ -5512,7 +5547,13 @@ function atlasRenderVisibleDistricts(){
   if(atlasDistrictEntries.length){
     layoutMajorCityLabels(atlasMap,atlasDistrictEntries);
     if($('atlasMapStatus')&&!atlasSelectedDistrictId){
-      $('atlasMapStatus').textContent=`🏘️ 街区视图：当前视野 ${visible.length} 个街区（点击标签看地标/美食/交通）`;
+      const c=typeof atlasMap.getCenter==='function'?atlasMap.getCenter():null;
+      const outCn=c&&(c.lng>125||c.lng<73||c.lat>54||c.lat<18);
+      if(z>=16&&atlasBasemap==='zh_amap'&&outCn){
+        $('atlasMapStatus').textContent='⚠️ 当前为高德底图（海外无精细街区）· 点击左上角「Google 街区」或「OSM 街区」看高清建筑与商铺';
+      }else{
+        $('atlasMapStatus').textContent=`🏘️ 街区视图：当前视野 ${visible.length} 个街区（点击标签看地标/美食/交通）`;
+      }
     }
   }
 }
@@ -5521,7 +5562,7 @@ function atlasMount(){
  if($('atlasMapShell'))return;
  $('atlasHomeMap').append($('atlasMapTemplate').content.cloneNode(true));
  atlasRefreshStyleSnapshot();
- atlasMap=L.map('atlasLeafletMap',{preferCanvas:true,zoomControl:false,attributionControl:true,worldCopyJump:false,minZoom:1,maxZoom:19,zoomSnap:1,zoomDelta:1,wheelPxPerZoomLevel:90,scrollWheelZoom:true}).setView([30,105],3);
+ atlasMap=L.map('atlasLeafletMap',{preferCanvas:true,zoomControl:false,attributionControl:true,worldCopyJump:false,minZoom:1,maxZoom:20,zoomSnap:1,zoomDelta:1,wheelPxPerZoomLevel:65,scrollWheelZoom:true}).setView([30,105],3);
  atlasBasemapApplied=false;
  document.querySelectorAll('[data-atlas-basemap]').forEach(b=>b.classList.toggle('active',b.dataset.atlasBasemap===atlasBasemap));
  if($('atlasMapShell'))$('atlasMapShell').classList.toggle('is-night-bm',atlasBasemap==='night');
@@ -5601,6 +5642,7 @@ function atlasMount(){
    atlasLayoutRaf=requestAnimationFrame(()=>{
      atlasLayoutRaf=0;
      atlasUpdateZoomClass();
+     atlasApplyPolygonStyles(false);
      atlasRefreshLockOnStreetFade();
      atlasRefreshTravelZoomStyle();
      atlasRenderVisibleDistricts();
