@@ -775,6 +775,11 @@ body[data-theme="fjord"] .leaflet-tile-pane{filter:brightness(.65) saturate(.75)
 
 @media(max-width:1100px){.atlas-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.atlas-explorer-grid{grid-template-columns:1fr}}
 @media(max-width:600px){.atlas-kpi-grid{grid-template-columns:1fr}.atlas-cards-wall{grid-template-columns:1fr}.atlas-wish-spotlight{left:8px;right:8px;bottom:34px;width:auto;max-height:62%}}
+#cloudSyncQuickBtn.is-dirty{border-color:var(--accent);color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--panel));font-weight:750}
+.cloud-sync-card{margin-bottom:14px;border-color:color-mix(in srgb,var(--accent) 34%,var(--line))}
+.cloud-sync-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.cloud-sync-fold{margin-top:8px;border:1px dashed var(--line);border-radius:10px;padding:6px 10px;background:var(--bg)}
+.cloud-sync-fold summary{cursor:pointer;font-size:12px;font-weight:700;color:var(--muted)}
 </style>
 <script src="travel-site/dist/vendor/leaflet/leaflet.js"></script><script src="travel-site/dist/data/world.js"></script><script src="travel-site/dist/data/china-provinces.js"></script><script src="travel-site/dist/data/country-detail.js"></script><script src="travel-site/dist/data/wishlist.js"></script><script src="travel-site/dist/data/seasons_gourmet.js"></script><script src="travel-site/dist/data/japan-prefectures.js"></script><script src="travel-site/dist/data/us-states.js"></script></head>
 <body data-theme="slate">
@@ -792,6 +797,7 @@ body[data-theme="fjord"] .leaflet-tile-pane{filter:brightness(.65) saturate(.75)
       <button type="button" class="theme-btn" data-theme-pick="fjord" title="暮色峡湾与鼠尾草（静谧深蓝灰，非机能风）"><i class="theme-dot" style="background:#263849"></i>暮色峡湾</button>
       <button type="button" class="theme-btn" data-theme-pick="iris" title="鸢尾迷雾（灰紫质感，呼应攻略站）"><i class="theme-dot" style="background:#7A68D9"></i>鸢尾迷雾</button>
     </div>
+    <button type="button" class="btn tiny" id="cloudSyncQuickBtn" title="将本地修改同步到 GitHub 仓库并自动更新线上页面">☁️ 云端同步</button>
     <span class="chip" id="saveIndicator">● 本地保存</span>
   </div>
 </div>
@@ -1579,7 +1585,31 @@ body[data-theme="fjord"] .leaflet-tile-pane{filter:brightness(.65) saturate(.75)
     </div>
   </div>
 </section>
-<section id="data" class="section"><div class="heading"><div><h2>数据管理</h2><p>路线、足迹、城市边界和规划数据保存在当前浏览器。精细底图、坐标与行政区查询需要联网。</p></div></div><div class="grid2"><div class="card"><h2>备份与导出</h2><p class="muted small">导出 JSON 能恢复全部路线、足迹、城市边界、地图图钉、规划、装备和笔记；另可导出地图 GeoJSON 或装备 CSV。</p><div class="right mt"><button class="btn primary" id="exportJson">下载 JSON 备份</button><button class="btn" id="exportCsv">下载装备 CSV</button><button class="btn ghost" onclick="window.print()">打印 / PDF</button></div><div class="rowline"></div><div class="field"><label>导入此前导出的 JSON 文件</label><input id="importJson" type="file" accept="application/json,.json"></div></div><div class="card"><h2>恢复初始状态</h2><p class="muted small">会覆盖此浏览器中的所有修改。建议先备份。</p><button class="btn danger mt" id="resetAll">清空自定义内容并恢复初始数据</button><div class="rowline"></div><div class="hint">这是一个独立的交互网页原型，并未在 Google Sites / 其他 Sites 平台创建或发布。可以作为后续建站的产品蓝本；普通静态网页不包含账户同步和实时行情。</div></div></div></section>
+<section id="data" class="section"><div class="heading"><div><h2>数据管理</h2><p>路线、足迹、城市边界和规划数据默认保存在当前浏览器；配置一次 GitHub Token 即可一键写回仓库，实现跨设备同步与公开展示自动更新。</p></div></div>
+<div class="card cloud-sync-card">
+  <div class="cloud-sync-head">
+    <h2>☁️ GitHub 云端同步（跨设备 &amp; 公开展示）</h2>
+    <span class="chip" id="cloudSyncBadge">未配置 Token</span>
+  </div>
+  <p class="muted small">网页启动时自动读取仓库里的 <code>travel-site/dist/data/user-state.json</code>（所有人打开网址都能看到你的最新展示状态）；本机或手机配置一次 Token 后，改完点「推送本地到 GitHub」即可提交并自动触发 GitHub Pages 更新。</p>
+  <div class="field mt"><label for="cloudGhToken">GitHub Personal Access Token（仅保存在当前设备浏览器，绝不上传或写入 JSON）</label><input id="cloudGhToken" type="password" autocomplete="off" placeholder="github_pat_...（需包含该仓库 Contents: Read and write 权限）"></div>
+  <details class="cloud-sync-fold"><summary>高级仓库设置（已预设当前仓库，通常无需修改）</summary>
+    <div class="grid3 mt">
+      <div class="field"><label for="cloudGhRepo">仓库（owner/repo）</label><input id="cloudGhRepo" type="text" value="Nok1Lin/VtW"></div>
+      <div class="field"><label for="cloudGhBranch">分支</label><input id="cloudGhBranch" type="text" value="master"></div>
+      <div class="field"><label for="cloudGhPath">状态文件路径</label><input id="cloudGhPath" type="text" value="travel-site/dist/data/user-state.json"></div>
+    </div>
+  </details>
+  <div class="right mt">
+    <button type="button" class="btn" id="cloudSaveCfgBtn">保存本机配置</button>
+    <button type="button" class="btn primary" id="cloudPushBtn">☁️ 推送本地到 GitHub</button>
+    <button type="button" class="btn" id="cloudPullBtn">⬇️ 从云端拉取覆盖本地</button>
+    <button type="button" class="btn ghost" id="cloudClearTokenBtn">清除本机 Token</button>
+  </div>
+  <div class="muted small mt" id="cloudSyncMsg">提示：暂未保存 Token，仍可自动读取公开展示数据或导出 JSON 备份。</div>
+  <div class="hint mt">获取 Token 3 步：<a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">前往 GitHub 创建 Fine-grained Token ↗</a> → <b>Repository access</b> 选 <code>Only select repositories</code>（勾选 <code>Nok1Lin/VtW</code>）→ <b>Permissions → Repository permissions → Contents</b> 设为 <code>Read and write</code> → 生成并粘贴到上方即可。</div>
+</div>
+<div class="grid2"><div class="card"><h2>备份与导出</h2><p class="muted small">导出 JSON 能恢复全部路线、足迹、城市边界、地图图钉、规划、装备和笔记；另可导出地图 GeoJSON 或装备 CSV。</p><div class="right mt"><button class="btn primary" id="exportJson">下载 JSON 备份</button><button class="btn" id="exportCsv">下载装备 CSV</button><button class="btn ghost" onclick="window.print()">打印 / PDF</button></div><div class="rowline"></div><div class="field"><label>导入此前导出的 JSON 文件</label><input id="importJson" type="file" accept="application/json,.json"></div></div><div class="card"><h2>恢复初始状态</h2><p class="muted small">会覆盖此浏览器中的所有修改。建议先备份。</p><button class="btn danger mt" id="resetAll">清空自定义内容并恢复初始数据</button><div class="rowline"></div><div class="hint">这是一个独立的交互网页原型，并未在 Google Sites / 其他 Sites 平台创建或发布。可以作为后续建站的产品蓝本；普通静态网页不包含账户同步和实时行情。</div></div></div></section>
 <div class="footer">2027 ASIA / EUROPE / AFRICA · PLANNING LAB · 本地私有 · 不代表已预订或已采购</div>
 </main></div>
 <script>
@@ -1933,7 +1963,7 @@ const weightTotal=()=>bag().kg+Object.values(state.weights).reduce((a,b)=>a+nnum
 const todo=()=>state.tasks.filter(x=>!x.done).length;
 let atlasDataRev=1,atlasFootprintsCache=null;
 const atlasContinentCache=new Map(),atlasCountryA3Cache=new Map(),atlasThemeColorCache=new Map();
-function persist(){atlasDataRev++;try{localStorage.setItem(VERSION,JSON.stringify(state));$('saveIndicator').textContent='● 已保存到本机'}catch(e){$('saveIndicator').textContent='未保存：浏览器限制'}}
+function persist(markDirty=true){atlasDataRev++;try{localStorage.setItem(VERSION,JSON.stringify(state));if(markDirty!==false){localStorage.setItem('vtw_local_updated_at',String(Date.now()));localStorage.setItem('vtw_cloud_dirty','1');}$('saveIndicator').textContent='● 已保存到本机'}catch(e){$('saveIndicator').textContent='未保存：浏览器限制'}if(typeof vtwUpdateCloudUi==='function')vtwUpdateCloudUi();}
 function renderNav(){
   const primaryKeys=['atlas','decisions','gear','data'];
   const primary=sections.filter(([k])=>primaryKeys.includes(k));
@@ -2460,6 +2490,266 @@ $('exportJson').onclick=()=>download('我的旅行地图_数据备份.json',JSON
 $('exportCsv').onclick=()=>{let rows=[['类别','装备','纳入预算','承担方','价格元','价格类别','状态'],...state.gear.map(x=>[x.group,x.name,x.selected?'是':'否',x.fund==='family'?'家庭':'个人',x.price??'',x.type,x.status]),['背包',bag().name,state.bagIncluded?'是':'否','个人',bag().price,'对应选定候选',bag().note]];download('2027装备清单.csv','\ufeff'+rows.map(x=>x.map(csvCell).join(',')).join('\r\n'),'text/csv;charset=utf-8')};
 $('importJson').onchange=async e=>{let f=e.target.files?.[0];if(!f)return;try{let data=JSON.parse(await f.text());if(!data.state||!Array.isArray(data.state.legs)||!Array.isArray(data.state.gear))throw Error('格式不正确');if(!confirm('导入将覆盖当前保存的数据，继续吗？'))return;state=Object.assign(init(),data.state);trRouteId=storedTrace();trIndex=0;trFocusedCountry='';if(!Array.isArray(state.pins))state.pins=[];if(!Array.isArray(state.doneGoodieIds))state.doneGoodieIds=[];if(!state.customGoodies||typeof state.customGoodies!=='object')state.customGoodies={};if(!state.routeLayers)state.routeLayers={silk:true,mediterranean:true,ancient:true};atlasDataRev++;persist();view('map');alert('导入成功')}catch(err){alert('导入失败：'+err.message)}finally{e.target.value=''}};
 $('resetAll').onclick=()=>{if(confirm('确认恢复初始数据？所有修改都会被覆盖。')){state=init();trRouteId='modular';trIndex=0;trFocusedCountry='';atlasDataRev++;persist();view('map')}};
+
+// =========================  GITHUB CLOUD SYNC =========================
+const CLOUD_CFG_KEY='vtw_gh_sync_cfg', CLOUD_TS_KEY='vtw_local_updated_at', CLOUD_DIRTY_KEY='vtw_cloud_dirty';
+const CLOUD_LOCAL_URL='travel-site/dist/data/user-state.json';
+const CLOUD_DEFAULT_CFG={repo:'Nok1Lin/VtW',branch:'master',path:'travel-site/dist/data/user-state.json',token:''};
+let vtwCloudBusy=false, vtwCloudHasNewer=false, vtwCloudNote='';
+
+function vtwUtf8ToBase64(str){
+  const bytes=new TextEncoder().encode(str);
+  let bin='';
+  for(let i=0;i<bytes.length;i+=8192)bin+=String.fromCharCode.apply(null,bytes.subarray(i,i+8192));
+  return btoa(bin);
+}
+function vtwBase64ToUtf8(b64){
+  const bin=atob(String(b64||'').replace(/\s+/g,''));
+  const bytes=new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+function vtwGetCloudCfg(){
+  try{
+    const raw=JSON.parse(localStorage.getItem(CLOUD_CFG_KEY)||'null');
+    if(raw&&typeof raw==='object'){
+      return {
+        repo:String(raw.repo||CLOUD_DEFAULT_CFG.repo).trim()||CLOUD_DEFAULT_CFG.repo,
+        branch:String(raw.branch||CLOUD_DEFAULT_CFG.branch).trim()||CLOUD_DEFAULT_CFG.branch,
+        path:String(raw.path||CLOUD_DEFAULT_CFG.path).replace(/^\/+/,'').trim()||CLOUD_DEFAULT_CFG.path,
+        token:String(raw.token||'').trim()
+      };
+    }
+  }catch{}
+  return {...CLOUD_DEFAULT_CFG};
+}
+function vtwSaveCloudCfg(nextCfg){
+  const clean={
+    repo:String(nextCfg.repo||CLOUD_DEFAULT_CFG.repo).trim()||CLOUD_DEFAULT_CFG.repo,
+    branch:String(nextCfg.branch||CLOUD_DEFAULT_CFG.branch).trim()||CLOUD_DEFAULT_CFG.branch,
+    path:String(nextCfg.path||CLOUD_DEFAULT_CFG.path).replace(/^\/+/,'').trim()||CLOUD_DEFAULT_CFG.path,
+    token:String(nextCfg.token||'').trim()
+  };
+  try{localStorage.setItem(CLOUD_CFG_KEY,JSON.stringify(clean));}catch{}
+  return clean;
+}
+function vtwReadCloudInputs(){
+  const base=vtwGetCloudCfg();
+  const tokEl=$('cloudGhToken'), repoEl=$('cloudGhRepo'), brEl=$('cloudGhBranch'), pathEl=$('cloudGhPath');
+  return vtwSaveCloudCfg({
+    repo:repoEl?repoEl.value:base.repo,
+    branch:brEl?brEl.value:base.branch,
+    path:pathEl?pathEl.value:base.path,
+    token:tokEl?tokEl.value:base.token
+  });
+}
+function vtwSetCloudNote(msg){
+  vtwCloudNote=msg||'';
+  if($('cloudSyncMsg'))$('cloudSyncMsg').textContent=vtwCloudNote;
+}
+function vtwUpdateCloudUi(){
+  const cfg=vtwGetCloudCfg();
+  const dirty=(()=>{try{return localStorage.getItem(CLOUD_DIRTY_KEY)==='1';}catch{return false;}})();
+  const ts=(()=>{try{return Number(localStorage.getItem(CLOUD_TS_KEY)||0);}catch{return 0;}})();
+  const activeEl=(typeof document!=='undefined'&&document.activeElement)||null;
+  if($('cloudGhToken')&&activeEl!==$('cloudGhToken'))$('cloudGhToken').value=cfg.token;
+  if($('cloudGhRepo')&&activeEl!==$('cloudGhRepo'))$('cloudGhRepo').value=cfg.repo;
+  if($('cloudGhBranch')&&activeEl!==$('cloudGhBranch'))$('cloudGhBranch').value=cfg.branch;
+  if($('cloudGhPath')&&activeEl!==$('cloudGhPath'))$('cloudGhPath').value=cfg.path;
+  const qbtn=$('cloudSyncQuickBtn');
+  if(qbtn){
+    qbtn.disabled=vtwCloudBusy;
+    qbtn.classList.toggle('is-dirty',Boolean(dirty||vtwCloudHasNewer));
+    qbtn.textContent=vtwCloudBusy?'☁️ 同步中...':vtwCloudHasNewer?'☁️ 云端有更新':dirty?'☁️ 同步修改*':cfg.token?'☁️ 云端已同步':'☁️ 云端同步';
+  }
+  const badge=$('cloudSyncBadge');
+  if(badge){
+    if(!cfg.token)badge.textContent='未配置 Token（只读公开数据）';
+    else if(vtwCloudHasNewer)badge.textContent='⚠️ 云端存在更新版本';
+    else if(dirty)badge.textContent='● 本地有未推送修改';
+    else if(ts)badge.textContent=`✓ 已同步 (${new Date(ts).toLocaleString('zh-CN',{hour12:false})})`;
+    else badge.textContent='✓ Token 已就绪';
+  }
+  if($('cloudSyncMsg')&&!vtwCloudNote){
+    $('cloudSyncMsg').textContent=cfg.token
+      ?(dirty?'本地已有修改，点击「推送本地到 GitHub」即可保存并更新线上页面。':'Token 已保存在本机；修改任何内容后点顶部或下方同步按钮即可写回 GitHub。')
+      :'提示：暂未保存 Token，仍可自动读取公开展示数据或导出 JSON 备份。';
+  }
+}
+function vtwApplyCloudState(payload){
+  if(!payload||!payload.state||!Array.isArray(payload.state.legs)||!Array.isArray(payload.state.gear))return false;
+  state=Object.assign(init(),payload.state);
+  if(!state.tracePlans||typeof state.tracePlans!=='object')state.tracePlans={};
+  trRouteId=storedTrace();trIndex=0;trFocusedCountry='';
+  if(!Array.isArray(state.pins))state.pins=[];
+  if(!Array.isArray(state.doneGoodieIds))state.doneGoodieIds=[];
+  if(!state.customGoodies||typeof state.customGoodies!=='object')state.customGoodies={};
+  if(!state.routeLayers)state.routeLayers={silk:false,mediterranean:false,ancient:false,guide:true};
+  persist(false);
+  try{
+    localStorage.setItem(CLOUD_TS_KEY,String(payload.updatedAt||Date.now()));
+    localStorage.removeItem(CLOUD_DIRTY_KEY);
+  }catch{}
+  vtwCloudHasNewer=false;
+  render();
+  vtwUpdateCloudUi();
+  return true;
+}
+function vtwCloudApiUrl(cfg){
+  const safePath=cfg.path.split('/').map(encodeURIComponent).join('/');
+  return `https://api.github.com/repos/${cfg.repo}/contents/${safePath}`;
+}
+async function vtwFetchCloudSnapshot(preferApi=false){
+  const cfg=vtwGetCloudCfg();
+  if((preferApi||cfg.token)&&typeof fetch==='function'){
+    const headers={'Accept':'application/vnd.github+json'};
+    if(cfg.token)headers['Authorization']=`Bearer ${cfg.token}`;
+    try{
+      const r=await fetch(`${vtwCloudApiUrl(cfg)}?ref=${encodeURIComponent(cfg.branch)}&t=${Date.now()}`,{headers,cache:'no-store'});
+      if(r.ok){
+        const j=await r.json();
+        const data=j?.content?JSON.parse(vtwBase64ToUtf8(j.content)):null;
+        return {data,sha:j?.sha||''};
+      }
+    }catch{}
+  }
+  if(typeof fetch!=='function')return null;
+  const isFile=typeof location!=='undefined'&&location.protocol==='file:';
+  const urls=[];
+  if(!isFile)urls.push(`${CLOUD_LOCAL_URL}?t=${Date.now()}`);
+  urls.push(`https://raw.githubusercontent.com/${cfg.repo}/${cfg.branch}/${cfg.path}?t=${Date.now()}`);
+  for(const u of urls){
+    try{
+      const r=await fetch(u,{cache:'no-store'});
+      if(r.ok){
+        const data=await r.json();
+        return {data,sha:''};
+      }
+    }catch{}
+  }
+  return null;
+}
+async function vtwStartupCloudSync(){
+  try{
+    const res=await vtwFetchCloudSnapshot(false);
+    const snap=res?.data;
+    if(!snap||!snap.state||!Number(snap.updatedAt))return;
+    const localTs=Number(localStorage.getItem(CLOUD_TS_KEY)||0);
+    const dirty=localStorage.getItem(CLOUD_DIRTY_KEY)==='1';
+    if(!dirty&&Number(snap.updatedAt)>localTs){
+      if(vtwApplyCloudState(snap)){
+        vtwSetCloudNote(`☁️ 启动时已自动同步云端数据（更新于 ${new Date(snap.updatedAt).toLocaleString('zh-CN',{hour12:false})}）`);
+        if($('saveIndicator'))$('saveIndicator').textContent='☁️ 已加载云端最新';
+      }
+    }else if(dirty&&Number(snap.updatedAt)>localTs){
+      vtwCloudHasNewer=true;
+      vtwSetCloudNote('⚠️ 检测到云端有比本机更新的记录，而本机也有未推送修改；请到「备份导出」页决定拉取或覆盖推送。');
+      vtwUpdateCloudUi();
+    }
+  }catch{}
+}
+async function vtwPushCloudState(){
+  if(vtwCloudBusy)return;
+  const cfg=($('cloudGhToken')&&active==='data')?vtwReadCloudInputs():vtwGetCloudCfg();
+  if(!cfg.token){
+    if(active!=='data'&&typeof view==='function')view('data');
+    vtwSetCloudNote('请先粘贴一次 GitHub Fine-grained Token 并保存（仅存当前设备浏览器），再点推送。');
+    vtwUpdateCloudUi();
+    setTimeout(()=>$('cloudGhToken')?.focus(),80);
+    return;
+  }
+  vtwCloudBusy=true;
+  vtwSetCloudNote('正在连接 GitHub 仓库并校验文件版本...');
+  vtwUpdateCloudUi();
+  try{
+    const url=vtwCloudApiUrl(cfg);
+    const commonHeaders={'Accept':'application/vnd.github+json','Authorization':`Bearer ${cfg.token}`};
+    let sha='';
+    const getRes=await fetch(`${url}?ref=${encodeURIComponent(cfg.branch)}&t=${Date.now()}`,{headers:commonHeaders,cache:'no-store'});
+    if(getRes.ok){
+      const existing=await getRes.json();
+      sha=existing?.sha||'';
+    }else if(getRes.status===401||getRes.status===403){
+      throw new Error('Token 无效或缺少该仓库 Contents 读写权限（HTTP '+getRes.status+'）');
+    }else if(getRes.status!==404){
+      throw new Error('读取仓库状态失败（HTTP '+getRes.status+'）');
+    }
+    const now=Date.now();
+    const payload={version:VERSION,updatedAt:now,exportedAt:new Date(now).toISOString(),state};
+    const body={
+      message:`Sync VtW user state (${payload.exportedAt.slice(0,16).replace('T',' ')})`,
+      content:vtwUtf8ToBase64(JSON.stringify(payload)),
+      branch:cfg.branch
+    };
+    if(sha)body.sha=sha;
+    const putRes=await fetch(url,{
+      method:'PUT',
+      headers:{...commonHeaders,'Content-Type':'application/json'},
+      body:JSON.stringify(body)
+    });
+    if(!putRes.ok){
+      let errMsg='HTTP '+putRes.status;
+      try{const ej=await putRes.json();if(ej?.message)errMsg+=': '+ej.message;}catch{}
+      if(putRes.status===409)throw new Error('云端版本发生冲突，请先「从云端拉取」或重新点击推送（'+errMsg+'）');
+      if(putRes.status===401||putRes.status===403)throw new Error('权限不足，请确认 Token 对 '+cfg.repo+' 拥有 Contents: Read and write（'+errMsg+'）');
+      throw new Error('推送失败（'+errMsg+'）');
+    }
+    try{
+      localStorage.setItem(CLOUD_TS_KEY,String(now));
+      localStorage.removeItem(CLOUD_DIRTY_KEY);
+    }catch{}
+    vtwCloudHasNewer=false;
+    vtwSetCloudNote(`✅ 已成功提交到 ${cfg.repo}！GitHub Pages 约 20 秒内自动更新线上页面。`);
+    if($('saveIndicator'))$('saveIndicator').textContent='☁️ 已同步至 GitHub';
+  }catch(err){
+    vtwSetCloudNote('❌ '+(err?.message||String(err)));
+  }finally{
+    vtwCloudBusy=false;
+    vtwUpdateCloudUi();
+  }
+}
+async function vtwPullCloudState(){
+  if(vtwCloudBusy)return;
+  const cfg=($('cloudGhToken')&&active==='data')?vtwReadCloudInputs():vtwGetCloudCfg();
+  const dirty=(()=>{try{return localStorage.getItem(CLOUD_DIRTY_KEY)==='1';}catch{return false;}})();
+  if(dirty&&typeof confirm==='function'&&!confirm('本机尚有未推送的修改，从云端拉取将覆盖本机修改，确定继续吗？'))return;
+  vtwCloudBusy=true;
+  vtwSetCloudNote('正在从云端读取最新 user-state.json...');
+  vtwUpdateCloudUi();
+  try{
+    const res=await vtwFetchCloudSnapshot(Boolean(cfg.token));
+    const snap=res?.data;
+    if(!snap||!snap.state||!Number(snap.updatedAt)){
+      vtwSetCloudNote('ℹ️ 云端暂未保存有效快照（请先在一台设备推送一次），未改动本机数据。');
+    }else if(vtwApplyCloudState(snap)){
+      vtwSetCloudNote(`✅ 已从云端恢复数据（更新于 ${new Date(snap.updatedAt).toLocaleString('zh-CN',{hour12:false})}）`);
+      if($('saveIndicator'))$('saveIndicator').textContent='☁️ 已拉取云端数据';
+    }else{
+      throw new Error('云端 JSON 格式校验未通过');
+    }
+  }catch(err){
+    vtwSetCloudNote('❌ 拉取失败：'+(err?.message||String(err)));
+  }finally{
+    vtwCloudBusy=false;
+    vtwUpdateCloudUi();
+  }
+}
+if($('cloudSaveCfgBtn'))$('cloudSaveCfgBtn').onclick=()=>{
+  const cfg=vtwReadCloudInputs();
+  vtwSetCloudNote(cfg.token?'✅ 本机配置与 Token 已保存（仅存于当前浏览器）。':'✅ 仓库配置已保存；尚未填写 Token，目前仅支持只读拉取。');
+  vtwUpdateCloudUi();
+};
+if($('cloudPushBtn'))$('cloudPushBtn').onclick=()=>vtwPushCloudState();
+if($('cloudSyncQuickBtn'))$('cloudSyncQuickBtn').onclick=()=>vtwPushCloudState();
+if($('cloudPullBtn'))$('cloudPullBtn').onclick=()=>vtwPullCloudState();
+if($('cloudClearTokenBtn'))$('cloudClearTokenBtn').onclick=()=>{
+  const cfg=vtwGetCloudCfg();
+  cfg.token='';
+  vtwSaveCloudCfg(cfg);
+  if($('cloudGhToken'))$('cloudGhToken').value='';
+  vtwSetCloudNote('已清除本机保存的 GitHub Token。');
+  vtwUpdateCloudUi();
+};
 applyMapViewport();setMapMode('pin');
 
 // =========================  ROUTE STUDIO V4 =========================
@@ -2587,7 +2877,7 @@ function trGuideFullPlan(){
 $('trRouteSelect').value=trRouteId;
 $('trRouteSelect').onchange=()=>{trStop();trRouteId=$('trRouteSelect').value;state.traceLegacyGeometryRestored=true;state.traceRouteChoice=trRouteId;persist();trIndex=0;trRegionId='';trRender();};
 function trSourcePlan(id){if(id==='guideFull')return trGuideFullPlan();if(id==='modular')return trComposeModular(state.tracePlans?.modular||[]);if(id==='personal')return (state.pins||[]).map((s,i)=>({...s,uid:String(s.id||'p-'+i),enabled:s.enabled!==false,days:Math.max(0,Number(s.days??2)),mode:s.mode||trGuessMode(s)})); const r=referenceRoutes.find(x=>x.id===id);return r?expandStops(r).map((s,i)=>({...s,uid:id+'-'+i,enabled:true,days:i>0&&s.name===expandStops(r)[i-1]?.name?0:1,mode:trGuessMode(s)})):[];}
-function trGetAll(){if(trRouteId==='guideFull')return state.tracePlans.guideFull||trGuideFullPlan();if(trRouteId==='modular'){const arr=state.tracePlans.modular||[];if(!arr.some(s=>s.uid==='base-shanghai-start')||!arr.some(s=>s.uid==='base-5'&&s.name==='上海')||arr.some(s=>s.clusterId==='gulf'&&s.stage!==trClusterDefs.find(def=>def.id==='gulf').slot)){state.tracePlans.modular=trComposeModular(arr);persist();}return state.tracePlans.modular;}return trRouteId==='personal'?trSourcePlan('personal'):(state.tracePlans[trRouteId]||trSourcePlan(trRouteId));}
+function trGetAll(){if(trRouteId==='guideFull')return state.tracePlans.guideFull||trGuideFullPlan();if(trRouteId==='modular'){const arr=state.tracePlans.modular||[];if(!arr.some(s=>s.uid==='base-shanghai-start')||!arr.some(s=>s.uid==='base-5'&&s.name==='上海')||arr.some(s=>s.clusterId==='gulf'&&s.stage!==trClusterDefs.find(def=>def.id==='gulf').slot)){state.tracePlans.modular=trComposeModular(arr);persist(false);}return state.tracePlans.modular;}return trRouteId==='personal'?trSourcePlan('personal'):(state.tracePlans[trRouteId]||trSourcePlan(trRouteId));}
 function trSavePlan(arr){if(trRouteId==='modular'){arr=arr.map(s=>s.clusterId==='base'?{...s,enabled:true}:s);}if(trRouteId==='personal'){state.pins=arr.map(s=>({id:s.id||s.uid,name:s.name,country:s.country,lat:s.lat,lng:s.lng,note:s.note||'',enabled:s.enabled!==false,days:s.days,mode:s.mode}));renderMap();}else{state.tracePlans[trRouteId]=arr;} persist();}
 function trOnStops(){return trGetAll().filter(stop=>stop.enabled!==false);}
 
@@ -3070,7 +3360,7 @@ $('trToolsBody').addEventListener('click',e=>{const b=e.target.closest('[data-tr
 $('trToolsBody').addEventListener('change',e=>{const b=e.target.closest('[data-tr-check]');if(!b)return;state.travelChecks[b.dataset.trCheck]=b.checked;persist();});
 // Upgrade saved V5 modular plans in place (preserves cluster choices and stay days).
 state.tracePlans.modular=trComposeModular(state.tracePlans.modular||[]);
-persist();
+persist(false);
 const scheduleDayMs=86400000;
 const scheduleModes=['待选','火车','大巴','航班','渡轮','其他'];
 const scheduleStatuses=['待核实','已核实','已订'];
@@ -6682,6 +6972,8 @@ document.addEventListener('click',event=>{
 /* Planning views start after all route data and handlers are ready. */
 
 render();
+vtwUpdateCloudUi();
+vtwStartupCloudSync();
 
 </script>
 </body>
