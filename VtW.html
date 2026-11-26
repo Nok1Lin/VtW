@@ -1742,7 +1742,10 @@ if(!state.visitsAdded20261118){
  try{localStorage.setItem(VERSION,JSON.stringify(state))}catch(e){}
 }
 function vtwSeedAuroraRoute(targetState=state){
- if(!targetState||targetState.auroraRouteNamed20261127)return false;
+ if(!targetState)return false;
+ const needNameUpgrade=!targetState.auroraRouteNamed20261127;
+ const needFlightUpgrade=!targetState.auroraFlightLeg20261127;
+ if(!needNameUpgrade&&!needFlightUpgrade)return false;
  if(!Array.isArray(targetState.travelTrips))targetState.travelTrips=[];
  const ru=(id,name,lat,lng,note)=>({id:'aurora-20261126-'+id,name,country:'俄罗斯',lat,lng,visited:false,date:'',note});
  const auroraStops=[
@@ -1751,28 +1754,36 @@ function vtwSeedAuroraRoute(targetState=state){
   ru('teriberka','捷里别尔卡',69.20,35.14,'连住 2–3 晚自己守极光（优选老村临海住宿）；含 241/241Э 公交或包车交通及北极公路暴雪封路风险与弹性缓冲提醒。'),
   ru('stpetersburg','圣彼得堡',59.93,30.34,'火车四人包厢（约24–26h）或直飞航班（约2h15m）的双线保留段；冬宫、滴血救世主教堂等；之后返程回莫斯科结束环线。')
  ];
- const auroraNote='节点顺序：莫斯科 → 摩尔曼斯克 → 捷里别尔卡 → 圣彼得堡（返程回莫斯科段写在备注中，未单列节点）。暂定寒假约10–11天；1月 -4～-15°C（捷里别尔卡体感 -20～-30°C），中国普通护照免签≤30天。';
- const existing=targetState.travelTrips.find(t=>t.id==='russia-aurora-2027'||t.title==='追极光'||t.title==='俄罗斯追极光');
- if(!existing){
-  targetState.travelTrips.push({id:'russia-aurora-2027',title:'追极光',status:'planned',color:'#10B981',start:'',end:'',note:auroraNote,stops:auroraStops});
- }else{
-  if(existing.title==='俄罗斯追极光')existing.title='追极光';
-  if(!existing.color)existing.color='#10B981';
-  if(!existing.note||existing.note.includes('上海直飞莫斯科'))existing.note=auroraNote;
-  if(!Array.isArray(existing.stops)||existing.stops.length<4){
-   existing.stops=auroraStops;
-  }else if(existing.id==='russia-aurora-2027'){
-   for(let i=0;i<auroraStops.length;i++){
-    const es=existing.stops[i], ns=auroraStops[i];
-    if(es&&ns&&es.name===ns.name){
-     es.lat=ns.lat;es.lng=ns.lng;
-     if(!es.visited)es.note=ns.note;
+ const auroraExtraLegs=[{from:{name:'上海',country:'中国',lat:31.2304,lng:121.4737},to:{name:'莫斯科',country:'俄罗斯',lat:55.76,lng:37.62},mode:'air',label:'上海 ↔ 莫斯科（往返直飞）'}];
+ const auroraNote='节点顺序：莫斯科 → 摩尔曼斯克 → 捷里别尔卡 → 圣彼得堡（上海 ↔ 莫斯科往返直飞连线已标注；返程回莫斯科段写在备注中，未单列节点）。暂定寒假约10–11天；1月 -4～-15°C（捷里别尔卡体感 -20～-30°C），中国普通护照免签≤30天。';
+ let existing=targetState.travelTrips.find(t=>t.id==='russia-aurora-2027'||t.title==='追极光'||t.title==='俄罗斯追极光');
+ if(!existing&&needNameUpgrade){
+  existing={id:'russia-aurora-2027',title:'追极光',status:'planned',color:'#10B981',start:'',end:'',note:auroraNote,extraLegs:auroraExtraLegs,stops:auroraStops};
+  targetState.travelTrips.push(existing);
+ }else if(existing){
+  if(needNameUpgrade){
+   if(existing.title==='俄罗斯追极光')existing.title='追极光';
+   if(!existing.color)existing.color='#10B981';
+   if(!existing.note||existing.note.includes('上海直飞莫斯科'))existing.note=auroraNote;
+   if(!Array.isArray(existing.stops)||existing.stops.length<4){
+    existing.stops=auroraStops;
+   }else if(existing.id==='russia-aurora-2027'){
+    for(let i=0;i<auroraStops.length;i++){
+     const es=existing.stops[i], ns=auroraStops[i];
+     if(es&&ns&&es.name===ns.name){
+      es.lat=ns.lat;es.lng=ns.lng;
+      if(!es.visited)es.note=ns.note;
+     }
     }
    }
+  }
+  if(needFlightUpgrade&&(!Array.isArray(existing.extraLegs)||!existing.extraLegs.length)){
+   existing.extraLegs=auroraExtraLegs;
   }
  }
  targetState.auroraRoute20261126=true;
  targetState.auroraRouteNamed20261127=true;
+ targetState.auroraFlightLeg20261127=true;
  if(targetState===state){
   try{localStorage.setItem(VERSION,JSON.stringify(state));localStorage.setItem('vtw_local_updated_at',String(Date.now()));localStorage.setItem('vtw_cloud_dirty','1')}catch(e){}
  }
@@ -6383,13 +6394,15 @@ function atlasPlannedRoutes(data){
   const planned=atlasTrips().filter(t=>t.status!=='done');
   planned.forEach((t,idx)=>{
     const validStops=(t.stops||[]).filter(atlasPoints).map(s=>({...s,lat:Number(s.lat),lng:Number(s.lng)}));
-    if(validStops.length>=2){
+    const extraLegs=Array.isArray(t.extraLegs)?t.extraLegs:[];
+    if(validStops.length>=2||extraLegs.length){
       routes.push({
         id:t.id,
         title:t.title||'规划路线',
         shortTitle:t.title||'规划路线',
         color:atlasRouteColor(t,idx),
         stops:validStops,
+        extraLegs,
         isLoop:false,
         trip:t
       });
@@ -6450,18 +6463,14 @@ function atlasFocusTripStop(stopId){
 }
 function atlasDrawCurvedRouteGroup(route,interactiveClick=true){
   const stops=(route?.stops||[]).filter(atlasPoints);
-  if(stops.length<2||!atlasRouteLayer)return null;
+  const extraLegs=(route?.extraLegs||[]).filter(l=>atlasPoints(l?.from)&&atlasPoints(l?.to));
+  if((stops.length<2&&!extraLegs.length)||!atlasRouteLayer)return null;
   const grp={route,baseWeight:route.isLoop?2.0:2.7,baseOpacity:route.isLoop?.84:.94,glowLines:[],visLines:[],hitLines:[]};
   atlasRouteGroups.set(route.id,grp);
-  for(let i=1;i<stops.length;i++){
-    const prev=stops[i-1],curr=stops[i];
+  const addLeg=(prev,curr,mode,tipText)=>{
     const curve=trLegacyCurve(prev,curr);
-    const mode=route.isLoop?mapSegmentMode(prev,curr):'land';
-    const dashArray=mode==='air'?'5 5':mode==='ferry'?'2 4':null;
+    const dashArray=mode==='air'?'6 5':mode==='ferry'?'2 4':null;
     const mappedPts=curve.points.map(p=>atlasMapCoord(p[0],p[1]));
-    const tipText=interactiveClick
-      ?`🗺️ ${route.title} · 第${i}段：${prev.name} → ${curr.name}（点击查看路线详情）`
-      :`🗺️ ${route.title} · 第${i}段：${prev.name} → ${curr.name}`;
     for(const off of [-360,0,360]){
       const pts=off===0?mappedPts:mappedPts.map(p=>[p[0],p[1]+off]);
       const glow=L.polyline(pts,{color:route.color,weight:9,opacity:0,interactive:false,className:'atlas-route-glow'}).addTo(atlasRouteLayer);
@@ -6476,6 +6485,17 @@ function atlasDrawCurvedRouteGroup(route,interactiveClick=true){
       grp.visLines.push(vis);
       grp.hitLines.push(hit);
     }
+  };
+  for(const leg of extraLegs){
+    const lbl=leg.label||`${leg.from.name} ↔ ${leg.to.name}`;
+    const tip=interactiveClick?`✈️ ${route.title} · ${lbl}（点击查看路线详情）`:`✈️ ${route.title} · ${lbl}`;
+    addLeg(leg.from,leg.to,leg.mode||'air',tip);
+  }
+  for(let i=1;i<stops.length;i++){
+    const prev=stops[i-1],curr=stops[i];
+    const mode=route.isLoop?mapSegmentMode(prev,curr):'land';
+    const tip=interactiveClick?`🗺️ ${route.title} · 第${i}段：${prev.name} → ${curr.name}（点击查看路线详情）`:`🗺️ ${route.title} · 第${i}段：${prev.name} → ${curr.name}`;
+    addLeg(prev,curr,mode,tip);
   }
   return grp;
 }
@@ -6740,8 +6760,32 @@ function atlasShowMap(host,context,stops,combinedData=null){
   const tripIdx=tripsList.findIndex(t=>t.id===context);
   const tripObj=context===ATLAS_LOOP?{id:ATLAS_LOOP,title:'2027 暑假 · 亚欧非环线',isLoop:true}:(tripsList[tripIdx]||{id:context,title:'旅行路线'});
   const routeColor=atlasRouteColor(tripObj,Math.max(0,tripIdx));
-  if(placed.length>=2){
-    atlasDrawCurvedRouteGroup({id:context,title:tripObj.title,color:routeColor,stops:placed,isLoop:context===ATLAS_LOOP},false);
+  const extraLegs=Array.isArray(tripObj.extraLegs)?tripObj.extraLegs:[];
+  if(placed.length>=2||extraLegs.length){
+    atlasDrawCurvedRouteGroup({id:context,title:tripObj.title,color:routeColor,stops:placed,extraLegs,isLoop:context===ATLAS_LOOP},false);
+  }
+  const hubSeen=new Set(placed.map(s=>`${s.country||''}|${s.name}`));
+  for(const leg of extraLegs){
+    for(const endPt of [leg.from,leg.to]){
+      if(!atlasPoints(endPt))continue;
+      const hk=`${endPt.country||''}|${endPt.name}`;
+      if(hubSeen.has(hk))continue;
+      hubSeen.add(hk);
+      const [hLat,hLng]=atlasMapCoord(endPt.lat,endPt.lng);
+      for(const off of [-360,0,360]){
+        const hm=L.marker([hLat,hLng+off],{
+          icon:L.divIcon({
+            className:'atlas-trip-num-pin is-visited',
+            html:`<span class="tn-badge" style="--rc:${atlasThemeColor('--map-city-vis','#176953')}">✈</span><span class="tn-label" style="--rc:${routeColor}">${esc(endPt.name)}</span>`,
+            iconSize:[0,0],
+            iconAnchor:[0,0]
+          }),
+          zIndexOffset:2100
+        });
+        hm.bindTooltip(esc(`出发/返程枢纽 · ${endPt.country||''} ${endPt.name}${leg.label?'（'+leg.label+'）':''}`),{direction:'top',offset:[0,-14]});
+        hm.addTo(atlasPinsLayer);
+      }
+    }
   }
   placed.forEach((stop,idx)=>{
     const isV=!!stop.visited;
@@ -6825,6 +6869,12 @@ function atlasFit(){
    else if(atlasLayerMode==='planned')stops=data.plannedCities;
    else if(atlasLayerMode==='wish')stops=data.wishSpots.filter(w=>atlasMatchWishTheme(w,atlasWishTheme)&&(typeof atlasMatchSeason!=='function'||atlasMatchSeason(w,atlasSeasonFilter)));
    else stops=[...data.visitedCities,...data.plannedCities];
+ }else{
+   const curTrip=atlasTrips().find(t=>t.id===atlasMapContext);
+   for(const leg of (curTrip?.extraLegs||[])){
+     if(atlasPoints(leg?.from))stops.push(leg.from);
+     if(atlasPoints(leg?.to))stops.push(leg.to);
+   }
  }
  atlasMap.invalidateSize({pan:false});
  if(!stops.length){atlasMap.setView([25,20],2);return;}
