@@ -3630,14 +3630,14 @@ function trApplyBasemap(key,redrawRoute=false){
  if(trBaseLabels){trLeafMap.removeLayer(trBaseLabels);trBaseLabels=null;}
  const bm=ATLAS_BASEMAPS[k]||ATLAS_BASEMAPS.zh_g;
  if(bm.underlay?.url){
-  trBaseUnderlay=L.tileLayer(bm.underlay.url,{...bm.underlay.opt,className:'atlas-base-tiles atlas-night-underlay'}).addTo(trLeafMap);
+  trBaseUnderlay=atlasAttachTileRetry(L.tileLayer(bm.underlay.url,{...bm.underlay.opt,className:'atlas-base-tiles atlas-night-underlay'}),bm.underlay.url,bm.underlay.opt).addTo(trLeafMap);
  }
  if(bm.url){
-  trBaseTiles=L.tileLayer(bm.url,{...bm.opt,className:bm.opt?.className||'atlas-base-tiles'}).addTo(trLeafMap);
+  trBaseTiles=atlasAttachTileRetry(L.tileLayer(bm.url,{...bm.opt,className:bm.opt?.className||'atlas-base-tiles'}),bm.url,bm.opt).addTo(trLeafMap);
   if(!bm.underlay?.url&&typeof trBaseTiles.bringToBack==='function')trBaseTiles.bringToBack();
  }
  if(bm.labels?.url){
-  trBaseLabels=L.tileLayer(bm.labels.url,{...bm.labels.opt,className:'atlas-night-labels'}).addTo(trLeafMap);
+  trBaseLabels=atlasAttachTileRetry(L.tileLayer(bm.labels.url,{...bm.labels.opt,className:'atlas-night-labels'}),bm.labels.url,bm.labels.opt).addTo(trLeafMap);
  }
  const frame=$('trLeafletMap')?.closest?.('.tr-map-frame');
  if(frame)frame.classList.toggle('is-night-bm',k==='night');
@@ -3976,6 +3976,49 @@ const ATLAS_BASEMAPS={
   },
   vector:{url:''}
 };
+function atlasAttachTileRetry(layer,urlTemplate,opt={}){
+  if(!layer||typeof layer.on!=='function'||!urlTemplate)return layer;
+  const rawSubs=urlTemplate.includes('{s}')?(opt?.subdomains??'abc'):'';
+  const subs=Array.isArray(rawSubs)?rawSubs:String(rawSubs||'').split('').filter(Boolean);
+  const sIdx=urlTemplate.indexOf('{s}');
+  const prefix=sIdx>=0?urlTemplate.slice(0,sIdx):'';
+  layer.on('tileerror',ev=>{
+    const tile=ev?.tile;
+    if(!tile)return;
+    const coords=ev.coords||{x:0,y:0,z:0};
+    const attempt=(tile._vtwRetry||0)+1;
+    const maxAttempts=subs.length>1?subs.length:2;
+    if(attempt>maxAttempts)return;
+    tile._vtwRetry=attempt;
+    const curSrc=tile._vtwLastUrl||tile.src||'';
+    let nextUrl='';
+    if(subs.length>1&&prefix&&curSrc.startsWith(prefix)){
+      const rest=curSrc.slice(prefix.length);
+      const curSubIdx=subs.findIndex(s=>rest.startsWith(s));
+      const baseIdx=curSubIdx>=0?curSubIdx:(Math.abs((coords.x||0)+(coords.y||0))%subs.length);
+      const curSub=subs[baseIdx];
+      const nextSub=subs[(baseIdx+1)%subs.length];
+      if(curSubIdx>=0)nextUrl=prefix+nextSub+rest.slice(curSub.length);
+    }
+    if(!nextUrl&&subs.length>1&&urlTemplate.includes('{s}')){
+      const nextSub=subs[(Math.abs((coords.x||0)+(coords.y||0))+attempt)%subs.length];
+      const z=Math.max(0,(coords.z||0)+(opt?.zoomOffset||0));
+      nextUrl=urlTemplate
+        .replace('{s}',nextSub)
+        .replace('{x}',String(coords.x||0))
+        .replace('{y}',String(coords.y||0))
+        .replace('{z}',String(z))
+        .replace('{r}','');
+    }else if(!nextUrl&&curSrc&&!curSrc.startsWith('data:')){
+      const clean=curSrc.replace(/([?&])_vtwr=\d+(&|$)/,(_,p1,p2)=>p2?p1:'').replace(/[?&]$/,'');
+      nextUrl=clean+(clean.includes('?')?'&':'?')+'_vtwr='+attempt;
+    }
+    if(!nextUrl)return;
+    tile._vtwLastUrl=nextUrl;
+    setTimeout(()=>{if(tile)tile.src=nextUrl;},180*attempt);
+  });
+  return layer;
+}
 function atlasMapCoord(lat,lng){
   if(atlasBasemap==='zh_amap'&&typeof atlasWgsToGcj==='function')return atlasWgsToGcj(lat,lng);
   return [Number(lat),Number(lng)];
@@ -4016,7 +4059,7 @@ function atlasProbeNightLabels(){
     const fb=ATLAS_BASEMAPS.night?.labelsFallback;
     if(atlasBasemap==='night'&&atlasMap&&fb?.url){
       if(atlasBaseLabels){atlasMap.removeLayer(atlasBaseLabels);atlasBaseLabels=null;}
-      atlasBaseLabels=L.tileLayer(fb.url,{...fb.opt,className:'atlas-night-labels'}).addTo(atlasMap);
+      atlasBaseLabels=atlasAttachTileRetry(L.tileLayer(fb.url,{...fb.opt,className:'atlas-night-labels'}),fb.url,fb.opt).addTo(atlasMap);
     }
   };
   const timer=setTimeout(swap,2600);
@@ -4035,15 +4078,15 @@ function atlasApplyBasemap(key,restyle=true,persistChoice=true){
   if(atlasMap&&atlasBaseLabels){atlasMap.removeLayer(atlasBaseLabels);atlasBaseLabels=null;}
   const bm=ATLAS_BASEMAPS[key];
   if(atlasMap&&bm.underlay?.url){
-    atlasBaseUnderlay=L.tileLayer(bm.underlay.url,{...bm.underlay.opt,className:'atlas-base-tiles atlas-night-underlay'}).addTo(atlasMap);
+    atlasBaseUnderlay=atlasAttachTileRetry(L.tileLayer(bm.underlay.url,{...bm.underlay.opt,className:'atlas-base-tiles atlas-night-underlay'}),bm.underlay.url,bm.underlay.opt).addTo(atlasMap);
   }
   if(atlasMap&&bm.url){
-    atlasBaseTiles=L.tileLayer(bm.url,{...bm.opt,className:bm.opt?.className||'atlas-base-tiles'}).addTo(atlasMap);
+    atlasBaseTiles=atlasAttachTileRetry(L.tileLayer(bm.url,{...bm.opt,className:bm.opt?.className||'atlas-base-tiles'}),bm.url,bm.opt).addTo(atlasMap);
     if(!bm.underlay?.url&&typeof atlasBaseTiles.bringToBack==='function')atlasBaseTiles.bringToBack();
     if(key==='zh_g')atlasProbeGoogleTiles();
   }
   if(atlasMap&&bm.labels?.url){
-    atlasBaseLabels=L.tileLayer(bm.labels.url,{...bm.labels.opt,className:'atlas-night-labels'}).addTo(atlasMap);
+    atlasBaseLabels=atlasAttachTileRetry(L.tileLayer(bm.labels.url,{...bm.labels.opt,className:'atlas-night-labels'}),bm.labels.url,bm.labels.opt).addTo(atlasMap);
     if(key==='night')atlasProbeNightLabels();
   }
   document.querySelectorAll('[data-atlas-basemap]').forEach(b=>b.classList.toggle('active',b.dataset.atlasBasemap===key));
