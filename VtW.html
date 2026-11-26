@@ -457,16 +457,13 @@ body{background:var(--bg);color:var(--txt);transition:background .2s,color .2s}
 .wishlist-tab{padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--muted);font-size:12px;cursor:pointer;transition:.15s}
 .wishlist-tab:hover{color:var(--txt);background:var(--panel2)}
 .wishlist-tab.active{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:700}
-.wishlist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:10px}
-.wish-card{display:flex;flex-direction:column;justify-content:space-between;gap:8px;padding:12px 14px;border-radius:11px;border:1px solid var(--line);background:var(--panel2);transition:.15s}
+.wishlist-grid{display:flex;flex-direction:column;gap:6px}
+.wish-card{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 13px;border-radius:10px;border:1px solid var(--line);background:var(--panel2);transition:.15s;flex-wrap:wrap}
 .wish-card.done{opacity:.62;background:color-mix(in srgb,var(--panel2) 45%,var(--panel))}
 .wish-card.done .wish-title{text-decoration:line-through;color:var(--muted)}
-.wish-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
-.wish-check-wrap{display:flex;align-items:flex-start;gap:8px;cursor:pointer;flex:1}
-.wish-title{font-weight:750;font-size:13.5px;color:var(--txt);line-height:1.35}
-.wish-quote{font-size:12px;color:var(--muted);line-height:1.55;padding:7px 9px;border-radius:8px;background:var(--panel);border-left:2.5px solid var(--accent);margin:2px 0}
-.wish-foot{display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap;font-size:11px;color:var(--muted)}
-.wish-source{font-family:var(--mono);font-size:10.5px;padding:2px 6px;border-radius:5px;background:var(--panel);border:1px solid var(--line);color:var(--muted)}
+.wish-check-wrap{display:flex;align-items:center;gap:9px;cursor:pointer;flex:1;min-width:200px}
+.wish-title{font-weight:700;font-size:13.5px;color:var(--txt);line-height:1.35}
+.wish-meta-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-left:auto;font-size:11.5px;color:var(--muted)}
 .tr-country-pill,.tr-cluster-pill,.tr-quickchip,.tr-option{background:var(--panel2);color:var(--txt);border-color:var(--line)}
 .tr-stop{color:var(--txt);background:var(--panel)}
 .tr-stop.is-current{background:var(--panel2)}
@@ -781,6 +778,32 @@ body[data-theme="fjord"] .leaflet-tile-pane{filter:brightness(.65) saturate(.75)
 .cloud-sync-fold{margin-top:8px;border:1px dashed var(--line);border-radius:10px;padding:6px 10px;background:var(--bg)}
 .cloud-sync-fold summary{cursor:pointer;font-size:12px;font-weight:700;color:var(--muted)}
 .atlas-map-shell.is-night-bm .leaflet-container{background:#04070e}
+.atlas-night-labels{pointer-events:none}
+.atlas-map-quickbar[hidden]{display:none!important}
+.atlas-map-search{position:relative;z-index:650;display:flex;align-items:center;gap:5px;margin-left:auto;flex:1 1 220px;max-width:340px}
+.atlas-map-search-in{width:100%;min-width:150px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--txt);font-size:12px;outline:none;transition:.14s}
+.atlas-map-search-in:focus{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 18%,transparent)}
+.atlas-map-search-drop{position:absolute;top:calc(100% + 6px);right:0;width:min(360px,90vw);max-height:320px;overflow:auto;border-radius:12px;background:var(--panel);border:1px solid var(--line);box-shadow:0 12px 32px rgba(15,23,42,.26);padding:4px;z-index:660;display:flex;flex-direction:column;gap:2px}
+.atlas-map-search-drop[hidden]{display:none!important}
+.atlas-ms-item{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;text-align:left;padding:7px 9px;border:0;border-radius:8px;background:transparent;color:var(--txt);cursor:pointer;font-size:12px;transition:.12s}
+.atlas-ms-item:hover,.atlas-ms-item.is-hi{background:color-mix(in srgb,var(--accent) 13%,var(--bg))}
+.atlas-ms-main{min-width:0;display:flex;flex-direction:column;gap:1px}
+.atlas-ms-main b{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.atlas-ms-main small{font-size:10.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.atlas-ms-tag{flex-shrink:0;font-size:10px;font-weight:700;padding:2px 6px;border-radius:999px;background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+.atlas-ms-empty{padding:10px 12px;font-size:12px;color:var(--muted);text-align:center}
+.atlas-search-beacon-pin{background:none!important;border:0!important}
+.atlas-search-beacon{position:relative;width:0;height:0}
+.atlas-search-beacon .b-core{position:absolute;left:0;top:0;width:13px;height:13px;border-radius:50%;background:#F59E0B;border:2.5px solid #FFF;box-shadow:0 0 14px rgba(245,158,11,.95),0 0 28px rgba(245,158,11,.55);transform:translate(-50%,-50%);z-index:2}
+.atlas-search-beacon .b-ring{position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;border:2.2px solid #FBBF24;transform:translate(-50%,-50%) scale(.45);opacity:0;animation:atlasBeaconPulse 1.8s ease-out infinite;pointer-events:none}
+.atlas-search-beacon .b-ring.r2{animation-delay:.9s}
+@keyframes atlasBeaconPulse{0%{transform:translate(-50%,-50%) scale(.45);opacity:.92}100%{transform:translate(-50%,-50%) scale(3.4);opacity:0}}
+.atlas-search-beacon-card{position:absolute;left:0;bottom:16px;transform:translateX(-50%);display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:rgba(15,23,42,.92);color:#F8FAFC;border:1px solid rgba(251,191,36,.65);box-shadow:0 8px 22px rgba(0,0,0,.38);font-size:12px;white-space:nowrap;backdrop-filter:blur(6px)}
+.atlas-search-beacon-card small{color:#CBD5E1;font-size:10.5px}
+.atlas-search-beacon-card .b-close{border:0;background:rgba(255,255,255,.16);color:#FFF;width:17px;height:17px;border-radius:50%;font-size:12px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0}
+.atlas-search-beacon-card .b-close:hover{background:rgba(248,113,113,.85)}
+@keyframes atlasArcDraw{from{stroke-dashoffset:1200}to{stroke-dashoffset:0}}
+.atlas-flight-arc{stroke-dasharray:1200;stroke-dashoffset:1200;animation:atlasArcDraw 1.35s cubic-bezier(.22,.61,.36,1) forwards;pointer-events:none}
 </style>
 <script src="travel-site/dist/vendor/leaflet/leaflet.js"></script><script src="travel-site/dist/data/world.js"></script><script src="travel-site/dist/data/china-provinces.js"></script><script src="travel-site/dist/data/country-detail.js"></script><script src="travel-site/dist/data/wishlist.js"></script><script src="travel-site/dist/data/seasons_gourmet.js"></script><script src="travel-site/dist/data/japan-prefectures.js"></script><script src="travel-site/dist/data/us-states.js"></script></head>
 <body data-theme="slate">
@@ -821,6 +844,11 @@ body[data-theme="fjord"] .leaflet-tile-pane{filter:brightness(.65) saturate(.75)
       <button type="button" class="atlas-cam-btn" data-atlas-cam="china">中国</button>
       <button type="button" class="atlas-cam-btn" data-atlas-cam="japan">日本</button>
       <button type="button" class="atlas-cam-btn" data-atlas-cam="loop">2027环线</button>
+    </div>
+    <div class="atlas-map-search" id="atlasMapSearchWrap">
+      <input type="search" id="atlasMapSearchInput" class="atlas-map-search-in" placeholder="🔍 搜全球城市 / 景点（如 清水寺、埃菲尔铁塔）…" autocomplete="off" aria-label="搜索城市或景点">
+      <button type="button" class="btn tiny primary" id="atlasMapSearchBtn">定位</button>
+      <div id="atlasMapSearchDrop" class="atlas-map-search-drop" hidden role="listbox"></div>
     </div>
   </div>
   <div id="atlasHomeMap"></div>
@@ -1525,7 +1553,7 @@ body[data-theme="fjord"] .leaflet-tile-pane{filter:brightness(.65) saturate(.75)
   <div class="heading">
     <div>
       <h2>TODO</h2>
-      <p>从你的 Obsidian 日记（<code>2026-08-07 約束.md</code>、<code>2026-11-12</code>、<code>2026-11-21</code>）中整理的旅行与户外清单。</p>
+      <p>旅行与户外待办清单。</p>
     </div>
     <div class="right">
       <span class="tag" id="wishlistCounter"></span>
@@ -1537,14 +1565,14 @@ body[data-theme="fjord"] .leaflet-tile-pane{filter:brightness(.65) saturate(.75)
     <div class="heading">
       <div>
         <h2>TODO</h2>
-        <p>来自 Obsidian 日记（<code>2026-08-07 約束.md</code>、<code>2026-11-12</code>、<code>2026-11-21</code>）的 8 个旅行与户外目标。</p>
+        <p>旅行与户外目标清单。</p>
       </div>
     </div>
     <div class="wishlist-grid" id="wishlistBox"></div>
     <div class="rowline"></div>
     <div class="right" style="flex-wrap:wrap;gap:8px">
       <input class="inline-in" style="flex:1;min-width:180px" id="newWishTitle" placeholder="新增想做的事…">
-      <input class="inline-in" style="flex:1;min-width:180px" id="newWishQuote" placeholder="备注或地点（选填）">
+      <input class="inline-in" style="flex:1;min-width:180px" id="newWishQuote" placeholder="地点（选填）">
       <button class="btn primary" id="addWishBtn" type="button">+ 添加</button>
     </div>
   </div>
@@ -2428,22 +2456,14 @@ function renderTasks(){
   if($('wishlistCounter'))$('wishlistCounter').textContent=`TODO ${doneCount} / ${wishes.length}`;
   if($('wishlistBox')){
     $('wishlistBox').innerHTML=wishes.map(w=>`<article class="wish-card ${w.done?'done':''}">
-      <div>
-        <div class="wish-head">
-          <label class="wish-check-wrap">
-            <input type="checkbox" class="check" data-wish-check="${esc(w.id)}" ${w.done?'checked':''}>
-            <span class="wish-title">${esc(w.title)}</span>
-          </label>
-          <span class="tag ${w.done?'':'orange'}" style="font-size:10.5px;padding:2px 7px;white-space:nowrap">${esc(w.cat||'待办')}</span>
-        </div>
-        ${w.quote?`<div class="wish-quote">${esc(w.quote)}</div>`:''}
-      </div>
-      <div class="wish-foot">
-        <span class="wish-source">📓 ${esc(w.source||'个人新增')}</span>
-        <div style="display:flex;align-items:center;gap:6px">
-          ${w.place?`<span>📍 ${esc(w.place)}</span>`:''}
-          <button type="button" class="btn tiny ghost" style="padding:2px 6px;font-size:10.5px" data-remove-wish="${esc(w.id)}">删除</button>
-        </div>
+      <label class="wish-check-wrap">
+        <input type="checkbox" class="check" data-wish-check="${esc(w.id)}" ${w.done?'checked':''}>
+        <span class="wish-title">${esc(w.title)}</span>
+      </label>
+      <div class="wish-meta-right">
+        ${w.place?`<span>📍 ${esc(w.place)}</span>`:''}
+        <span class="tag ${w.done?'':'orange'}" style="font-size:10.5px;padding:2px 7px;white-space:nowrap">${esc(w.cat||'待办')}</span>
+        <button type="button" class="btn tiny ghost" style="padding:2px 6px;font-size:10.5px" data-remove-wish="${esc(w.id)}">删除</button>
       </div>
     </article>`).join('');
   }
@@ -2475,7 +2495,7 @@ if($('addWishBtn'))$('addWishBtn').onclick=()=>{
   const cat=$('newWishCat')?.value||'户外极限';
   const quote=$('newWishQuote')?.value.trim()||'';
   if(!Array.isArray(state.wishlist))state.wishlist=[];
-  state.wishlist.unshift({id:'w-'+Date.now(),cat,title,quote,source:'个人新增 · '+new Date().toISOString().slice(0,10),place:'',done:false});
+  state.wishlist.unshift({id:'w-'+Date.now(),cat,title,quote:'',source:'',place:quote,done:false});
   $('newWishTitle').value='';
   if($('newWishQuote'))$('newWishQuote').value='';
   persist();
@@ -3665,7 +3685,7 @@ let atlasBasemap=(()=>{
     return localStorage.getItem('vtw_basemap')||'zh_g';
   }catch{return 'zh_g';}
 })();
-let atlasBaseTiles=null, atlasCapsuleLayer=null, atlasCapsuleEntries=[], atlasSubPatchLayer=null, atlasLockOnGeoLayer=null, atlasLockOnStreetOn=false;
+let atlasBaseTiles=null, atlasBaseLabels=null, atlasNightLabelsProbed=false, atlasSearchFocusLayer=null, atlasCapsuleLayer=null, atlasCapsuleEntries=[], atlasSubPatchLayer=null, atlasLockOnGeoLayer=null, atlasLockOnStreetOn=false;
 let atlasSeasonFilter='all', atlasActiveSubPatch=null, atlasGoogleTileProbed=false;
 let atlasMapOverlay='none', atlasOverlayFilter='all';
 let atlasSpotMediaMode='anime', atlasAnitabiPtIdx=0;
@@ -3710,7 +3730,7 @@ const ATLAS_BASEMAPS={
   light:{url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',opt:{maxZoom:19,maxNativeZoom:16,attribution:'© Esri'}},
   osm:{url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',opt:{maxZoom:19,attribution:'© Esri, OpenStreetMap'}},
   sat:{url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',opt:{maxZoom:19,attribution:'© Esri World Imagery'}},
-  night:{url:'https://gibs-{s}.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Black_Marble/default/2016-01-01/GoogleMapsCompatible_Level8/{z}/{y}/{x}.png',opt:{subdomains:'abc',minZoom:1,maxNativeZoom:8,maxZoom:19,attribution:'© NASA Earth Observatory · VIIRS Black Marble 夜景'}},
+  night:{url:'https://gibs-{s}.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Black_Marble/default/2016-01-01/GoogleMapsCompatible_Level8/{z}/{y}/{x}.png',opt:{subdomains:'abc',minZoom:1,maxNativeZoom:8,maxZoom:19,attribution:'© NASA Earth Observatory · VIIRS Black Marble 夜景'},labels:{url:'https://mt{s}.google.com/vt/lyrs=h&hl=zh-CN&scale=2&x={x}&y={y}&z={z}',opt:{subdomains:'0123',maxZoom:20,opacity:.88}},labelsFallback:{url:'https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png',opt:{subdomains:'abcd',maxZoom:19,opacity:.92}}},
   vector:{url:''}
 };
 function atlasMapCoord(lat,lng){
@@ -3741,17 +3761,41 @@ function atlasProbeGoogleTiles(){
   img.onerror=()=>{clearTimeout(timer);fallback();};
   img.src='https://mt1.google.com/vt/lyrs=m&hl=zh-CN&scale=2&x=1&y=1&z=2';
 }
+function atlasProbeNightLabels(){
+  if(atlasNightLabelsProbed||atlasBasemap!=='night')return;
+  atlasNightLabelsProbed=true;
+  const img=new Image();
+  let settled=false;
+  const swap=()=>{
+    if(settled)return;
+    settled=true;
+    const fb=ATLAS_BASEMAPS.night?.labelsFallback;
+    if(atlasBasemap==='night'&&atlasMap&&fb?.url){
+      if(atlasBaseLabels){atlasMap.removeLayer(atlasBaseLabels);atlasBaseLabels=null;}
+      atlasBaseLabels=L.tileLayer(fb.url,{...fb.opt,className:'atlas-night-labels'}).addTo(atlasMap);
+    }
+  };
+  const timer=setTimeout(swap,2600);
+  img.onload=()=>{settled=true;clearTimeout(timer);};
+  img.onerror=()=>{clearTimeout(timer);swap();};
+  img.src='https://mt1.google.com/vt/lyrs=h&hl=zh-CN&scale=2&x=6&y=3&z=3';
+}
 function atlasApplyBasemap(key,restyle=true){
   const prevWasAmap=atlasBasemap==='zh_amap';
   if(!ATLAS_BASEMAPS[key])key='zh_g';
   atlasBasemap=key;
   try{localStorage.setItem('vtw_basemap',key);}catch{}
   if(atlasMap&&atlasBaseTiles){atlasMap.removeLayer(atlasBaseTiles);atlasBaseTiles=null;}
+  if(atlasMap&&atlasBaseLabels){atlasMap.removeLayer(atlasBaseLabels);atlasBaseLabels=null;}
   const bm=ATLAS_BASEMAPS[key];
   if(atlasMap&&bm.url){
     atlasBaseTiles=L.tileLayer(bm.url,{...bm.opt,className:'atlas-base-tiles'}).addTo(atlasMap);
     if(typeof atlasBaseTiles.bringToBack==='function')atlasBaseTiles.bringToBack();
     if(key==='zh_g')atlasProbeGoogleTiles();
+  }
+  if(atlasMap&&bm.labels?.url){
+    atlasBaseLabels=L.tileLayer(bm.labels.url,{...bm.labels.opt,className:'atlas-night-labels'}).addTo(atlasMap);
+    if(key==='night')atlasProbeNightLabels();
   }
   document.querySelectorAll('[data-atlas-basemap]').forEach(b=>b.classList.toggle('active',b.dataset.atlasBasemap===key));
   if($('atlasMapShell'))$('atlasMapShell').classList.toggle('is-night-bm',key==='night');
@@ -4431,8 +4475,8 @@ function atlasWorldCountryStyle(feature){
   const snap=atlasStyleSnapshot||{};
   const lit=st.fillColor&&st.fillColor!==snap.land&&(st.fillOpacity||0)>0;
   const drilled=atlasDrilledCountry&&feature.properties?.ADM0_A3===atlasDrilledCountry.a3;
-  if(atlasBasemap==='night'&&!lit&&!drilled){
-    return {...st,color:'rgba(148,196,255,.32)',fillOpacity:0,opacity:.55,weight:.55};
+  if(atlasBasemap==='night'){
+    return {...st,fillOpacity:0,opacity:0,weight:0,fill:true};
   }
   return {...st,fillOpacity:lit?Math.min(.3,(st.fillOpacity||0)*.38):0,opacity:lit||drilled?Math.min(.85,st.opacity):0,weight:lit||drilled?st.weight:0};
 }
@@ -4471,7 +4515,7 @@ function atlasWorldCountryStyleBase(feature){
 }
 
 function atlasChinaProvinceStyle(feature){
-  if(atlasMapContext==='home'&&(atlasDrilledCountry?.a3==='CHN'||atlasMapOverlay!=='none')){
+  if(atlasMapContext==='home'&&(atlasDrilledCountry?.a3==='CHN'||atlasMapOverlay!=='none'||atlasBasemap==='night')){
     return {opacity:0,fillOpacity:0,weight:0,fill:false};
   }
   const st=atlasChinaProvinceStyleBase(feature);
@@ -4979,26 +5023,18 @@ function atlasSeasonBadge(spot,short=false){
 function atlasRenderMapQuickBar(data=null){
   const bar=$('atlasMapQuickBar');
   if(!bar)return;
-  const d=data||atlasCombinedFootprints();
-  const ws=(d.wishSpots||[]).filter(w=>atlasMatchWishTheme(w,atlasWishTheme));
-  const cnt=id=>typeof atlasMatchSeason==='function'?ws.filter(w=>atlasMatchSeason(w,id)).length:0;
-  const seasons=[...(typeof ATLAS_SEASONS_META!=='undefined'?ATLAS_SEASONS_META:[]),atlasSeasonMeta('now')];
-  const row1=`<div class="quickbar-row"><span class="quickbar-label">🌸 季节灵感</span>
-    <button type="button" class="season-chip ${atlasSeasonFilter==='all'?'is-on':''}" data-season-pick="all">全部季节</button>
-    ${seasons.map(s=>`<button type="button" class="season-chip ${atlasSeasonFilter===s.id?'is-on':''}" style="--sc:${s.color}" data-season-pick="${s.id}" title="${esc(s.label||s.short)}"><i></i>${esc(s.icon+' '+s.short)} <small>${cnt(s.id)}</small></button>`).join('')}
-  </div>`;
-  let row2='';
   if(atlasDrilledCountry&&atlasHasLockOnRegions(atlasDrilledCountry.a3)){
     const meta=ATLAS_COUNTRY_LOCKON_META[atlasDrilledCountry.a3];
     const act=(atlasActiveSubPatch?.kind==='region-patch'&&atlasActiveSubPatch.a3===meta.a3)
       ?atlasActiveSubPatch.reg.id
       :(atlasActiveSubPatch?.kind==='jp-reg'&&meta.a3==='JPN'?atlasActiveSubPatch.reg.id:'');
-    row2=`<span class="quickbar-label">${esc(meta.label)}</span>${meta.regions.map(r=>`<button type="button" class="season-chip ${act===r.id?'is-on':''}" style="--sc:${r.tone}" data-lockon-region="${meta.a3}|${r.id}"><i></i>${esc(r.chipName||r.name)}</button>`).join('')}`;
-  }else{
-    const presets=[['jp','🇯🇵 日本 9 大片区','#b5523f'],['cn','🇨🇳 中国 7 大片区','#b5523f'],['us','🇺🇸 美国 7 大片区','#5e9484'],['gothic','⛪ 欧洲哥特','#8E152A'],['fantasy','🛡️ 西幻奇境','#2457C5'],['ruins','🏛️ 古典神代','#B87D14'],['nature','🏔️ 自然奇观','#0891B2']];
-    row2=`<span class="quickbar-label">🗺️ 片状快切</span>${presets.map(([k,t,c])=>`<button type="button" class="season-chip" style="--sc:${c}" data-patch-preset="${k}"><i></i>${t}</button>`).join('')}`;
+    const row2=`<span class="quickbar-label">${esc(meta.label)}</span>${meta.regions.map(r=>`<button type="button" class="season-chip ${act===r.id?'is-on':''}" style="--sc:${r.tone}" data-lockon-region="${meta.a3}|${r.id}"><i></i>${esc(r.chipName||r.name)}</button>`).join('')}`;
+    bar.hidden=false;
+    bar.innerHTML=`<div class="quickbar-row">${row2}</div>`;
+    return;
   }
-  bar.innerHTML=row1+`<div class="quickbar-row">${row2}</div>`;
+  bar.hidden=true;
+  bar.innerHTML='';
 }
 
 /* ===== 🍜 美食 & 🎁 纪念品手账图鉴 ===== */
@@ -5204,6 +5240,7 @@ function atlasMount(){
  atlasMajorCitiesLayer=L.featureGroup().addTo(atlasMap);
  atlasCapsuleLayer=L.featureGroup().addTo(atlasMap);
  atlasSubPatchLayer=L.featureGroup().addTo(atlasMap);
+ atlasSearchFocusLayer=L.featureGroup().addTo(atlasMap);
  let atlasLayoutRaf=0;
  if(typeof atlasMap.on==='function')atlasMap.on('zoomend moveend',()=>{
    if(atlasLayoutRaf)cancelAnimationFrame(atlasLayoutRaf);
@@ -6291,6 +6328,255 @@ async function atlasLookupPlace(button){
     if(editor===atlasEditor)options.textContent='坐标查询暂不可用，可手动填经纬度。';
   }finally{button.disabled=false;}
 }
+
+// =========================  GLOBAL CITY & SPOT FLY-TO SEARCH =========================
+const atlasMapSearchCache=new Map();
+let atlasMapSearchTimer=0, atlasMapSearchArcTimer=0, atlasMapSearchResults=[], atlasMapSearchHi=-1, atlasMapSearchSeq=0;
+
+function atlasSearchScore(text,ql){
+  const t=String(text||'').trim().toLowerCase();
+  if(!t||!ql)return 0;
+  if(t===ql)return 100;
+  if(t.startsWith(ql))return 75;
+  if(t.includes(ql))return 50;
+  return 0;
+}
+function atlasSearchLocalPlaces(q){
+  const ql=String(q||'').trim().toLowerCase();
+  if(!ql)return [];
+  const data=atlasCombinedFootprints();
+  const out=[], seen=new Set();
+  const push=(item,score)=>{
+    const key=`${item.name}|${Math.round(Number(item.lat)*100)},${Math.round(Number(item.lng)*100)}`;
+    if(!Number.isFinite(item.lat)||!Number.isFinite(item.lng)||seen.has(key))return;
+    seen.add(key);
+    out.push({...item,_score:score});
+  };
+  for(const c of (data.allCities||[])){
+    if(c.isWish||!atlasPoints(c))continue;
+    const sc=Math.max(atlasSearchScore(c.name,ql),atlasSearchScore(c.country,ql)*0.55);
+    if(sc>0)push({name:c.name,sub:c.country||'足迹城市',lat:Number(c.lat),lng:Number(c.lng),zoom:11,kind:c.visited?'visited':'planned',tag:c.visited?'✓ 已到访':'🧭 计划站',placeId:c.id},sc+25);
+  }
+  for(const w of (data.wishSpots||[])){
+    if(!atlasPoints(w))continue;
+    const sc=Math.max(atlasSearchScore(w.name,ql),atlasSearchScore(w.anime,ql)*0.85,atlasSearchScore(w.country,ql)*0.5,atlasSearchScore(w.region,ql)*0.7);
+    if(sc>0)push({name:w.name,sub:[w.country,w.anime||w.region].filter(Boolean).join(' · '),lat:Number(w.lat),lng:Number(w.lng),zoom:13,kind:'wish',tag:'✦ 景点/圣地',placeId:w.id},sc+20);
+  }
+  const detailCities=typeof ATLAS_COUNTRY_DETAIL==='object'&&ATLAS_COUNTRY_DETAIL?.cities;
+  if(detailCities){
+    for(const [a3,arr] of Object.entries(detailCities)){
+      const feat=ATLAS_WORLD_GEOJSON?.features?.find(f=>f.properties?.ADM0_A3===a3);
+      const cZh=feat?.properties?.NAME_ZH||feat?.properties?.ADMIN||a3;
+      for(const city of (arr||[])){
+        const sc=Math.max(atlasSearchScore(city.zh,ql),atlasSearchScore(city.en,ql)*0.9,atlasSearchScore(city.adm1,ql)*0.6);
+        if(sc>0)push({name:city.zh,sub:`${cZh}${city.adm1?' · '+city.adm1:''}`,lat:Number(city.lat),lng:Number(city.lng),zoom:city.cap?11:12,kind:'city',tag:city.cap?'★ 首都':'🏙️ 城市'},sc+10);
+      }
+    }
+  }
+  for(const f of (ATLAS_WORLD_GEOJSON?.features||[])){
+    const p=f.properties||{};
+    if(p.CONTINENT==='Antarctica')continue;
+    const nZh=p.NAME_ZH||p.ADMIN||'';
+    const sc=Math.max(atlasSearchScore(nZh,ql),atlasSearchScore(p.ADMIN,ql)*0.9);
+    if(sc>0&&Number.isFinite(p.LABEL_LAT)&&Number.isFinite(p.LABEL_LNG)){
+      push({name:nZh,sub:p.ADMIN||'',lat:Number(p.LABEL_LAT),lng:Number(p.LABEL_LNG),zoom:5,kind:'country',tag:'🌍 国家',a3:p.ADM0_A3,feature:f},sc);
+    }
+  }
+  return out.sort((a,b)=>b._score-a._score).slice(0,8);
+}
+function atlasInferOnlineZoom(item){
+  const t=String(item.type||item.addresstype||'').toLowerCase();
+  const c=String(item.category||item.class||'').toLowerCase();
+  if(['country','continent'].includes(t))return 5;
+  if(['state','province','region','administrative'].includes(t))return 7;
+  if(['city','town','municipality','county'].includes(t)||c==='place'&&['city','town'].includes(t))return 11;
+  if(['village','suburb','district','island'].includes(t))return 13;
+  return 14;
+}
+async function atlasSearchOnlinePlaces(q){
+  const key=String(q||'').trim().toLowerCase();
+  if(!key||typeof fetch!=='function')return [];
+  if(atlasMapSearchCache.has(key))return atlasMapSearchCache.get(key);
+  const out=[];
+  try{
+    const url='https://nominatim.openstreetmap.org/search?'+new URLSearchParams({q,format:'jsonv2','accept-language':'zh-CN,zh,en',limit:'6'});
+    const res=await fetch(url,{cache:'no-store'});
+    if(res.ok){
+      const arr=await res.json();
+      if(Array.isArray(arr)){
+        for(const x of arr){
+          const lat=Number(x.lat), lng=Number(x.lon);
+          if(!Number.isFinite(lat)||!Number.isFinite(lng))continue;
+          const parts=String(x.display_name||'').split(',').map(s=>s.trim()).filter(Boolean);
+          const name=x.name||parts[0]||q;
+          const sub=parts.filter(p=>p!==name).slice(-3).join(' · ');
+          const cat=String(x.category||'').toLowerCase();
+          const isSpot=['tourism','historic','natural','leisure','amenity','man_made'].includes(cat);
+          out.push({name,sub,lat,lng,zoom:atlasInferOnlineZoom(x),kind:'remote',tag:isSpot?'🏞️ 景点':'📍 地点'});
+        }
+      }
+    }
+  }catch{}
+  if(!out.length){
+    try{
+      const om='https://geocoding-api.open-meteo.com/v1/search?'+new URLSearchParams({name:q,count:'6',language:'zh',format:'json'});
+      const r=await fetch(om);
+      if(r.ok){
+        const j=await r.json();
+        for(const p of (j?.results||[])){
+          out.push({name:p.name,sub:[p.admin1,p.country].filter(Boolean).join(' · '),lat:Number(p.latitude),lng:Number(p.longitude),zoom:11,kind:'remote',tag:'🏙️ 城市'});
+        }
+      }
+    }catch{}
+  }
+  atlasMapSearchCache.set(key,out);
+  return out;
+}
+function atlasMergeSearchResults(localArr,remoteArr){
+  const merged=[...localArr];
+  for(const r of (remoteArr||[])){
+    const dup=merged.some(m=>m.name===r.name&&Math.hypot(m.lat-r.lat,m.lng-r.lng)<0.25);
+    if(!dup)merged.push(r);
+  }
+  return merged.slice(0,10);
+}
+function atlasRenderSearchDrop(hint=''){
+  const drop=$('atlasMapSearchDrop');
+  if(!drop)return;
+  if(!atlasMapSearchResults.length&&!hint){drop.hidden=true;drop.innerHTML='';return;}
+  drop.hidden=false;
+  let html=atlasMapSearchResults.map((it,idx)=>`<button type="button" class="atlas-ms-item ${idx===atlasMapSearchHi?'is-hi':''}" data-ms-idx="${idx}">
+    <span class="atlas-ms-main"><b>${esc(it.name)}</b><small>${esc(it.sub||`${it.lat.toFixed(2)}, ${it.lng.toFixed(2)}`)}</small></span>
+    <span class="atlas-ms-tag">${esc(it.tag)}</span>
+  </button>`).join('');
+  if(hint)html+=`<div class="atlas-ms-empty">${esc(hint)}</div>`;
+  drop.innerHTML=html;
+}
+function atlasClearSearchBeacon(){
+  if(atlasMapSearchArcTimer){clearTimeout(atlasMapSearchArcTimer);atlasMapSearchArcTimer=0;}
+  if(atlasSearchFocusLayer)atlasSearchFocusLayer.clearLayers();
+}
+function atlasFlyToSearchResult(item){
+  if(!item)return;
+  const drop=$('atlasMapSearchDrop'), inp=$('atlasMapSearchInput');
+  if(drop){drop.hidden=true;drop.innerHTML='';}
+  if(inp)inp.value=item.name||'';
+  if(active!=='atlas'&&typeof view==='function')view('atlas');
+  if(!atlasReady||!atlasMap)atlasRenderHome();
+  if(!atlasMap)return;
+  if(atlasDrilledCountry&&item.a3!==atlasDrilledCountry.a3)atlasClearCountryDrill(false);
+  atlasClearSearchBeacon();
+
+  const [mLat,mLng]=atlasMapCoord(item.lat,item.lng);
+  const from=typeof atlasMap.getCenter==='function'?atlasMap.getCenter():{lat:mLat,lng:mLng};
+  const dist=Math.hypot((from?.lat||mLat)-mLat,(from?.lng||mLng)-mLng);
+  if(atlasSearchFocusLayer&&dist>0.5&&typeof L.polyline==='function'){
+    const ctrlLat=(from.lat+mLat)/2+Math.min(18,Math.max(4,dist*0.24));
+    const ctrlLng=(from.lng+mLng)/2;
+    const arcPts=[];
+    for(let i=0;i<=28;i++){
+      const t=i/28, u=1-t;
+      arcPts.push([u*u*from.lat+2*u*t*ctrlLat+t*t*mLat,u*u*from.lng+2*u*t*ctrlLng+t*t*mLng]);
+    }
+    const arc=L.polyline(arcPts,{color:'#F59E0B',weight:2.6,opacity:.9,className:'atlas-flight-arc',interactive:false}).addTo(atlasSearchFocusLayer);
+    atlasMapSearchArcTimer=setTimeout(()=>{
+      atlasMapSearchArcTimer=0;
+      if(atlasSearchFocusLayer&&typeof atlasSearchFocusLayer.removeLayer==='function')atlasSearchFocusLayer.removeLayer(arc);
+      else if(atlasMap&&typeof atlasMap.removeLayer==='function')atlasMap.removeLayer(arc);
+    },2400);
+  }
+  if(item.feature&&!atlasDrilledCountry){
+    atlasDrillIntoCountry(item.feature,null,0);
+  }else if(typeof atlasMap.flyTo==='function'){
+    atlasMap.flyTo([mLat,mLng],item.zoom||12,{duration:1.55,easeLinearity:0.22});
+  }else if(typeof atlasMap.setView==='function'){
+    atlasMap.setView([mLat,mLng],item.zoom||12,{animate:true});
+  }
+  if(atlasSearchFocusLayer&&typeof L.marker==='function'){
+    const beacon=L.marker([mLat,mLng],{
+      icon:L.divIcon({
+        className:'atlas-search-beacon-pin',
+        html:`<div class="atlas-search-beacon"><span class="b-ring r1"></span><span class="b-ring r2"></span><span class="b-core"></span><div class="atlas-search-beacon-card"><span>📍 <b>${esc(item.name)}</b>${item.sub?`<small> · ${esc(item.sub)}</small>`:''}</span><button type="button" class="b-close" data-search-clear-pin title="清除定位标记">×</button></div></div>`,
+        iconSize:[0,0],
+        iconAnchor:[0,0]
+      }),
+      zIndexOffset:6200
+    });
+    beacon.addTo(atlasSearchFocusLayer);
+  }
+  if(item.placeId&&typeof atlasSelectPlace==='function')atlasSelectPlace(item.placeId,false);
+  if($('atlasMapStatus'))$('atlasMapStatus').textContent=`🎯 已定位：${item.name}${item.sub?' · '+item.sub:''}`;
+  $('atlasHomeMap')?.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+async function atlasRunMapSearch(immediateFly=false){
+  const inp=$('atlasMapSearchInput');
+  const q=inp?.value?.trim()||'';
+  if(!q){atlasMapSearchResults=[];atlasMapSearchHi=-1;atlasRenderSearchDrop('');return;}
+  const seq=++atlasMapSearchSeq;
+  const local=atlasSearchLocalPlaces(q);
+  atlasMapSearchResults=local;
+  atlasMapSearchHi=local.length?0:-1;
+  if(immediateFly&&local.length){atlasFlyToSearchResult(local[0]);return;}
+  if(!immediateFly)atlasRenderSearchDrop(local.length?'正在全球检索更多地点…':'正在全球检索「'+q+'」…');
+  const remote=await atlasSearchOnlinePlaces(q);
+  if(seq!==atlasMapSearchSeq)return;
+  atlasMapSearchResults=atlasMergeSearchResults(local,remote);
+  atlasMapSearchHi=atlasMapSearchResults.length?0:-1;
+  if(immediateFly&&atlasMapSearchResults.length){atlasFlyToSearchResult(atlasMapSearchResults[0]);return;}
+  atlasRenderSearchDrop(atlasMapSearchResults.length?'':'未找到匹配城市或景点，可尝试英文名或更完整地名');
+}
+if($('atlasMapSearchInput')){
+  $('atlasMapSearchInput').addEventListener('input',()=>{
+    const q=$('atlasMapSearchInput').value.trim();
+    if(atlasMapSearchTimer)clearTimeout(atlasMapSearchTimer);
+    if(!q){atlasMapSearchSeq++;atlasMapSearchResults=[];atlasMapSearchHi=-1;atlasRenderSearchDrop('');return;}
+    const local=atlasSearchLocalPlaces(q);
+    atlasMapSearchResults=local;
+    atlasMapSearchHi=local.length?0:-1;
+    atlasRenderSearchDrop(local.length?'正在补充全球地名…':'正在搜索全球城市与景点…');
+    atlasMapSearchTimer=setTimeout(()=>{atlasMapSearchTimer=0;atlasRunMapSearch(false);},350);
+  });
+  $('atlasMapSearchInput').addEventListener('keydown',e=>{
+    if(e.key==='ArrowDown'){
+      if(!atlasMapSearchResults.length)return;
+      e.preventDefault();
+      atlasMapSearchHi=(atlasMapSearchHi+1)%atlasMapSearchResults.length;
+      atlasRenderSearchDrop('');
+    }else if(e.key==='ArrowUp'){
+      if(!atlasMapSearchResults.length)return;
+      e.preventDefault();
+      atlasMapSearchHi=(atlasMapSearchHi-1+atlasMapSearchResults.length)%atlasMapSearchResults.length;
+      atlasRenderSearchDrop('');
+    }else if(e.key==='Enter'){
+      e.preventDefault();
+      if(atlasMapSearchTimer){clearTimeout(atlasMapSearchTimer);atlasMapSearchTimer=0;}
+      const picked=atlasMapSearchResults[Math.max(0,atlasMapSearchHi)];
+      if(picked)atlasFlyToSearchResult(picked);
+      else atlasRunMapSearch(true);
+    }else if(e.key==='Escape'){
+      atlasRenderSearchDrop('');
+    }
+  });
+}
+if($('atlasMapSearchBtn'))$('atlasMapSearchBtn').onclick=()=>{
+  if(atlasMapSearchTimer){clearTimeout(atlasMapSearchTimer);atlasMapSearchTimer=0;}
+  atlasRunMapSearch(true);
+};
+if(typeof document!=='undefined')document.addEventListener('click',e=>{
+  const itemBtn=e.target.closest('[data-ms-idx]');
+  if(itemBtn){
+    e.stopPropagation();
+    const it=atlasMapSearchResults[Number(itemBtn.dataset.msIdx)];
+    if(it)atlasFlyToSearchResult(it);
+    return;
+  }
+  if(e.target.closest('[data-search-clear-pin]')){
+    e.stopPropagation();
+    atlasClearSearchBeacon();
+    return;
+  }
+  if(!e.target.closest('#atlasMapSearchWrap'))atlasRenderSearchDrop('');
+});
 async function atlasLookupBoundary(button){
   const point=atlasFormCoordinates();
   if(!point){$('atlasFormStatus').textContent='先定位城市，再查附近行政区。';return;}
