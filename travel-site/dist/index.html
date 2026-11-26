@@ -780,6 +780,7 @@ body[data-theme="fjord"] .leaflet-tile-pane{filter:brightness(.65) saturate(.75)
 .cloud-sync-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
 .cloud-sync-fold{margin-top:8px;border:1px dashed var(--line);border-radius:10px;padding:6px 10px;background:var(--bg)}
 .cloud-sync-fold summary{cursor:pointer;font-size:12px;font-weight:700;color:var(--muted)}
+.atlas-map-shell.is-night-bm .leaflet-container{background:#04070e}
 </style>
 <script src="vendor/leaflet/leaflet.js"></script><script src="data/world.js"></script><script src="data/china-provinces.js"></script><script src="data/country-detail.js"></script><script src="data/wishlist.js"></script><script src="data/seasons_gourmet.js"></script><script src="data/japan-prefectures.js"></script><script src="data/us-states.js"></script></head>
 <body data-theme="slate">
@@ -807,7 +808,6 @@ body[data-theme="fjord"] .leaflet-tile-pane{filter:brightness(.65) saturate(.75)
       <button type="button" class="atlas-mode-btn" data-atlas-mode="all" aria-pressed="true">🌍 全部图层</button>
       <button type="button" class="atlas-mode-btn" data-atlas-mode="visited" aria-pressed="false">✓ 已到访</button>
       <button type="button" class="atlas-mode-btn" data-atlas-mode="planned" aria-pressed="false">🧭 2027计划</button>
-      <button type="button" class="atlas-mode-btn" data-atlas-mode="wish" aria-pressed="false">✦ 想去圣地</button>
     </div>
     <div class="atlas-layer-group">
       <label class="atlas-toggle-chip"><input type="checkbox" id="atlasToggleRegions" checked> 省/国底色</label>
@@ -821,9 +821,6 @@ body[data-theme="fjord"] .leaflet-tile-pane{filter:brightness(.65) saturate(.75)
       <button type="button" class="atlas-cam-btn" data-atlas-cam="china">中国</button>
       <button type="button" class="atlas-cam-btn" data-atlas-cam="japan">日本</button>
       <button type="button" class="atlas-cam-btn" data-atlas-cam="loop">2027环线</button>
-      <button type="button" class="atlas-cam-btn" data-atlas-cam="wish">✦ 圣地全览</button>
-      <button type="button" class="btn tiny" data-atlas-action="add-wish">＋ 心愿点</button>
-      <button type="button" class="btn tiny primary" data-atlas-action="add-visit">＋ 打卡城市</button>
     </div>
   </div>
   <div id="atlasHomeMap"></div>
@@ -865,7 +862,7 @@ body[data-theme="fjord"] .leaflet-tile-pane{filter:brightness(.65) saturate(.75)
 <template id="atlasMapTemplate"><div id="atlasMapShell" class="atlas-map-shell">
 <div id="atlasLeafletMap" style="height:100%;width:100%" role="region" aria-label="旅行区域地图"></div>
 <div id="atlasCountryDrillBar" class="atlas-country-drillbar" hidden></div>
-<div class="atlas-basemap-bar" role="group" aria-label="底图切换"><button type="button" class="atlas-bm-btn" data-atlas-basemap="zh_g" title="Google 2x Retina 全球简体中文（WGS84无偏移）">中文高清</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="zh_amap" title="高德 2x Retina 极速中文（国内直连+大陆坐标自动对齐）">高德中文</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="street" title="Esri 地形图">地形</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="sat" title="高清卫星影像">卫星</button><span class="atlas-bm-sep"></span><button type="button" class="atlas-bm-btn" data-atlas-basemap="vector">足迹底色</button><span class="atlas-bm-sep"></span><button type="button" class="atlas-bm-btn" data-atlas-overlay="cuisine" title="按全球菜系文化圈上色（再点关闭）">🍜 菜系</button><button type="button" class="atlas-bm-btn" data-atlas-overlay="language" title="按全球主要语言/通用语圈上色（再点关闭）">🗣️ 语言</button><button type="button" class="atlas-bm-btn" data-atlas-overlay="religion" title="按全球主要宗教与文化圈上色（再点关闭）">🛐 宗教</button></div>
+<div class="atlas-basemap-bar" role="group" aria-label="底图切换"><button type="button" class="atlas-bm-btn" data-atlas-basemap="zh_g" title="Google 2x Retina 全球简体中文（WGS84无偏移）">中文高清</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="zh_amap" title="高德 2x Retina 极速中文（国内直连+大陆坐标自动对齐）">高德中文</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="street" title="Esri 地形图">地形</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="sat" title="高清卫星影像">卫星</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="night" title="NASA Black Marble 全球卫星夜景灯光视图">🌙 夜景</button><span class="atlas-bm-sep"></span><button type="button" class="atlas-bm-btn" data-atlas-basemap="vector">足迹底色</button><span class="atlas-bm-sep"></span><button type="button" class="atlas-bm-btn" data-atlas-overlay="cuisine" title="按全球菜系文化圈上色（再点关闭）">🍜 菜系</button><button type="button" class="atlas-bm-btn" data-atlas-overlay="language" title="按全球主要语言/通用语圈上色（再点关闭）">🗣️ 语言</button><button type="button" class="atlas-bm-btn" data-atlas-overlay="religion" title="按全球主要宗教与文化圈上色（再点关闭）">🛐 宗教</button></div>
 <div id="atlasWishSpotlight" class="atlas-wish-spotlight" hidden></div>
 <div id="atlasOverlayLegend" class="atlas-overlay-legend" hidden></div>
 <div class="atlas-map-controls"><button class="btn tiny" id="atlasZoomIn" aria-label="放大地图">＋</button><button class="btn tiny" id="atlasZoomOut" aria-label="缩小地图">−</button><button class="btn tiny" id="atlasMapReset">足迹全览</button></div>
@@ -3713,6 +3710,7 @@ const ATLAS_BASEMAPS={
   light:{url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',opt:{maxZoom:19,maxNativeZoom:16,attribution:'© Esri'}},
   osm:{url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',opt:{maxZoom:19,attribution:'© Esri, OpenStreetMap'}},
   sat:{url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',opt:{maxZoom:19,attribution:'© Esri World Imagery'}},
+  night:{url:'https://gibs-{s}.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Black_Marble/default/2016-01-01/GoogleMapsCompatible_Level8/{z}/{y}/{x}.png',opt:{subdomains:'abc',minZoom:1,maxNativeZoom:8,maxZoom:19,attribution:'© NASA Earth Observatory · VIIRS Black Marble 夜景'}},
   vector:{url:''}
 };
 function atlasMapCoord(lat,lng){
@@ -3756,6 +3754,7 @@ function atlasApplyBasemap(key,restyle=true){
     if(key==='zh_g')atlasProbeGoogleTiles();
   }
   document.querySelectorAll('[data-atlas-basemap]').forEach(b=>b.classList.toggle('active',b.dataset.atlasBasemap===key));
+  if($('atlasMapShell'))$('atlasMapShell').classList.toggle('is-night-bm',key==='night');
   if(restyle){
     if(prevWasAmap!==(key==='zh_amap')&&active==='atlas'){
       atlasShowMap('atlasHomeMap','home',atlasCombinedFootprints().visitedCities,atlasCombinedFootprints());
@@ -4432,6 +4431,9 @@ function atlasWorldCountryStyle(feature){
   const snap=atlasStyleSnapshot||{};
   const lit=st.fillColor&&st.fillColor!==snap.land&&(st.fillOpacity||0)>0;
   const drilled=atlasDrilledCountry&&feature.properties?.ADM0_A3===atlasDrilledCountry.a3;
+  if(atlasBasemap==='night'&&!lit&&!drilled){
+    return {...st,color:'rgba(148,196,255,.32)',fillOpacity:0,opacity:.55,weight:.55};
+  }
   return {...st,fillOpacity:lit?Math.min(.3,(st.fillOpacity||0)*.38):0,opacity:lit||drilled?Math.min(.85,st.opacity):0,weight:lit||drilled?st.weight:0};
 }
 function atlasWorldCountryStyleBase(feature){
