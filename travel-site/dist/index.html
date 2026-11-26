@@ -341,9 +341,13 @@
 .atlas-trip-tab[aria-pressed=true],.atlas-place-button[aria-pressed=true]{border-color:#D6DEE9;background:#FFFFFF}
 .atlas-place-list{display:grid;gap:6px;max-height:260px;overflow:auto}
 .atlas-trip-tab small,.atlas-place-button small{display:block;color:var(--muted)}
-.atlas-trip-stop{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}
-.atlas-trip-stop:last-child{border:0}
+.atlas-trip-stop{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start;padding:10px 8px;border-radius:9px;border-bottom:1px solid var(--line);transition:background .15s}
+.atlas-trip-stop.is-focused{background:color-mix(in srgb,var(--accent) 10%,var(--panel));outline:1.5px solid color-mix(in srgb,var(--accent) 42%,var(--line))}
+.atlas-trip-stop:last-child{border-bottom:0}
 .atlas-trip-stop small{display:block;color:var(--muted)}
+.atlas-trip-stop-note{margin:5px 0 0;padding:5px 8px;border-radius:7px;background:var(--bg);border:1px solid var(--line);font-size:11.5px;line-height:1.52;color:var(--txt)}
+.atlas-route-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:middle;box-shadow:0 0 0 1.5px rgba(255,255,255,.8)}
+#atlasTripMap .atlas-map-shell{height:clamp(420px,58vh,660px);border-radius:16px;border:1px solid var(--line)}
 .atlas-legacy{color:var(--muted);margin:14px 0;font-size:12px}
 .atlas-dialog{color:var(--txt);background:#F4F6F9;border:1px solid #D6DEE9;border-radius:14px;padding:22px;width:min(650px,calc(100% - 24px));max-height:85vh}
 .atlas-dialog::backdrop{background:#F4F6F9}
@@ -366,7 +370,7 @@
 
 #atlasLeafletMap{background:#F4F6F9;z-index:0;touch-action:none}#atlasMapShell .atlas-map-controls,#atlasMapShell .atlas-map-caption{z-index:500}#atlasMapShell .leaflet-control-attribution{background:#F4F6F9;color:#27384E;font-size:9px;max-width:90%}#atlasMapShell .leaflet-control-attribution a{color:#315D98}.leaflet-tooltip{background:#FFFFFF;color:#315D98;border-color:#D6DEE9}.atlas-map-caption{max-width:calc(100% - 190px)}@media(max-width:600px){.atlas-map-caption{top:48px;max-width:95%}}
 
-#trSvg,.tr-world-locator{display:none!important}#trLeafletMap{height:clamp(350px,52vw,610px);width:100%;background:#F4F6F9;z-index:0}.tr-map-frame{height:auto!important;aspect-ratio:auto!important}#trLeafletRegions{padding:12px;gap:6px;background:#FFFFFF}.route-leaf-stop span{display:grid;place-items:center;width:24px;height:24px;border:2px solid #D6DEE9;border-radius:50%;color:#27384E;font:bold 11px system-ui;box-shadow:0 1px 5px #213D5B10}.route-leaf-stop:focus{outline:3px solid #D6DEE9}.tr-map-toolbar{position:relative;z-index:1}#trLeafletMap .leaflet-control-attribution{background:#F4F6F9;color:#27384E;font-size:9px}
+#trSvg,.tr-world-locator{display:none!important}#trLeafletMap{height:clamp(410px,56vh,640px);width:100%;background:#F4F6F9;z-index:0}.tr-map-frame{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);height:auto!important;aspect-ratio:auto!important}.tr-map-frame.is-night-bm #trLeafletMap{background:#04070e}.tr-map-frame.is-night-bm .atlas-night-hd{filter:brightness(1.12) contrast(1.08) saturate(1.12)}.tr-map-frame.is-night-bm .atlas-basemap-bar{background:rgba(15,23,36,.88);border-color:rgba(148,163,184,.28)}.tr-map-frame.is-night-bm .atlas-bm-btn{color:#CBD5E1}.tr-map-frame.is-night-bm .atlas-bm-btn:hover{color:#FFF;background:rgba(255,255,255,.12)}.tr-map-frame.is-night-bm .atlas-bm-btn.active{background:var(--accent);color:#FFF}#trLeafletRegions{padding:12px;gap:6px;background:#FFFFFF}.route-leaf-stop span{display:grid;place-items:center;width:24px;height:24px;border:2px solid #D6DEE9;border-radius:50%;color:#27384E;font:bold 11px system-ui;box-shadow:0 1px 5px #213D5B10}.route-leaf-stop:focus{outline:3px solid #D6DEE9}.tr-map-toolbar{position:relative;z-index:1}#trLeafletMap .leaflet-control-attribution{background:#F4F6F9;color:#27384E;font-size:9px}
 
 .tr-node-options{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 14px;color:#27384E;font-size:11px}.tr-node-options label{display:flex;gap:6px;align-items:center}.tr-node-options small{opacity:.8}.route-leaf-candidate span{display:block;width:10px;height:10px;border:1px solid;border-radius:50%;box-shadow:0 0 0 2px #213D5B10;opacity:.85}.route-leaf-candidate:focus{outline:2px solid #D6DEE9}.route-candidate-label{font-size:11px;border:0;box-shadow:none;padding:3px 6px}
 
@@ -524,6 +528,16 @@ body{background:var(--bg);color:var(--txt);transition:background .2s,color .2s}
 .atlas-foot-pin.kind-planned .pin-core{width:5.5px;height:5.5px;background:var(--map-plan-dot)}
 .atlas-map-legend-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .atlas-map-legend-bar span{display:inline-flex;align-items:center;gap:5px}
+.atlas-map-legend-bar .atlas-route-chip,.atlas-map-legend-bar .map-theme-chip{pointer-events:auto}
+.atlas-route-chip{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:99px;border:1px solid color-mix(in srgb,var(--rc,#C96A2B) 42%,var(--line));background:color-mix(in srgb,var(--panel) 92%,#FFFFFF);color:var(--txt);font-size:11px;font-weight:750;cursor:pointer;transition:.14s;line-height:1.3}
+.atlas-route-chip i{display:inline-block;width:13px;height:3px;border-radius:99px;background:var(--rc,#C96A2B);flex-shrink:0}
+.atlas-route-chip:hover,.atlas-route-chip.is-hovered{border-color:var(--rc,#C96A2B);background:color-mix(in srgb,var(--rc,#C96A2B) 16%,var(--panel));transform:translateY(-1px);box-shadow:0 2px 8px rgba(15,23,42,.15)}
+.atlas-trip-num-pin{pointer-events:auto;background:transparent!important;border:0!important}
+.atlas-trip-num-pin .tn-badge{position:absolute;left:0;top:0;transform:translate(-50%,-50%);display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--rc,#10B981);color:#FFF;font-size:11px;font-weight:800;border:2px solid #FFF;box-shadow:0 2px 7px rgba(15,23,42,.38);transition:transform .15s,box-shadow .15s}
+.atlas-trip-num-pin.is-visited .tn-badge{background:var(--map-city-vis,#176953)}
+.atlas-trip-num-pin.is-focused .tn-badge,.atlas-trip-num-pin:hover .tn-badge{transform:translate(-50%,-50%) scale(1.2);box-shadow:0 0 0 3px color-mix(in srgb,var(--rc,#10B981) 40%,#FFF),0 3px 10px rgba(0,0,0,.4)}
+.atlas-trip-num-pin .tn-label{position:absolute;left:15px;top:0;transform:translateY(-50%);white-space:nowrap;padding:1.5px 7px;border-radius:999px;background:color-mix(in srgb,var(--panel) 94%,#FFF);border:1px solid color-mix(in srgb,var(--rc,#10B981) 48%,var(--line));color:var(--txt);font-size:11.5px;font-weight:750;box-shadow:0 2px 8px rgba(15,23,42,.16)}
+.atlas-map-shell.is-night-bm .atlas-trip-num-pin .tn-label{background:rgba(15,23,36,.88);color:#F8FAFC;border-color:color-mix(in srgb,var(--rc,#10B981) 65%,#FFF)}
 .atlas-swatch{display:inline-block;width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .atlas-swatch.rect{border-radius:2px;width:10px;height:7px}
 
@@ -864,7 +878,7 @@ body[data-theme="fjord"] .atlas-map-shell:not(.is-night-bm):not(.is-street-zoom)
       <label class="atlas-toggle-chip"><input type="checkbox" id="atlasToggleRegions" checked> 省/国底色</label>
       <label class="atlas-toggle-chip"><input type="checkbox" id="atlasToggleBoundaries" checked> 城市边界</label>
       <label class="atlas-toggle-chip"><input type="checkbox" id="atlasTogglePins" checked> 城市微点</label>
-      <label class="atlas-toggle-chip"><input type="checkbox" id="atlasToggleRoutes" checked> 环线轨迹</label>
+      <label class="atlas-toggle-chip"><input type="checkbox" id="atlasToggleRoutes" checked> 规划路线</label>
       <label class="atlas-toggle-chip"><input type="checkbox" id="atlasToggleWish" checked> ✦ 想去圣地</label>
     </div>
     <div class="atlas-layer-group">
@@ -943,7 +957,7 @@ body[data-theme="fjord"] .atlas-map-shell:not(.is-night-bm):not(.is-street-zoom)
   <div class="tr-controls"><select id="trRouteSelect" aria-label="选择路线版本"><option value="modular">原版组合环线</option><option value="guideFull">攻略参考路线 · 51站</option></select><button class="btn" id="trPlay" type="button">▶ 播放轨迹</button><button class="btn" id="trReplay" type="button">↻ 重播</button><button class="btn" id="trPrev" type="button">← 上一站</button><button class="btn" id="trNext" type="button">下一站 →</button><select id="trSpeed" aria-label="播放速度"><option value="0.375">0.375×</option><option value="0.75">0.75×</option><option value="1.5" selected>1.5×</option><option value="2.25">2.25×</option></select><button class="btn primary" data-scroll-to="routeEditorTitle">编辑路线</button></div>
   <div id="trStats" class="tr-stats"></div>
   <div class="tr-canvas"><div id="trClusterToggles" class="tr-cluster-toggle-bar" aria-label="按节点集群开关轨迹"></div><div id="trLeafletRegions" class="right" aria-label="路线区域聚焦"></div><div class="tr-node-options"><label><input id="trShowCandidates" type="checkbox" checked> 显示候选城市</label><small>点击上方「集群开关」可直接勾选/取消该区域轨迹 · 点击下方「区域聚焦」可放大查看</small></div><div class="tr-map-toolbar"><div class="right" aria-label="地图缩放"><button class="btn tiny" id="routeZoomIn" aria-label="放大地图">＋</button><button class="btn tiny" id="routeZoomOut" aria-label="缩小地图">−</button><button class="btn tiny" id="routeZoomReset">路线全程</button><button class="btn tiny" id="routeZoomWorld" data-view="atlas">全球足迹</button></div><small>点击区域或站点放大 · 再点或返回全程缩小</small></div>
-<div class="tr-map-frame"><div id="trLeafletMap" role="region" aria-label="亚欧非环线路线地图"></div><svg id="trSvg" role="group" aria-label="亚欧非路线地图。点击色块查看区域，点击站点查看攻略" viewBox="-200 -12 1080 376.8618266978923" xmlns="http://www.w3.org/2000/svg"><defs><filter id="trGlow"><feGaussianBlur stdDeviation="3"/></filter><clipPath id="trViewportClip" clipPathUnits="userSpaceOnUse"><rect id="trViewportClipRect" x="-200" y="-12" width="1080" height="376.8618266978923"/></clipPath><clipPath id="trChinaClip"><path d="M510.3 121.0L509.7 116.8L514.8 114.9L508.2 102.0L522.8 99.0L526.6 97.4L531.9 84.2L546.6 86.6L550.7 83.3L551.1 75.8L557.2 75.1L562.9 70.2L565.8 69.6L567.7 74.8L573.9 78.7L584.5 81.5L589.6 87.4L586.8 96.1L589.4 99.3L608.2 101.5L617.1 106.2L621.7 107.0L625.0 113.8L629.4 118.2L637.5 118.1L652.8 119.8L662.7 118.7L669.9 119.8L680.9 124.3L689.8 124.3L693.1 126.6L701.8 122.6L713.7 120.0L724.8 119.8L733.4 117.2L738.8 113.2L743.9 110.7L740.4 105.4L744.2 100.7L756.0 102.8L763.4 98.9L774.7 96.0L780.1 91.1L785.3 89.0L796.0 88.1L801.9 88.9L802.7 86.2L796.0 81.1L790.0 78.7L784.3 81.4L777.1 80.3L772.9 81.2L771.0 78.2L779.8 65.2L788.7 68.0L799.1 63.4L799.1 60.1L805.7 52.3L809.9 49.9L809.8 45.8L805.7 44.0L811.8 40.4L821.0 39.0L830.8 38.8L841.9 41.0L848.4 43.8L858.3 58.9L861.1 66.2L874.0 68.5L882.7 73.8L885.7 80.8L897.0 80.8L903.3 77.9L915.5 75.6L911.7 82.3L908.8 85.0L906.3 93.1L901.3 100.4L892.3 99.0L886.0 101.6L887.9 108.0L886.8 116.7L883.1 116.9L883.1 120.6L878.4 116.3L875.4 120.5L864.0 123.7L865.2 127.5L858.7 127.3L855.2 124.9L850.1 130.2L842.0 134.2L835.9 138.9L825.6 141.1L820.2 144.5L812.2 146.5L816.2 143.1L814.6 140.3L820.5 135.3L816.5 131.4L810.1 134.0L801.7 139.1L797.1 143.9L789.9 144.3L786.1 147.7L790.0 152.8L796.1 153.9L796.3 157.3L802.2 159.4L810.5 154.2L817.1 157.0L821.9 157.2L823.0 161.1L812.5 163.2L809.1 167.2L801.9 170.9L798.1 176.1L806.1 180.1L809.0 187.4L813.5 194.2L818.5 199.9L818.4 205.4L813.8 207.4L815.5 211.4L819.9 213.7L816.8 225.5L812.8 226.2L801.3 243.9L794.5 252.7L774.0 265.8L765.6 266.6L761.1 270.0L758.6 267.5L754.4 271.2L744.0 274.9L736.2 276.0L733.7 283.9L729.6 284.3L727.7 278.9L729.4 276.1L719.4 273.7L716.0 274.9L708.5 273.0L705.0 270.0L706.1 265.8L699.4 264.3L695.8 261.6L689.6 265.5L676.5 266.3L668.6 269.2L669.7 277.7L665.8 277.5L664.9 272.7L659.5 274.9L650.8 270.7L652.9 264.6L648.3 263.2L646.5 256.4L638.7 257.5L639.5 248.8L646.6 242.6L646.6 230.8L643.5 229.1L640.9 224.7L636.6 225.3L631.2 229.1L627.5 230.2L623.8 231.3L619.4 232.8L614.2 233.9L609.0 235.0L603.9 235.0L598.7 233.9L595.0 228.9L591.7 226.9L587.8 226.8L582.5 225.0L578.6 226.9L573.6 232.4L573.0 226.5L568.5 228.1L559.8 227.4L551.5 225.7L545.5 222.5L539.8 221.0L537.3 217.4L533.1 216.4L525.6 211.6L519.6 209.3L516.6 211.1L506.3 205.9L499.1 201.2L497.0 193.0L502.3 194.0L502.6 190.3L499.6 186.4L500.3 180.4L492.4 171.8L480.2 168.7L478.1 163.0L472.6 159.6L471.3 157.5L470.1 153.3L470.4 150.4L465.9 148.7L463.5 149.4L461.6 142.6L463.7 140.9L462.7 139.2L469.8 135.7L474.9 134.3L482.7 135.2L485.5 130.5L495.0 129.6L497.6 126.7L509.3 122.7Z"/></clipPath></defs><rect id="trSea" x="-1700" y="-700" width="3300" height="1400" fill="#102630"/><g clip-path="url(#trViewportClip)"><g id="trMapWorldContent">
+<div class="tr-map-frame"><div id="trLeafletMap" role="region" aria-label="亚欧非环线路线地图"></div><div class="atlas-basemap-bar" role="group" aria-label="底图切换"><button type="button" class="atlas-bm-btn" data-atlas-basemap="zh_g" title="Google Maps 2x 超清街区：建筑轮廓、商铺、地铁/公交站与门牌">Google 街区</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="osm" title="OpenStreetMap 全球精细街区建筑与商铺">OSM 街区</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="zh_amap" title="高德 2x 中文（中国大陆精细）">高德中文</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="street" title="Esri 地形图">地形</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="sat" title="高清卫星影像">卫星</button><button type="button" class="atlas-bm-btn" data-atlas-basemap="night" title="NASA Black Marble 4× 超清夜景">🌙 夜景</button><span class="atlas-bm-sep"></span><button type="button" class="atlas-bm-btn" data-atlas-basemap="vector">足迹底色</button></div><svg id="trSvg" role="group" aria-label="亚欧非路线地图。点击色块查看区域，点击站点查看攻略" viewBox="-200 -12 1080 376.8618266978923" xmlns="http://www.w3.org/2000/svg"><defs><filter id="trGlow"><feGaussianBlur stdDeviation="3"/></filter><clipPath id="trViewportClip" clipPathUnits="userSpaceOnUse"><rect id="trViewportClipRect" x="-200" y="-12" width="1080" height="376.8618266978923"/></clipPath><clipPath id="trChinaClip"><path d="M510.3 121.0L509.7 116.8L514.8 114.9L508.2 102.0L522.8 99.0L526.6 97.4L531.9 84.2L546.6 86.6L550.7 83.3L551.1 75.8L557.2 75.1L562.9 70.2L565.8 69.6L567.7 74.8L573.9 78.7L584.5 81.5L589.6 87.4L586.8 96.1L589.4 99.3L608.2 101.5L617.1 106.2L621.7 107.0L625.0 113.8L629.4 118.2L637.5 118.1L652.8 119.8L662.7 118.7L669.9 119.8L680.9 124.3L689.8 124.3L693.1 126.6L701.8 122.6L713.7 120.0L724.8 119.8L733.4 117.2L738.8 113.2L743.9 110.7L740.4 105.4L744.2 100.7L756.0 102.8L763.4 98.9L774.7 96.0L780.1 91.1L785.3 89.0L796.0 88.1L801.9 88.9L802.7 86.2L796.0 81.1L790.0 78.7L784.3 81.4L777.1 80.3L772.9 81.2L771.0 78.2L779.8 65.2L788.7 68.0L799.1 63.4L799.1 60.1L805.7 52.3L809.9 49.9L809.8 45.8L805.7 44.0L811.8 40.4L821.0 39.0L830.8 38.8L841.9 41.0L848.4 43.8L858.3 58.9L861.1 66.2L874.0 68.5L882.7 73.8L885.7 80.8L897.0 80.8L903.3 77.9L915.5 75.6L911.7 82.3L908.8 85.0L906.3 93.1L901.3 100.4L892.3 99.0L886.0 101.6L887.9 108.0L886.8 116.7L883.1 116.9L883.1 120.6L878.4 116.3L875.4 120.5L864.0 123.7L865.2 127.5L858.7 127.3L855.2 124.9L850.1 130.2L842.0 134.2L835.9 138.9L825.6 141.1L820.2 144.5L812.2 146.5L816.2 143.1L814.6 140.3L820.5 135.3L816.5 131.4L810.1 134.0L801.7 139.1L797.1 143.9L789.9 144.3L786.1 147.7L790.0 152.8L796.1 153.9L796.3 157.3L802.2 159.4L810.5 154.2L817.1 157.0L821.9 157.2L823.0 161.1L812.5 163.2L809.1 167.2L801.9 170.9L798.1 176.1L806.1 180.1L809.0 187.4L813.5 194.2L818.5 199.9L818.4 205.4L813.8 207.4L815.5 211.4L819.9 213.7L816.8 225.5L812.8 226.2L801.3 243.9L794.5 252.7L774.0 265.8L765.6 266.6L761.1 270.0L758.6 267.5L754.4 271.2L744.0 274.9L736.2 276.0L733.7 283.9L729.6 284.3L727.7 278.9L729.4 276.1L719.4 273.7L716.0 274.9L708.5 273.0L705.0 270.0L706.1 265.8L699.4 264.3L695.8 261.6L689.6 265.5L676.5 266.3L668.6 269.2L669.7 277.7L665.8 277.5L664.9 272.7L659.5 274.9L650.8 270.7L652.9 264.6L648.3 263.2L646.5 256.4L638.7 257.5L639.5 248.8L646.6 242.6L646.6 230.8L643.5 229.1L640.9 224.7L636.6 225.3L631.2 229.1L627.5 230.2L623.8 231.3L619.4 232.8L614.2 233.9L609.0 235.0L603.9 235.0L598.7 233.9L595.0 228.9L591.7 226.9L587.8 226.8L582.5 225.0L578.6 226.9L573.6 232.4L573.0 226.5L568.5 228.1L559.8 227.4L551.5 225.7L545.5 222.5L539.8 221.0L537.3 217.4L533.1 216.4L525.6 211.6L519.6 209.3L516.6 211.1L506.3 205.9L499.1 201.2L497.0 193.0L502.3 194.0L502.6 190.3L499.6 186.4L500.3 180.4L492.4 171.8L480.2 168.7L478.1 163.0L472.6 159.6L471.3 157.5L470.1 153.3L470.4 150.4L465.9 148.7L463.5 149.4L461.6 142.6L463.7 140.9L462.7 139.2L469.8 135.7L474.9 134.3L482.7 135.2L485.5 130.5L495.0 129.6L497.6 126.7L509.3 122.7Z"/></clipPath></defs><rect id="trSea" x="-1700" y="-700" width="3300" height="1400" fill="#102630"/><g clip-path="url(#trViewportClip)"><g id="trMapWorldContent">
 <!-- Country polygons: https://github.com/johan/world.geo.json/blob/master/countries.geo.json -->
 <g id="trLandBase" aria-hidden="true" pointer-events="none"></g><g id="trRegionFills"><path class="tr-region-fill" data-tr-region="kyrgyz" d="M562.9 70.2L557.2 75.1L551.1 75.8L550.7 83.3L546.6 86.6L531.9 84.2L526.6 97.4L522.8 99.0L508.2 102.0L514.8 114.9L509.7 116.8L510.3 121.0L505.8 119.9L502.0 117.2L478.8 116.3L476.1 117.1L465.6 114.0L461.3 115.5L460.2 119.9L448.0 117.3L443.2 118.4L441.5 121.6L437.3 123.0L427.5 128.2L424.3 133.4L421.5 133.5L419.5 130.0L410.1 129.7L408.6 123.7L404.9 123.7L405.5 116.2L396.7 110.8L375.3 112.5L368.2 105.8L349.3 97.0L330.3 101.4L330.6 128.7L326.8 129.1L321.6 123.3L316.6 121.2L308.2 122.7L304.9 125.2L304.5 123.4L306.3 120.3L304.9 117.8L296.3 115.2L293.0 108.6L288.9 106.7L288.7 104.3L295.9 105.0L296.2 99.5L302.5 98.4L308.9 99.5L310.2 92.3L308.9 87.7L301.5 88.1L295.2 86.2L286.7 89.5L279.7 91.0L276.0 89.9L276.8 86.0L272.0 81.1L266.5 81.3L260.3 76.3L264.5 70.7L262.4 69.1L268.3 61.1L275.9 65.3L276.8 60.0L292.1 51.9L303.6 51.7L328.7 59.8L336.6 56.7L348.3 56.6L357.7 60.3L359.9 58.2L370.3 58.5L372.2 55.0L360.2 49.9L367.3 46.3L365.9 44.3L373.0 42.3L367.7 37.3L371.1 34.7L398.7 32.2L402.4 30.4L420.9 27.6L427.5 24.6L440.8 26.1L443.1 33.8L450.9 32.0L460.4 34.5L459.7 38.6L466.9 38.1L485.4 31.2L482.6 33.5L492.1 39.2L508.6 58.0L512.6 54.1L522.8 58.4L533.4 56.5L537.6 57.8L541.1 62.1L546.2 63.5L549.4 66.7L558.9 65.7ZM441.5 121.6L443.2 118.4L448.0 117.3L460.2 119.9L461.3 115.5L465.6 114.0L476.1 117.1L478.8 116.3L502.0 117.2L505.8 119.9L510.3 121.0L509.3 122.7L497.6 126.7L495.0 129.6L485.5 130.5L482.7 135.2L474.9 134.3L469.8 135.7L462.7 139.2L463.7 140.9L461.6 142.6L447.6 143.7L438.5 141.4L430.4 141.9L431.1 137.7L439.2 138.8L441.9 136.6L447.6 137.3L457.0 132.0L448.2 128.1L443.0 130.0L437.5 127.2L443.7 122.3Z"/><path class="tr-region-fill" data-tr-region="uzbek" d="M330.6 128.7L330.3 101.4L349.3 97.0L368.2 105.8L375.3 112.5L396.7 110.8L405.5 116.2L404.9 123.7L408.6 123.7L410.1 129.7L419.5 130.0L421.5 133.5L424.3 133.4L427.5 128.2L437.3 123.0L441.5 121.6L443.7 122.3L437.5 127.2L443.0 130.0L448.2 128.1L457.0 132.0L447.6 137.3L438.8 136.8L437.8 134.7L439.4 131.3L429.4 133.0L427.1 137.7L423.6 141.9L417.4 141.5L415.5 144.8L420.9 146.5L422.5 152.0L418.3 159.5L412.7 157.9L408.6 157.9L408.8 153.4L399.0 150.2L391.3 146.6L378.0 138.0L374.3 130.4L371.9 129.0L363.8 129.4L361.0 127.8L360.2 122.0L350.3 118.1L344.0 122.3L337.7 124.9L338.9 128.6Z"/><path class="tr-region-fill" data-tr-region="caucasus" d="M260.6 147.5L257.8 147.7L254.9 143.4L254.9 142.3L251.6 142.3L249.4 140.3L247.8 140.5L245.0 138.4L239.5 136.6L240.2 132.9L238.9 130.3L249.2 129.2L250.7 131.1L253.5 132.4L252.1 134.3L256.0 136.8L253.9 139.1L260.4 142.4ZM259.8 124.6L261.9 124.9L266.9 129.4L270.2 129.9L271.5 128.0L275.9 125.0L283.6 134.2L287.1 134.5L289.3 136.5L283.2 137.1L280.6 145.4L278.0 147.1L278.1 150.8L276.3 151.2L271.7 147.4L274.2 143.7L272.0 141.5L269.2 142.0L260.6 147.5L260.4 142.4L253.9 139.1L256.0 136.8L252.1 134.3L253.5 132.4L250.7 131.1L249.2 129.2L251.0 128.0L256.5 130.1L260.5 130.6L261.5 129.7L257.9 125.7ZM257.8 147.7L252.8 146.8L249.0 143.3L247.8 140.5L249.4 140.3L251.6 142.3L254.9 142.3L254.9 143.4ZM212.0 112.9L213.0 112.1L230.2 114.6L240.2 118.1L241.5 119.5L246.0 118.3L252.9 119.9L255.2 122.9L259.8 124.6L257.9 125.7L261.5 129.7L260.5 130.6L256.5 130.1L251.0 128.0L249.2 129.2L238.9 130.3L231.8 126.7L223.9 127.0L225.0 123.9L223.1 118.9L218.9 116.1L214.8 115.2Z"/><path class="tr-region-fill" data-tr-region="turkey" d="M247.7 159.3L244.1 160.6L241.6 158.7L233.0 157.7L229.8 158.9L217.4 159.9L208.8 162.7L202.8 162.7L198.9 161.3L190.7 163.4L188.3 161.9L187.9 166.1L183.9 169.3L181.2 165.9L184.0 163.2L179.5 163.9L173.3 162.1L168.2 166.4L157.0 167.2L151.0 163.3L143.0 163.0L141.3 166.1L136.2 166.9L129.0 163.0L120.9 163.1L116.6 155.8L111.2 151.6L114.7 145.9L110.1 142.4L118.3 135.3L129.7 135.0L132.8 129.4L146.9 130.3L155.8 125.5L164.4 123.5L176.7 123.3L189.5 128.6L200.2 131.4L208.8 130.3L215.1 130.9L223.9 127.0L231.8 126.7L238.9 130.3L240.2 132.9L239.5 136.6L245.0 138.4L247.8 140.5L242.8 142.6L245.1 151.1L243.6 153.4ZM109.7 124.9L117.2 122.6L123.6 123.5L124.4 126.4L130.9 128.8L129.6 130.6L120.8 131.0L111.5 137.3L109.1 133.8L109.2 132.3L110.9 131.4L113.2 126.9Z"/><path class="tr-region-fill" data-tr-region="balkans" d="M71.9 132.2L71.8 134.1L69.4 135.1L69.0 137.6L65.5 141.1L64.3 140.7L64.1 139.1L60.0 136.6L59.4 133.0L61.0 125.7L59.7 124.5L59.3 122.1L62.5 118.5L62.9 119.9L64.9 119.2L66.5 121.2L68.2 122.0L68.8 124.6L67.8 127.2L68.8 130.3ZM39.0 90.3L46.9 94.4L53.0 95.8L55.7 94.7L59.9 99.6L57.1 102.4L53.7 100.8L48.6 100.9L42.2 99.7L38.7 99.8L37.2 101.4L34.5 99.7L33.0 102.7L38.2 108.5L44.4 112.9L47.2 116.0L53.7 118.8L52.9 120.0L46.0 117.3L41.7 114.6L34.9 112.4L28.7 107.0L30.2 106.4L26.8 103.3L26.7 100.8L21.9 99.7L19.6 102.9L17.5 100.4L17.9 97.7L23.0 97.9L24.4 96.7L26.9 97.9L29.8 98.1L29.8 96.0L32.4 95.3L33.1 92.2ZM53.7 118.8L47.2 116.0L44.4 112.9L38.2 108.5L33.0 102.7L34.5 99.7L37.2 101.4L38.7 99.8L42.2 99.7L48.6 100.9L53.7 100.8L57.1 102.4L59.7 102.4L57.9 105.7L61.4 108.5L60.3 112.0L54.9 114.7ZM55.7 94.7L61.4 92.7L66.0 93.0L70.0 95.9L70.8 98.3L75.4 100.1L75.9 103.1L80.3 105.2L82.6 103.6L84.5 104.5L82.7 105.8L84.1 107.0L82.2 108.7L82.9 111.5L86.5 114.6L83.7 116.9L82.5 119.3L83.3 120.2L82.0 121.2L76.1 121.8L77.5 118.6L76.5 118.6L70.4 114.2L69.1 114.6L68.1 117.1L66.3 117.6L66.9 116.9L61.7 114.6L58.6 112.4L60.3 112.0L61.4 108.5L57.9 105.7L59.7 102.4L57.1 102.4L59.9 99.6L57.5 97.6ZM64.9 119.2L62.9 119.9L62.5 118.5L59.3 122.1L59.7 124.5L58.2 123.9L56.1 121.5L52.9 120.0L54.9 114.7L58.6 112.4L61.7 114.6L66.9 116.9L66.3 117.6ZM68.8 124.6L68.2 122.0L66.5 121.2L64.9 119.2L66.3 117.6L68.1 117.1L69.1 114.6L70.4 114.2L76.5 118.6L77.5 118.6L76.1 121.8L70.0 123.2L69.7 124.7Z"/><path class="tr-region-fill" data-tr-region="med" d="M-37.8 68.4L-34.3 70.3L-23.7 71.7L-27.4 76.8L-28.3 82.0L-30.4 83.3L-33.7 82.6L-33.5 84.5L-38.9 88.6L-39.1 92.0L-35.5 90.8L-33.0 94.1L-33.3 96.1L-31.1 99.0L-33.7 101.2L-31.7 107.0L-27.7 107.8L-28.5 111.1L-35.3 115.2L-49.9 113.2L-60.7 115.7L-61.5 120.1L-70.1 121.1L-78.4 117.7L-81.1 119.3L-94.7 116.0L-97.7 113.1L-93.8 108.7L-92.4 93.9L-100.1 86.2L-105.5 82.4L-116.8 79.6L-117.6 74.2L-108.0 72.5L-95.6 74.5L-98.0 66.0L-90.9 69.2L-73.7 63.4L-71.5 57.4L-65.0 55.9L-63.9 58.5L-60.5 58.6L-51.9 65.1L-48.1 64.5L-39.9 68.5ZM86.2 128.5L91.7 128.7L97.6 126.7L102.9 129.3L109.6 128.6L109.7 124.9L113.2 126.9L110.9 131.4L109.2 132.3L100.8 131.4L91.9 133.3L97.0 137.5L93.3 138.7L89.1 138.7L85.3 134.8L83.9 136.5L85.5 140.9L89.2 144.4L86.4 146.0L94.1 151.6L94.3 155.8L87.4 153.8L89.6 157.6L85.0 158.4L87.7 164.9L82.8 165.0L76.8 161.8L72.7 150.9L66.0 143.3L65.5 141.1L69.0 137.6L69.4 135.1L71.8 134.1L71.9 132.2L76.8 131.5L79.6 129.9L83.6 130.0L84.8 128.8ZM-6.3 87.4L-1.8 88.5L-0.9 87.0L6.3 85.8L8.0 88.3L18.6 90.2L17.8 93.9L19.6 97.0L13.6 95.9L7.6 98.6L8.0 102.2L7.1 104.4L9.6 108.1L16.5 111.8L20.2 118.0L28.4 123.9L34.2 123.9L36.1 125.5L34.0 127.0L46.0 131.9L52.4 135.7L53.2 137.1L51.7 139.8L47.7 136.3L41.2 135.1L38.1 139.9L43.5 142.6L42.6 146.5L39.5 147.0L35.5 153.3L32.4 153.9L34.0 147.7L35.6 146.1L30.4 138.0L27.4 137.1L25.2 133.9L20.4 132.6L17.3 129.6L11.8 129.2L-0.8 120.9L-5.8 116.7L-8.1 109.4L-17.8 106.1L-21.2 107.1L-25.5 110.5L-28.5 111.1L-27.7 107.8L-31.7 107.0L-33.7 101.2L-31.1 99.0L-33.3 96.1L-33.0 94.1L-29.8 95.6L-26.2 95.3L-22.0 92.8L-20.8 94.0L-17.2 93.7L-15.7 90.7L-10.2 91.7L-6.9 90.4ZM25.6 152.2L31.2 151.5L28.6 157.3L29.7 159.6L28.1 163.4L22.4 160.6L8.4 156.1L9.4 152.2L18.1 152.9ZM-19.1 131.7L-15.4 129.4L-11.0 134.7L-12.0 144.5L-15.4 144.0L-18.4 146.5L-21.2 144.5L-21.5 135.6L-23.2 131.4Z"/><path class="tr-region-fill" data-tr-region="gulf" d="M298.1 255.0L299.4 254.7L299.7 256.7L305.5 255.5L316.1 255.9L331.3 241.6L332.7 244.1L333.8 249.9L330.0 250.0L329.3 254.8L330.7 255.8L327.3 257.3L327.3 260.3L325.1 263.4L325.0 266.3L323.5 267.9L301.2 264.2L298.4 256.7ZM325.0 266.3L325.1 263.4L327.3 260.3L327.3 257.3L330.7 255.8L329.3 254.8L330.0 250.0L333.8 249.9L337.1 255.0L341.2 257.7L351.0 260.0L356.3 266.7L359.0 267.7L359.0 269.3L355.1 275.8L352.0 278.2L349.2 283.2L345.8 282.8L344.3 284.6L343.2 288.3L344.0 293.3L343.4 294.2L340.0 294.2L335.3 297.0L334.6 300.5L332.9 302.1L328.3 302.1L325.4 303.9L325.4 306.9L321.8 309.0L317.8 308.3L312.8 310.7L309.4 311.2L301.2 293.8L323.4 286.4L328.4 271.6ZM332.7 244.1L331.3 241.6L333.5 239.0L334.4 239.7L333.7 242.7Z"/><path class="tr-region-fill" data-tr-region="egypt" d="M189.2 271.6L101.4 271.6L101.4 218.0L99.2 212.1L101.1 207.5L99.9 204.3L102.7 200.8L112.4 200.6L130.3 206.0L139.1 201.5L145.7 200.9L150.9 201.8L152.9 205.5L154.6 203.1L160.5 204.9L166.3 205.2L170.0 203.4L174.8 216.1L172.7 219.1L171.2 224.7L169.2 228.5L167.4 229.8L161.6 224.1L156.3 213.5L155.6 214.2L158.6 222.0L163.2 229.4L168.7 241.0L173.9 249.2L180.5 257.3L179.0 258.6L179.3 263.5L187.9 270.0Z"/><path class="tr-region-fill tr-approx-fill" data-tr-region="xinjiang" d="M456.0 130.9L463.4 108.7L500.4 71.7L552.2 71.7L574.4 79.1L604.0 86.5L618.8 108.7L626.2 130.9L607.7 145.7L581.8 157.6L544.8 171.6L515.2 170.2L481.9 156.8Z" clip-path="url(#trChinaClip)"/><path class="tr-region-fill tr-approx-fill" data-tr-region="himalaya" d="M489.3 193.8L500.4 175.3L537.4 167.9L567.0 163.5L592.9 169.4L618.8 170.2L644.7 184.2L641.0 208.6L618.8 227.1L600.3 228.6L574.4 223.4L548.5 227.1L522.6 216.0L504.1 204.9Z" clip-path="url(#trChinaClip)"/><path class="tr-region-fill tr-approx-fill" data-tr-region="himalaya" d="M507.8 210.1L522.6 206.4L537.4 212.3L559.6 221.2L569.2 234.5L552.2 239.0L530.0 230.1L515.2 226.4Z"/><path class="tr-region-fill tr-approx-fill" data-tr-region="med" d="M-153.0 111.0L-139.7 110.2L-97.5 115.4L-62.8 120.6L-59.8 126.5L-82.0 138.3L-84.2 164.2L-124.9 167.9L-139.7 160.5L-150.8 148.0Z"/><path class="tr-region-fill tr-approx-fill" data-tr-region="med" d="M-173.0 218.3L-155.3 203.5L-150.8 182.7L-128.6 170.2L-122.7 168.7L-99.0 173.1L-92.4 197.5L-106.4 212.3L-147.1 230.1Z"/></g><g id="trStaticWorld" pointer-events="none">
 <path class="tr-geo-grid" d="M-1416.2 -231.7V1100.3M-1194.2 -231.7V1100.3M-972.2 -231.7V1100.3M-750.2 -231.7V1100.3M-528.2 -231.7V1100.3M-306.2 -231.7V1100.3M-84.2 -231.7V1100.3M137.8 -231.7V1100.3M359.8 -231.7V1100.3M581.8 -231.7V1100.3M803.8 -231.7V1100.3M1025.8 -231.7V1100.3M1247.8 -231.7V1100.3M-1416.2 1100.3H1247.8M-1416.2 878.3H1247.8M-1416.2 656.3H1247.8M-1416.2 434.3H1247.8M-1416.2 212.3H1247.8M-1416.2 -9.7H1247.8M-1416.2 -231.7H1247.8"/>
@@ -1727,6 +1741,44 @@ if(!state.visitsAdded20261118){
  state.visitsAdded20261118=true;
  try{localStorage.setItem(VERSION,JSON.stringify(state))}catch(e){}
 }
+function vtwSeedAuroraRoute(targetState=state){
+ if(!targetState||targetState.auroraRouteNamed20261127)return false;
+ if(!Array.isArray(targetState.travelTrips))targetState.travelTrips=[];
+ const ru=(id,name,lat,lng,note)=>({id:'aurora-20261126-'+id,name,country:'俄罗斯',lat,lng,visited:false,date:'',note});
+ const auroraStops=[
+  ru('moscow','莫斯科',55.76,37.62,'起点和终点（D1 抵达 / 返程从圣彼得堡乘萨普桑高铁或夜车回莫斯科回国）；上海直飞约10h；1月 -4～-12°C；含手机卡落地24小时静默期、提前备好卢布现金与离线地图提醒。'),
+  ru('murmansk','摩尔曼斯克',68.96,33.08,'飞抵和缓冲日（D2 飞抵约2.5h、D5 回城缓冲1晚防暴雪误机）；含列宁号核动力破冰船、阿廖沙雕像等景点及前几晚阴天时的兜底追光团方案。'),
+  ru('teriberka','捷里别尔卡',69.20,35.14,'连住 2–3 晚自己守极光（优选老村临海住宿）；含 241/241Э 公交或包车交通及北极公路暴雪封路风险与弹性缓冲提醒。'),
+  ru('stpetersburg','圣彼得堡',59.93,30.34,'火车四人包厢（约24–26h）或直飞航班（约2h15m）的双线保留段；冬宫、滴血救世主教堂等；之后返程回莫斯科结束环线。')
+ ];
+ const auroraNote='节点顺序：莫斯科 → 摩尔曼斯克 → 捷里别尔卡 → 圣彼得堡（返程回莫斯科段写在备注中，未单列节点）。暂定寒假约10–11天；1月 -4～-15°C（捷里别尔卡体感 -20～-30°C），中国普通护照免签≤30天。';
+ const existing=targetState.travelTrips.find(t=>t.id==='russia-aurora-2027'||t.title==='追极光'||t.title==='俄罗斯追极光');
+ if(!existing){
+  targetState.travelTrips.push({id:'russia-aurora-2027',title:'追极光',status:'planned',color:'#10B981',start:'',end:'',note:auroraNote,stops:auroraStops});
+ }else{
+  if(existing.title==='俄罗斯追极光')existing.title='追极光';
+  if(!existing.color)existing.color='#10B981';
+  if(!existing.note||existing.note.includes('上海直飞莫斯科'))existing.note=auroraNote;
+  if(!Array.isArray(existing.stops)||existing.stops.length<4){
+   existing.stops=auroraStops;
+  }else if(existing.id==='russia-aurora-2027'){
+   for(let i=0;i<auroraStops.length;i++){
+    const es=existing.stops[i], ns=auroraStops[i];
+    if(es&&ns&&es.name===ns.name){
+     es.lat=ns.lat;es.lng=ns.lng;
+     if(!es.visited)es.note=ns.note;
+    }
+   }
+  }
+ }
+ targetState.auroraRoute20261126=true;
+ targetState.auroraRouteNamed20261127=true;
+ if(targetState===state){
+  try{localStorage.setItem(VERSION,JSON.stringify(state));localStorage.setItem('vtw_local_updated_at',String(Date.now()));localStorage.setItem('vtw_cloud_dirty','1')}catch(e){}
+ }
+ return true;
+}
+vtwSeedAuroraRoute();
 if(!state.regionBoundaries20261118){
  const regions=new Map(requestedVisits20261118.map(x=>[x.country+'|'+x.name,x]));
  for(const trip of state.travelTrips||[])for(const stop of trip.stops||[]){
@@ -2653,6 +2705,7 @@ function vtwApplyCloudState(payload){
   if(!state.customGoodies||typeof state.customGoodies!=='object')state.customGoodies={};
   if(!state.routeLayers)state.routeLayers={silk:false,mediterranean:false,ancient:false,guide:true};
   vtwUpgradeJapanOuterBoundaries(state);
+  vtwSeedAuroraRoute();
   persist(false);
   try{
     localStorage.setItem(CLOUD_TS_KEY,String(payload.updatedAt||Date.now()));
@@ -2980,11 +3033,12 @@ function trCurveProgress(curve,fraction){
  return {position,points:[...points.slice(0,index),position]};
 }
 
+const trBaseCoord=(lat,lng)=>typeof atlasMapCoord==='function'?atlasMapCoord(lat,lng):[Number(lat),Number(lng)];
 function trFitView(stops,focus=false){
  trEnsureLeaflet();trLeafMap.invalidateSize({pan:false});
- const points=stops.filter(s=>Number.isFinite(Number(s.lat))&&Number.isFinite(Number(s.lng))).map(s=>[Number(s.lat),Number(s.lng)]);
+ const points=stops.filter(s=>Number.isFinite(Number(s.lat))&&Number.isFinite(Number(s.lng))).map(s=>trBaseCoord(s.lat,s.lng));
  if(points.length)trLeafMap.fitBounds(L.latLngBounds(points),{padding:[35,45],maxZoom:focus?8:5,animate:false});
- else trLeafMap.setView([30,55],2);
+ else trLeafMap.setView([34,58],3);
 }
 function renderDetailedRouteLabels(){}
 function trStopDays(){return trOnStops().reduce((total,s)=>total+Math.max(0,Number(s.days||0)),0)}
@@ -3051,11 +3105,17 @@ function trDrawRoute(reset=false){
  const stops=trOnStops(),all=trGetAll();if(reset)trStop(false);
  trEnsureLeaflet();trLeafRoute.clearLayers();trLeafNodes=[];trLeafSegments=[];
  trLeafTraveler=null;trDrawnIndex=-1;
- const coords=stops.map(s=>[Number(s.lat),Number(s.lng)]);
- trPlaybackCurves=stops.slice(1).map((stop,index)=>trLegacyCurve(stops[index],stop));
+ const coords=stops.map(s=>trBaseCoord(s.lat,s.lng));
+ trPlaybackCurves=stops.slice(1).map((stop,index)=>{
+  const c=trLegacyCurve(stops[index],stop);
+  return {points:c.points.map(p=>trBaseCoord(p[0],p[1])),distances:c.distances};
+ });
  for(let i=1;i<stops.length;i++){
   const color=trStopColor(stops[i]),mode=mapSegmentMode(stops[i-1],stops[i]);
-  L.polyline(trPlaybackCurves[i-1].points,{color,smoothFactor:0,weight:2.2,opacity:.48,className:'tr-route-leg',dashArray:mode==='air'?'7 5':mode==='ferry'?'2 5':null}).bindTooltip(esc(stops[i-1].name+' → '+stops[i].name)+' · 规划连线，非实际导航').addTo(trLeafRoute);
+  const basePts=trPlaybackCurves[i-1].points;
+  const legLine=L.polyline(basePts,{color,smoothFactor:0,weight:2.4,opacity:.68,className:'tr-route-leg',dashArray:mode==='air'?'7 5':mode==='ferry'?'2 5':null}).bindTooltip(esc(stops[i-1].name+' → '+stops[i].name)+' · 规划连线，非实际导航',{sticky:true}).addTo(trLeafRoute);
+  legLine.on('mouseover',()=>legLine.setStyle({weight:4.4,opacity:1}));
+  legLine.on('mouseout',()=>legLine.setStyle({weight:2.4,opacity:.68}));
   trLeafSegments.push(L.polyline([],{color,smoothFactor:0,weight:3.2,opacity:1,dashArray:mode==='air'?'7 5':mode==='ferry'?'2 5':null}).addTo(trLeafRoute));
  }
  stops.forEach((stop,i)=>{
@@ -3115,7 +3175,7 @@ function trUpdateDraw(forceFull=false){
  const indexChanged=forceFull||done!==trDrawnIndex;
  const curve=trPlaybackCurves[done];
  const progress=curve?trCurveProgress(curve,trFraction):null;
- const position=trFraction>0&&progress?progress.position:[Number(stops[done].lat),Number(stops[done].lng)];
+ const position=trFraction>0&&progress?progress.position:trBaseCoord(stops[done].lat,stops[done].lng);
 
  if(indexChanged){
    trLeafSegments.forEach((line,i)=>{
@@ -3378,7 +3438,7 @@ $('trReplay').onclick=()=>{trStop();trIndex=0;trFraction=0;trUpdateDraw();$('trP
 function trStep(direction){
  trSetStop(trIndex+direction);
  const stop=trOnStops()[trIndex];
- if(stop&&trLeafMap?.getZoom()>=6)trLeafMap.panTo([stop.lat,stop.lng],{animate:false});
+ if(stop&&trLeafMap?.getZoom()>=6)trLeafMap.panTo(trBaseCoord(stop.lat,stop.lng),{animate:false});
 }
 $('trPrev').onclick=()=>trStep(-1);
 $('trNext').onclick=()=>trStep(1);
@@ -3522,19 +3582,62 @@ function trToggleMapFocus(key,zoom){
  if(trMapFocus?.key===key){const {center,level}=trMapFocus;trMapFocus=null;trLeafMap.setView(center,level);return;}
  trMapFocus??={center:trLeafMap.getCenter(),level:trLeafMap.getZoom()};trMapFocus.key=key;zoom();
 }
-let trLeafMap=null,trLeafWorld=null,trLeafAdmin1=null,trLeafMajorCities=null,trLeafRoute=null,trLeafCandidates=null,trLeafTraveler=null,trLeafNodes=[],trLeafSegments=[],trPlaybackCurves=[];
+let trLeafMap=null,trLeafWorld=null,trLeafChina=null,trLeafAdmin1=null,trLeafMajorCities=null,trLeafRoute=null,trLeafCandidates=null,trLeafTraveler=null,trLeafNodes=[],trLeafSegments=[],trPlaybackCurves=[];
+let trBaseUnderlay=null,trBaseTiles=null,trBaseLabels=null,trLeafStreetClear=false;
 const routeOverview=[];
 function stopRouteCamera(){}
 const trWorldNames={'中国':'China','波黑':'Bosnia and Herzegovina','阿联酋':'United Arab Emirates','土耳其':'Turkey','塞尔维亚':'Republic of Serbia'};
 let trActiveStopsCache=null;
 function trLeafCountryStyle(feature){
+ const bm=typeof atlasBasemap==='string'?atlasBasemap:'zh_g';
+ const isVec=bm==='vector';
+ const z=trLeafMap?.getZoom?.()??3;
+ if(!isVec&&(bm==='night'||z>=13)){
+  return {fillOpacity:0,opacity:0,weight:0,fill:true};
+ }
  const p=feature.properties,match=country=>trWorldNames[country]===p.ADMIN||country===p.NAME_ZH||(country==='格鲁吉亚'&&p.ADMIN==='Georgia')||(country==='埃及'&&p.ADMIN==='Egypt');
  const stops=trActiveStopsCache||trOnStops();
  const stop=stops.find(s=>match(s.country));
- return {...atlasCountryBorder,fillColor:stop?trStopColor(stop):'#BFCEDF',fillOpacity:stop ? .55 : 1};
+ if(isVec){
+  return {...atlasCountryBorder,fillColor:stop?trStopColor(stop):'#BFCEDF',fillOpacity:stop ? .55 : .96};
+ }
+ return {color:bm==='night'?'#475569':'#64748B',weight:stop?.65:.4,opacity:stop?.48:.16,fillColor:stop?trStopColor(stop):'transparent',fillOpacity:stop?.22:0};
 }
 function addChinaProvinceLayer(map){
- return L.geoJSON(getWrappedChinaGeo(),{style:{color:'#597797',weight:.35,opacity:.45,dashArray:'2 2',fill:false},interactive:false}).addTo(map);
+ return L.geoJSON(getWrappedChinaGeo(),{style:()=>{
+  const bm=typeof atlasBasemap==='string'?atlasBasemap:'zh_g';
+  const z=map?.getZoom?.()??3;
+  if(bm!=='vector'&&(bm==='night'||z>=13))return {opacity:0,weight:0,fill:false};
+  return {color:'#597797',weight:.35,opacity:bm==='vector'?.45:.25,dashArray:'2 2',fill:false};
+ },interactive:false}).addTo(map);
+}
+function trApplyBasemap(key,redrawRoute=false){
+ if(!trLeafMap||typeof ATLAS_BASEMAPS!=='object')return;
+ const k=ATLAS_BASEMAPS[key]?key:(typeof atlasBasemap==='string'?atlasBasemap:'zh_g');
+ if(trBaseUnderlay){trLeafMap.removeLayer(trBaseUnderlay);trBaseUnderlay=null;}
+ if(trBaseTiles){trLeafMap.removeLayer(trBaseTiles);trBaseTiles=null;}
+ if(trBaseLabels){trLeafMap.removeLayer(trBaseLabels);trBaseLabels=null;}
+ const bm=ATLAS_BASEMAPS[k]||ATLAS_BASEMAPS.zh_g;
+ if(bm.underlay?.url){
+  trBaseUnderlay=L.tileLayer(bm.underlay.url,{...bm.underlay.opt,className:'atlas-base-tiles atlas-night-underlay'}).addTo(trLeafMap);
+ }
+ if(bm.url){
+  trBaseTiles=L.tileLayer(bm.url,{...bm.opt,className:bm.opt?.className||'atlas-base-tiles'}).addTo(trLeafMap);
+  if(!bm.underlay?.url&&typeof trBaseTiles.bringToBack==='function')trBaseTiles.bringToBack();
+ }
+ if(bm.labels?.url){
+  trBaseLabels=L.tileLayer(bm.labels.url,{...bm.labels.opt,className:'atlas-night-labels'}).addTo(trLeafMap);
+ }
+ const frame=$('trLeafletMap')?.closest?.('.tr-map-frame');
+ if(frame)frame.classList.toggle('is-night-bm',k==='night');
+ document.querySelectorAll('[data-atlas-basemap]').forEach(b=>b.classList.toggle('active',b.dataset.atlasBasemap===k));
+ if(trLeafWorld&&typeof trLeafWorld.setStyle==='function')trLeafWorld.setStyle(trLeafCountryStyle);
+ if(trLeafChina&&typeof trLeafChina.setStyle==='function'){
+  const z=trLeafMap.getZoom?.()??3;
+  const hideCn=k!=='vector'&&(k==='night'||z>=13);
+  trLeafChina.setStyle({opacity:hideCn?0:(k==='vector'?.45:.25),weight:hideCn?0:.35,dashArray:'2 2',color:'#597797',fill:false});
+ }
+ if(redrawRoute&&typeof trDrawRoute==='function'&&active==='map')trDrawRoute(false);
 }
 function trAllCandidateStops(){
  const sources=[...trClusterDefs.flatMap(def=>def.stops.map((_,i)=>trClusterStop(def,i)).filter(Boolean)),...referenceRoutes.flatMap(route=>expandStops(route)),...trCatalog];
@@ -3552,10 +3655,11 @@ function trRenderCandidateNodes(){
  for(const stop of candidates){
   const focused=regionKeys.has(trKey(stop.country,stop.name));
   const color=trStopColor(stop)||'#9fb7c7';
-  const marker=L.marker([stop.lat,stop.lng],{icon:L.divIcon({className:'route-leaf-candidate',html:`<span style="border-color:${color}"></span>`,iconSize:[18,18],iconAnchor:[9,9]}),title:`${stop.country} / ${stop.name} · 候选城市攻略`,keyboard:true,opacity:region&&!focused ? .4 : .9});
+  const [cLat,cLng]=trBaseCoord(stop.lat,stop.lng);
+  const marker=L.marker([cLat,cLng],{icon:L.divIcon({className:'route-leaf-candidate',html:`<span style="border-color:${color}"></span>`,iconSize:[18,18],iconAnchor:[9,9]}),title:`${stop.country} / ${stop.name} · 候选城市攻略`,keyboard:true,opacity:region&&!focused ? .4 : .9});
   marker.bindTooltip(esc(focused?stop.name:stop.country+' / '+stop.name),{permanent:focused,direction:'top',className:'route-candidate-label'});
   const guide=document.createElement('button');guide.type='button';guide.className='btn tiny';guide.textContent='查看'+stop.name+'攻略';guide.onclick=()=>trOpenGuide(stop);
- marker.bindPopup(guide,{autoPan:false}).on('click',()=>trToggleMapFocus(trKey(stop.country,stop.name),()=>trLeafMap.setView([stop.lat,stop.lng],8)));marker.addTo(trLeafCandidates);
+ marker.bindPopup(guide,{autoPan:false}).on('click',()=>trToggleMapFocus(trKey(stop.country,stop.name),()=>trLeafMap.setView([cLat,cLng],8)));marker.addTo(trLeafCandidates);
  }
 }
 $('trShowCandidates').onchange=trRenderCandidateNodes;
@@ -3690,18 +3794,32 @@ function trDrillCountryDetail(feature,layer,event){
 }
 function trEnsureLeaflet(){
  if(trLeafMap)return;
- trLeafMap=L.map('trLeafletMap',{crs:L.CRS.EPSG4326,preferCanvas:true,zoomControl:false,worldCopyJump:false,minZoom:1,maxZoom:15,zoomSnap:.25}).setView([30,55],2);
+ trLeafMap=L.map('trLeafletMap',{preferCanvas:true,zoomControl:false,worldCopyJump:false,minZoom:1,maxZoom:20,zoomSnap:.5,zoomDelta:.5,wheelPxPerZoomLevel:90,maxBounds:[[-85,-540],[85,540]],maxBoundsViscosity:.7}).setView([34,58],3);
  trLeafWorld=L.geoJSON(getWrappedWorldGeo(),{style:trLeafCountryStyle,onEachFeature:(f,layer)=>{
   layer.bindTooltip(esc(`${f.properties.NAME_ZH||f.properties.ADMIN}（点击放大查看省界与城市 · 再点收回）`),{sticky:true});
   layer.on('click',event=>{trDrillCountryDetail(f,layer,event);});
  }}).addTo(trLeafMap);
- addChinaProvinceLayer(trLeafMap);
+ trLeafChina=addChinaProvinceLayer(trLeafMap);
  trLeafAdmin1=L.geoJSON(null,{style:()=>({color:atlasThemeColor('--map-city-vis','#176953'),weight:1.05,opacity:.75,dashArray:'4 3',fill:false}),interactive:false}).addTo(trLeafMap);
  trLeafCandidates=L.featureGroup().addTo(trLeafMap);
  trLeafRoute=L.featureGroup().addTo(trLeafMap);
  trLeafMajorCities=L.featureGroup().addTo(trLeafMap);
- if(typeof trLeafMap.on==='function')trLeafMap.on('zoomend moveend',()=>layoutMajorCityLabels(trLeafMap,trMajorCityEntries));
+ trLeafStreetClear=(trLeafMap.getZoom?.()??3)>=13;
+ if(typeof trLeafMap.on==='function')trLeafMap.on('zoomend moveend',()=>{
+  const nextClear=(trLeafMap.getZoom?.()??3)>=13;
+  if(nextClear!==trLeafStreetClear){
+   trLeafStreetClear=nextClear;
+   if(trLeafWorld&&typeof trLeafWorld.setStyle==='function')trLeafWorld.setStyle(trLeafCountryStyle);
+   if(trLeafChina&&typeof trLeafChina.setStyle==='function'){
+    const bm=typeof atlasBasemap==='string'?atlasBasemap:'zh_g';
+    const hideCn=bm!=='vector'&&(bm==='night'||nextClear);
+    trLeafChina.setStyle({opacity:hideCn?0:(bm==='vector'?.45:.25),weight:hideCn?0:.35,dashArray:'2 2',color:'#597797',fill:false});
+   }
+  }
+  layoutMajorCityLabels(trLeafMap,trMajorCityEntries);
+ });
  trLeafMap.attributionControl.addAttribution('<a href="sources.html">Natural Earth · DataV 省界</a>');
+ trApplyBasemap(typeof atlasBasemap==='string'?atlasBasemap:'zh_g',false);
  let trResizeRaf=0;
  new ResizeObserver(()=>{
   if(trResizeRaf)return;
@@ -3919,10 +4037,13 @@ function atlasApplyBasemap(key,restyle=true,persistChoice=true){
   }
   document.querySelectorAll('[data-atlas-basemap]').forEach(b=>b.classList.toggle('active',b.dataset.atlasBasemap===key));
   if($('atlasMapShell'))$('atlasMapShell').classList.toggle('is-night-bm',key==='night');
+  if(typeof trLeafMap!=='undefined'&&trLeafMap&&typeof trApplyBasemap==='function')trApplyBasemap(key,prevWasAmap!==(key==='zh_amap'));
   if(restyle){
     atlasStyleSig='';
-    if(prevWasAmap!==(key==='zh_amap')&&active==='atlas'){
-      atlasShowMap('atlasHomeMap','home',atlasCombinedFootprints().visitedCities,atlasCombinedFootprints());
+    if(prevWasAmap!==(key==='zh_amap')){
+      if(active==='atlas')atlasShowMap('atlasHomeMap','home',atlasCombinedFootprints().visitedCities,atlasCombinedFootprints());
+      else if(active==='trips')atlasRenderTrips();
+      else atlasApplyPolygonStyles(true);
     }else{
       atlasApplyPolygonStyles(true);
     }
@@ -4666,16 +4787,19 @@ function atlasRefreshStyleSnapshot(data=null,stats=null){
 
 function atlasWorldCountryStyle(feature){
   const st=atlasWorldCountryStyleBase(feature);
-  if(atlasBasemap==='vector'||atlasMapContext!=='home')return st;
-  if(atlasMapOverlay!=='none'){
+  if(atlasBasemap==='vector')return st;
+  if(atlasMapOverlay!=='none'&&atlasMapContext==='home'){
     return {...st,fillOpacity:st.fillOpacity||0,opacity:st.opacity,weight:st.weight};
   }
   const snap=atlasStyleSnapshot||{};
-  const lit=st.fillColor&&st.fillColor!==snap.land&&(st.fillOpacity||0)>0;
-  const drilled=atlasDrilledCountry&&feature.properties?.ADM0_A3===atlasDrilledCountry.a3;
   if(atlasBasemap==='night'||(atlasMap?.getZoom?.()||0)>=13){
     return {...st,fillOpacity:0,opacity:0,weight:0,fill:true};
   }
+  if(atlasMapContext!=='home'){
+    return {color:snap.stroke,weight:.4,opacity:.22,fillColor:'transparent',fillOpacity:0,fill:true};
+  }
+  const lit=st.fillColor&&st.fillColor!==snap.land&&(st.fillOpacity||0)>0;
+  const drilled=atlasDrilledCountry&&feature.properties?.ADM0_A3===atlasDrilledCountry.a3;
   return {...st,fillOpacity:lit?Math.min(.3,(st.fillOpacity||0)*.38):0,opacity:lit||drilled?Math.min(.85,st.opacity):0,weight:lit||drilled?st.weight:0};
 }
 function atlasWorldCountryStyleBase(feature){
@@ -4714,11 +4838,12 @@ function atlasWorldCountryStyleBase(feature){
 
 function atlasChinaProvinceStyle(feature){
   const z=atlasMap?.getZoom?.()||0;
-  if(atlasMapContext==='home'&&(atlasDrilledCountry?.a3==='CHN'||atlasMapOverlay!=='none'||atlasBasemap==='night'||(atlasBasemap!=='vector'&&z>=13))){
+  if(atlasBasemap==='night'||(atlasBasemap!=='vector'&&z>=13)||(atlasMapContext==='home'&&(atlasDrilledCountry?.a3==='CHN'||atlasMapOverlay!=='none'))){
     return {opacity:0,fillOpacity:0,weight:0,fill:false};
   }
   const st=atlasChinaProvinceStyleBase(feature);
-  if(atlasBasemap==='vector'||atlasMapContext!=='home')return st;
+  if(atlasBasemap==='vector')return st;
+  if(atlasMapContext!=='home')return {opacity:.22,weight:.35,dashArray:'2 2',color:st.color,fill:false};
   if(st.fill===false)return {...st,opacity:Math.min(.3,st.opacity||.3)};
   return {...st,fillOpacity:Math.min(.28,(st.fillOpacity||0)*.45)};
 }
@@ -5488,7 +5613,7 @@ function atlasFocusDistrict(dist,fly=true){
 }
 function atlasRenderVisibleDistricts(){
   if(!atlasDistrictLayer)return;
-  if(!atlasMap||atlasMapContext!=='home'){
+  if(!atlasMap){
     if(atlasDistrictEntries.length){atlasDistrictLayer.clearLayers();atlasDistrictEntries=[];atlasDistrictRenderKey='';}
     return;
   }
@@ -6234,14 +6359,135 @@ function atlasRenderPlaceInfo(place){
   }
 }
 
+const ATLAS_ROUTE_PALETTE=['#10B981','#3B82F6','#8B5CF6','#EC4899','#14B8A6'];
+let atlasRouteGroups=new Map(), atlasHoveredRouteId='', atlasFocusedTripStopId='';
+function atlasRouteColor(trip,index=0){
+  if(!trip||trip.id===ATLAS_LOOP)return atlasThemeColor('--map-plan-line','#C96A2B');
+  if(trip.color)return trip.color;
+  if(trip.id==='russia-aurora-2027'||trip.title==='追极光'||trip.title==='俄罗斯追极光')return '#10B981';
+  return ATLAS_ROUTE_PALETTE[index%ATLAS_ROUTE_PALETTE.length];
+}
+function atlasPlannedRoutes(data){
+  const d=data||atlasCombinedFootprints();
+  const routes=[];
+  if((d.loopStops||[]).filter(atlasPoints).length>=2){
+    routes.push({
+      id:ATLAS_LOOP,
+      title:'2027 暑假 · 亚欧非环线',
+      shortTitle:'2027环线',
+      color:atlasThemeColor('--map-plan-line','#C96A2B'),
+      stops:d.loopStops.filter(atlasPoints),
+      isLoop:true
+    });
+  }
+  const planned=atlasTrips().filter(t=>t.status!=='done');
+  planned.forEach((t,idx)=>{
+    const validStops=(t.stops||[]).filter(atlasPoints).map(s=>({...s,lat:Number(s.lat),lng:Number(s.lng)}));
+    if(validStops.length>=2){
+      routes.push({
+        id:t.id,
+        title:t.title||'规划路线',
+        shortTitle:t.title||'规划路线',
+        color:atlasRouteColor(t,idx),
+        stops:validStops,
+        isLoop:false,
+        trip:t
+      });
+    }
+  });
+  return routes;
+}
+function atlasSetHoveredRoute(routeId=''){
+  atlasHoveredRouteId=routeId||'';
+  for(const [rid,grp] of atlasRouteGroups.entries()){
+    const isHit=Boolean(atlasHoveredRouteId)&&rid===atlasHoveredRouteId;
+    const isDim=Boolean(atlasHoveredRouteId)&&rid!==atlasHoveredRouteId;
+    for(const gl of grp.glowLines){
+      gl.setStyle({opacity:isHit?.36:0,weight:isHit?grp.baseWeight+7:9});
+      if(isHit&&typeof gl.bringToFront==='function')gl.bringToFront();
+    }
+    for(const vl of grp.visLines){
+      vl.setStyle({weight:isHit?grp.baseWeight+2.3:grp.baseWeight,opacity:isHit?1:isDim?.26:grp.baseOpacity});
+      if(isHit&&typeof vl.bringToFront==='function')vl.bringToFront();
+    }
+    if(isHit){
+      for(const hl of grp.hitLines){if(typeof hl.bringToFront==='function')hl.bringToFront();}
+    }
+  }
+  const el=atlasMap?.getContainer?.();
+  if(el)el.style.cursor=atlasHoveredRouteId?'pointer':'';
+  document.querySelectorAll('[data-atlas-route-chip]').forEach(ch=>ch.classList.toggle('is-hovered',ch.dataset.atlasRouteChip===atlasHoveredRouteId));
+}
+function atlasOpenRouteDetail(routeId){
+  if(!routeId)return;
+  atlasSetHoveredRoute('');
+  atlasCloseWishSpotlight(false);
+  navTripsOpen=true;
+  if(routeId===ATLAS_LOOP){
+    view('map');
+    return;
+  }
+  atlasTripId=routeId;
+  view('trips');
+}
+function atlasFocusTripStop(stopId){
+  const stop=atlasVisibleStops.get(String(stopId));
+  if(!stop||!atlasPoints(stop))return;
+  atlasFocusedTripStopId=String(stopId);
+  const detail=$('atlasTripDetail');
+  if(detail){
+    detail.querySelectorAll('[data-trip-stop-row]').forEach(row=>row.classList.toggle('is-focused',row.dataset.tripStopRow===String(stopId)));
+  }
+  if(atlasMap){
+    const [la,ln]=atlasMapCoord(stop.lat,stop.lng);
+    const z=Math.max(atlasMap.getZoom?.()||5,stop.visited?10:8);
+    if(typeof atlasMap.flyTo==='function')atlasMap.flyTo([la,ln],z,{duration:.65});
+    else atlasMap.setView([la,ln],z,{animate:true});
+    if(atlasMapContext&&atlasMapContext!=='home'){
+      atlasShowMap('atlasTripMap',atlasMapContext,[...atlasVisibleStops.values()]);
+    }
+  }
+}
+function atlasDrawCurvedRouteGroup(route,interactiveClick=true){
+  const stops=(route?.stops||[]).filter(atlasPoints);
+  if(stops.length<2||!atlasRouteLayer)return null;
+  const grp={route,baseWeight:route.isLoop?2.0:2.7,baseOpacity:route.isLoop?.84:.94,glowLines:[],visLines:[],hitLines:[]};
+  atlasRouteGroups.set(route.id,grp);
+  for(let i=1;i<stops.length;i++){
+    const prev=stops[i-1],curr=stops[i];
+    const curve=trLegacyCurve(prev,curr);
+    const mode=route.isLoop?mapSegmentMode(prev,curr):'land';
+    const dashArray=mode==='air'?'5 5':mode==='ferry'?'2 4':null;
+    const mappedPts=curve.points.map(p=>atlasMapCoord(p[0],p[1]));
+    const tipText=interactiveClick
+      ?`🗺️ ${route.title} · 第${i}段：${prev.name} → ${curr.name}（点击查看路线详情）`
+      :`🗺️ ${route.title} · 第${i}段：${prev.name} → ${curr.name}`;
+    for(const off of [-360,0,360]){
+      const pts=off===0?mappedPts:mappedPts.map(p=>[p[0],p[1]+off]);
+      const glow=L.polyline(pts,{color:route.color,weight:9,opacity:0,interactive:false,className:'atlas-route-glow'}).addTo(atlasRouteLayer);
+      const vis=L.polyline(pts,{color:route.color,weight:grp.baseWeight,opacity:grp.baseOpacity,dashArray,interactive:false}).addTo(atlasRouteLayer);
+      const hit=L.polyline(pts,{color:route.color,weight:14,opacity:0.001,interactive:true,className:'atlas-route-hit'}).bindTooltip(esc(tipText),{sticky:true}).addTo(atlasRouteLayer);
+      hit.on('mouseover',()=>atlasSetHoveredRoute(route.id));
+      hit.on('mouseout',()=>{if(atlasHoveredRouteId===route.id)atlasSetHoveredRoute('');});
+      if(interactiveClick){
+        hit.on('click',ev=>{L.DomEvent.stopPropagation(ev);atlasOpenRouteDetail(route.id);});
+      }
+      grp.glowLines.push(glow);
+      grp.visLines.push(vis);
+      grp.hitLines.push(hit);
+    }
+  }
+  return grp;
+}
+
 function atlasRenderTrips(){
   if(atlasTripId!==ATLAS_LOOP&&!atlasTrip())atlasTripId=ATLAS_LOOP;
   const trips=atlasTrips();
   const loop=trOnStops();
   const loopDone=state.loopTripStatus==='done';
-  const rows=[{id:ATLAS_LOOP,title:'2027 暑假 · 亚欧非环线',status:loopDone?'done':'planned',count:loop.length},
-    ...trips.map(trip=>({...trip,count:trip.stops?.length||0}))];
-  $('atlasTripList').innerHTML=rows.map(trip=>`<button class="atlas-trip-tab" data-atlas-trip="${esc(trip.id)}" aria-pressed="${trip.id===atlasTripId}"><b>${esc(trip.title)}</b><small>${atlasStatusName(trip.status)} · ${trip.count} 站</small></button>`).join('');
+  const rows=[{id:ATLAS_LOOP,title:'2027 暑假 · 亚欧非环线',status:loopDone?'done':'planned',count:loop.length,color:atlasRouteColor({id:ATLAS_LOOP})},
+    ...trips.map((trip,idx)=>({...trip,count:trip.stops?.length||0,color:atlasRouteColor(trip,idx)}))];
+  $('atlasTripList').innerHTML=rows.map(trip=>`<button class="atlas-trip-tab" data-atlas-trip="${esc(trip.id)}" aria-pressed="${trip.id===atlasTripId}"><b><span class="atlas-route-dot" style="background:${trip.color}"></span>${esc(trip.title)}</b><small>${atlasStatusName(trip.status)} · ${trip.count} 站</small></button>`).join('');
   const trip=atlasTrip();
   const detail=$('atlasTripDetail');
   if(!trip){
@@ -6250,15 +6496,16 @@ function atlasRenderTrips(){
       const visit=recorded.get(stop.uid);
       return visit?{...stop,...visit}:{...stop,id:stop.uid};
     });
-    detail.innerHTML=`<div class="card"><div class="heading"><div><h3>2027 暑假 · 亚欧非环线</h3><p>${esc([state.windowStart,state.windowEnd].filter(Boolean).join('—'))} · ${atlasStatusName(loopDone?'done':'planned')}</p></div><div class="right"><button class="btn tiny" data-atlas-action="toggle-loop">${loopDone?'恢复规划中':'标为已完成'}</button><button class="btn primary" data-view="map">编辑环线集群</button></div></div>
-      <details><summary>站点与到访记录 · ${loop.length} 站</summary><div class="atlas-place-list">${stops.map((stop,index)=>atlasStopRow(stop,index,ATLAS_LOOP)).join('')}</div></details></div>`;
+    detail.innerHTML=`<div class="card"><div class="heading"><div><h3><span class="atlas-route-dot" style="background:${atlasRouteColor({id:ATLAS_LOOP})}"></span>2027 暑假 · 亚欧非环线</h3><p>${esc([state.windowStart,state.windowEnd].filter(Boolean).join('—'))} · ${atlasStatusName(loopDone?'done':'planned')}</p></div><div class="right"><button class="btn tiny" data-atlas-action="toggle-loop">${loopDone?'恢复规划中':'标为已完成'}</button><button class="btn primary" data-view="map">打开环线地图与集群</button></div></div>
+      <details open><summary>站点与到访记录 · ${loop.length} 站</summary><div class="atlas-place-list">${stops.map((stop,index)=>atlasStopRow(stop,index,ATLAS_LOOP)).join('')}</div></details></div>`;
     $('atlasTripMap').hidden=false;
     atlasMount();
     atlasShowMap('atlasTripMap',ATLAS_LOOP,stops);
     return;
   }
   const stops=trip.stops||[];
-  detail.innerHTML=`<div class="card"><div class="heading"><div><h3>${esc(trip.title)}</h3><p>${esc(atlasDateRange(trip))} · ${atlasStatusName(trip.status)}</p></div><div class="right"><button class="btn tiny" data-atlas-action="edit-trip">编辑路线</button><button class="btn primary" data-atlas-action="add-stop">＋ 添加站点</button></div></div>
+  const tCol=atlasRouteColor(trip,Math.max(0,trips.indexOf(trip)));
+  detail.innerHTML=`<div class="card"><div class="heading"><div><h3><span class="atlas-route-dot" style="background:${tCol}"></span>${esc(trip.title)}</h3><p>${esc(atlasDateRange(trip))} · ${atlasStatusName(trip.status)} · ${stops.length} 站</p></div><div class="right"><button class="btn tiny" data-atlas-action="edit-trip">编辑路线</button><button class="btn primary" data-atlas-action="add-stop">＋ 添加站点</button></div></div>
     ${trip.note?`<p class="muted small">${esc(trip.note)}</p>`:''}
     ${stops.length?`<div class="atlas-place-list">${stops.map((stop,index)=>atlasStopRow(stop,index,trip.id)).join('')}</div>`:'<p class="muted small">添加第一个站点，开始编排行程。</p>'}</div>`;
   $('atlasTripMap').hidden=false;
@@ -6267,8 +6514,9 @@ function atlasRenderTrips(){
 }
 function atlasStopRow(stop,index,tripId){
   const id=esc(stop.id);
-  return `<div class="atlas-trip-stop"><div><b>${index+1}. ${esc(stop.name)}</b><small>${esc(stop.country)} · ${atlasStopStatus(stop)}${stop.date?' · '+esc(stop.date):''}</small></div>
-    <div class="right">${tripId!==ATLAS_LOOP?`<button class="btn tiny" aria-label="上移${esc(stop.name)}" data-atlas-action="move-stop" data-step="-1" data-stop="${id}" ${index===0?'disabled':''}>↑</button><button class="btn tiny" aria-label="下移${esc(stop.name)}" data-atlas-action="move-stop" data-step="1" data-stop="${id}" ${index===atlasTrip().stops.length-1?'disabled':''}>↓</button>`:''}
+  const focused=String(atlasFocusedTripStopId)===String(stop.id);
+  return `<div class="atlas-trip-stop ${focused?'is-focused':''}" data-trip-stop-row="${id}"><div><b>${index+1}. ${esc(stop.name)}</b><small>${esc(stop.country)} · ${atlasStopStatus(stop)}${stop.date?' · '+esc(stop.date):''}${Number.isFinite(Number(stop.lat))&&Number.isFinite(Number(stop.lng))?` · ${Number(stop.lat).toFixed(2)}, ${Number(stop.lng).toFixed(2)}`:''}</small>${stop.note?`<p class="atlas-trip-stop-note">${esc(stop.note)}</p>`:''}</div>
+    <div class="right"><button class="btn tiny" type="button" data-atlas-focus-trip-stop="${id}" title="在下方地图定位该站点">📍 定位</button>${tripId!==ATLAS_LOOP?`<button class="btn tiny" aria-label="上移${esc(stop.name)}" data-atlas-action="move-stop" data-step="-1" data-stop="${id}" ${index===0?'disabled':''}>↑</button><button class="btn tiny" aria-label="下移${esc(stop.name)}" data-atlas-action="move-stop" data-step="1" data-stop="${id}" ${index===atlasTrip().stops.length-1?'disabled':''}>↓</button>`:''}
     <button class="btn tiny" data-atlas-action="${tripId===ATLAS_LOOP&&!stop.visited?'loop-stop':'edit-stop'}" data-trip="${esc(tripId)}" data-stop="${id}">${stop.visited?'编辑到访':'编辑站点'}</button></div></div>`;
 }
 
@@ -6333,27 +6581,26 @@ function atlasShowMap(host,context,stops,combinedData=null){
     }
     atlasTravelLayer.clearLayers().addData({type:'FeatureCollection',features:boundaryFeatures});
 
-    // Refresh planned route curves (wrapped across [-360, 0, 360])
+    // Refresh planned route curves (all active planned routes, wrapped across [-360, 0, 360])
     const planLineColor=atlasThemeColor('--map-plan-line','#C96A2B');
     const provVisColor=atlasThemeColor('--map-prov-vis','#5EB396');
     const cityVisColor=atlasThemeColor('--map-city-vis','#176953');
     const planDotColor=atlasThemeColor('--map-plan-dot','#C96A2B');
+    const plannedRoutes=atlasPlannedRoutes(data);
+    const stopRouteMeta=new Map();
+    for(const r of plannedRoutes){
+      if(r.isLoop)continue;
+      for(const s of r.stops){
+        const k=`${s.country}|${s.name}`.normalize('NFKC').trim().toLowerCase();
+        if(!stopRouteMeta.has(k))stopRouteMeta.set(k,{routeId:r.id,title:r.title,color:r.color});
+      }
+    }
     atlasRouteLayer.clearLayers();
-    if(showRoutes&&showPlanned&&data.loopStops.length>=2){
-      for(let i=1;i<data.loopStops.length;i++){
-        const prev=data.loopStops[i-1],curr=data.loopStops[i];
-        const curve=trLegacyCurve(prev,curr);
-        const mode=mapSegmentMode(prev,curr);
-        const mappedPts=curve.points.map(p=>atlasMapCoord(p[0],p[1]));
-        for(const off of [-360,0,360]){
-          const pts=off===0?mappedPts:mappedPts.map(p=>[p[0],p[1]+off]);
-          L.polyline(pts,{
-            color:planLineColor,
-            weight:1.9,
-            opacity:.8,
-            dashArray:mode==='air'?'5 5':mode==='ferry'?'2 4':null
-          }).bindTooltip(esc(`2027环线 第${i}段：${prev.name} → ${curr.name}`),{sticky:true}).addTo(atlasRouteLayer);
-        }
+    atlasRouteGroups.clear();
+    atlasHoveredRouteId='';
+    if(showRoutes&&showPlanned){
+      for(const r of plannedRoutes){
+        atlasDrawCurvedRouteGroup(r,true);
       }
     }
 
@@ -6365,19 +6612,26 @@ function atlasShowMap(host,context,stops,combinedData=null){
         const kind=isV?(stop.alsoPlanned?'kind-both':'kind-visited'):'kind-planned';
         const isSel=String(stop.id)===String(atlasSelected);
         const provLabel=stop.province?` · ${atlasShortProvince(stop.province)}`:'';
-        const tip=`${isV?'✓ 已到访':'🧭 计划途经'} · ${stop.country}${provLabel} · ${stop.name}`;
+        const skey=`${stop.country}|${stop.name}`.normalize('NFKC').trim().toLowerCase();
+        const rMeta=!isV?stopRouteMeta.get(skey):null;
+        const tip=`${isV?'✓ 已到访':(rMeta?`🗺️ ${rMeta.title}`:'🧭 计划途经')} · ${stop.country}${provLabel} · ${stop.name}`;
+        const coreStyle=rMeta?` style="background:${rMeta.color}"`:'';
         const [pLat,pLng]=atlasMapCoord(stop.lat,stop.lng);
         for(const off of [-360,0,360]){
           const marker=L.marker([pLat,pLng+off],{
             icon:L.divIcon({
               className:`atlas-foot-pin ${kind} ${isSel?'is-selected':''}`,
-              html:'<span class="pin-core"></span>',
+              html:`<span class="pin-core"${coreStyle}></span>`,
               iconSize:[12,12],
               iconAnchor:[6,6]
             }),
             zIndexOffset:isSel?2000:isV?1000:500
           });
           marker.bindTooltip(esc(tip),{direction:'top',offset:[0,-5]});
+          if(rMeta){
+            marker.on('mouseover',()=>atlasSetHoveredRoute(rMeta.routeId));
+            marker.on('mouseout',()=>{if(atlasHoveredRouteId===rMeta.routeId)atlasSetHoveredRoute('');});
+          }
           marker.on('click',()=>{atlasCloseWishSpotlight(false);atlasSelectPlace(stop.id);});
           marker.addTo(atlasPinsLayer);
         }
@@ -6439,13 +6693,14 @@ function atlasShowMap(host,context,stops,combinedData=null){
       }
     }
 
+    const routeSwatches=(showRoutes&&showPlanned)?plannedRoutes.map(r=>`<button type="button" class="atlas-route-chip" style="--rc:${r.color}" data-atlas-route-chip="${esc(r.id)}" title="悬停高亮「${esc(r.title)}」整条路线 · 点击进入「我的路线」详情"><i></i>${esc(r.shortTitle)} (${r.stops.length})</button>`).join(''):'';
     const themeSwatches=showWish?atlasGetStorylines().map(sl=>{
       const act=atlasWishTheme==='line:'+sl.id||(sl.id==='line-acg'&&atlasWishTheme.startsWith('work:'));
       return `<button type="button" class="map-theme-chip ${act?'active':''}" style="--tc:${sl.color}" data-wish-theme="${act?'all':'line:'+esc(sl.id)}" title="${esc(sl.title)}"><i></i>${esc(sl.num)}</button>`;
     }).join(''):'';
     $('atlasMapLegend').innerHTML=`
       ${showVisited?`<span><i class="atlas-swatch rect" style="background:${provVisColor};border:1px solid ${cityVisColor}"></i>已访 (${data.visitedCities.length})</span>`:''}
-      ${showPlanned?`<span><i class="atlas-swatch" style="background:${planDotColor};border:1px solid #fff"></i>2027环线 (${data.plannedCities.length})</span>`:''}
+      ${routeSwatches||(showPlanned?`<span><i class="atlas-swatch" style="background:${planDotColor};border:1px solid #fff"></i>规划站点 (${data.plannedCities.length})</span>`:'')}
       ${themeSwatches}
     `;
     atlasMap.invalidateSize({pan:false});
@@ -6457,22 +6712,68 @@ function atlasShowMap(host,context,stops,combinedData=null){
     return;
   }
 
-  // Trip detail map mode (#trips)
+  // Modernized Trip detail map mode (#trips) matching #atlas
+  atlasRefreshStyleSnapshot();
   atlasApplyPolygonStyles(true);
   atlasRouteLayer.clearLayers();
+  atlasRouteGroups.clear();
+  atlasHoveredRouteId='';
   atlasPinsLayer.clearLayers();
   if(atlasStoryTrackLayer)atlasStoryTrackLayer.clearLayers();
   if(atlasWishLayer)atlasWishLayer.clearLayers();
-  if(atlasDistrictLayer){atlasDistrictLayer.clearLayers();atlasDistrictEntries=[];atlasDistrictRenderKey='';}
   atlasCloseWishSpotlight(false);
   stops=stops.map(atlasVisitDisplayArea);
-  atlasVisibleStops=new Map(stops.filter(atlasPoints).map(stop=>[String(stop.id),stop]));
-  atlasFeatures=atlasFeatureData(stops,context!=='home');
-  $('atlasMapLegend').innerHTML=`<span><i class="atlas-swatch" style="background:${atlasThemeColor('--map-city-vis','#176953')}"></i>已到访</span><span><i class="atlas-swatch" style="background:${atlasThemeColor('--map-plan-dot','#C96A2B')}"></i>规划站点</span>`;
+  const placed=stops.filter(atlasPoints);
+  atlasVisibleStops=new Map(placed.map(stop=>[String(stop.id),stop]));
+
+  const boundaryFeatures=[];
+  for(const stop of placed){
+    if(stop.visited&&stop.boundary){
+      for(const off of [-360,0,360]){
+        boundaryFeatures.push({type:'Feature',properties:{id:stop.id,kind:'boundary'},geometry:atlasWrapGeometryForBasemap(stop.boundary,off)});
+      }
+    }
+  }
+  atlasTravelLayer.clearLayers().addData({type:'FeatureCollection',features:boundaryFeatures});
+
+  const tripsList=atlasTrips();
+  const tripIdx=tripsList.findIndex(t=>t.id===context);
+  const tripObj=context===ATLAS_LOOP?{id:ATLAS_LOOP,title:'2027 暑假 · 亚欧非环线',isLoop:true}:(tripsList[tripIdx]||{id:context,title:'旅行路线'});
+  const routeColor=atlasRouteColor(tripObj,Math.max(0,tripIdx));
+  if(placed.length>=2){
+    atlasDrawCurvedRouteGroup({id:context,title:tripObj.title,color:routeColor,stops:placed,isLoop:context===ATLAS_LOOP},false);
+  }
+  placed.forEach((stop,idx)=>{
+    const isV=!!stop.visited;
+    const isFoc=String(atlasFocusedTripStopId)===String(stop.id);
+    const pinCol=isV?atlasThemeColor('--map-city-vis','#176953'):routeColor;
+    const notePreview=stop.note?` — ${stop.note.slice(0,80)}${stop.note.length>80?'…':''}`:'';
+    const tip=`${idx+1}. ${stop.name}（${stop.country} · ${atlasStopStatus(stop)}）${notePreview}`;
+    const [sLat,sLng]=atlasMapCoord(stop.lat,stop.lng);
+    for(const off of [-360,0,360]){
+      const m=L.marker([sLat,sLng+off],{
+        icon:L.divIcon({
+          className:`atlas-trip-num-pin ${isV?'is-visited':''} ${isFoc?'is-focused':''}`,
+          html:`<span class="tn-badge" style="--rc:${pinCol}">${idx+1}</span><span class="tn-label" style="--rc:${pinCol}">${esc(stop.name)}</span>`,
+          iconSize:[0,0],
+          iconAnchor:[0,0]
+        }),
+        zIndexOffset:isFoc?4200:isV?2600:2200
+      });
+      m.bindTooltip(esc(tip),{direction:'top',offset:[0,-14]});
+      m.on('click',ev=>{L.DomEvent.stopPropagation(ev);atlasFocusTripStop(stop.id);});
+      m.addTo(atlasPinsLayer);
+    }
+  });
+  if($('atlasMapStatus'))$('atlasMapStatus').textContent=`🗺️ ${tripObj.title} · ${placed.length} 个站点 · 悬停路线高亮轨迹 · 点击编号站点居中`;
+  $('atlasMapLegend').innerHTML=`<span><i class="atlas-swatch rect" style="background:${routeColor};border:1px solid #fff"></i>${esc(tripObj.title)} (${placed.length}站)</span><span><i class="atlas-swatch" style="background:${atlasThemeColor('--map-city-vis','#176953')}"></i>已到访</span><span><i class="atlas-swatch" style="background:${routeColor}"></i>规划站点</span>`;
   atlasMap.invalidateSize({pan:false});
-  atlasTravelLayer.clearLayers().addData(atlasFeatures);
   if(changed)atlasFit();
   if(!atlasBasemapApplied)atlasApplyBasemap(atlasBasemap,false);
+  atlasTravelZoomTier=-1;
+  atlasRefreshTravelZoomStyle();
+  atlasUpdateZoomClass();
+  atlasRenderVisibleDistricts();
 }
 
 function atlasFeatureData(stops,includeRoute){
@@ -7736,6 +8037,19 @@ document.addEventListener('click',event=>{
     $('atlasHomeMap')?.scrollIntoView({behavior:'smooth',block:'nearest'});
     return;
   }
+  const routeChip=event.target.closest('[data-atlas-route-chip]');
+  if(routeChip){
+    event.stopPropagation();
+    atlasOpenRouteDetail(routeChip.dataset.atlasRouteChip);
+    return;
+  }
+  const tripStopBtn=event.target.closest('[data-atlas-focus-trip-stop]');
+  if(tripStopBtn){
+    event.stopPropagation();
+    atlasFocusTripStop(tripStopBtn.dataset.atlasFocusTripStop);
+    $('atlasTripMap')?.scrollIntoView({behavior:'smooth',block:'nearest'});
+    return;
+  }
   const entry=event.target.closest('[data-atlas-trip],[data-atlas-place],[data-atlas-action]');
   if(!entry)return;
   if(entry.hasAttribute('data-atlas-action')){
@@ -7784,9 +8098,19 @@ document.addEventListener('click',event=>{
     }
     return;
   }
-  if(entry.hasAttribute('data-atlas-trip')){atlasTripId=entry.dataset.atlasTrip;atlasRenderTrips();return;}
+  if(entry.hasAttribute('data-atlas-trip')){atlasTripId=entry.dataset.atlasTrip;renderNav();atlasRenderTrips();return;}
   if(entry.hasAttribute('data-atlas-place')){atlasSelectPlace(entry.dataset.atlasPlace,true);return;}
 });
+if(typeof document!=='undefined'){
+  document.addEventListener('mouseover',e=>{
+    const chip=e.target.closest?.('[data-atlas-route-chip]');
+    if(chip&&atlasMapContext==='home')atlasSetHoveredRoute(chip.dataset.atlasRouteChip);
+  });
+  document.addEventListener('mouseout',e=>{
+    const chip=e.target.closest?.('[data-atlas-route-chip]');
+    if(chip&&atlasMapContext==='home'&&!e.relatedTarget?.closest?.('[data-atlas-route-chip]'))atlasSetHoveredRoute('');
+  });
+}
 
 /* Planning views start after all route data and handlers are ready. */
 
