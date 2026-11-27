@@ -937,6 +937,26 @@ const ATLAS_WISHLIST_SEED = [
     ]
   },
   {
+    id: 'wish-york-constantine',
+    lineId: 'line-ruins', lineOrder: 6.5,
+    name: '约克 · 君士坦丁大帝雕像（Statue of Constantine the Great）',
+    country: '英国', region: '英格兰北约克郡 · 约克大教堂南侧广场（Minster Yard）',
+    lat: 53.9619, lng: -1.0817, zoom: 16,
+    source: 'user', category: 'ruins',
+    aesthetics: ['消逝的文明·诸神遗迹', '剑与魔法'],
+    work: '公元306年古罗马艾伯拉肯（Eboracum）称帝原址 · 断剑化十字的青铜坐像',
+    bgmScore: null,
+    summary: '巍峨约克大教堂南耳堂前的青铜坐像，纪念公元306年在此登基的罗马皇帝君士坦丁大帝，脚下基座铭刻「以此徽记制胜」',
+    intro: '矗立在英格兰约克大教堂（York Minster）南耳堂广场外的青铜坐像，纪念公元 306 年罗马帝国的传奇转折点——君士坦丁一世的父亲君士坦提乌斯一世病逝于罗马行省重镇艾伯拉肯（Eboracum，即今约克）后，驻军正是在这座大教堂脚下的罗马军团总部原址拥立年轻的君士坦丁称帝，由此开启了帝国东迁君士坦丁堡与基督教合法化的历史序幕。\n雕像由英国雕塑家菲利普·杰克逊（Philip Jackson）创作、1998 年揭幕：身披罗马军袍的君士坦丁端坐于罗马残柱基座之上，垂首凝视手中横置的断剑——剑柄与断刃恰好构成一枚十字架，呼应基座铭文 “By this sign conquer（拉丁文 In hoc signo vinces，以此徽记制胜）”；身后便是北欧规模最大的中世纪哥特式教堂约克大教堂，与广场旁保留至今的罗马军团原柱同框，历史层叠感极强。',
+    subSpots: [
+      { name: '君士坦丁大帝青铜坐像（Minster Yard 南广场）', detail: '53.9619°N, 1.0817°W · 约克大教堂南耳堂正前方，可同框古罗马石柱与哥特教堂南立面' },
+      { name: '约克大教堂地下室（Undercroft · 罗马总部遗址）', detail: '53.9623°N, 1.0819°W · 教堂地底保留公元 1—4 世纪罗马军团巴西利卡柱基遗迹' }
+    ],
+    photos: [
+      { wiki: ['en', 'Statue_of_Constantine_the_Great,_York'], backupQuery: 'Statue of Constantine the Great York Minster', caption: '英国英格兰约克——约克大教堂南侧广场的君士坦丁大帝青铜坐像（公元306年称帝原址）' }
+    ]
+  },
+  {
     id: 'wish-easter-island',
     lineId: 'line-ruins', lineOrder: 7,
     name: '复活节岛 · 拉帕努伊摩艾石像群（Easter Island）',
@@ -2013,6 +2033,7 @@ const ATLAS_WISHLIST_SEED = [
     'wish-parthenon':          { lineId: 'line-ruins' },
     'wish-naples-jojo':        { lineId: 'line-ruins', extraLines: ['line-acg'], workKey: 'JOJO的奇妙冒险', anitabiId: 235128 },
     'wish-stonehenge':         { lineId: 'line-ruins' },
+    'wish-york-constantine':   { lineId: 'line-ruins', extraLines: ['line-gothic'] },
     'wish-uruk':               { lineId: 'line-ruins', extraLines: ['line-acg'], workKey: 'Fate/Grand Order', anitabiId: 109378 },
     'wish-giza-pyramids':      { lineId: 'line-ruins', extraLines: ['line-acg'], workKey: 'JOJO的奇妙冒险', anitabiId: 85631 },
     'wish-petra':              { lineId: 'line-ruins' },
