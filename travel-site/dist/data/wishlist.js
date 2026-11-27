@@ -957,6 +957,46 @@ const ATLAS_WISHLIST_SEED = [
     ]
   },
   {
+    id: 'wish-moscow-red-square',
+    lineId: 'line-ruins', lineOrder: 6.7,
+    name: '莫斯科 · 红场与圣瓦西里大教堂（Red Square）',
+    country: '俄罗斯', region: '莫斯科中央行政区 · 克里姆林宫东墙外（追极光路线起终点！）',
+    lat: 55.7539, lng: 37.6208, zoom: 16,
+    source: 'user', category: 'ruins',
+    aesthetics: ['消逝的文明·诸神遗迹', '巨大·无机质'],
+    work: '克里姆林宫红砖城墙、九座糖果色洋葱头圣瓦西里大教堂与百年古姆百货雪夜灯光',
+    bgmScore: null,
+    summary: '莫斯科心脏地带长达 330 米的石砖广场，克里姆林宫赤红塔楼、圣瓦西里九色洋葱头穹顶与冬夜漫天灯海同框',
+    intro: '坐落于克里姆林宫东墙之外的红场（Red Square，俄语 Красная площадь 原意「美丽的广场」），自 15 世纪末便是莫斯科乃至整个俄罗斯帝国与苏联历史的中心舞台。广场南端耸立着伊凡雷帝于 1555—1561 年敕建的圣瓦西里升天大教堂——九座螺旋彩釉洋葱头穹顶如异界城堡般绚丽诡谲；西侧是绵延的克里姆林宫暗红砖墙、斯帕斯卡亚钟楼与黑红花岗岩砌筑的列宁墓；东侧则是三层玻璃拱顶、冬季亮起数万盏暖金串灯的古姆国家百货（GUM）。联动你的「追极光」路线起终点莫斯科，抵达首日或返程日即可漫步雪中红场与古姆溜冰场。',
+    subSpots: [
+      { name: '圣瓦西里大教堂北侧广场 & 斯帕斯卡亚钟楼机位', detail: '55.7525°N, 37.6231°E · 蓝调时刻或雪夜灯光下拍摄彩釉洋葱头与红墙最具压迫感' },
+      { name: '古姆百货（GUM）正立面 & 冬季红场露天溜冰场', detail: '55.7547°N, 37.6215°E · 1月寒假正值莫斯科新年灯饰与集市季，夜拍氛围极佳' }
+    ],
+    photos: [
+      { wiki: ['en', 'Red_Square'], backupQuery: 'Red Square Saint Basils Cathedral Moscow winter', caption: '俄罗斯莫斯科红场——克里姆林宫红墙、古姆灯海与圣瓦西里大教堂彩釉洋葱头穹顶' }
+    ]
+  },
+  {
+    id: 'wish-stpetersburg-hermitage',
+    lineId: 'line-ruins', lineOrder: 6.8,
+    name: '圣彼得堡 · 冬宫与埃尔米塔日博物馆（Winter Palace）',
+    country: '俄罗斯', region: '圣彼得堡中心区 · 涅瓦河南岸宫殿广场（追极光路线必访！）',
+    lat: 59.9398, lng: 30.3146, zoom: 16,
+    source: 'user', category: 'ruins',
+    aesthetics: ['消逝的文明·诸神遗迹', '巨大·无机质'],
+    work: '世界四大博物馆之一 · 沙皇巴洛克翡翠绿金宫殿与三百万件人类文明珍藏',
+    bgmScore: null,
+    summary: '涅瓦河畔绵延逾两百米的翡翠绿白金巴洛克沙皇冬宫，内藏达·芬奇、伦勃朗与黄金孔雀钟等逾 300 万件馆藏',
+    intro: '坐落于圣彼得堡涅瓦河南岸与宏阔宫殿广场之间的冬宫（Winter Palace），自 1762 年叶卡捷琳娜大帝迁入直至 1917 年一直是俄罗斯沙皇的冬季皇宫，如今与小埃尔米塔日、旧/新埃尔米塔日共同构成世界四大博物馆之一的国立埃尔米塔日博物馆（State Hermitage Museum）。外立面以标志性的薄荷翡翠绿配纯白科林斯石柱与屋顶青铜群像绵延两百余米；步入宫内，镀金大理石约旦阶梯、铺满孔雀石柱的孔雀石大厅、机械展翅报时的黄金孔雀钟，以及达·芬奇《柏诺瓦圣母》、伦勃朗《浪子回头》与古希腊罗马雕塑长廊令人目不暇接。联动你的「追极光」路线圣彼得堡段，建议预留至少半天至一整天沉浸慢逛，顺路步行 10 分钟即可打卡滴血救世主教堂。',
+    subSpots: [
+      { name: '宫殿广场亚历山大纪念柱 & 冬宫巴洛克南立面全景', detail: '59.9390°N, 30.3159°E · 穿出总参谋部凯旋门拱廊一瞬，冬宫全貌正中入画' },
+      { name: '约旦阶梯（Jordan Staircase）· 孔雀钟厅 & 伦勃朗展厅', detail: '59.9398°N, 30.3146°E · 冬季 1 月淡季排队较少，注意周一闭馆' }
+    ],
+    photos: [
+      { wiki: ['en', 'Winter_Palace'], backupQuery: 'Winter Palace Hermitage Museum Saint Petersburg', caption: '俄罗斯圣彼得堡冬宫（埃尔米塔日博物馆）——涅瓦河畔的翡翠绿金巴洛克沙皇皇宫' }
+    ]
+  },
+  {
     id: 'wish-easter-island',
     lineId: 'line-ruins', lineOrder: 7,
     name: '复活节岛 · 拉帕努伊摩艾石像群（Easter Island）',
@@ -2034,6 +2074,8 @@ const ATLAS_WISHLIST_SEED = [
     'wish-naples-jojo':        { lineId: 'line-ruins', extraLines: ['line-acg'], workKey: 'JOJO的奇妙冒险', anitabiId: 235128 },
     'wish-stonehenge':         { lineId: 'line-ruins' },
     'wish-york-constantine':   { lineId: 'line-ruins', extraLines: ['line-gothic'] },
+    'wish-moscow-red-square':  { lineId: 'line-ruins', extraLines: ['line-gothic'] },
+    'wish-stpetersburg-hermitage': { lineId: 'line-ruins' },
     'wish-uruk':               { lineId: 'line-ruins', extraLines: ['line-acg'], workKey: 'Fate/Grand Order', anitabiId: 109378 },
     'wish-giza-pyramids':      { lineId: 'line-ruins', extraLines: ['line-acg'], workKey: 'JOJO的奇妙冒险', anitabiId: 85631 },
     'wish-petra':              { lineId: 'line-ruins' },
