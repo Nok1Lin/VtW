@@ -55,10 +55,10 @@ const ATLAS_STORYLINES = [
   },
   {
     id: 'line-acg',
-    num: '圣地',
+    num: 'ACG',
     icon: '🎬',
-    shortTitle: '圣地巡礼',
-    title: '🎬 圣地巡礼 · 按作品切换你的 Bangumi 与游戏实景记忆',
+    shortTitle: 'ACG',
+    title: '🎬 ACG · 按作品切换你的 Bangumi 与游戏实景记忆',
     color: '#7C3AED',
     tagline: '鸢尾紫标记 · 直接按作品切！串联 Anitabi 精确机位原画对比与 360° 街景，把高分动画与游戏的名场面走成现实脚步。'
   }
