@@ -30,19 +30,10 @@ const ATLAS_STORYLINES = [
     id: 'line-ruins',
     num: '神代',
     icon: '🏛️',
-    shortTitle: '古典神代',
-    title: '🏛️ 古典神代 · 欧陆古典神庙与两河埃及神代遗迹',
+    shortTitle: '神代',
+    title: '🏛️ 神代 · 古文明遗迹、神庙与神话巨像',
     color: '#B87D14',
-    tagline: '古金标记 · 雅典卫城帕特农大理石柱廊、火山灰封印的庞贝、史前巨石圆阵、吉尔伽美什王都乌鲁克、吉萨金字塔与孤岛摩艾石像。'
-  },
-  {
-    id: 'line-seasia-gods',
-    num: '诸神',
-    icon: '🪷',
-    shortTitle: '东南亚诸神',
-    title: '🪷 东南亚诸神 · 千手奈何桥与东方邪典神魔巨像',
-    color: '#C2410C',
-    tagline: '赤陶朱砂标记 · 地狱深渊千百苍白枯手抓挠的轮回奈何桥、素混凝土徒手浇筑的30米七头娜迦蛇神群雕与121米毗湿奴神鹰铜像。'
+    tagline: '古金标记 · 雅典卫城帕特农大理石柱廊、火山灰封印的庞贝、史前巨石圆阵、吉尔伽美什王都乌鲁克、吉萨金字塔、孤岛摩艾石像、清莱白庙与巴厘岛神鹰巨像。'
   },
   {
     id: 'line-nature',
@@ -2018,7 +2009,7 @@ const ATLAS_WISHLIST_SEED = [
     'wish-muralla-roja':       { lineId: 'line-brutalist' },
     'wish-bigsight-madoka':    { lineId: 'line-brutalist', extraLines: ['line-acg'], workKey: '魔法少女小圆', anitabiId: 9717 },
 
-    // 4. 🏛️ 古典神代线 (line-ruins)
+    // 4. 🏛️ 神代线 (line-ruins)
     'wish-parthenon':          { lineId: 'line-ruins' },
     'wish-naples-jojo':        { lineId: 'line-ruins', extraLines: ['line-acg'], workKey: 'JOJO的奇妙冒险', anitabiId: 235128 },
     'wish-stonehenge':         { lineId: 'line-ruins' },
@@ -2027,13 +2018,11 @@ const ATLAS_WISHLIST_SEED = [
     'wish-petra':              { lineId: 'line-ruins' },
     'wish-nemrut-gobekli':     { lineId: 'line-ruins' },
     'wish-easter-island':      { lineId: 'line-ruins' },
+    'wish-wat-rong-khun':      { lineId: 'line-ruins' },
+    'wish-sala-keoku':         { lineId: 'line-ruins' },
+    'wish-bali-gwk':           { lineId: 'line-ruins' },
 
-    // 5. 🪷 东南亚诸神线 (line-seasia-gods)
-    'wish-wat-rong-khun':      { lineId: 'line-seasia-gods' },
-    'wish-sala-keoku':         { lineId: 'line-seasia-gods' },
-    'wish-bali-gwk':           { lineId: 'line-seasia-gods' },
-
-    // 6. 🏔️ 自然奇观线 (line-nature)
+    // 5. 🏔️ 自然奇观线 (line-nature)
     'wish-iceland-reynisfjara':{ lineId: 'line-nature' },
     'wish-vatnajokull':        { lineId: 'line-nature' },
     'wish-greenland-ice':      { lineId: 'line-nature' },
@@ -2048,7 +2037,7 @@ const ATLAS_WISHLIST_SEED = [
     'wish-niagara-falls':      { lineId: 'line-nature' },
     'wish-antarctica-chaldea': { lineId: 'line-nature', extraLines: ['line-acg'], workKey: 'Fate/Grand Order' },
 
-    // 7. 🔥 生灵祭典线 (line-bloom)
+    // 6. 🔥 生灵祭典线 (line-bloom)
     'wish-hitachi-nemophila':  { lineId: 'line-bloom', extraLines: ['line-acg'], workKey: '葬送的芙莉莲', anitabiId: 400602 },
     'wish-provence-lavender':  { lineId: 'line-bloom' },
     'wish-mexico-butterflies': { lineId: 'line-bloom' },
@@ -2059,7 +2048,7 @@ const ATLAS_WISHLIST_SEED = [
     'wish-shetland-uphellyaa': { lineId: 'line-bloom', extraLines: ['line-acg'], workKey: '冰海战记' },
     'wish-mexico-muertos':     { lineId: 'line-bloom' },
 
-    // 8. 🎬 圣地巡礼 (line-acg)
+    // 7. 🎬 圣地巡礼 (line-acg)
     'wish-kanazawa-u':         { lineId: 'line-acg', extraLines: ['line-brutalist'], workKey: 'Angel Beats!', anitabiId: 1851 },
     'wish-saekano':            { lineId: 'line-acg', workKey: '路人女主的养成方法', anitabiId: 100403 },
     'wish-akihabara-steinsgate':{ lineId: 'line-acg', workKey: '命运石之门', anitabiId: 10380 },

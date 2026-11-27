@@ -12,7 +12,7 @@
 <link rel="dns-prefetch" href="https://a.basemaps.cartocdn.com">
 <style>
 :root{--bg:#0c1219;--panel:#15202b;--panel2:#1c2a36;--line:#2d3b48;--txt:#e9f0f3;--muted:#93a5b2;--accent:#bce589;--blue:#8bc7e8;--orange:#efc18a;--red:#ef9a98;--radius:16px}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}a{color:var(--blue)}.app{display:flex;min-height:100vh}.sidebar{width:172px;flex-shrink:0;padding:23px 12px;background:#F4F6F9;border-right:1px solid var(--line);position:sticky;top:0;height:100vh;display:flex;flex-direction:column}.brand{display:flex;gap:7px;align-items:center;padding:0 2px 24px}.brandmark{flex:none;width:28px;height:28px;background:var(--accent);color:#27384E;border-radius:13px;display:grid;place-items:center;font-size:24px;font-weight:900}.brand small{color:var(--muted);display:block;font-size:11px;letter-spacing:.11em}.brand strong{font-size:13px}.nav{display:grid;gap:5px}.nav button{width:100%;border:0;background:none;text-align:left;border-radius:11px;color:var(--muted);padding:12px 15px}.nav button.active{color:var(--accent);background:#FFFFFF;font-weight:700}.nav button:hover:not(.active){background:var(--panel2);color:var(--txt)}.sidebar-note{margin-top:auto;padding:14px;background:#FFFFFF;border:1px solid #D6DEE9;border-radius:12px;color:var(--muted);font-size:12px}.sidebar-note strong{color:var(--accent)}.main{width:100%;min-width:0;max-width:1480px;margin:auto;padding:30px 40px 60px}.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;gap:15px}.eyebrow{font-size:11px;letter-spacing:.18em;color:var(--accent);font-weight:800;text-transform:uppercase}.topbar h1{font-size:29px;line-height:1.3;letter-spacing:-.035em;margin:4px 0}.muted{color:var(--muted)}.small{font-size:12px}.right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.chip{border:1px solid var(--line);background:var(--panel);padding:7px 10px;border-radius:50px;color:var(--muted);font-size:12px}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--txt);border-radius:10px;padding:10px 14px;transition:.15s}.btn:hover{filter:brightness(1.2)}.btn.primary{background:var(--accent);color:#27384E;border-color:var(--accent);font-weight:800}.btn.ghost{background:transparent}.btn.danger{border-color:#D6DEE9;color:#315D98}.btn.tiny{padding:5px 9px;font-size:11px;border-radius:7px}.section{display:none}.section.active{display:block}.hero{position:relative;isolation:isolate;overflow:hidden;padding:32px 36px;border:1px solid #D6DEE9;border-radius:20px;background:linear-gradient(115deg,#FFFFFF 0,#FFFFFF 53%,#FFFFFF 100%);min-height:220px;display:flex;align-items:center}.hero:after{content:'';position:absolute;right:-20px;bottom:-25px;width:43%;height:180px;background:linear-gradient(150deg,#F4F6F9,#FFFFFF);clip-path:polygon(0 90%,25% 45%,36% 67%,54% 13%,73% 60%,87% 38%,100% 82%,100% 100%,0 100%);opacity:.24;z-index:-1}.hero h2{font-size:33px;line-height:1.25;margin:8px 0 10px}.hero p{margin:0;color:#27384E;max-width:530px}.metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:18px 0 24px}.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;min-width:0}.metric .key{color:var(--muted);font-size:12px}.metric .value{font-size:26px;font-weight:750;letter-spacing:-.04em;margin:8px 0 3px;word-break:break-word}.metric .detail{color:var(--muted);font-size:11px}.grid2{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:16px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}.heading h2{font-size:21px;margin:0 0 4px}.heading h3{font-size:16px;margin:0}.heading p{margin:0;color:var(--muted);font-size:12px}.tag{font-size:11px;padding:4px 8px;border:1px solid #D6DEE9;color:var(--accent);background:#FFFFFF;border-radius:50px;display:inline-block}.tag.orange{color:var(--orange);border-color:#D6DEE9;background:#FFFFFF}.tag.gray{color:var(--muted);background:#FFFFFF;border-color:#D6DEE9}.tabline{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}.list-row{border-top:1px solid var(--line);padding:11px 0;display:flex;justify-content:space-between;gap:12px;align-items:center}.list-row:first-child{border-top:0}.label-main{font-weight:650}.desc{font-size:11px;color:var(--muted);margin-top:2px}.bold{font-weight:700}.kpi{font-size:26px;font-weight:800;letter-spacing:-.05em}.field{display:flex;flex-direction:column;gap:6px;min-width:0}.field label,.field>span{color:var(--muted);font-size:11px}.field input,.field select,.field textarea,.inline-in,.mini-in{background:#F4F6F9;color:var(--txt);border:1px solid #D6DEE9;border-radius:8px;padding:9px 10px;min-width:0;width:100%;outline:none}.field input:focus,.field select:focus,.field textarea:focus,.inline-in:focus,.mini-in:focus{border-color:var(--accent)}.field textarea{min-height:85px;resize:vertical}.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.fields.two{grid-template-columns:repeat(2,minmax(0,1fr))}.area{padding:18px;border-radius:14px;background:#FFFFFF;border:1px solid #D6DEE9}.area h3{margin:0 0 5px}.area p{font-size:12px;margin:0;color:var(--muted)}.rowline{height:1px;background:var(--line);margin:16px 0}.route-table,.gear-table{width:100%;border-collapse:collapse}.route-table th,.gear-table th{text-align:left;font-weight:600;font-size:11px;color:var(--muted);padding:11px 8px;border-bottom:1px solid var(--line)}.route-table td,.gear-table td{padding:9px 7px;border-bottom:1px solid #2a3744;vertical-align:middle}.route-table .inline-in{min-width:85px}.gear-table .mini-in{width:95px;padding:7px 7px;font-size:12px}.gear-table .mini-in.wt{width:75px}.check{width:17px;height:17px;accent-color:#a4d67b;vertical-align:middle;cursor:pointer}.gear-groups{display:grid;gap:15px}.status{font-size:10px;color:var(--muted);display:inline-block;border:1px solid #D6DEE9;border-radius:5px;padding:2px 5px}.status.owned{color:var(--accent);border-color:#D6DEE9}.status.opt{color:#315D98;border-color:#D6DEE9}.progress{height:11px;border-radius:99px;overflow:hidden;background:#FFFFFF;margin:8px 0 5px}.progress>div{height:100%;background:linear-gradient(90deg,#E7EEF8,#E7EEF8);border-radius:99px;transition:.2s}.breakdown{display:flex;height:13px;border-radius:50px;overflow:hidden;gap:2px;background:#FFFFFF;margin:12px 0}.breakdown span{height:100%}.legend{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:12px}.dot{display:inline-block;border-radius:50%;height:9px;width:9px;margin-right:5px}.two-column{display:grid;grid-template-columns:1fr 1fr;gap:15px}.empty{border:1px dashed #D6DEE9;padding:20px;text-align:center;color:var(--muted);border-radius:12px}.hint{background:#FFFFFF;border:1px solid #D6DEE9;padding:11px 13px;border-radius:10px;color:#27384E;font-size:12px}.warning{background:#FFFFFF;border:1px solid #D6DEE9;color:#315D98;padding:11px 13px;border-radius:10px;font-size:12px}.task{display:flex;align-items:flex-start;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}.task:last-child{border-bottom:0}.task.done .taskname{text-decoration:line-through;color:var(--muted)}.taskname{font-weight:600}.task .tiny{margin-left:auto}.mt{margin-top:20px}.stack{display:grid;gap:15px}.pill{border-radius:40px;padding:5px 9px;background:#FFFFFF;color:#315D98;font-size:11px}.footer{text-align:center;margin:40px 0 0;font-size:11px;color:#6D7D91}.hnav{display:none}.table-scroll{overflow-x:auto}.route-table{min-width:800px}.gear-table{min-width:660px}.hide{display:none!important}.log{border-left:2px solid #6a9b80;padding:7px 0 7px 14px;margin:12px 0}.log .when{color:var(--muted);font-size:11px}.help{cursor:help;border-bottom:1px dashed #73868e}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}a{color:var(--blue)}.app{display:flex;min-height:100vh}.sidebar{width:172px;flex-shrink:0;padding:23px 12px;background:#F4F6F9;border-right:1px solid var(--line);position:sticky;top:0;height:100vh;display:flex;flex-direction:column}.brand{display:flex;gap:7px;align-items:center;padding:0 2px 24px}.brandmark{flex:none;width:28px;height:28px;background:var(--accent);color:#27384E;border-radius:13px;display:grid;place-items:center;font-size:24px;font-weight:900}.brand small{color:var(--muted);display:block;font-size:11px;letter-spacing:.11em}.brand strong{font-size:13px}.nav{display:grid;gap:5px}.nav button{width:100%;border:0;background:none;text-align:left;border-radius:11px;color:var(--muted);padding:12px 15px}.nav button.active{color:var(--accent);background:#FFFFFF;font-weight:700}.nav button:hover:not(.active){background:var(--panel2);color:var(--txt)}.main{width:100%;min-width:0;max-width:1480px;margin:auto;padding:30px 40px 60px}.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;gap:15px}.eyebrow{font-size:11px;letter-spacing:.18em;color:var(--accent);font-weight:800;text-transform:uppercase}.topbar h1{font-size:29px;line-height:1.3;letter-spacing:-.035em;margin:4px 0}.muted{color:var(--muted)}.small{font-size:12px}.right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.chip{border:1px solid var(--line);background:var(--panel);padding:7px 10px;border-radius:50px;color:var(--muted);font-size:12px}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--txt);border-radius:10px;padding:10px 14px;transition:.15s}.btn:hover{filter:brightness(1.2)}.btn.primary{background:var(--accent);color:#27384E;border-color:var(--accent);font-weight:800}.btn.ghost{background:transparent}.btn.danger{border-color:#D6DEE9;color:#315D98}.btn.tiny{padding:5px 9px;font-size:11px;border-radius:7px}.section{display:none}.section.active{display:block}.hero{position:relative;isolation:isolate;overflow:hidden;padding:32px 36px;border:1px solid #D6DEE9;border-radius:20px;background:linear-gradient(115deg,#FFFFFF 0,#FFFFFF 53%,#FFFFFF 100%);min-height:220px;display:flex;align-items:center}.hero:after{content:'';position:absolute;right:-20px;bottom:-25px;width:43%;height:180px;background:linear-gradient(150deg,#F4F6F9,#FFFFFF);clip-path:polygon(0 90%,25% 45%,36% 67%,54% 13%,73% 60%,87% 38%,100% 82%,100% 100%,0 100%);opacity:.24;z-index:-1}.hero h2{font-size:33px;line-height:1.25;margin:8px 0 10px}.hero p{margin:0;color:#27384E;max-width:530px}.metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:18px 0 24px}.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;min-width:0}.metric .key{color:var(--muted);font-size:12px}.metric .value{font-size:26px;font-weight:750;letter-spacing:-.04em;margin:8px 0 3px;word-break:break-word}.metric .detail{color:var(--muted);font-size:11px}.grid2{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:16px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}.heading h2{font-size:21px;margin:0 0 4px}.heading h3{font-size:16px;margin:0}.heading p{margin:0;color:var(--muted);font-size:12px}.tag{font-size:11px;padding:4px 8px;border:1px solid #D6DEE9;color:var(--accent);background:#FFFFFF;border-radius:50px;display:inline-block}.tag.orange{color:var(--orange);border-color:#D6DEE9;background:#FFFFFF}.tag.gray{color:var(--muted);background:#FFFFFF;border-color:#D6DEE9}.tabline{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}.list-row{border-top:1px solid var(--line);padding:11px 0;display:flex;justify-content:space-between;gap:12px;align-items:center}.list-row:first-child{border-top:0}.label-main{font-weight:650}.desc{font-size:11px;color:var(--muted);margin-top:2px}.bold{font-weight:700}.kpi{font-size:26px;font-weight:800;letter-spacing:-.05em}.field{display:flex;flex-direction:column;gap:6px;min-width:0}.field label,.field>span{color:var(--muted);font-size:11px}.field input,.field select,.field textarea,.inline-in,.mini-in{background:#F4F6F9;color:var(--txt);border:1px solid #D6DEE9;border-radius:8px;padding:9px 10px;min-width:0;width:100%;outline:none}.field input:focus,.field select:focus,.field textarea:focus,.inline-in:focus,.mini-in:focus{border-color:var(--accent)}.field textarea{min-height:85px;resize:vertical}.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.fields.two{grid-template-columns:repeat(2,minmax(0,1fr))}.area{padding:18px;border-radius:14px;background:#FFFFFF;border:1px solid #D6DEE9}.area h3{margin:0 0 5px}.area p{font-size:12px;margin:0;color:var(--muted)}.rowline{height:1px;background:var(--line);margin:16px 0}.route-table,.gear-table{width:100%;border-collapse:collapse}.route-table th,.gear-table th{text-align:left;font-weight:600;font-size:11px;color:var(--muted);padding:11px 8px;border-bottom:1px solid var(--line)}.route-table td,.gear-table td{padding:9px 7px;border-bottom:1px solid #2a3744;vertical-align:middle}.route-table .inline-in{min-width:85px}.gear-table .mini-in{width:95px;padding:7px 7px;font-size:12px}.gear-table .mini-in.wt{width:75px}.check{width:17px;height:17px;accent-color:#a4d67b;vertical-align:middle;cursor:pointer}.gear-groups{display:grid;gap:15px}.status{font-size:10px;color:var(--muted);display:inline-block;border:1px solid #D6DEE9;border-radius:5px;padding:2px 5px}.status.owned{color:var(--accent);border-color:#D6DEE9}.status.opt{color:#315D98;border-color:#D6DEE9}.progress{height:11px;border-radius:99px;overflow:hidden;background:#FFFFFF;margin:8px 0 5px}.progress>div{height:100%;background:linear-gradient(90deg,#E7EEF8,#E7EEF8);border-radius:99px;transition:.2s}.breakdown{display:flex;height:13px;border-radius:50px;overflow:hidden;gap:2px;background:#FFFFFF;margin:12px 0}.breakdown span{height:100%}.legend{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:12px}.dot{display:inline-block;border-radius:50%;height:9px;width:9px;margin-right:5px}.two-column{display:grid;grid-template-columns:1fr 1fr;gap:15px}.empty{border:1px dashed #D6DEE9;padding:20px;text-align:center;color:var(--muted);border-radius:12px}.hint{background:#FFFFFF;border:1px solid #D6DEE9;padding:11px 13px;border-radius:10px;color:#27384E;font-size:12px}.warning{background:#FFFFFF;border:1px solid #D6DEE9;color:#315D98;padding:11px 13px;border-radius:10px;font-size:12px}.task{display:flex;align-items:flex-start;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}.task:last-child{border-bottom:0}.task.done .taskname{text-decoration:line-through;color:var(--muted)}.taskname{font-weight:600}.task .tiny{margin-left:auto}.mt{margin-top:20px}.stack{display:grid;gap:15px}.pill{border-radius:40px;padding:5px 9px;background:#FFFFFF;color:#315D98;font-size:11px}.footer{text-align:center;margin:40px 0 0;font-size:11px;color:#6D7D91}.hnav{display:none}.table-scroll{overflow-x:auto}.route-table{min-width:800px}.gear-table{min-width:660px}.hide{display:none!important}.log{border-left:2px solid #6a9b80;padding:7px 0 7px 14px;margin:12px 0}.log .when{color:var(--muted);font-size:11px}.help{cursor:help;border-bottom:1px dashed #73868e}
 @media(max-width:1000px){.sidebar{width:156px}.main{padding:24px 24px 60px}.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2,.grid3{grid-template-columns:1fr}.hero h2{font-size:28px}}
 @media(max-width:700px){.app{display:block}.sidebar{display:none}.hnav{display:flex;position:sticky;top:0;z-index:10;background:#F4F6F9;padding:10px;gap:8px;overflow-x:auto;border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}.hnav button{white-space:nowrap;background:#FFFFFF;border:1px solid var(--line);color:var(--muted);border-radius:22px;padding:8px 12px}.hnav button.active{background:#FFFFFF;color:var(--accent);border-color:#D6DEE9}.main{padding:18px 14px 35px}.topbar{align-items:flex-start;flex-direction:column}.topbar h1{font-size:23px}.metric-grid{gap:9px}.card{padding:15px}.metric .value{font-size:21px}.hero{min-height:190px;padding:23px}.hero h2{font-size:25px}.fields,.fields.two,.two-column{grid-template-columns:1fr}.heading{flex-direction:column}.right{width:100%}}
 @media print{.sidebar,.hnav,.btn,.no-print{display:none!important}.main{padding:12px}.section{display:block!important;break-before:page}body{background:white;color:black}.card,.area{background:white;color:black;border-color:#D6DEE9}.muted{color:#6D7D91}.hero{background:#F4F6F9;color:black}.field input,.field textarea,.mini-in{color:black}}
@@ -330,6 +330,7 @@
 .atlas-map-controls .btn{background:#FFFFFF;border-color:#D6DEE9}
 .atlas-map-caption{left:12px;bottom:10px;top:auto;flex-wrap:wrap;gap:7px;max-width:calc(100% - 210px);pointer-events:none}
 .atlas-map-caption span,.atlas-fallback-credit{padding:4px 8px;border-radius:5px;background:#F4F6F9;color:#315D98;font-size:11px}
+#atlasMapStatus:empty{display:none}
 .atlas-map-caption i{display:inline-block;width:7px;height:7px;background:#E7EEF8;border-radius:50%;margin-right:3px}
 .atlas-fallback-credit{position:absolute;right:7px;bottom:7px}
 .atlas-home-grid,.atlas-trip-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin-top:14px}
@@ -413,7 +414,8 @@ body[data-theme="iris"]{
 }
 
 body{background:var(--bg);color:var(--txt);transition:background .2s,color .2s}
-.sidebar{background:var(--panel);border-color:var(--line);width:168px;padding:18px 11px}
+.sidebar{background:var(--panel);border-color:var(--line);width:144px;padding:18px 8px}
+@media (min-width:701px) and (max-width:1000px){.sidebar{width:136px}}
 .brandmark{background:var(--accent);color:#FFFFFF}
 .nav button{color:var(--muted);padding:9px 12px;font-size:13px;border-radius:9px}
 .nav button.active,.hnav button.active{background:var(--panel2);color:var(--accent);font-weight:750}
@@ -433,7 +435,6 @@ body{background:var(--bg);color:var(--txt);transition:background .2s,color .2s}
 .nav-routes-sub .nav-route-item{padding:6.5px 9px;font-size:12px;border-radius:8px;display:flex;align-items:center;justify-content:space-between;gap:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .nav-routes-sub .nav-route-manage{color:var(--muted);font-size:11.5px;border-top:1px dashed var(--line);margin-top:2px;padding-top:7px;border-radius:0 0 8px 8px}
 .hnav{background:var(--panel)}
-.sidebar-note{background:var(--panel2);border-color:var(--line);color:var(--muted);padding:11px;font-size:11px}
 .btn.primary,.tr-studio .btn.primary{background:var(--accent);color:#FFFFFF;border-color:var(--accent)}
 .btn,.tr-studio .btn{background:var(--panel);color:var(--txt);border-color:var(--line)}
 .btn:hover,.tr-studio .btn:hover{background:var(--panel2)}
@@ -506,8 +507,10 @@ body{background:var(--bg);color:var(--txt);transition:background .2s,color .2s}
 .theme-dot{width:10px;height:10px;border-radius:50%;border:1px solid rgba(0,0,0,.2);flex-shrink:0}
 
 /* Map-first layout: Centerpiece World Map + Slim Toolbar + Below-map Stats */
-#atlas .atlas-map-shell{height:clamp(420px,63vh,730px);border-radius:16px;border:1px solid var(--line)}
-.atlas-layer-toolbar{display:flex;align-items:center;justify-content:space-between;gap:8px 12px;flex-wrap:wrap;padding:8px 12px;background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:10px}
+@media screen{.main:has(> #atlas.active){max-width:none;padding-inline:clamp(10px,1.3vw,24px)}}
+#atlas .atlas-map-shell{height:clamp(420px,84svh,1200px);border-radius:16px;border:1px solid var(--line)}
+@media(max-width:700px){#atlas .atlas-map-shell{height:clamp(340px,75svh,740px)}}
+.atlas-layer-toolbar{display:flex;align-items:center;gap:6px 8px;flex-wrap:wrap;padding:6px 8px;background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:10px}
 .atlas-layer-group{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
 .atlas-mode-btn{font-size:11.5px;padding:5px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--muted);font-weight:650;transition:.15s}
 .atlas-mode-btn:hover{color:var(--txt)}
@@ -745,6 +748,8 @@ body[data-theme="fjord"] .atlas-map-shell:not(.is-night-bm):not(.is-street-zoom)
 .season-badge-pill{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;font-weight:700;padding:1.5px 7px;border-radius:999px;background:color-mix(in srgb,#0284C7 10%,var(--panel2));color:var(--txt);border:1px solid color-mix(in srgb,#0284C7 28%,var(--line))}
 .jp-region-pin{background:none!important;border:0!important}
 .jp-region-chip{display:inline-flex;align-items:center;gap:6px;padding:4.5px 12px;border-radius:999px;background:rgba(36,30,22,.9);color:#FFFDF8;font-size:12px;font-weight:750;white-space:nowrap;border:1px solid rgba(255,253,248,.18);box-shadow:0 4px 14px rgba(15,12,8,.34);backdrop-filter:blur(4px);transform:translate(-50%,-50%);transition:.15s;cursor:pointer;letter-spacing:.02em}
+.jp-region-pin.is-compact .jp-region-chip{gap:4px;padding:2px 7px;font-size:11px;line-height:1.3;border-color:rgba(255,253,248,.12);box-shadow:0 2px 5px rgba(15,12,8,.22)}
+.jp-region-pin.is-compact .jp-region-chip i{width:6px;height:6px}
 .jp-region-chip i{width:7.5px;height:7.5px;border-radius:50%;background:var(--rtone,#B83B2A);flex-shrink:0;box-shadow:0 0 0 1px rgba(255,255,255,.22)}
 .jp-region-chip:hover,.jp-region-chip.is-active{background:var(--rtone,#B83B2A);color:#FFF;border-color:rgba(255,255,255,.48);transform:translate(-50%,-50%) scale(1.07)}
 .jp-region-chip:hover i,.jp-region-chip.is-active i{background:#FFF}
@@ -821,8 +826,11 @@ body[data-theme="fjord"] .atlas-map-shell:not(.is-night-bm):not(.is-street-zoom)
 .atlas-map-shell.is-night-bm .atlas-night-hd{filter:brightness(1.12) contrast(1.08) saturate(1.12)}
 .atlas-night-labels{pointer-events:none}
 .atlas-map-quickbar[hidden]{display:none!important}
-.atlas-map-search{position:relative;z-index:650;display:flex;align-items:center;gap:5px;margin-left:auto;flex:1 1 220px;max-width:340px}
-.atlas-map-search-in{width:100%;min-width:150px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--txt);font-size:12px;outline:none;transition:.14s}
+.atlas-map-search{position:relative;z-index:650;display:flex;align-items:center;gap:5px;margin-left:auto;flex:1 1 235px;min-width:0;max-width:380px}
+#atlasMapSearchBtn{flex:none;white-space:nowrap}
+@media(max-width:700px){.atlas-map-search{order:-1;flex-basis:100%;max-width:none;margin-left:0}.atlas-map-search-drop{left:0}}
+.atlas-map-search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:12px;pointer-events:none}
+.atlas-map-search-in{width:100%;min-width:0;padding:4px 10px 4px 29px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--txt);font-size:12px;outline:none;transition:.14s}
 .atlas-map-search-in:focus{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 18%,transparent)}
 .atlas-map-search-drop{position:absolute;top:calc(100% + 6px);right:0;width:min(360px,90vw);max-height:320px;overflow:auto;border-radius:12px;background:var(--panel);border:1px solid var(--line);box-shadow:0 12px 32px rgba(15,23,42,.26);padding:4px;z-index:660;display:flex;flex-direction:column;gap:2px}
 .atlas-map-search-drop[hidden]{display:none!important}
@@ -849,7 +857,7 @@ body[data-theme="fjord"] .atlas-map-shell:not(.is-night-bm):not(.is-street-zoom)
 <script src="vendor/leaflet/leaflet.js"></script><script src="data/world.js"></script><script src="data/china-provinces.js"></script><script src="data/wishlist.js"></script><script src="data/seasons_gourmet.js"></script></head>
 <body data-theme="slate">
 <div class="app">
-<aside class="sidebar"><div class="brand"><div class="brandmark">↗</div><div><small>VtW · VISIT THE WORLD</small><strong>世界探索台</strong></div></div><div class="nav" id="nav"></div><div class="sidebar-note"><strong>本地自动保存</strong><br><span id="saveState">支持随时导出 JSON 备份</span></div></aside>
+<aside class="sidebar"><div class="brand"><div class="brandmark">↗</div><div><strong>VtW</strong><small>Visit the World</small></div></div><div class="nav" id="nav"></div></aside>
 <div class="hnav" id="hnav"></div>
 <main class="main">
 <div class="topbar">
@@ -867,28 +875,24 @@ body[data-theme="fjord"] .atlas-map-shell:not(.is-night-bm):not(.is-street-zoom)
   </div>
 </div>
 <section id="atlas" class="section active">
-  <div class="atlas-layer-toolbar" role="toolbar" aria-label="世界脚步地图图层与视角控制">
+  <div class="atlas-layer-toolbar" role="toolbar" aria-label="全球地图搜索、图层与视角控制">
     <div class="atlas-layer-group">
       <button type="button" class="atlas-mode-btn" data-atlas-mode="all" aria-pressed="true">🌍 全部图层</button>
       <button type="button" class="atlas-mode-btn" data-atlas-mode="visited" aria-pressed="false">✓ 已到访</button>
-      <button type="button" class="atlas-mode-btn" data-atlas-mode="planned" aria-pressed="false">🧭 2027计划</button>
     </div>
     <div class="atlas-layer-group">
-      <label class="atlas-toggle-chip" title="开关已到访国家、省份与城市边界的绿色上色"><input type="checkbox" id="atlasToggleVisitedFill" checked> 已到访上色</label>
+      <label class="atlas-toggle-chip" title="开关已到访国家和省份的绿色上色"><input type="checkbox" id="atlasToggleVisitedFill" checked> 已到访上色</label>
       <label class="atlas-toggle-chip"><input type="checkbox" id="atlasToggleRegions" checked> 省/国底色</label>
-      <label class="atlas-toggle-chip"><input type="checkbox" id="atlasToggleBoundaries" checked> 城市边界</label>
       <label class="atlas-toggle-chip"><input type="checkbox" id="atlasTogglePins" checked> 城市微点</label>
       <label class="atlas-toggle-chip"><input type="checkbox" id="atlasToggleRoutes" checked> 规划路线</label>
-      <label class="atlas-toggle-chip"><input type="checkbox" id="atlasToggleWish" checked> ✦ 想去圣地</label>
+      <label class="atlas-toggle-chip"><input type="checkbox" id="atlasToggleWish" checked> ✦ 想去地点</label>
     </div>
     <div class="atlas-layer-group">
       <button type="button" class="atlas-cam-btn" data-atlas-cam="all">全览</button>
-      <button type="button" class="atlas-cam-btn" data-atlas-cam="china">中国</button>
-      <button type="button" class="atlas-cam-btn" data-atlas-cam="japan">日本</button>
-      <button type="button" class="atlas-cam-btn" data-atlas-cam="loop">2027环线</button>
     </div>
     <div class="atlas-map-search" id="atlasMapSearchWrap">
-      <input type="search" id="atlasMapSearchInput" class="atlas-map-search-in" placeholder="🔍 搜全球城市 / 景点（如 清水寺、埃菲尔铁塔）…" autocomplete="off" aria-label="搜索城市或景点">
+      <span class="atlas-map-search-icon" aria-hidden="true">🔍</span>
+      <input type="search" id="atlasMapSearchInput" class="atlas-map-search-in" autocomplete="off" aria-label="搜索城市或景点">
       <button type="button" class="btn tiny primary" id="atlasMapSearchBtn">定位</button>
       <div id="atlasMapSearchDrop" class="atlas-map-search-drop" hidden role="listbox"></div>
     </div>
@@ -904,7 +908,7 @@ body[data-theme="fjord"] .atlas-map-shell:not(.is-night-bm):not(.is-street-zoom)
           <button type="button" class="atlas-filter-tab active" data-atlas-status="all">全部</button>
           <button type="button" class="atlas-filter-tab" data-atlas-status="visited">✓ 已到访</button>
           <button type="button" class="atlas-filter-tab" data-atlas-status="planned">🧭 计划</button>
-          <button type="button" class="atlas-filter-tab" data-atlas-status="wish">✦ 想去圣地</button>
+          <button type="button" class="atlas-filter-tab" data-atlas-status="wish">✦ 想去地点</button>
         </div>
         <div class="atlas-search-wrap">
           <select id="atlasCountrySelect" class="atlas-select-in" aria-label="按国家或省份筛选"><option value="all">全部国家 / 省份</option></select>
@@ -936,7 +940,7 @@ body[data-theme="fjord"] .atlas-map-shell:not(.is-night-bm):not(.is-street-zoom)
 <div id="atlasWishSpotlight" class="atlas-wish-spotlight" hidden></div>
 <div id="atlasOverlayLegend" class="atlas-overlay-legend" hidden></div>
 <div class="atlas-map-controls"><button class="btn tiny" id="atlasZoomIn" aria-label="放大地图">＋</button><button class="btn tiny" id="atlasZoomOut" aria-label="缩小地图">−</button><button class="btn tiny" id="atlasMapReset">足迹全览</button></div>
-<div class="atlas-map-caption"><span id="atlasMapStatus">节点颜色对应 Theme Tag（深红=哥特 · 钴蓝=西幻 · 古金=神代 · 紫=圣地）· 放大看节点标签与原画对比</span><span id="atlasMapLegend" class="atlas-map-legend-bar">已到访区域</span></div></div></template>
+<div class="atlas-map-caption"><span id="atlasMapStatus"></span><span id="atlasMapLegend" class="atlas-map-legend-bar">已到访区域</span></div></div></template>
 <dialog id="atlasPhotoLightbox" class="wish-lightbox">
   <img id="atlasLightboxImg" src="" alt="">
   <div class="wish-lightbox-bar">
@@ -2122,7 +2126,7 @@ function renderNav(){
     const atlasItem=primary.find(([k])=>k==='atlas');
     const restItems=primary.filter(([k])=>k!=='atlas');
     $('nav').innerHTML=(atlasItem?btnHtml(atlasItem):'')+routesGroupHtml+restItems.map(btnHtml).join('')+
-      `<details class="nav-more" ${isSecActive?'open':''}><summary><span>2027 筹备工具箱</span><small>${secondary.length}</small></summary><div class="nav-more-list">${secondary.map(btnHtml).join('')}</div></details>`;
+      `<details class="nav-more" ${isSecActive?'open':''}><summary><span>Kits</span><small>${secondary.length}</small></summary><div class="nav-more-list">${secondary.map(btnHtml).join('')}</div></details>`;
   }
   if($('hnav')){
     $('hnav').innerHTML=sections.map(btnHtml).join('');
@@ -4535,6 +4539,9 @@ function atlasPlannedLoopStops(){
   });
 }
 
+function atlasCanonicalStoryline(id){
+  return id==='line-seasia-gods'?'line-ruins':id;
+}
 function atlasWishSpots(){
   const seed=(typeof ATLAS_WISHLIST_SEED!=='undefined'&&Array.isArray(ATLAS_WISHLIST_SEED))?ATLAS_WISHLIST_SEED:[];
   const custom=Array.isArray(state.customWishSpots)?state.customWishSpots:[];
@@ -4547,6 +4554,9 @@ function atlasWishSpots(){
     const lat=Number(merged.lat),lng=Number(merged.lng);
     return {
       ...merged,
+      lineId:atlasCanonicalStoryline(merged.lineId),
+      extraLines:Array.isArray(merged.extraLines)?[...new Set(merged.extraLines.map(atlasCanonicalStoryline))]:[],
+      ...(merged.lineId==='line-seasia-gods'&&typeof atlasGetSpotSeasonInfo==='function'?{seasonInfo:atlasGetSpotSeasonInfo(merged)}:{}),
       lat,lng,
       isWish:true,
       visited:false,
@@ -5283,7 +5293,7 @@ function atlasRenderLockOnRegions(a3,lonOffset=0){
     for(const reg of meta.regions){
       const [cLat,cLng]=a3==='CHN'?atlasMapCoord(reg.center[0],reg.center[1]):reg.center;
       const chip=L.marker([cLat,cLng+lonOffset],{
-        icon:L.divIcon({className:'jp-region-pin',html:`<span class="jp-region-chip" style="--rtone:${reg.tone}"><i></i>${esc(reg.chipName||reg.name)}</span>`,iconSize:[0,0],iconAnchor:[0,0]}),
+        icon:L.divIcon({className:(a3==='CHN'||a3==='JPN')?'jp-region-pin is-compact':'jp-region-pin',html:`<span class="jp-region-chip" style="--rtone:${reg.tone}"><i></i>${esc(reg.chipName||reg.name)}</span>`,iconSize:[0,0],iconAnchor:[0,0]}),
         zIndexOffset:5200
       });
       chip.on('click',ev=>{L.DomEvent.stopPropagation(ev);atlasFocusLockOnRegion(a3,reg.id);});
@@ -5567,7 +5577,7 @@ function atlasRenderRegionSheet(ctx){
       ${seasonLine?`<div style="margin-top:6px"><span class="season-badge-pill">${esc(seasonLine)}</span></div>`:''}
     </div>
     ${strip}
-    ${wishShown.length?`<section class="goodie-sec" id="vtwSecGuide"><div class="goodie-sec-head"><strong>✦ 想去圣地 / 奇观 <span class="muted small">(${wishShown.length}${sm?' · '+esc(sm.icon+sm.short):''})</span></strong></div>
+    ${wishShown.length?`<section class="goodie-sec" id="vtwSecGuide"><div class="goodie-sec-head"><strong>✦ 想去地点 <span class="muted small">(${wishShown.length}${sm?' · '+esc(sm.icon+sm.short):''})</span></strong></div>
       <div class="vtw-pref-list">${wishShown.map(w=>`<button type="button" class="vtw-pref-btn" data-wish-goto="${esc(w.id)}" title="${esc(atlasGetSpotSeasonInfo?.(w)?.badge||'')}">✦ ${esc(w.name.split(/[·（(]/)[0].trim().slice(0,14))}</button>`).join('')}</div></section>`:''}
     ${atlasGoodiesSectionsHtml(goods,customKey,title)}`;
 }
@@ -5851,7 +5861,7 @@ function atlasMount(){
 
 function atlasGetLinePeers(spot){
   if(!spot?.lineId)return [];
-  return atlasWishSpots().filter(w=>w.lineId===spot.lineId).sort((a,b)=>(a.lineOrder??99)-(b.lineOrder??99));
+  return atlasCombinedFootprints().wishSpots.filter(w=>w.lineId===spot.lineId).sort((a,b)=>(a.lineOrder??99)-(b.lineOrder??99));
 }
 function atlasRenderWishSpotlight(spot){
   const box=$('atlasWishSpotlight');
@@ -5999,8 +6009,7 @@ function atlasRenderHome(){
   const data=atlasCombinedFootprints();
   const stats=atlasComputeStats(data);
   const visits=data.visitedCities;
-  const areas=visits.filter(stop=>stop.boundary).length;
-  $('atlasSummary').textContent=`已踏足 ${stats.visitedCountries.size} 国 · 点亮中国 ${stats.visitedProvinces.size}/34 省级行政区 · 到访 ${visits.length} 城（${areas} 个边界已点亮） · 2027 计划 +${data.plannedCities.length} 城 · ✦ 想去圣地 ${data.wishSpots.length} 处`;
+  $('atlasSummary').textContent=`已踏足 ${stats.visitedCountries.size} 国 · 点亮中国 ${stats.visitedProvinces.size}/34 省级行政区 · 到访 ${visits.length} 城 · 2027 计划 +${data.plannedCities.length} 城 · ✦ 想去地点 ${data.wishSpots.length} 处`;
 
   atlasRenderDashboard(data,stats);
   atlasRenderMapQuickBar(data);
@@ -6034,7 +6043,7 @@ function atlasRenderFilterControls(data,stats){
     statusTabs.querySelectorAll('[data-atlas-status]').forEach(btn=>{
       const k=btn.dataset.atlasStatus;
       btn.classList.toggle('active',k===atlasStatusFilter);
-      const label=k==='all'?'全部':k==='visited'?'✓ 已去':k==='planned'?'🧭 计划':'✦ 想去圣地';
+      const label=k==='all'?'全部':k==='visited'?'✓ 已去':k==='planned'?'🧭 计划':'✦ 想去地点';
       btn.textContent=`${label} (${counts[k]||0})`;
     });
   }
@@ -6087,7 +6096,7 @@ function atlasRenderFilterControls(data,stats){
     tripSel.innerHTML=`<option value="all">全部路线 / 年份</option>
       <optgroup label="按旅行路线">
         <option value="trip:${ATLAS_LOOP}">🧭 2027 亚欧非环线</option>
-        <option value="wish:all">✦ 想去圣地与现实原型</option>
+        <option value="wish:all">✦ 想去地点</option>
         ${trips.map(t=>`<option value="trip:${esc(t.id)}">${t.status==='done'?'✓':'🧭'} ${esc(t.title)}</option>`).join('')}
       </optgroup>
       <optgroup label="按年份">
@@ -6199,7 +6208,7 @@ function atlasRenderExplorerList(data){
     for(const item of list){
       const rawDate=item.date||item.estDate||'';
       const sl=item.isWish?atlasGetStoryline(item.lineId):null;
-      const groupKey=item.isWish?(sl?`${sl.icon} ${sl.title}`:'✦ 想去圣地与奇观'):item.visited?(rawDate?`${rawDate.slice(0,4)} 年足迹`:'已到访足迹 · 待补日期'):'2027 暑假 · 亚欧非计划路线';
+      const groupKey=item.isWish?(sl?`${sl.icon} ${sl.title}`:'✦ 想去地点'):item.visited?(rawDate?`${rawDate.slice(0,4)} 年足迹`:'已到访足迹 · 待补日期'):'2027 暑假 · 亚欧非计划路线';
       if(!groups.has(groupKey))groups.set(groupKey,[]);
       groups.get(groupKey).push(item);
     }
@@ -6288,7 +6297,7 @@ function atlasRenderPlaceInfo(place){
   if(!panel)return;
   if(!place){
     atlasLastSheet=null;
-    panel.innerHTML='<h3>地点详情</h3><p class="muted small">点击上方世界地图上的节点（✦ 菱形想去圣地 / 绿色已访 / 橙色环线）或左侧卡片，即可放大地图并查看介绍与实景照片。</p>';
+    panel.innerHTML='<h3>地点详情</h3><p class="muted small">点击上方世界地图上的节点（✦ 菱形想去地点 / 绿色已访 / 橙色环线）或左侧卡片，即可放大地图并查看介绍与实景照片。</p>';
     return;
   }
   atlasLastSheet={type:'place',place};
@@ -6428,7 +6437,7 @@ function atlasPlannedRoutes(data){
     routes.push({
       id:ATLAS_LOOP,
       title:'2027 暑假 · 亚欧非环线',
-      shortTitle:'2027环线',
+      shortTitle:'亚欧非',
       color:atlasThemeColor('--map-plan-line','#C96A2B'),
       stops:d.loopStops.filter(atlasPoints),
       isLoop:true
@@ -6610,13 +6619,12 @@ function atlasShowMap(host,context,stops,combinedData=null){
   atlasMapContext=context;
 
   if(context==='home'){
+    if(changed)$('atlasMapStatus').textContent='';
     const data=combinedData||atlasCombinedFootprints();
     const showVisited=atlasLayerMode==='all'||atlasLayerMode==='visited';
-    const showVisitedFill=$('atlasToggleVisitedFill')?$('atlasToggleVisitedFill').checked:true;
     const showPlanned=atlasLayerMode==='all'||atlasLayerMode==='planned';
     const showWish=(atlasLayerMode==='all'||atlasLayerMode==='wish')&&($('atlasToggleWish')?$('atlasToggleWish').checked:true);
     const showWishLabels=atlasLayerMode==='wish'||atlasStatusFilter==='wish'||atlasWishTheme!=='all'||atlasSeasonFilter!=='all';
-    const showBoundaries=$('atlasToggleBoundaries')?$('atlasToggleBoundaries').checked:true;
     const showPins=$('atlasTogglePins')?$('atlasTogglePins').checked:true;
     const showRoutes=$('atlasToggleRoutes')?$('atlasToggleRoutes').checked:true;
 
@@ -6631,18 +6639,7 @@ function atlasShowMap(host,context,stops,combinedData=null){
     atlasRefreshStyleSnapshot(data);
     atlasApplyPolygonStyles(false);
 
-    // Refresh fine city boundary polygons (wrapped across [-360, 0, 360] for seamless panning)
-    const boundaryFeatures=[];
-    if(showBoundaries&&showVisited&&showVisitedFill){
-      for(const stop of data.visitedCities.filter(atlasPoints)){
-        if(stop.boundary){
-          for(const off of [-360,0,360]){
-            boundaryFeatures.push({type:'Feature',properties:{id:stop.id,kind:'boundary'},geometry:atlasWrapGeometryForBasemap(stop.boundary,off)});
-          }
-        }
-      }
-    }
-    atlasTravelLayer.clearLayers().addData({type:'FeatureCollection',features:boundaryFeatures});
+    atlasTravelLayer.clearLayers();
 
     // Refresh planned route curves (all active planned routes, wrapped across [-360, 0, 360])
     const planLineColor=atlasThemeColor('--map-plan-line','#C96A2B');
@@ -6756,7 +6753,7 @@ function atlasShowMap(host,context,stops,combinedData=null){
       }
     }
 
-    const routeSwatches=(showRoutes&&showPlanned)?plannedRoutes.map(r=>`<button type="button" class="atlas-route-chip" style="--rc:${r.color}" data-atlas-route-chip="${esc(r.id)}" title="悬停高亮「${esc(r.title)}」整条路线 · 点击进入「我的路线」详情"><i></i>${esc(r.shortTitle)} (${r.stops.length})</button>`).join(''):'';
+    const routeSwatches=(showRoutes&&showPlanned)?plannedRoutes.map(r=>`<button type="button" class="atlas-route-chip" style="--rc:${r.color}" data-atlas-route-chip="${esc(r.id)}" title="悬停高亮「${esc(r.title)}」整条路线 · 点击进入「我的路线」详情"><i></i>${esc(r.shortTitle)}${r.isLoop?'':` (${r.stops.length})`}</button>`).join(''):'';
     const themeSwatches=showWish?atlasGetStorylines().map(sl=>{
       const act=atlasWishTheme==='line:'+sl.id||(sl.id==='line-acg'&&atlasWishTheme.startsWith('work:'));
       return `<button type="button" class="map-theme-chip ${act?'active':''}" style="--tc:${sl.color}" data-wish-theme="${act?'all':'line:'+esc(sl.id)}" title="${esc(sl.title)}"><i></i>${esc(sl.num)}</button>`;
@@ -6939,7 +6936,7 @@ function atlasOpenWishEditor(existingSpot=null){
   atlasUploadedWishPhoto='';
   const curPhoto=s.photos?.[0]?.src||'';
   const curCaption=s.photos?.[0]?.caption||'';
-  atlasOpenDialog(existingSpot?'编辑心愿圣地':'添加想去圣地 / 奇观节点',`<div class="atlas-form-grid">
+  atlasOpenDialog(existingSpot?'编辑想去地点':'添加想去地点',`<div class="atlas-form-grid">
     ${atlasField('地点名称 *','name',s.name,'text','required maxlength="90" placeholder="例如：高田のぞき坂 / 冰岛黑沙滩"')}
     ${atlasField('国家或地区 *','country',s.country,'text','required maxlength="60" placeholder="例如：日本 / 冰岛"')}
     ${atlasField('纬度 *','lat',s.lat,'number','step="any" min="-90" max="90" required')}
@@ -6965,7 +6962,7 @@ function atlasOpenWishEditor(existingSpot=null){
   </div>`,{kind:'wish',spot:existingSpot});
 }
 function atlasCompleteWish(wishId){
-  const spot=atlasWishSpots().find(w=>w.id===wishId);
+  const spot=atlasCombinedFootprints().wishSpots.find(w=>w.id===wishId);
   if(!spot)return;
   atlasOpenStopEditor('',{
     name:spot.name,
@@ -7625,15 +7622,13 @@ if($('atlasToggleVisitedFill')){
     if(active==='atlas'){
       atlasRefreshStyleSnapshot();
       atlasApplyPolygonStyles(true);
-      const data=atlasCombinedFootprints();
-      atlasShowMap('atlasHomeMap','home',data.visitedCities,data);
     }
   });
 }
 if($('atlasToggleRegions'))$('atlasToggleRegions').addEventListener('change',()=>{
   if(active==='atlas'){atlasRefreshStyleSnapshot();atlasApplyPolygonStyles(true);}
 });
-for(const id of ['atlasToggleBoundaries','atlasTogglePins','atlasToggleRoutes','atlasToggleWish']){
+for(const id of ['atlasTogglePins','atlasToggleRoutes','atlasToggleWish']){
   const el=$(id);
   if(el)el.addEventListener('change',()=>{
     if(active==='atlas'){const data=atlasCombinedFootprints();atlasShowMap('atlasHomeMap','home',data.visitedCities,data);}
@@ -7895,7 +7890,7 @@ document.addEventListener('click',event=>{
   if(mmBtn){
     event.stopPropagation();
     atlasSpotMediaMode=mmBtn.dataset.wishMediaMode||'anime';
-    const sp=atlasWishSpots().find(w=>w.id===atlasSpotlightId);
+    const sp=atlasCombinedFootprints().wishSpots.find(w=>w.id===atlasSpotlightId);
     if(sp)atlasRenderWishSpotlight(sp);
     return;
   }
@@ -7904,7 +7899,7 @@ document.addEventListener('click',event=>{
     event.stopPropagation();
     atlasSpotMediaMode='anime';
     atlasAnitabiPtIdx=Number(aniThumb.dataset.aniPt)||0;
-    const sp=atlasWishSpots().find(w=>w.id===atlasSpotlightId);
+    const sp=atlasCombinedFootprints().wishSpots.find(w=>w.id===atlasSpotlightId);
     if(sp)atlasRenderWishSpotlight(sp);
     return;
   }
@@ -7939,7 +7934,7 @@ document.addEventListener('click',event=>{
   if(photoStep){
     event.stopPropagation();
     atlasSpotlightPhotoIdx+=Number(photoStep.dataset.wishPhotoStep)||1;
-    const sp=atlasWishSpots().find(w=>w.id===atlasSpotlightId);
+    const sp=atlasCombinedFootprints().wishSpots.find(w=>w.id===atlasSpotlightId);
     if(sp)atlasRenderWishSpotlight(sp);
     return;
   }
@@ -7972,48 +7967,7 @@ document.addEventListener('click',event=>{
     atlasFit();
     return;
   }
-  const camBtn=event.target.closest('[data-atlas-cam]');
-  if(camBtn&&atlasMap){
-    const cam=camBtn.dataset.atlasCam;
-    const data=atlasCombinedFootprints();
-    if(cam==='all'||cam==='world'){atlasCloseWishSpotlight(false);atlasClearCountryDrill(false);atlasFit();return;}
-    if(cam==='wish'){
-      atlasCloseWishSpotlight(false);
-      atlasClearCountryDrill(false);
-      atlasLayerMode='wish';
-      atlasStatusFilter='wish';
-      document.querySelectorAll('[data-atlas-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.atlasMode==='wish')));
-      if($('atlasToggleWish'))$('atlasToggleWish').checked=true;
-      atlasRenderHome();
-      const ws=data.wishSpots.filter(w=>atlasMatchWishTheme(w,atlasWishTheme)&&(typeof atlasMatchSeason!=='function'||atlasMatchSeason(w,atlasSeasonFilter)));
-      if(ws.length)atlasMap.fitBounds(L.latLngBounds(ws.map(w=>atlasMapCoord(w.lat,w.lng))),{padding:[36,48],maxZoom:5});
-      return;
-    }
-    if(cam==='china'){
-      atlasCloseWishSpotlight(false);
-      const chnFeat=atlasGetWorldFeatureByA3('CHN');
-      if(chnFeat){atlasDrillIntoCountry(chnFeat,null,0);return;}
-      atlasMap.setView([34,108],4);
-      return;
-    }
-    if(cam==='japan'){
-      atlasCloseWishSpotlight(false);
-      const jpnFeat=atlasGetWorldFeatureByA3('JPN');
-      if(jpnFeat){atlasDrillIntoCountry(jpnFeat,null,0);return;}
-      atlasMap.setView([35.6,139.5],7);
-      return;
-    }
-    if(cam==='loop'){
-      atlasCloseWishSpotlight(false);
-      atlasClearCountryDrill(false);
-      if(atlasLayerMode==='visited'||atlasLayerMode==='wish'){
-        atlasLayerMode='all';
-        document.querySelectorAll('[data-atlas-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.atlasMode==='all')));
-        atlasRenderHome();
-      }
-      if(data.loopStops.length)atlasMap.fitBounds(L.latLngBounds(data.loopStops.map(c=>[c.lat,c.lng])),{padding:[36,48],maxZoom:5});
-      return;
-    }
+  if(atlasMap&&event.target.closest('[data-atlas-cam="all"]')){
     atlasCloseWishSpotlight(false);
     atlasClearCountryDrill(false);
     atlasFit();
@@ -8036,7 +7990,7 @@ document.addEventListener('click',event=>{
     if(wasWish||nextWish){
       atlasRenderHome();
       if(nextWish&&atlasMap){
-        const ws=atlasWishSpots();
+        const ws=atlasCombinedFootprints().wishSpots;
         if(ws.length)atlasMap.fitBounds(L.latLngBounds(ws.map(w=>[w.lat,w.lng])),{padding:[36,48],maxZoom:5});
       }
     }else{
@@ -8152,7 +8106,7 @@ document.addEventListener('click',event=>{
     if(action==='add-visit')atlasOpenStopEditor('',null,true);
     if(action==='add-wish')atlasOpenWishEditor(null);
     if(action==='edit-wish'){
-      const sp=atlasWishSpots().find(w=>w.id===entry.dataset.wishId);
+      const sp=atlasCombinedFootprints().wishSpots.find(w=>w.id===entry.dataset.wishId);
       if(sp)atlasOpenWishEditor(sp);
     }
     if(action==='complete-wish')atlasCompleteWish(entry.dataset.wishId);

@@ -78,7 +78,7 @@ function atlasGetSpotSeasonInfo(spot) {
   if (/薰衣草|花火|夏祭|夏日|海岛|湘南|角马/.test(txt)) return { seasons: ['summer'], bestMonths: [6, 7, 8], badge: '🌿 盛夏限定风物' };
   if (/红叶|枫|万圣|亡灵节|金秋/.test(txt)) return { seasons: ['autumn'], bestMonths: [10, 11], badge: '🍁 深秋光影最佳' };
   if (spot.lineId === 'line-gothic') return { seasons: ['autumn', 'winter'], bestMonths: [10, 11, 12], badge: '🍁 秋冬阴翳雾气氛围佳' };
-  if (spot.lineId === 'line-seasia-gods') return { seasons: ['winter'], bestMonths: [11, 12, 1, 2], badge: '❄️ 11–2月旱季凉爽宜行' };
+  if (spot.lineId === 'line-seasia-gods' || ['wish-wat-rong-khun', 'wish-sala-keoku', 'wish-bali-gwk'].includes(spot.id)) return { seasons: ['winter'], bestMonths: [11, 12, 1, 2], badge: '❄️ 11–2月旱季凉爽宜行' };
   if (spot.lineId === 'line-ruins' && spot.lat < 36 && spot.lat > 18) return { seasons: ['autumn', 'winter', 'spring'], bestMonths: [11, 12, 1, 2, 3], badge: '🍁 11–3月避暑访古季' };
   if (spot.lat > 52) return { seasons: ['summer'], bestMonths: [6, 7, 8], badge: '🌿 6–8月高纬长日照季' };
   return { seasons: ['spring', 'autumn'], bestMonths: [4, 5, 10, 11], badge: '🌸🍁 春秋气候舒适' };
