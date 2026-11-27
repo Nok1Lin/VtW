@@ -567,7 +567,17 @@ body{background:var(--bg);color:var(--txt);transition:background .2s,color .2s}
 .atlas-mini-pill.is-planned{background:color-mix(in srgb,var(--orange) 12%,var(--panel));border-color:color-mix(in srgb,var(--orange) 30%,var(--line));color:var(--orange)}
 
 /* Streamlined Explorer below stats */
-.atlas-explorer-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,.9fr);gap:12px;margin-top:12px;align-items:start}
+#atlasVisitInfo{margin-top:12px}
+.atlas-visit-heading,.atlas-visit-photos-header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.atlas-visit-heading h3,.atlas-visit-photos-header h4{margin:0}
+.atlas-visit-heading select{max-width:100%;color:var(--txt);background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:5px 8px}
+.atlas-visit-note{white-space:pre-wrap;overflow-wrap:anywhere}
+.atlas-visit-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,180px),1fr));gap:8px;margin-top:8px}
+.atlas-visit-photo{padding:0;overflow:hidden;border:1px solid var(--line);border-radius:9px;background:var(--panel2);cursor:zoom-in}
+.atlas-visit-photo img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.atlas-visit-upload{position:relative;overflow:hidden;cursor:pointer}
+.atlas-visit-upload input{position:absolute;inset:0;width:100%;opacity:0;cursor:pointer}
+.atlas-visit-upload:focus-within{outline:2px solid var(--accent)}
 .atlas-filter-bar{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid var(--line)}
 .atlas-filter-tabs{display:flex;gap:4px;flex-wrap:wrap}
 .atlas-filter-tab{font-size:11px;padding:4px 9px;border-radius:7px;border:1px solid var(--line);background:var(--bg);color:var(--muted);font-weight:650}
@@ -596,7 +606,6 @@ body{background:var(--bg);color:var(--txt);transition:background .2s,color .2s}
 .atlas-tl-item{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:7px 11px;display:flex;align-items:center;justify-content:space-between;gap:8px;cursor:pointer;content-visibility:auto;contain-intrinsic-size:0 72px}
 .atlas-tl-item[aria-pressed="true"]{border-color:var(--accent);background:var(--panel2)}
 
-.atlas-detail-panel{position:sticky;top:16px}
 .atlas-detail-hero{padding:11px 13px;border-radius:10px;background:var(--bg);border:1px solid var(--line);margin-bottom:10px}
 .atlas-detail-hero h3{font-size:17px;margin:3px 0;color:var(--txt)}
 .atlas-quick-journal{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);display:grid;gap:7px}
@@ -816,7 +825,7 @@ body[data-theme="fjord"] .atlas-map-shell:not(.is-night-bm):not(.is-street-zoom)
 .wish-lightbox img{display:block;max-width:min(92vw,960px);max-height:78vh;width:auto;height:auto;margin:0 auto;background:#0b1017}
 .wish-lightbox-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 14px;border-top:1px solid var(--line);font-size:12px}
 
-@media(max-width:1100px){.atlas-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.atlas-explorer-grid{grid-template-columns:1fr}}
+@media(max-width:1100px){.atlas-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.atlas-kpi-grid{grid-template-columns:1fr}.atlas-cards-wall{grid-template-columns:1fr}.atlas-wish-spotlight{left:8px;right:8px;bottom:34px;width:auto;max-height:62%}}
 #cloudSyncQuickBtn.is-dirty{border-color:var(--accent);color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--panel));font-weight:750}
 .cloud-sync-card{margin-bottom:14px;border-color:color-mix(in srgb,var(--accent) 34%,var(--line))}
@@ -893,34 +902,10 @@ body[data-theme="fjord"] .atlas-map-shell:not(.is-night-bm):not(.is-street-zoom)
   </div>
   <div id="atlasHomeMap"></div>
   <div id="atlasPolarMap" class="atlas-map-shell" role="region" aria-label="跨极拼接地图" hidden></div>
+  <section class="card atlas-list-card" id="atlasVisitInfo" aria-label="地图选中地点" aria-live="polite"></section>
   <div id="atlasMapQuickBar" class="atlas-map-quickbar" aria-label="季节灵感与片状快切"></div>
   <p id="atlasSummary" class="muted small" style="margin:8px 2px 0"></p>
   <div id="atlasDashboard" class="atlas-dashboard" aria-label="全球探索进度统计"></div>
-  <div class="atlas-explorer-grid">
-    <section class="card atlas-list-card">
-      <div class="atlas-filter-bar">
-        <div class="atlas-filter-tabs" id="atlasStatusTabs" role="group" aria-label="足迹状态筛选">
-          <button type="button" class="atlas-filter-tab active" data-atlas-status="all">全部</button>
-          <button type="button" class="atlas-filter-tab" data-atlas-status="visited">✓ 已到访</button>
-          <button type="button" class="atlas-filter-tab" data-atlas-status="planned">🧭 计划</button>
-          <button type="button" class="atlas-filter-tab" data-atlas-status="wish">✦ 想去地点</button>
-        </div>
-        <div class="atlas-search-wrap">
-          <select id="atlasCountrySelect" class="atlas-select-in" aria-label="按国家或省份筛选"><option value="all">全部国家 / 省份</option></select>
-          <select id="atlasTripFilter" class="atlas-select-in" aria-label="按旅程或年份筛选"><option value="all">全部旅程</option></select>
-          <input id="atlasSearchInput" class="atlas-search-in" type="search" placeholder="搜地点 / 番名 / 意象…" aria-label="搜索足迹与圣地">
-          <div class="atlas-filter-tabs" role="group" aria-label="视图切换">
-            <button type="button" class="atlas-filter-tab active" data-atlas-viewmode="cards" title="卡片视图">▦</button>
-            <button type="button" class="atlas-filter-tab" data-atlas-viewmode="timeline" title="时间轴视图">⋮</button>
-            <button type="button" class="atlas-filter-tab" data-atlas-viewmode="compact" title="紧凑列表">☰</button>
-          </div>
-        </div>
-      </div>
-      <div id="atlasWishThemes" class="wish-theme-bar" hidden></div>
-      <div id="atlasVisits"></div>
-    </section>
-    <section class="card atlas-list-card atlas-detail-panel" id="atlasVisitInfo" aria-live="polite"></section>
-  </div>
   <details class="atlas-legacy" id="atlasLegacy" hidden><summary id="atlasLegacySummary"></summary><p id="atlasLegacyCountries"></p></details>
 </section>
 <section id="trips" class="section">
@@ -1599,7 +1584,6 @@ body[data-theme="fjord"] .atlas-map-shell:not(.is-night-bm):not(.is-street-zoom)
     </div>
     <div class="right">
       <span class="tag" id="wishlistCounter"></span>
-      <span class="tag gray" id="taskCounter"></span>
     </div>
   </div>
 
@@ -1616,39 +1600,6 @@ body[data-theme="fjord"] .atlas-map-shell:not(.is-night-bm):not(.is-street-zoom)
       <input class="inline-in" style="flex:1;min-width:180px" id="newWishTitle" placeholder="新增想做的事…">
       <input class="inline-in" style="flex:1;min-width:180px" id="newWishQuote" placeholder="地点（选填）">
       <button class="btn primary" id="addWishBtn" type="button">+ 添加</button>
-    </div>
-  </div>
-
-  <div class="grid2 mt">
-    <div class="card">
-      <div class="heading">
-        <div>
-          <h2>2027 环线筹备待办</h2>
-          <p>路线、装备、签证与体能核对清单</p>
-        </div>
-      </div>
-      <div id="tasksBox"></div>
-      <div class="rowline"></div>
-      <div class="right">
-        <input class="inline-in" style="flex:1" id="newTask" placeholder="例如：比较 Exos Pro S/M 腰带适配">
-        <button class="btn primary" id="addTask">添加</button>
-      </div>
-    </div>
-    <div class="card">
-      <div class="heading">
-        <div>
-          <h2>核心信条与自由决策笔记</h2>
-          <p>摘自 2026-09-10 & 10-28 日记自我侧写</p>
-        </div>
-      </div>
-      <div class="log"><strong>“世界这么大，我还想再多懂一点，也还想再多活一点”</strong><div class="muted small">“只要想去，有这个念头就可以去，所谓嫌麻烦骗自己罢了。我的旅游需要一个故事——想要狂风暴雪、想要一览众山小、想要 conquer。”（<code>2026-09-10</code> / <code>10-28</code> / <code>11-12</code>）</div></div>
-      <div class="log"><strong>行动半径与财务自由</strong><div class="muted small">“以后有钱并不主要意味着豪宅或炫耀，而更接近于有足够大的行动半径：想去哪里就能去，想学什么就能学，看到喜欢的东西可以买下来。”（<code>2026-09-10</code>）</div></div>
-      <div class="log"><strong>轻量化优先 · 已有装备不重复采购</strong><div class="muted small">旅行 / 徒步各半，目标背包 45–55L；BJZE 大羽绒、MH100 抓绒、挪客氦 25L、软壳冲锋衣、遮阳帽等已购入。</div></div>
-      <div class="rowline"></div>
-      <div class="field">
-        <label for="decisionNote">自由决策笔记（本机保存）</label>
-        <textarea id="decisionNote" placeholder="例如：想走的国家、可接受的旅行总预算、准备购入的装备……"></textarea>
-      </div>
     </div>
   </div>
 </section>
@@ -1682,7 +1633,7 @@ body[data-theme="fjord"] .atlas-map-shell:not(.is-night-bm):not(.is-street-zoom)
 <script>
 'use strict';
 const VERSION='aea-2027-v1';
-const sections=[['atlas','全球足迹'],['trips','我的路线'],['map','亚欧非环线'],['decisions','TODO'],['gear','装备清单'],['schedule','日期与交通'],['budget','旅行预算'],['library','旅途资料'],['load','负重模拟'],['data','备份导出']];
+const sections=[['atlas','全球足迹'],['trips','我的路线'],['map','亚欧非环线'],['decisions','TODO'],['gear','装备bank'],['schedule','日期与交通'],['budget','旅行预算'],['library','旅途资料'],['load','负重模拟'],['data','备份导出']];
 const packOptions=[{id:'exospro',name:'Osprey Exos Pro 55',price:1594.13,kg:.94,max:13.6,note:'天猫国际韩国直邮页面优惠展示价；未下单'}, {id:'exos48',name:'Osprey Exos 48',price:1400,kg:1.26,max:14,note:'目标价，不是目前确认的可购买价格'}, {id:'wind',name:'凯乐石风洞 48+5L',price:1780,kg:1.52,max:16,note:'此前询价，尚未购买'}];
 const seedGear=[
 ['家庭赞助','hardshell','拓路者朱雀 PRO 硬壳上衣 · 亮色',694,'family','双12待购','quoted',1],
@@ -2126,17 +2077,16 @@ const gearSum=f=>selected().filter(x=>!f||x.fund===f).reduce((s,x)=>s+nnum(x.pri
 const travelBase=()=>state.budget.reduce((s,x)=>s+(x.mode==='daily'?nnum(state.days)*nnum(x.price):nnum(x.price)),0);
 const travelTotal=()=>travelBase()*(1+nnum(state.reserve)/100);
 const weightTotal=()=>bag().kg+Object.values(state.weights).reduce((a,b)=>a+nnum(b),0)+nnum(state.water)+nnum(state.food);
-const todo=()=>state.tasks.filter(x=>!x.done).length;
 let atlasDataRev=1,atlasFootprintsCache=null;
 const atlasContinentCache=new Map(),atlasCountryA3Cache=new Map(),atlasThemeColorCache=new Map();
-function persist(markDirty=true){atlasDataRev++;try{localStorage.setItem(VERSION,JSON.stringify(state));if(markDirty!==false){localStorage.setItem('vtw_local_updated_at',String(Date.now()));localStorage.setItem('vtw_cloud_dirty','1');}$('saveIndicator').textContent='● 已保存到本机'}catch(e){$('saveIndicator').textContent='未保存：浏览器限制'}if(typeof vtwUpdateCloudUi==='function')vtwUpdateCloudUi();}
+function persist(markDirty=true){atlasDataRev++;let saved=false;try{localStorage.setItem(VERSION,JSON.stringify(state));saved=true;if(markDirty!==false){localStorage.setItem('vtw_local_updated_at',String(Date.now()));localStorage.setItem('vtw_cloud_dirty','1');}$('saveIndicator').textContent='● 已保存到本机'}catch(e){$('saveIndicator').textContent='未保存：浏览器限制'}if(typeof vtwUpdateCloudUi==='function')vtwUpdateCloudUi();return saved;}
 function renderNav(){
   const primaryKeys=['atlas','decisions','gear','data'];
   const primary=sections.filter(([k])=>primaryKeys.includes(k));
   const secondary=sections.filter(([k])=>!['atlas','map','trips','decisions','gear','data'].includes(k));
   const isSecActive=secondary.some(([k])=>k===active);
   const plannedTrips=(Array.isArray(state.travelTrips)?state.travelTrips:[]).filter(t=>t.status!=='done');
-  const btnHtml=([key,title])=>`<button data-view="${key}" ${active===key?'aria-current="page"':''} class="${active===key?'active':''}">${key==='gear'?'装备总览':title}</button>`;
+  const btnHtml=([key,title])=>`<button data-view="${key}" ${active===key?'aria-current="page"':''} class="${active===key?'active':''}">${title}</button>`;
   const routesGroupHtml=`<div class="nav-routes-group">
     <button type="button" class="nav-routes-head ${(active==='map'||active==='trips')?'active':''}" data-nav-routes-toggle aria-expanded="${navTripsOpen}">
       <span>我的路线</span><span class="nav-caret">${navTripsOpen?'▴':'▾'}</span>
@@ -2183,7 +2133,7 @@ function render(){
   if(active==='budget')renderBudget();
   if(active==='gear')renderGear();
   if(active==='load')renderLoad();
-  if(active==='decisions')renderTasks();
+  if(active==='decisions')renderWishlist();
 }
 function metric(key,val,detail){return `<div class="card metric"><div class="key">${key}</div><div class="value">${val}</div><div class="detail">${detail}</div></div>`}
 function renderRoute(){$('routeBody').innerHTML=state.legs.map((x,i)=>`<tr><td><select class="inline-in" data-leg="${i}" data-key="region"><option ${x.region==='亚洲'?'selected':''}>亚洲</option><option ${x.region==='欧洲'?'selected':''}>欧洲</option><option ${x.region==='非洲'?'selected':''}>非洲</option></select></td><td><input class="inline-in" data-leg="${i}" data-key="country" value="${esc(x.country)}" placeholder="国家待定"></td><td><input class="inline-in" data-leg="${i}" data-key="city" value="${esc(x.city)}" placeholder="城市/路线"></td><td><input class="inline-in" data-leg="${i}" data-key="from" value="${esc(x.from)}" type="date"></td><td><input class="inline-in" data-leg="${i}" data-key="to" value="${esc(x.to)}" type="date"></td><td><input class="inline-in" data-leg="${i}" data-key="note" value="${esc(x.note)}" placeholder="交通/签证待查"></td><td><button class="btn tiny danger" data-remove-leg="${i}">删除</button></td></tr>`).join('');$('legCount').textContent=state.legs.filter(x=>x.country.trim()).length+' 站（共 '+state.legs.length+' 段）';$('startDate').value=state.windowStart;$('endDate').value=state.windowEnd;$('duration').value=state.days;renderMap();$('guideEntryCount').textContent=guideSourceEntries.length+'条记录 · '+guideStops.length+'个顺序节点'}
@@ -2578,10 +2528,7 @@ if(!Array.isArray(state.wishlist)||!state.wishlistSeeded_20261124_v2){
   state.wishlistSeeded_20261124_v2=true;
   try{localStorage.setItem(VERSION,JSON.stringify(state))}catch(e){}
 }
-function renderTasks(){
-  $('taskCounter').textContent=`筹备待办 ${state.tasks.length-todo()} / ${state.tasks.length}`;
-  $('tasksBox').innerHTML=state.tasks.map(x=>`<div class="task ${x.done?'done':''}"><input class="check" type="checkbox" ${x.done?'checked':''} data-task="${x.id}"><span class="taskname" style="flex:1">${esc(x.name)}</span><button class="btn tiny ghost" data-remove-task="${x.id}">删除</button></div>`).join('');
-  $('decisionNote').value=state.notes;
+function renderWishlist(){
   const wishes=state.wishlist||[];
   const doneCount=wishes.filter(x=>x.done).length;
   if($('wishlistCounter'))$('wishlistCounter').textContent=`TODO ${doneCount} / ${wishes.length}`;
@@ -2610,16 +2557,14 @@ document.addEventListener('click',e=>{
   target.focus({preventScroll:true});
   target.scrollIntoView({block:'start'});
 });
-document.addEventListener('click',e=>{let x=e.target.closest('[data-nav-routes-toggle]');if(x){navTripsOpen=!navTripsOpen;renderNav();return}x=e.target.closest('[data-nav-route]');if(x){navTripsOpen=true;view(x.dataset.navRoute);return}x=e.target.closest('[data-nav-trip]');if(x){navTripsOpen=true;atlasTripId=x.dataset.navTrip;view('trips');return}x=e.target.closest('[data-view]');if(x){view(x.dataset.view);return}x=e.target.closest('[data-wish-cat]');if(x){wishFilterCat=x.dataset.wishCat;renderTasks();return}x=e.target.closest('[data-remove-wish]');if(x){state.wishlist=(state.wishlist||[]).filter(w=>String(w.id)!==String(x.dataset.removeWish));persist();renderTasks();return}x=e.target.closest('[data-remove-leg]');if(x){state.legs.splice(Number(x.dataset.removeLeg),1);persist();renderRoute();return}x=e.target.closest('[data-remove-task]');if(x){state.tasks=state.tasks.filter(t=>t.id!==Number(x.dataset.removeTask));persist();renderTasks();return}});
-document.addEventListener('change',e=>{let t=e.target,ds=t.dataset; if(ds.wishCheck){const w=(state.wishlist||[]).find(x=>String(x.id)===String(ds.wishCheck));if(w){w.done=t.checked;persist();renderTasks();}return}if(ds.leg!==undefined){state.legs[+ds.leg][ds.key]=t.value;persist();return}if(ds.budgetMode!==undefined){state.budget[+ds.budgetMode].mode=t.value;persist();renderBudget();return}if(ds.budgetPrice!==undefined){state.budget[+ds.budgetPrice].price=nnum(t.value);persist();renderBudget();return}if(ds.gearCheck){state.gear.find(x=>x.id===ds.gearCheck).selected=t.checked;persist();renderGear();return}if(ds.gearWeight){state.gear.find(x=>x.id===ds.gearWeight).weightKg=t.value.trim()===''?null:Math.max(0,nnum(t.value));persist();renderGear();return}if(ds.gearPrice){state.gear.find(x=>x.id===ds.gearPrice).price=t.value.trim()===''?null:nnum(t.value);persist();renderGear();return}if(ds.weight){state.weights[ds.weight]=nnum(t.value);persist();renderLoad();return}if(ds.task){state.tasks.find(x=>x.id===Number(ds.task)).done=t.checked;persist();renderTasks();return}
-switch(t.id){case'startDate':state.windowStart=t.value;break;case'endDate':state.windowEnd=t.value;break;case'duration':state.days=Math.round(nnum(t.value));break;case'reservePct':state.reserve=nnum(t.value);break;case'waterL':state.water=nnum(t.value);break;case'foodKg':state.food=nnum(t.value);break;case'bagSelect':state.bag=t.value;break;case'bagIncluded':state.bagIncluded=t.checked;break;case'decisionNote':state.notes=t.value;break;default:return}persist();render()});
+document.addEventListener('click',e=>{let x=e.target.closest('[data-nav-routes-toggle]');if(x){navTripsOpen=!navTripsOpen;renderNav();return}x=e.target.closest('[data-nav-route]');if(x){navTripsOpen=true;view(x.dataset.navRoute);return}x=e.target.closest('[data-nav-trip]');if(x){navTripsOpen=true;atlasTripId=x.dataset.navTrip;view('trips');return}x=e.target.closest('[data-view]');if(x){view(x.dataset.view);return}x=e.target.closest('[data-wish-cat]');if(x){wishFilterCat=x.dataset.wishCat;renderWishlist();return}x=e.target.closest('[data-remove-wish]');if(x){state.wishlist=(state.wishlist||[]).filter(w=>String(w.id)!==String(x.dataset.removeWish));persist();renderWishlist();return}x=e.target.closest('[data-remove-leg]');if(x){state.legs.splice(Number(x.dataset.removeLeg),1);persist();renderRoute();return}});
+document.addEventListener('change',e=>{let t=e.target,ds=t.dataset; if(ds.wishCheck){const w=(state.wishlist||[]).find(x=>String(x.id)===String(ds.wishCheck));if(w){w.done=t.checked;persist();renderWishlist();}return}if(ds.leg!==undefined){state.legs[+ds.leg][ds.key]=t.value;persist();return}if(ds.budgetMode!==undefined){state.budget[+ds.budgetMode].mode=t.value;persist();renderBudget();return}if(ds.budgetPrice!==undefined){state.budget[+ds.budgetPrice].price=nnum(t.value);persist();renderBudget();return}if(ds.gearCheck){state.gear.find(x=>x.id===ds.gearCheck).selected=t.checked;persist();renderGear();return}if(ds.gearWeight){state.gear.find(x=>x.id===ds.gearWeight).weightKg=t.value.trim()===''?null:Math.max(0,nnum(t.value));persist();renderGear();return}if(ds.gearPrice){state.gear.find(x=>x.id===ds.gearPrice).price=t.value.trim()===''?null:nnum(t.value);persist();renderGear();return}if(ds.weight){state.weights[ds.weight]=nnum(t.value);persist();renderLoad();return}
+switch(t.id){case'startDate':state.windowStart=t.value;break;case'endDate':state.windowEnd=t.value;break;case'duration':state.days=Math.round(nnum(t.value));break;case'reservePct':state.reserve=nnum(t.value);break;case'waterL':state.water=nnum(t.value);break;case'foodKg':state.food=nnum(t.value);break;case'bagSelect':state.bag=t.value;break;case'bagIncluded':state.bagIncluded=t.checked;break;default:return}persist();render()});
 $('addLeg').onclick=()=>{state.legs.push({id:Date.now(),region:'亚洲',country:'',city:'',from:'',to:'',note:''});persist();renderRoute()};
 $('zeroBudget').onclick=()=>{if(confirm('将所有旅行费用输入归零？')){state.budget.forEach(x=>x.price=0);persist();renderBudget()}};
 $('gearCore').onclick=()=>{state.gear.forEach(x=>x.selected=seedGear.find(v=>v.id===x.id)?.selected||false);persist();renderGear()};
 $('gearAll').onclick=()=>{state.bagIncluded=true;state.gear.forEach(x=>x.selected=x.price!==null);persist();renderGear()};
 $('gearNone').onclick=()=>{state.bagIncluded=false;state.gear.forEach(x=>x.selected=false);persist();renderGear()};
-$('addTask').onclick=()=>{let name=$('newTask').value.trim();if(!name)return;state.tasks.push({id:Date.now(),name,done:false});$('newTask').value='';persist();renderTasks()};
-$('newTask').addEventListener('keydown',e=>{if(e.key==='Enter')$('addTask').click()});
 if($('addWishBtn'))$('addWishBtn').onclick=()=>{
   const title=$('newWishTitle').value.trim();
   if(!title)return;
@@ -2630,11 +2575,9 @@ if($('addWishBtn'))$('addWishBtn').onclick=()=>{
   $('newWishTitle').value='';
   if($('newWishQuote'))$('newWishQuote').value='';
   persist();
-  renderTasks();
+  renderWishlist();
 };
 if($('newWishTitle'))$('newWishTitle').addEventListener('keydown',e=>{if(e.key==='Enter')$('addWishBtn')?.click()});
-let decisionNoteSaveTimer=0;
-$('decisionNote').addEventListener('input',e=>{state.notes=e.target.value;if(decisionNoteSaveTimer)clearTimeout(decisionNoteSaveTimer);decisionNoteSaveTimer=setTimeout(()=>{decisionNoteSaveTimer=0;persist();},300);});
 $('exportJson').onclick=()=>download('我的旅行地图_数据备份.json',JSON.stringify({version:VERSION,exportedAt:new Date().toISOString(),state},null,2),'application/json');
 $('exportCsv').onclick=()=>{let rows=[['类别','装备','纳入预算','承担方','价格元','价格类别','状态'],...state.gear.map(x=>[x.group,x.name,x.selected?'是':'否',x.fund==='family'?'家庭':'个人',x.price??'',x.type,x.status]),['背包',bag().name,state.bagIncluded?'是':'否','个人',bag().price,'对应选定候选',bag().note]];download('2027装备清单.csv','\ufeff'+rows.map(x=>x.map(csvCell).join(',')).join('\r\n'),'text/csv;charset=utf-8')};
 $('importJson').onchange=async e=>{let f=e.target.files?.[0];if(!f)return;try{let data=JSON.parse(await f.text());if(!data.state||!Array.isArray(data.state.legs)||!Array.isArray(data.state.gear))throw Error('格式不正确');if(!confirm('导入将覆盖当前保存的数据，继续吗？'))return;state=Object.assign(init(),data.state);vtwAddRequestedVisits(state);trRouteId=storedTrace();trIndex=0;trFocusedCountry='';if(!Array.isArray(state.pins))state.pins=[];if(!Array.isArray(state.doneGoodieIds))state.doneGoodieIds=[];if(!state.customGoodies||typeof state.customGoodies!=='object')state.customGoodies={};if(!state.routeLayers)state.routeLayers={silk:true,mediterranean:true,ancient:true};atlasDataRev++;persist();view('map');alert('导入成功')}catch(err){alert('导入失败：'+err.message)}finally{e.target.value=''}};
@@ -3912,7 +3855,7 @@ let atlasWorldLayer=null, atlasChinaLayer=null, atlasAdmin1Layer=null, atlasMajo
 let atlasDrilledCountry=null, atlasPreDrillView=null, atlasMajorCityEntries=[], atlasWishLabelEntries=[], atlasDistrictEntries=[], atlasSelectedDistrictId='', atlasDistrictRenderKey='', atlasTravelZoomTier=-1, vtwBooted=false;
 let atlasSpotlightId='', atlasSpotlightPhotoIdx=0, atlasWishPreView=null, atlasWishTheme='all', atlasUploadedWishPhoto='';
 let atlasFeatures={type:'FeatureCollection',features:[]}, atlasVisibleStops=new Map();
-let atlasLayerMode='all', atlasViewMode='cards', atlasStatusFilter='all', atlasCountryChip='all', atlasTripChip='all', atlasSearchQuery='';
+let atlasLayerMode='all', atlasSelectedVisit=null;
 const atlasGeoCache=new Map(), atlasBoundaryCache=new Map(), atlasProvinceCache=new Map();
 
 const ATLAS_WISH_CAT_META={
@@ -4227,7 +4170,6 @@ function atlasPickCapsule(cap,off=0){
   atlasCloseWishSpotlight(false);
   if(atlasWishTheme===key){atlasWishTheme='all';atlasRenderHome();atlasFit();return;}
   atlasWishTheme=key;
-  if(atlasStatusFilter!=='wish')atlasStatusFilter='wish';
   atlasRenderHome();
   if(cap.fitBounds&&atlasMap){
     const b=cap.fitBounds;
@@ -5244,7 +5186,7 @@ function atlasUpdateLockOnDrillBar(a3,loadingGeo=false){
   const backAll=bar.querySelector('[data-lockon-back]');
   if(backAll)backAll.onclick=(e)=>{
     e.stopPropagation();
-    atlasActiveSubPatch=null;atlasCountryChip='all';
+    atlasActiveSubPatch=null;
     const off=atlasDrilledCountry?.lonOffset||0;
     const [[s,w],[n,e2]]=meta.fitBounds;
     if(atlasMap)atlasMap.fitBounds([[s,w+off],[n,e2+off]],{padding:[28,36],maxZoom:meta.maxZoom||7,animate:true});
@@ -5409,7 +5351,6 @@ function atlasPickLockOnSubUnit(a3,regId,subName,layer){
   }
   const off=atlasDrilledCountry?.lonOffset||0;
   atlasActiveSubPatch={kind:'region-patch',a3,reg,subName};
-  atlasCountryChip='all';
   if(layer&&typeof layer.getBounds==='function'){
     const b=layer.getBounds();
     if(b.isValid())atlasMap.fitBounds(b,{padding:[26,32],maxZoom:a3==='USA'?7:10,animate:true});
@@ -5430,7 +5371,6 @@ function atlasFocusLockOnRegion(a3,regId){
   }
   const off=atlasDrilledCountry?.lonOffset||0;
   atlasActiveSubPatch={kind:'region-patch',a3,reg,subName:''};
-  atlasCountryChip='all';
   if(a3==='CHN'){
     const [[s,w],[n,e]]=reg.bounds;
     const [swLat,swLng]=atlasMapCoord(s,w);
@@ -5466,26 +5406,19 @@ function atlasDrillIntoChinaProv(feature,layer){
   if(atlasActiveSubPatch?.kind==='cn-prov'&&atlasActiveSubPatch.name===name){
     if(pReg){
       atlasFocusLockOnRegion('CHN',pReg.id);
-      const data=atlasCombinedFootprints();
-      atlasRenderExplorerList(data);
       return;
     }
     atlasActiveSubPatch=null;
-    atlasCountryChip='all';
     const off=atlasDrilledCountry?.lonOffset||0;
     atlasMap.fitBounds([[18.1,73.5+off],[53.6,135.1+off]],{padding:[28,36],maxZoom:7,animate:true});
     if(atlasChinaLayer)atlasChinaLayer.setStyle(atlasChinaProvinceStyle);
     atlasRenderLockOnRegions('CHN',off);
     const data=atlasCombinedFootprints();
-    atlasRenderExplorerList(data);
     atlasRenderRegionSheet({kind:'country',a3:'CHN',nameZh:'中国',nameEn:'China'});
     atlasRenderMapQuickBar(data);
     return;
   }
   atlasActiveSubPatch={kind:'cn-prov',name,reg:pReg||null};
-  atlasCountryChip='prov:'+name;
-  const sel=$('atlasCountrySelect');
-  if(sel&&[...sel.options].some(o=>o.value===atlasCountryChip))sel.value=atlasCountryChip;
   const lyr=layer||atlasFindChinaProvLayer(name);
   if(lyr&&typeof lyr.getBounds==='function'){
     const b=lyr.getBounds();
@@ -5494,7 +5427,6 @@ function atlasDrillIntoChinaProv(feature,layer){
   if(atlasChinaLayer)atlasChinaLayer.setStyle(atlasChinaProvinceStyle);
   atlasRenderLockOnRegions('CHN',atlasDrilledCountry?.lonOffset||0);
   const data=atlasCombinedFootprints();
-  atlasRenderExplorerList(data);
   atlasRenderRegionSheet({kind:'cn-prov',name});
   atlasRenderMapQuickBar(data);
 }
@@ -5589,7 +5521,7 @@ function atlasRerenderSheet(){
   if(atlasLastSheet?.type==='region')atlasRenderRegionSheet(atlasLastSheet.ctx);
   else if(atlasLastSheet?.type==='place'){
     const data=atlasCombinedFootprints();
-    const p=data.allCities.find(c=>c.id===atlasLastSheet.place.id)||atlasLastSheet.place;
+    const p=atlasSelectedPlace(data)||atlasLastSheet.place;
     atlasRenderPlaceInfo(p);
   }
 }
@@ -6084,10 +6016,22 @@ function atlasClickWishNode(spotId,clickedLng=null){
   }else{
     atlasMap.setView([sLat,sLng+lonOffset],targetZoom,{animate:true});
   }
-  $('atlasVisits')?.querySelectorAll('[data-atlas-place]').forEach(btn=>
-    btn.setAttribute('aria-pressed',String(btn.dataset.atlasPlace===String(spot.id))));
   atlasRenderPlaceInfo(spot);
   atlasRenderWishSpotlight(spot);
+}
+
+function atlasSetLayerMode(mode){
+  atlasLayerMode=mode;
+  document.querySelectorAll('[data-atlas-mode]').forEach(button=>
+    button.setAttribute('aria-pressed',String(button.dataset.atlasMode===mode)));
+  atlasCloseWishSpotlight(false);
+  atlasRenderHome();
+  atlasFit();
+}
+
+function atlasSelectedPlace(data=atlasCombinedFootprints()){
+  if(!atlasSelected)return undefined;
+  return data.allCities.find(place=>place.id===atlasSelected||place.visits?.some(visit=>visit.id===atlasSelected));
 }
 
 function atlasRenderHome(){
@@ -6099,17 +6043,14 @@ function atlasRenderHome(){
 
   atlasRenderDashboard(data,stats);
   atlasRenderMapQuickBar(data);
-  atlasRenderFilterControls(data,stats);
-  atlasRenderExplorerList(data);
 
   const legacy=Array.isArray(state.visitedCountries)?state.visitedCountries:[];
   $('atlasLegacy').hidden=!legacy.length;
   $('atlasLegacySummary').textContent=`旧版国家级足迹 · ${legacy.length} 条`;
   $('atlasLegacyCountries').textContent=legacy.join('、');
 
-  const currentPlace=data.allCities.find(stop=>stop.id===atlasSelected)||visits[0]||data.allCities[0];
-  if(currentPlace&&!atlasSelected)atlasSelected=currentPlace.id;
-  const selectedObj=data.allCities.find(stop=>stop.id===atlasSelected);
+  const selectedObj=atlasSelectedPlace(data);
+  if(selectedObj)atlasSelected=selectedObj.id;
   if(atlasLastSheet?.type==='region'&&atlasLastSheet.ctx){
     atlasRenderRegionSheet(atlasLastSheet.ctx);
   }else{
@@ -6122,271 +6063,129 @@ function atlasRenderHome(){
   atlasShowMap('atlasHomeMap','home',visits,data);
 }
 
-function atlasRenderFilterControls(data,stats){
-  const statusTabs=$('atlasStatusTabs');
-  if(statusTabs){
-    const counts={all:data.allCities.length,visited:data.visitedCities.length,planned:data.plannedCities.length,wish:data.wishSpots.length};
-    statusTabs.querySelectorAll('[data-atlas-status]').forEach(btn=>{
-      const k=btn.dataset.atlasStatus;
-      btn.classList.toggle('active',k===atlasStatusFilter);
-      const label=k==='all'?'全部':k==='visited'?'✓ 已去':k==='planned'?'🧭 计划':'✦ 想去地点';
-      btn.textContent=`${label} (${counts[k]||0})`;
-    });
-  }
-  const themeBar=$('atlasWishThemes');
-  if(themeBar){
-    const showThemes=atlasStatusFilter==='wish'||atlasLayerMode==='wish'||atlasWishTheme!=='all';
-    themeBar.hidden=!showThemes;
-    if(showThemes){
-      const ws=data.wishSpots;
-      const storylines=atlasGetStorylines();
-      const pills=[
-        ['all',`✦ 全部 (${ws.length})`,'#6941C6'],
-        ...storylines.map(sl=>{
-          const cnt=ws.filter(s=>atlasMatchWishTheme(s,'line:'+sl.id)).length;
-          return [`line:${sl.id}`,`${sl.icon} ${sl.shortTitle} (${cnt})`,sl.color];
-        }),
-        ['2027',`🟢 2027顺路 (${ws.filter(s=>atlasMatchWishTheme(s,'2027')).length})`,'#176953']
-      ];
-      const isAcgOpen=atlasWishTheme==='line:line-acg'||atlasWishTheme.startsWith('work:');
-      let workDrawerHtml='';
-      if(isAcgOpen){
-        const workMap=new Map();
-        for(const s of ws){
-          if(!s.workKey)continue;
-          const prev=workMap.get(s.workKey)||{count:0,score:0};
-          prev.count++;
-          if((s.bgmScore||0)>prev.score)prev.score=s.bgmScore||0;
-          workMap.set(s.workKey,prev);
-        }
-        const works=[...workMap.entries()].sort((a,b)=>(b[1].score-a[1].score)||(b[1].count-a[1].count)||a[0].localeCompare(b[0],'zh-CN'));
-        workDrawerHtml=`<div class="wish-work-drawer">
-          <button type="button" class="wish-work-pill ${atlasWishTheme==='line:line-acg'?'active':''}" data-wish-theme="line:line-acg">🎬 全部作品 (${works.length})</button>
-          ${works.map(([wk,meta])=>`<button type="button" class="wish-work-pill ${atlasWishTheme==='work:'+wk?'active':''}" data-wish-theme="work:${esc(wk)}">${esc(wk)}${meta.score?` <small>★${meta.score}</small>`:''}${meta.count>1?` <small>·${meta.count}</small>`:''}</button>`).join('')}
-        </div>`;
-      }
-      const activeLine=atlasWishTheme.startsWith('line:')?atlasGetStoryline(atlasWishTheme.slice(5)):null;
-      const bannerHtml=activeLine?`<div class="storyline-banner" style="--sl-color:${activeLine.color};margin-top:6px;margin-bottom:2px"><div><h4>${esc(activeLine.title)}</h4><p>${esc(activeLine.tagline)}</p></div><button type="button" class="btn tiny" data-wish-theme="all">显示全部</button></div>`:'';
-      themeBar.innerHTML=`<div style="display:flex;flex-wrap:wrap;gap:5px;width:100%">${pills.map(([k,txt,col])=>`<button type="button" class="wish-theme-pill ${(atlasWishTheme===k||(k==='line:line-acg'&&atlasWishTheme.startsWith('work:')))?'active':''}" style="--pill-color:${col}" data-wish-theme="${esc(k)}">${esc(txt)}</button>`).join('')}</div>${workDrawerHtml}${bannerHtml}`;
-    }
-  }
-  const tripSel=$('atlasTripFilter');
-  if(tripSel){
-    const years=new Set();
-    for(const c of data.allCities){
-      const y=(c.date||c.estDate||'').slice(0,4);
-      if(/^\d{4}$/.test(y))years.add(y);
-    }
-    const trips=atlasTrips();
-    const prev=atlasTripChip;
-    tripSel.innerHTML=`<option value="all">全部路线 / 年份</option>
-      <optgroup label="按旅行路线">
-        <option value="trip:${ATLAS_LOOP}">🧭 2027 亚欧非环线</option>
-        <option value="wish:all">✦ 想去地点</option>
-        ${trips.map(t=>`<option value="trip:${esc(t.id)}">${t.status==='done'?'✓':'🧭'} ${esc(t.title)}</option>`).join('')}
-      </optgroup>
-      <optgroup label="按年份">
-        ${[...years].sort((a,b)=>b.localeCompare(a)).map(y=>`<option value="year:${y}">📅 ${y} 年</option>`).join('')}
-        <option value="year:undated">⏳ 待补日期</option>
-      </optgroup>`;
-    if([...tripSel.options].some(o=>o.value===prev))tripSel.value=prev;
-    else{atlasTripChip='all';tripSel.value='all';}
-  }
-  const countrySel=$('atlasCountrySelect');
-  if(countrySel){
-    const pool=atlasStatusFilter==='visited'?data.visitedCities:atlasStatusFilter==='planned'?data.plannedCities:atlasStatusFilter==='wish'?data.wishSpots:data.allCities;
-    const byCountry=new Map();
-    for(const c of pool){
-      byCountry.set(c.country,(byCountry.get(c.country)||0)+1);
-    }
-    const prev=atlasCountryChip;
-    countrySel.innerHTML=`<option value="all">全部国家 / 省区 (${pool.length})</option>
-      <optgroup label="国家与地区">
-        ${[...byCountry.entries()].map(([c,n])=>`<option value="country:${esc(c)}">${esc(c)} (${n})</option>`).join('')}
-      </optgroup>
-      <optgroup label="中国已点亮省市区">
-        ${[...stats.visitedProvinces.entries()].map(([prov,cities])=>`<option value="prov:${esc(prov)}">🇨🇳 ${esc(atlasShortProvince(prov))} (${cities.length})</option>`).join('')}
-      </optgroup>`;
-    if([...countrySel.options].some(o=>o.value===prev))countrySel.value=prev;
-    else{atlasCountryChip='all';countrySel.value='all';}
-  }
+function atlasVisitChoices(place){
+  return place.visits?.length?place.visits:[place];
 }
 
-function atlasFilterCities(data){
-  let list=atlasStatusFilter==='visited'?data.visitedCities:atlasStatusFilter==='planned'?data.plannedCities:atlasStatusFilter==='wish'?data.wishSpots:data.allCities;
-  if(atlasWishTheme!=='all'){
-    list=list.filter(c=>c.isWish?atlasMatchWishTheme(c,atlasWishTheme):atlasStatusFilter!=='all');
-    if(atlasStatusFilter==='all')list=list.filter(c=>c.isWish&&atlasMatchWishTheme(c,atlasWishTheme));
-  }
-  if(atlasSeasonFilter!=='all'&&typeof atlasMatchSeason==='function'){
-    list=list.filter(c=>c.isWish&&atlasMatchSeason(c,atlasSeasonFilter));
-  }
-  if(atlasTripChip!=='all'){
-    if(atlasTripChip==='wish:all'){
-      list=list.filter(c=>c.isWish);
-    }else if(atlasTripChip.startsWith('trip:')){
-      const tid=atlasTripChip.slice(5);
-      list=list.filter(c=>!c.isWish&&((c.visits||[c]).some(v=>v.tripId===tid)||c.tripId===tid||(tid===ATLAS_LOOP&&c.alsoPlanned)));
-    }else if(atlasTripChip==='year:undated'){
-      list=list.filter(c=>!c.isWish&&!c.date);
-    }else if(atlasTripChip.startsWith('year:')){
-      const yr=atlasTripChip.slice(5);
-      list=list.filter(c=>!c.isWish&&(c.date||c.estDate||'').startsWith(yr));
-    }
-  }
-  if(atlasCountryChip!=='all'){
-    if(atlasCountryChip.startsWith('country:')){
-      const cn=atlasCountryChip.slice(8);
-      list=list.filter(c=>c.country===cn);
-    }else if(atlasCountryChip.startsWith('prov:')){
-      const pv=atlasCountryChip.slice(5);
-      list=list.filter(c=>c.province===pv);
-    }
-  }
-  const q=atlasSearchQuery.trim().toLowerCase();
-  if(q){
-    list=list.filter(c=>[c.name,c.country,c.region,c.work,c.summary,c.intro,...(c.aesthetics||[]),c.province,c.continent,c.note,...(c.visits||[]).map(v=>v.note+' '+v.tripTitle)].join(' ').toLowerCase().includes(q));
-  }
-  return list;
-}
-
-function atlasGuideSnippet(place){
-  const key=cityGuideKey(place.country,place.name);
-  const raw=(state.cityMarkdown&&state.cityMarkdown[key])||cityGuideDefaults[key]||'';
-  if(!raw)return '';
-  const lines=raw.split(/\r?\n/).map(l=>l.replace(/^[#>*-\s]+/,'').trim()).filter(l=>l&&!l.startsWith('[ ]')&&l.length>4);
-  return lines.slice(1,3).join(' · ').slice(0,90);
-}
-
-function atlasRenderExplorerList(data){
-  const list=atlasFilterCities(data);
-  const container=$('atlasVisits');
-  if(!container)return;
-  if(!list.length){
-    container.innerHTML='<div class="empty">当前筛选条件下没有匹配的地点。可切换上方主题标签，或点击「＋ 心愿点 / ＋ 打卡城市」添加。</div>';
-    return;
-  }
-  if(atlasViewMode==='compact'){
-    container.innerHTML=`<div class="atlas-place-list" style="max-height:460px">${list.map(stop=>{
-      if(stop.isWish){
-        return `<button class="atlas-place-button" data-atlas-place="${esc(stop.id)}" aria-pressed="${stop.id===atlasSelected}">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
-            <b>✦ ${esc(stop.name)}</b>
-            <span class="muted small">${stop.bgmScore?`★ ${stop.bgmScore}/10`:esc((spotCat=>ATLAS_WISH_CAT_META[spotCat]?.label||'心愿')(stop.category))}</span>
-          </div>
-          <small>${esc(stop.country)}${stop.work?' · '+esc(stop.work):''}</small>
+function atlasRenderVisitedJournal(panel,place){
+  const visits=atlasVisitChoices(place);
+  const chosen=visits.findIndex(visit=>visit.id===atlasSelectedVisit?.id&&visit.tripId===atlasSelectedVisit?.tripId);
+  const index=Math.max(0,chosen);
+  const visit=visits[index];
+  atlasSelectedVisit={id:visit.id,tripId:visit.tripId};
+  const archive=OBSIDIAN_FOOTPRINT_ARCHIVES[cityGuideKey(place.country,place.name)];
+  const related=visit.date&&archive?.date===visit.date?archive:null;
+  const photos=(Array.isArray(visit.photos)?visit.photos:[]).filter(photo=>typeof photo?.src==='string'&&photo.src);
+  const note=visit.note?.trim();
+  const noteText=note&&note!=='已到访；日期待补充。'?note:(related?.note||'');
+  const location=[place.country,place.province].filter(Boolean).join(' · ');
+  panel.innerHTML=`
+    <div class="atlas-visit-heading">
+      <div><h3>${esc(place.name)}</h3><div class="muted small">${esc(location)}</div></div>
+      ${visits.length>1?`<label>到访记录 <select id="atlasVisitChoice">${visits.map((item,i)=>
+        `<option value="${i}" ${i===index?'selected':''}>${esc(item.date||'日期待补')} · ${esc(item.tripTitle||'到访记录')} (${i+1})</option>`).join('')}</select></label>`:''}
+    </div>
+    <p class="muted small">${esc(related?.dateLabel||visit.date||'日期待补')}${visit.tripTitle?' · '+esc(visit.tripTitle):''}</p>
+    ${noteText?`<p class="atlas-visit-note">${esc(noteText)}</p>`:''}
+    ${related?.diaries?.map(d=>`<article class="atlas-journal-card">
+      <div class="j-head"><b class="j-title">${esc(d.title)}</b><span>${esc(d.date)}</span></div>
+      <p class="atlas-visit-note">${esc(d.text)}</p>
+    </article>`).join('')||''}
+    ${!noteText&&!related?.diaries?.length?'<p class="muted small">这次到访还没有笔记。</p>':''}
+    <section class="mt" aria-labelledby="atlasVisitPhotosTitle">
+      <div class="atlas-visit-photos-header">
+        <h4 id="atlasVisitPhotosTitle">旅行照片</h4>
+        <label class="btn tiny atlas-visit-upload">添加照片<input id="atlasVisitPhotoFiles" type="file" accept="image/*" multiple
+          aria-label="为本次到访添加照片" data-trip="${esc(visit.tripId)}" data-stop="${esc(visit.id)}"></label>
+      </div>
+      ${photos.length?`<div class="atlas-visit-gallery">${photos.map(photo=>{
+        const src=resolveWishPhoto(photo.src);
+        const caption=photo.caption||place.name;
+        return `<button class="atlas-visit-photo" type="button" data-wish-lightbox="${esc(src)}" data-wish-caption="${esc(caption)}">
+          <img src="${esc(src)}" alt="${esc(caption)}" loading="lazy" decoding="async">
         </button>`;
-      }
-      const isV=!!stop.visited;
-      const prov=stop.province?` · ${atlasShortProvince(stop.province)}`:'';
-      return `<button class="atlas-place-button" data-atlas-place="${esc(stop.id)}" aria-pressed="${stop.id===atlasSelected}">
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
-          <b>${isV?'✓':'🧭'} ${esc(stop.name)} ${stop.alsoPlanned?'<span class="atlas-kpi-badge planned" style="font-size:10px">环线</span>':''}</b>
-          <span class="muted small">${esc(stop.date||stop.estDate||'')}</span>
-        </div>
-        <small>${esc(stop.country)}${esc(prov)}</small>
-      </button>`;
-    }).join('')}</div>`;
-    return;
-  }
-  if(atlasViewMode==='timeline'){
-    const groups=new Map();
-    for(const item of list){
-      const rawDate=item.date||item.estDate||'';
-      const sl=item.isWish?atlasGetStoryline(item.lineId):null;
-      const groupKey=item.isWish?(sl?`${sl.icon} ${sl.title}`:'✦ 想去地点'):item.visited?(rawDate?`${rawDate.slice(0,4)} 年足迹`:'已到访足迹 · 待补日期'):'2027 暑假 · 亚欧非计划路线';
-      if(!groups.has(groupKey))groups.set(groupKey,[]);
-      groups.get(groupKey).push(item);
-    }
-    container.innerHTML=`<div class="atlas-timeline-wall">${[...groups.entries()].map(([gTitle,items])=>`
-      <div class="atlas-tl-group">
-        <div class="atlas-tl-year"><span>${esc(gTitle)}</span><span class="tag gray">${items.length} 处</span></div>
-        <div class="atlas-tl-items">${items.map(stop=>{
-          const isW=!!stop.isWish;
-          const isV=!!stop.visited;
-          const prov=stop.province?` · ${atlasShortProvince(stop.province)}`:'';
-          const rawNote=isW?(stop.work?`${stop.work}｜${stop.summary||''}`:stop.summary||''):(stop.note&&!/已到访；日期待补充/.test(stop.note))?stop.note:atlasGuideSnippet(stop);
-          return `<div class="atlas-tl-item ${isV?'':'is-planned-tl'}" data-atlas-place="${esc(stop.id)}" aria-pressed="${stop.id===atlasSelected}" tabindex="0" role="button">
-            <div style="min-width:0;flex:1">
-              <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-                <strong>${isW?'✦ ':''}${esc(stop.name)}</strong>
-                <span class="muted small">${esc(stop.country)}${esc(prov)}</span>
-                <span class="atlas-kpi-badge ${isW?'wish':isV?'visited':'planned'}">${isW?(stop.bgmScore?`BGM ${stop.bgmScore}分`:'心愿'):isV?(stop.boundary?'点亮':'已访'):`#${stop.orderIndex||'·'}`}</span>
-                ${isW?atlasSeasonBadge(stop,true):''}
-              </div>
-              ${rawNote?`<div class="muted small" style="margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(rawNote)}</div>`:''}
-            </div>
-            <div class="right" style="flex-shrink:0">
-              ${isW?`<button type="button" class="btn tiny" data-atlas-focus-only="${esc(stop.id)}">🔍 放大看图</button>`:`${stop.date||stop.estDate?`<span class="muted small">${esc(stop.date||stop.estDate)}</span>`:''}<button type="button" class="btn tiny" data-atlas-open-guide="${esc(stop.country)}|${esc(stop.name)}" title="打开城市 Markdown 攻略">📖 攻略</button>`}
-            </div>
-          </div>`;
-        }).join('')}</div>
-      </div>`).join('')}</div>`;
-    return;
-  }
-  // Default: Compact Cards Wall (with rich photo thumbnails for Wishlist spots!)
-  container.innerHTML=`<div class="atlas-cards-wall">${list.map(stop=>{
-    if(stop.isWish){
-      const ph0=stop.photos?.[0]||null;
-      const sl=atlasGetStoryline(stop.lineId);
-      const catMeta=ATLAS_WISH_CAT_META[stop.category]||ATLAS_WISH_CAT_META.acg;
-      const badgeCol=sl?.color||catMeta.color;
-      return `<article class="atlas-city-card is-wish-card" style="border-color:color-mix(in srgb,${badgeCol} 42%,var(--line))" data-atlas-place="${esc(stop.id)}" aria-pressed="${stop.id===atlasSelected}" tabindex="0" role="button">
-        ${ph0?`<img class="wish-card-thumb" ${renderWishImgAttrs(ph0)} alt="${esc(stop.name)}" loading="lazy" decoding="async">`:''}
-        <div class="wish-card-inner">
-          <div class="atlas-card-head">
-            <div style="min-width:0">
-              <div class="atlas-card-title" style="font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">✦ ${esc(stop.name)}</div>
-              <div class="atlas-card-region">${esc(stop.country)}${stop.work?' · '+esc(stop.work):''}</div>
-            </div>
-            <span class="atlas-kpi-badge wish" style="border-color:${badgeCol};color:${badgeCol};background:color-mix(in srgb,${badgeCol} 12%,var(--panel))">${sl?esc(sl.icon+' '+sl.num):(stop.bgmScore?`★ ${stop.bgmScore}分`:esc(catMeta.label.slice(0,4)))}</span>
-          </div>
-          ${atlasSeasonBadge(stop,true)?`<div style="margin-top:2px">${atlasSeasonBadge(stop,true)}</div>`:''}
-          <p class="atlas-card-note">${esc(stop.summary||'')}</p>
-          <div class="atlas-card-actions">
-            <button type="button" class="btn tiny" data-atlas-focus-only="${esc(stop.id)}">🔍 放大看图</button>
-            <button type="button" class="btn tiny" data-atlas-action="edit-wish" data-wish-id="${esc(stop.id)}">✎ 编辑</button>
-            <button type="button" class="btn tiny" data-atlas-action="complete-wish" data-wish-id="${esc(stop.id)}">✓ 打卡</button>
-          </div>
-        </div>
-      </article>`;
-    }
-    const isV=!!stop.visited;
-    const prov=stop.province?` · ${atlasShortProvince(stop.province)}`:'';
-    const rawNote=(stop.note&&!/已到访；日期待补充/.test(stop.note))?stop.note:atlasGuideSnippet(stop);
-    const mainVisit=(stop.visits&&stop.visits[0])||stop;
-    const dateStr=stop.date||(stop.estDate?'预计 '+stop.estDate:'');
-    return `<article class="atlas-city-card ${isV?'':'is-planned-card'}" data-atlas-place="${esc(stop.id)}" aria-pressed="${stop.id===atlasSelected}" tabindex="0" role="button">
-      <div class="atlas-card-head">
-        <div>
-          <div class="atlas-card-title">
-            <span>${esc(stop.name)}</span>
-            ${stop.alsoPlanned?'<span class="atlas-kpi-badge planned" title="已到访，且在2027环线中">环线</span>':''}
-          </div>
-          <div class="atlas-card-region">${esc(stop.country)}${esc(prov)}${dateStr?' · '+esc(dateStr):''}</div>
-        </div>
-        <span class="atlas-kpi-badge ${isV?'visited':'planned'}">${isV?(stop.boundary?'✓ 已点亮':'✓ 已访'):`🧭 计划`}</span>
-      </div>
-      ${rawNote?`<p class="atlas-card-note">${esc(rawNote)}</p>`:''}
-      <div class="atlas-card-actions">
-        <button type="button" class="btn tiny" data-atlas-focus-only="${esc(stop.id)}">📍 定位</button>
-        <button type="button" class="btn tiny" data-atlas-open-guide="${esc(stop.country)}|${esc(stop.name)}">📖 攻略</button>
-        <button type="button" class="btn tiny" data-atlas-action="${!isV&&stop.sourceUid?'loop-stop':'edit-stop'}" data-trip="${esc(mainVisit.tripId||ATLAS_LOOP)}" data-stop="${esc( !isV&&stop.sourceUid ? stop.sourceUid : mainVisit.id )}">${isV?'✎ 编辑':'✓ 打卡'}</button>
-      </div>
-    </article>`;
-  }).join('')}</div>`;
-  hydrateWishImages(container);
+      }).join('')}</div>`:`<p class="muted small">${related?.photoInfo?'档案已有相册备注，照片原图尚未添加。':'这次到访还没有照片。'}</p>`}
+      <p id="atlasVisitPhotoStatus" class="muted small" role="status"></p>
+    </section>
+    <div class="right mt">
+      <button type="button" class="btn tiny" data-atlas-action="edit-stop" data-trip="${esc(visit.tripId)}" data-stop="${esc(visit.id)}">编辑这次到访</button>
+      <button type="button" class="btn tiny" data-atlas-open-guide="${esc(place.country)}|${esc(place.name)}">城市攻略</button>
+    </div>`;
 }
+
+async function atlasReadVisitPhoto(file){
+  const url=URL.createObjectURL(file);
+  try{
+    const image=new Image();
+    image.src=url;
+    await image.decode();
+    const scale=Math.min(1,960/Math.max(image.naturalWidth,image.naturalHeight));
+    const canvas=document.createElement('canvas');
+    canvas.width=Math.max(1,Math.round(image.naturalWidth*scale));
+    canvas.height=Math.max(1,Math.round(image.naturalHeight*scale));
+    const ctx=canvas.getContext('2d');
+    ctx.fillStyle='#fff';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.drawImage(image,0,0,canvas.width,canvas.height);
+    return {src:canvas.toDataURL('image/jpeg',.78),caption:file.name};
+  }finally{URL.revokeObjectURL(url);}
+}
+
+async function atlasAddVisitPhotos(input){
+  const files=Array.from(input.files||[]);
+  const {trip,stop}=input.dataset;
+  const record=atlasGetRecord(trip,stop);
+  if(!record?.visited||!files.length)return;
+  const status=$('atlasVisitPhotoStatus');
+  input.disabled=true;
+  status.textContent='正在读取照片…';
+  try{
+    const additions=[];
+    for(const file of files)additions.push(await atlasReadVisitPhoto(file));
+    if(atlasGetRecord(trip,stop)!==record)return;
+    const previous=record.photos;
+    record.photos=[...(Array.isArray(previous)?previous:[]),...additions];
+    if(!persist()){
+      if(previous===undefined)delete record.photos;
+      else record.photos=previous;
+      throw Error('保存失败，浏览器空间可能已满。可减少照片数量再试。');
+    }
+    if(active==='atlas'&&atlasLastSheet?.type==='place'&&atlasSelectedVisit?.tripId===trip&&atlasSelectedVisit.id===stop){
+      atlasRerenderSheet();
+      $('atlasVisitPhotoStatus').textContent=`已添加 ${additions.length} 张照片。`;
+    }
+  }catch(error){
+    status.textContent=error.message?.startsWith('保存失败')?error.message:'无法读取照片，请选择浏览器支持的图片格式。';
+  }finally{
+    input.disabled=false;
+    input.value='';
+  }
+}
+
+document.addEventListener('change',event=>{
+  const target=event.target;
+  if(target.id==='atlasVisitPhotoFiles'){
+    atlasAddVisitPhotos(target);
+  }else if(target.id==='atlasVisitChoice'){
+    const place=atlasSelectedPlace();
+    const visit=place?.visited&&atlasVisitChoices(place)[Number(target.value)];
+    if(!visit)return;
+    atlasSelectedVisit={id:visit.id,tripId:visit.tripId};
+    atlasRenderPlaceInfo(place);
+    $('atlasVisitChoice')?.focus({preventScroll:true});
+  }
+});
 
 function atlasRenderPlaceInfo(place){
   const panel=$('atlasVisitInfo');
   if(!panel)return;
   if(!place){
     atlasLastSheet=null;
-    panel.innerHTML='<h3>地点详情</h3><p class="muted small">点击上方世界地图上的节点（✦ 菱形想去地点 / 绿色已访 / 橙色环线）或左侧卡片，即可放大地图并查看介绍与实景照片。</p>';
+    panel.innerHTML='<h3>到访记录</h3><p class="muted">在地图上选择一个已到访城市，查看那次旅行的记录和照片。</p>';
     return;
   }
   atlasLastSheet={type:'place',place};
+  if(place.visited){atlasRenderVisitedJournal(panel,place);return;}
   const goods=typeof atlasGetPlaceGoodies==='function'?atlasGetPlaceGoodies(place):{gourmet:[],souvenirs:[],matchedScope:''};
   const customKey=`${place.country||''}|${place.name||''}`;
   if(place.isWish){
@@ -6446,51 +6245,25 @@ function atlasRenderPlaceInfo(place){
     hydrateWishImages(panel,true);
     return;
   }
-  const isV=!!place.visited;
   const prov=place.province?` · ${place.province}`:'';
   const distKm=Math.round(atlasHaversineKm(ATLAS_BASE_SHANGHAI,place));
   const mainVisit=(place.visits&&place.visits[0])||place;
-  const arch=OBSIDIAN_FOOTPRINT_ARCHIVES[cityGuideKey(place.country,place.name)];
   const mdPreview=renderCityMarkdown(cityMarkdownFor(place));
-  const dateDisplay=arch?.dateLabel||place.date||(place.estDate?'预计 '+place.estDate:'');
+  const dateDisplay=place.date||(place.estDate?'预计 '+place.estDate:'');
 
   panel.innerHTML=atlasJumpBarHtml(goods,true)+`<div class="atlas-detail-hero" id="vtwSecTop">
       <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
-        <span class="atlas-kpi-badge ${isV?'visited':'planned'}">${isV?(place.boundary?'✓ 行政区已点亮':'✓ 已到访'):'🧭 2027 计划站点'}</span>
+        <span class="atlas-kpi-badge planned">计划站点</span>
         <span class="muted small">${Number(place.lat).toFixed(2)}°N, ${Number(place.lng).toFixed(2)}°E · 距沪 ${distKm.toLocaleString('zh-CN')} km</span>
       </div>
       <h3>${esc(place.name)}</h3>
       <div class="muted small">${esc(place.country)}${esc(prov)}${dateDisplay?' · '+esc(dateDisplay):''}</div>
-      ${arch?.photoInfo?`<div style="margin-top:6px"><span class="atlas-photo-badge">📷 ${esc(arch.photoInfo)}</span></div>`:''}
       <div class="right" style="margin-top:8px">
         <button type="button" class="btn tiny primary" data-atlas-open-guide="${esc(place.country)}|${esc(place.name)}">📖 完整攻略</button>
         <button type="button" class="btn tiny" data-atlas-focus-only="${esc(place.id)}">📍 地图居中</button>
-        <button type="button" class="btn tiny" data-atlas-action="${!isV&&place.sourceUid?'loop-stop':'edit-stop'}" data-trip="${esc(mainVisit.tripId||ATLAS_LOOP)}" data-stop="${esc(!isV&&place.sourceUid?place.sourceUid:mainVisit.id)}">${isV?'✎ 编辑边界':'✓ 标记到访'}</button>
+        <button type="button" class="btn tiny" data-atlas-action="${place.sourceUid?'loop-stop':'edit-stop'}" data-trip="${esc(mainVisit.tripId||ATLAS_LOOP)}" data-stop="${esc(place.sourceUid?place.sourceUid:mainVisit.id)}">标记到访</button>
       </div>
     </div>
-
-    ${arch?.diaries?.length?`<div style="margin-top:8px">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:4px">
-        <strong class="small" style="color:var(--accent)">📓 Obsidian 日记与 iCloud 档案 (${arch.diaries.length})</strong>
-        <span class="muted small" style="font-size:10px">${esc(arch.source||'')}</span>
-      </div>
-      ${arch.diaries.map(d=>`<div class="atlas-journal-card">
-        <div class="atlas-journal-meta"><b>${esc(d.title)}</b><span>${esc(d.date)}</span></div>
-        <p>${esc(d.text)}</p>
-      </div>`).join('')}
-    </div>`:''}
-
-    ${isV?`<form id="atlasQuickJournalForm" class="atlas-quick-journal" data-quick-trip="${esc(mainVisit.tripId)}" data-quick-stop="${esc(mainVisit.id)}">
-      <div class="fields two" style="gap:6px">
-        <label class="field"><span>到访日期</span><input type="date" name="quickDate" value="${esc(mainVisit.date||arch?.date||'')}"></label>
-        <label class="field"><span>标签</span><input type="text" name="quickTag" placeholder="徒步 / 看海 / 古迹" value=""></label>
-      </div>
-      <label class="field"><span>脚步随笔</span><textarea name="quickNote" rows="2" style="min-height:46px" placeholder="写下在这座城市的印象或路线…">${esc((mainVisit.note&&!/已到访；日期待补充/.test(mainVisit.note))?mainVisit.note:(arch?.note||''))}</textarea></label>
-      <div class="right" style="justify-content:space-between">
-        <span id="atlasQuickSaved" class="muted small">自动同步本地</span>
-        <button type="submit" class="btn tiny primary">保存随笔</button>
-      </div>
-    </form>`:''}
 
     ${atlasDistrictJumpChipsHtml(place.name)}
 
@@ -6716,7 +6489,7 @@ function atlasShowMap(host,context,stops,combinedData=null){
     const showVisited=atlasLayerMode==='all'||atlasLayerMode==='visited';
     const showPlanned=atlasLayerMode==='all'||atlasLayerMode==='planned';
     const showWish=(atlasLayerMode==='all'||atlasLayerMode==='wish')&&($('atlasToggleWish')?$('atlasToggleWish').checked:true);
-    const showWishLabels=atlasLayerMode==='wish'||atlasStatusFilter==='wish'||atlasWishTheme!=='all'||atlasSeasonFilter!=='all';
+    const showWishLabels=atlasLayerMode==='wish'||atlasWishTheme!=='all'||atlasSeasonFilter!=='all';
     const showPins=$('atlasTogglePins')?$('atlasTogglePins').checked:true;
     const showRoutes=$('atlasToggleRoutes')?$('atlasToggleRoutes').checked:true;
 
@@ -6979,8 +6752,6 @@ function atlasSelectPlace(id,shouldFocusMap=true){
   if(active==='atlas'){
     atlasCloseWishSpotlight(false);
     atlasSelected=place.id;
-    $('atlasVisits').querySelectorAll('[data-atlas-place]').forEach(button=>
-      button.setAttribute('aria-pressed',String(button.dataset.atlasPlace===String(place.id))));
     atlasRenderPlaceInfo(place);
   }
   if(shouldFocusMap){atlasSetPolar(false);atlasFocus(place);}
@@ -7663,7 +7434,7 @@ function atlasSaveForm(event){
       note:field('note'),boundary:atlasBoundary,boundaryName:atlasEditor.boundaryName};
     const index=stops.findIndex(item=>item.id===record.id);
     if(index<0)stops.push(record);else stops[index]=record;
-    if(record.visited)atlasSelected=record.id;
+    if(record.visited){atlasSelected=record.id;atlasSelectedVisit={tripId,id:record.id};}
   }
   persist();
   renderNav();
@@ -7714,30 +7485,6 @@ for(const id of ['atlasTogglePins','atlasToggleRoutes','atlasToggleWish']){
     if(active==='atlas'){const data=atlasCombinedFootprints();atlasShowMap('atlasHomeMap','home',data.visitedCities,data);}
   });
 }
-if($('atlasTripFilter'))$('atlasTripFilter').addEventListener('change',e=>{
-  atlasTripChip=e.target.value||'all';
-  const data=atlasCombinedFootprints();
-  atlasRenderExplorerList(data);
-});
-if($('atlasCountrySelect'))$('atlasCountrySelect').addEventListener('change',e=>{
-  atlasCountryChip=e.target.value||'all';
-  const data=atlasCombinedFootprints();
-  atlasRenderExplorerList(data);
-  if(atlasCountryChip!=='all'&&atlasMap){
-    const filtered=atlasFilterCities(data);
-    if(filtered.length)atlasMap.fitBounds(L.latLngBounds(filtered.map(c=>[c.lat,c.lng])),{padding:[45,55],maxZoom:8});
-  }
-});
-let atlasSearchTimer=0;
-if($('atlasSearchInput'))$('atlasSearchInput').addEventListener('input',e=>{
-  atlasSearchQuery=e.target.value||'';
-  if(atlasSearchTimer)clearTimeout(atlasSearchTimer);
-  atlasSearchTimer=setTimeout(()=>{
-    atlasSearchTimer=0;
-    const data=atlasCombinedFootprints();
-    atlasRenderExplorerList(data);
-  },120);
-});
 document.addEventListener('submit',event=>{
   const gForm=event.target.closest('#atlasAddGoodieForm');
   if(gForm){
@@ -7763,25 +7510,6 @@ document.addEventListener('submit',event=>{
     atlasRerenderSheet();
     return;
   }
-  const qForm=event.target.closest('#atlasQuickJournalForm');
-  if(!qForm)return;
-  event.preventDefault();
-  const tripId=qForm.dataset.quickTrip;
-  const stopId=qForm.dataset.quickStop;
-  const fd=new FormData(qForm);
-  const newDate=String(fd.get('quickDate')||'').trim();
-  const tag=String(fd.get('quickTag')||'').trim();
-  let newNote=String(fd.get('quickNote')||'').trim();
-  if(tag&&!newNote.includes(tag))newNote=newNote?`[${tag}] ${newNote}`:`[${tag}]`;
-  const record=atlasGetRecord(tripId,stopId);
-  if(record){
-    record.date=newDate;
-    record.note=newNote;
-    persist();
-    atlasRenderHome();
-    const msg=$('atlasQuickSaved');
-    if(msg){msg.textContent='✓ 已保存';msg.style.color=atlasThemeColor('--ok','#1B6B54');}
-  }
 });
 document.addEventListener('click',event=>{
   const seasonBtn=event.target.closest('[data-season-pick]');
@@ -7790,7 +7518,6 @@ document.addEventListener('click',event=>{
     const next=seasonBtn.dataset.seasonPick||'all';
     atlasSeasonFilter=(atlasSeasonFilter===next&&next!=='all')?'all':next;
     if(atlasSeasonFilter!=='all'){
-      atlasStatusFilter='wish';
       if($('atlasToggleWish'))$('atlasToggleWish').checked=true;
       if(atlasLayerMode==='visited'||atlasLayerMode==='planned'){
         atlasLayerMode='all';
@@ -7840,7 +7567,6 @@ document.addEventListener('click',event=>{
     const meta=ATLAS_COUNTRY_LOCKON_META?.[a3];
     if(!meta)return;
     atlasActiveSubPatch=null;
-    atlasCountryChip='all';
     const off=atlasDrilledCountry?.lonOffset||0;
     if(atlasDrilledCountry?.a3===a3){
       const [[s,w],[n,e]]=meta.fitBounds;
@@ -7911,7 +7637,6 @@ document.addEventListener('click',event=>{
       const meta=ATLAS_COUNTRY_LOCKON_META?.[a3];
       if(atlasDrilledCountry?.a3===a3&&meta){
         atlasActiveSubPatch=null;
-        atlasCountryChip='all';
         const off=atlasDrilledCountry.lonOffset||0;
         const [[s,w],[n,e]]=meta.fitBounds;
         if(atlasMap)atlasMap.fitBounds([[s,w+off],[n,e+off]],{padding:[28,36],maxZoom:meta.maxZoom||7,animate:true});
@@ -7928,7 +7653,6 @@ document.addEventListener('click',event=>{
     if(lineMap[k]){
       atlasClearCountryDrill(false);
       atlasWishTheme=lineMap[k];
-      atlasStatusFilter='wish';
       if($('atlasToggleWish'))$('atlasToggleWish').checked=true;
       if(atlasLayerMode==='visited'||atlasLayerMode==='planned'){
         atlasLayerMode='all';
@@ -8021,7 +7745,6 @@ document.addEventListener('click',event=>{
   const wtBtn=event.target.closest('[data-wish-theme]');
   if(wtBtn){
     atlasWishTheme=wtBtn.dataset.wishTheme||'all';
-    if(atlasWishTheme!=='all'&&atlasStatusFilter!=='wish')atlasStatusFilter='wish';
     atlasCloseWishSpotlight(false);
     atlasRenderHome();
     const data=atlasCombinedFootprints();
@@ -8031,15 +7754,7 @@ document.addEventListener('click',event=>{
   }
   const modeBtn=event.target.closest('[data-atlas-mode]');
   if(modeBtn){
-    atlasLayerMode=modeBtn.dataset.atlasMode;
-    document.querySelectorAll('[data-atlas-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b===modeBtn)));
-    if(atlasLayerMode==='visited')atlasStatusFilter='visited';
-    else if(atlasLayerMode==='planned')atlasStatusFilter='planned';
-    else if(atlasLayerMode==='wish')atlasStatusFilter='wish';
-    else atlasStatusFilter='all';
-    atlasCloseWishSpotlight(false);
-    atlasRenderHome();
-    atlasFit();
+    atlasSetLayerMode(modeBtn.dataset.atlasMode);
     return;
   }
   if(event.target.closest('#atlasPolarToggle')&&atlasMap){
@@ -8054,53 +7769,9 @@ document.addEventListener('click',event=>{
     atlasFit();
     return;
   }
-  const vmBtn=event.target.closest('[data-atlas-viewmode]');
-  if(vmBtn){
-    atlasViewMode=vmBtn.dataset.atlasViewmode;
-    document.querySelectorAll('[data-atlas-viewmode]').forEach(b=>b.classList.toggle('active',b===vmBtn));
-    atlasRenderExplorerList(atlasCombinedFootprints());
-    return;
-  }
-  const stBtn=event.target.closest('[data-atlas-status]');
-  if(stBtn){
-    const wasWish=atlasStatusFilter==='wish'||atlasWishTheme!=='all';
-    atlasStatusFilter=stBtn.dataset.atlasStatus;
-    if(atlasStatusFilter!=='wish')atlasWishTheme='all';
-    atlasCountryChip='all';
-    const nextWish=atlasStatusFilter==='wish';
-    if(wasWish||nextWish){
-      atlasRenderHome();
-      if(nextWish&&atlasMap){
-        const ws=atlasCombinedFootprints().wishSpots;
-        if(ws.length)atlasMap.fitBounds(L.latLngBounds(ws.map(w=>[w.lat,w.lng])),{padding:[36,48],maxZoom:5});
-      }
-    }else{
-      const data=atlasCombinedFootprints();
-      atlasRenderFilterControls(data,atlasComputeStats(data));
-      atlasRenderExplorerList(data);
-    }
-    return;
-  }
-  const ccBtn=event.target.closest('[data-atlas-cchip]');
-  if(ccBtn){
-    atlasCountryChip=ccBtn.dataset.atlasCchip;
-    const data=atlasCombinedFootprints();
-    atlasRenderFilterControls(data,atlasComputeStats(data));
-    atlasRenderExplorerList(data);
-    const filtered=atlasFilterCities(data);
-    if(filtered.length&&atlasMap){
-      atlasMap.fitBounds(L.latLngBounds(filtered.map(c=>[c.lat,c.lng])),{padding:[45,55],maxZoom:8});
-    }
-    return;
-  }
   const fCountry=event.target.closest('[data-atlas-focus-country]');
   if(fCountry){
     const cn=fCountry.dataset.atlasFocusCountry;
-    atlasStatusFilter='all';
-    atlasCountryChip='country:'+cn;
-    const data=atlasCombinedFootprints();
-    atlasRenderFilterControls(data,atlasComputeStats(data));
-    atlasRenderExplorerList(data);
     const ca3=typeof atlasCountryToA3==='function'?atlasCountryToA3(cn):'';
     const feat=(ca3&&typeof atlasGetWorldFeatureByA3==='function'?atlasGetWorldFeatureByA3(ca3):null)||ATLAS_WORLD_GEOJSON?.features?.find(f=>atlasMatchWorldFeature(cn,f.properties));
     if(feat&&atlasMap){
@@ -8113,11 +7784,7 @@ document.addEventListener('click',event=>{
   const fProv=event.target.closest('[data-atlas-focus-prov]');
   if(fProv){
     const pv=fProv.dataset.atlasFocusProv;
-    atlasStatusFilter='all';
-    atlasCountryChip='prov:'+pv;
     const data=atlasCombinedFootprints();
-    atlasRenderFilterControls(data,atlasComputeStats(data));
-    atlasRenderExplorerList(data);
     const pts=data.allCities.filter(c=>c.province===pv);
     if(pts.length&&atlasMap)atlasMap.fitBounds(L.latLngBounds(pts.map(c=>[c.lat,c.lng])),{padding:[45,55],maxZoom:8});
     return;
@@ -8137,11 +7804,7 @@ document.addEventListener('click',event=>{
   }
   const qFilter=event.target.closest('[data-atlas-quick-filter]');
   if(qFilter){
-    atlasStatusFilter=qFilter.dataset.atlasQuickFilter;
-    atlasCountryChip='all';
-    const data=atlasCombinedFootprints();
-    atlasRenderFilterControls(data,atlasComputeStats(data));
-    atlasRenderExplorerList(data);
+    atlasSetLayerMode(qFilter.dataset.atlasQuickFilter);
     return;
   }
   const guideBtn=event.target.closest('[data-atlas-open-guide]');
