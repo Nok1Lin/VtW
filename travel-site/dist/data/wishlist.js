@@ -997,6 +997,26 @@ const ATLAS_WISHLIST_SEED = [
     ]
   },
   {
+    id: 'wish-kyoto-kiyomizudera',
+    lineId: 'line-ruins', lineOrder: 6.9,
+    name: '京都 · 清水寺（Kiyomizu-dera）',
+    country: '日本', region: '京都府京都市东山区 · 音羽山麓（古京都世界文化遗产）',
+    lat: 34.9949, lng: 135.7850, zoom: 16,
+    source: 'user', category: 'ruins',
+    aesthetics: ['消逝的文明·诸神遗迹', '巨大·无机质'],
+    work: '始建于778年 · 139根巨型榉木不用一根钉子悬空架起的13米国宝「清水舞台」',
+    bgmScore: null,
+    summary: '悬挑于音羽山断崖之上的 13 米全木榫卯悬空舞台，春樱秋枫与京都市街夕阳尽收眼底',
+    intro: '始建于公元 778 年、现存本堂重建于 1633 年的京都清水寺（音羽山清水寺），是京都最负盛名的古刹与世界文化遗产。国宝级「清水舞台」完全采用传统「悬造」木构技法，由 139 根巨型榉木纵横交错咬合、不施一根铁钉便凌空支起距山谷达 13 米的广阔舞台——日语名谚「从清水舞台跳下去（清水の舞台から飛び降りる）」正源于此。自奥之院回望本堂舞台、三重塔与京都塔同框，春樱秋枫与夜间特别点灯皆为绝景；顺山道而下还可接饮千年不竭的音羽瀑布三道清泉，并沿三年坂、二年坂一路漫步至八坂塔与祇园。',
+    subSpots: [
+      { name: '奥之院回望清水舞台全景机位 & 仁王门·三重塔', detail: '34.9949°N, 135.7850°E · 建议清晨 6:00 开门即入园避开人潮，或赶春樱/红叶季夜间点灯' },
+      { name: '音羽瀑布 & 三年坂·二年坂石阶老街', detail: '34.9970°N, 135.7808°E · 出寺顺坡漫步可串联法观寺八坂塔与祇园花见小路' }
+    ],
+    photos: [
+      { wiki: ['en', 'Kiyomizu-dera'], backupQuery: 'Kiyomizu-dera wooden stage Kyoto autumn', caption: '日本京都清水寺——139根巨型榉木悬空架起的国宝清水舞台与音羽山林' }
+    ]
+  },
+  {
     id: 'wish-easter-island',
     lineId: 'line-ruins', lineOrder: 7,
     name: '复活节岛 · 拉帕努伊摩艾石像群（Easter Island）',
@@ -2093,6 +2113,7 @@ const ATLAS_WISHLIST_SEED = [
     'wish-york-constantine':   { lineId: 'line-ruins', extraLines: ['line-gothic'] },
     'wish-moscow-red-square':  { lineId: 'line-ruins', extraLines: ['line-gothic'] },
     'wish-stpetersburg-hermitage': { lineId: 'line-ruins' },
+    'wish-kyoto-kiyomizudera': { lineId: 'line-ruins' },
     'wish-uruk':               { lineId: 'line-ruins', extraLines: ['line-acg'], workKey: 'Fate/Grand Order', anitabiId: 109378 },
     'wish-giza-pyramids':      { lineId: 'line-ruins', extraLines: ['line-acg'], workKey: 'JOJO的奇妙冒险', anitabiId: 85631 },
     'wish-petra':              { lineId: 'line-ruins' },
