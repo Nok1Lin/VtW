@@ -1651,8 +1651,11 @@ const seedGear=[
 ['服装','mh100p','迪卡侬 MH100 抓绒裤',60,'personal','待购','quoted',1],
 ['服装','softpants','六扇门 PRO 软壳裤',594,'personal','延后','quoted',0],
 ['服装','softjacket','拓路者海豹 LT 软壳上衣',394,'personal','延后','quoted',0],
-['鞋履与背负','moab3','迈乐 MOAB 3 MID GTX',650,'personal','目标价；与 MT5-3 二选一','target',0],
-['鞋履与背负','mt53','凯乐石 MT5-3 GTX 徒步靴',1350,'personal','待试穿；与 MOAB 3 二选一','quoted',0],
+['鞋履与背负','moab3','迈乐 MOAB 3 MID GTX',650,'personal','已淘汰/可延后（不扛捷里极寒）','target',0],
+['鞋履与背负','mt53','凯乐石 MT5-3 GTX 徒步靴',1350,'personal','可延后/偏重备选（单只600g+，暂转轻量候选）','quoted',0],
+['鞋履与背负','xultra5','Salomon X Ultra 5 Mid GTX（~439g，Wide宽楦待试）',null,'personal','轻量候选待定（待试穿与核价；配雪套铝箔垫）','unknown',0],
+['鞋履与背负','raptor3','La Sportiva Ultra Raptor 3（Mid GTX / 标准版待定）',null,'personal','轻量候选待定（欧版偏窄，待试穿与核价）','unknown',0],
+['鞋履与背负','challenger8','HOKA Challenger 8 公路越野两栖跑鞋',null,'personal','夏季铺装路旅游+轻越野待定（价格与试穿待核）','unknown',0],
 ['鞋履与背负','socks','75%美利奴羊毛袜 ×2双',152,'personal','待购','quoted',1],
 ['鞋履与背负','gaiter','途伴 1000D 雪套',42.8,'personal','按需','quoted',0],
 ['鞋履与背负','slippers','GOPEAK 营地拖鞋',27.79,'personal','可延后','quoted',0],
@@ -1784,26 +1787,75 @@ function vtwSeedAuroraRoute(targetState=state){
 }
 vtwSeedAuroraRoute();
 function vtwSyncGearUpdates(targetState=state){
- if(!targetState||targetState.yulongGear20261128)return false;
+ if(!targetState)return false;
+ let changed=false;
  if(!Array.isArray(targetState.gear))targetState.gear=JSON.parse(JSON.stringify(seedGear));
- const idx=targetState.gear.findIndex(x=>x&&x.id==='newdown');
- const nextName='喜马拉雅 玉龙 2.0 鹅绒服（800FP / 95%白鹅绒，替换 BJZE 大羽绒）';
- const nextStatus='已定型号待购（价格与尺码待核）';
- if(idx>=0){
-  const cur=targetState.gear[idx];
-  if(!cur.name||cur.name.includes('替换 BJZE 大羽绒')){
-   if(!cur.name.includes('玉龙'))cur.name=nextName;
+ if(!targetState.yulongGear20261128){
+  const idx=targetState.gear.findIndex(x=>x&&x.id==='newdown');
+  const nextName='喜马拉雅 玉龙 2.0 鹅绒服（800FP / 95%白鹅绒，替换 BJZE 大羽绒）';
+  const nextStatus='已定型号待购（价格与尺码待核）';
+  if(idx>=0){
+   const cur=targetState.gear[idx];
+   if(!cur.name||cur.name.includes('替换 BJZE 大羽绒')){
+    if(!cur.name.includes('玉龙'))cur.name=nextName;
+   }
+   if(!cur.status||cur.status==='条件采购')cur.status=nextStatus;
+  }else{
+   const seedItem=seedGear.find(x=>x.id==='newdown');
+   if(seedItem)targetState.gear.splice(2,0,JSON.parse(JSON.stringify(seedItem)));
   }
-  if(!cur.status||cur.status==='条件采购')cur.status=nextStatus;
- }else{
-  const seedItem=seedGear.find(x=>x.id==='newdown');
-  if(seedItem)targetState.gear.splice(2,0,JSON.parse(JSON.stringify(seedItem)));
+  targetState.yulongGear20261128=true;
+  changed=true;
  }
- targetState.yulongGear20261128=true;
- if(targetState===state){
+ if(!targetState.shoes20261128){
+  const moab=targetState.gear.find(x=>x&&x.id==='moab3');
+  if(moab&&(!moab.status||moab.status==='目标价；与 MT5-3 二选一')){
+   moab.status='已淘汰/可延后（不扛捷里极寒）';
+  }
+  const mt53=targetState.gear.find(x=>x&&x.id==='mt53');
+  if(mt53){
+   if(!mt53.status||mt53.status==='待试穿；与 MOAB 3 二选一'){
+    mt53.status='冬/凉爽徒步+雪线首选待试穿（按厚袜买大半码，配铝箔鞋垫）';
+    mt53.selected=true;
+   }
+  }else{
+   const s=seedGear.find(x=>x.id==='mt53');
+   if(s)targetState.gear.push(JSON.parse(JSON.stringify(s)));
+  }
+  if(!targetState.gear.some(x=>x&&x.id==='challenger8')){
+   const s=seedGear.find(x=>x.id==='challenger8');
+   if(s){
+    const mtIdx=targetState.gear.findIndex(x=>x&&x.id==='mt53');
+    targetState.gear.splice(mtIdx>=0?mtIdx+1:targetState.gear.length,0,JSON.parse(JSON.stringify(s)));
+   }
+  }
+  targetState.shoes20261128=true;
+  changed=true;
+ }
+ if(!targetState.lightShoes20261128){
+  const mt53=targetState.gear.find(x=>x&&x.id==='mt53');
+  if(mt53&&(!mt53.status||mt53.status==='冬/凉爽徒步+雪线首选待试穿（按厚袜买大半码，配铝箔鞋垫）'||mt53.status==='待试穿；与 MOAB 3 二选一')){
+   mt53.status='可延后/偏重备选（单只600g+，暂转轻量候选）';
+   mt53.selected=false;
+  }
+  const addIds=['xultra5','raptor3'];
+  let insertAt=targetState.gear.findIndex(x=>x&&x.id==='mt53');
+  for(const aid of addIds){
+   if(!targetState.gear.some(x=>x&&x.id===aid)){
+    const s=seedGear.find(x=>x.id===aid);
+    if(s){
+     if(insertAt>=0){insertAt++;targetState.gear.splice(insertAt,0,JSON.parse(JSON.stringify(s)));}
+     else targetState.gear.push(JSON.parse(JSON.stringify(s)));
+    }
+   }
+  }
+  targetState.lightShoes20261128=true;
+  changed=true;
+ }
+ if(changed&&targetState===state){
   vtwSaveBootOrNow(true);
  }
- return true;
+ return changed;
 }
 vtwSyncGearUpdates();
 if(!state.regionBoundaries20261118){
@@ -2527,7 +2579,7 @@ function renderBudget(){$('budgetMetrics').innerHTML=metric('旅行日数',state
 const gearSystems=[
  {name:'背负系统',icon:'▣',color:'#8bc78e',ids:['drybags']},
  {name:'睡眠系统',icon:'☾',color:'#8bc7e8',ids:['tent','sleep','inflatable','foam','misc']},
- {name:'服饰系统',icon:'♧',color:'#efc18a',ids:['hardshell','trek100','newdown','eagle','utou1','utowool','utounder','mh100p','softpants','softjacket','moab3','mt53','socks','gaiter','slippers','awka','spareglove','ansell','hat']},
+ {name:'服饰系统',icon:'♧',color:'#efc18a',ids:['hardshell','trek100','newdown','eagle','utou1','utowool','utounder','mh100p','softpants','softjacket','moab3','mt53','xultra5','raptor3','challenger8','socks','gaiter','slippers','awka','spareglove','ansell','hat']},
  {name:'饮食系统',icon:'◉',color:'#64c9c5',ids:['thermos','stove','pot','gas','filter','bottles']},
  {name:'安全装备',icon:'✚',color:'#ef9a98',ids:['poles','traction','eyes','lip','firstaid','blanket','repair','rain']},
  {name:'电子设备',icon:'ϟ',color:'#aaa3e6',ids:['headlamp','power']}
@@ -6560,6 +6612,14 @@ function atlasHydrateVisibleWishAvatars(){
     });
   }
 }
+function atlasWishMapLabel(wish){
+  if(!wish)return '';
+  if(wish.mapLabel&&String(wish.mapLabel).trim())return String(wish.mapLabel).trim();
+  const name=String(wish.name||'').trim();
+  const dotIdx=name.indexOf('·');
+  const core=(dotIdx>=0?name.slice(dotIdx+1):name).split(/[&（(]/)[0].trim();
+  return (core||name.split(/[·&（(]/)[0].trim()).slice(0,10);
+}
 function atlasShowMap(host,context,stops,combinedData=null){
   const shell=$('atlasMapShell');
   if(shell.parentElement!==$(host))$(host).append(shell);
@@ -6681,7 +6741,7 @@ function atlasShowMap(host,context,stops,combinedData=null){
         const ph0=wish.photos?.[0]||null;
         const immThumb=getImmediatePhotoSrc(ph0);
         const isHeroAvatar=Boolean(immThumb||ph0||wish.anitabiId)&&((wish.bgmScore||0)>=8||wish.source==='user'||atlasWishTheme!=='all'||atlasSeasonFilter!=='all'||isSel);
-        const rawShort=(wish.workKey&&wish.category==='acg'&&atlasWishTheme==='all'?wish.workKey:wish.name.split(/[·&（(]/)[0]).trim().slice(0,10);
+        const rawShort=atlasWishMapLabel(wish);
         const tagText=sl?(wish.workKey&&(atlasWishTheme==='line:line-acg'||atlasWishTheme.startsWith('work:'))?wish.workKey.slice(0,5):sl.num):'心愿';
         const scoreTag=wish.bgmScore?` [★${wish.bgmScore}]`:'';
         const slTag=sl?`[${sl.shortTitle}] `:'';
