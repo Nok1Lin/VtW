@@ -822,6 +822,28 @@ const ATLAS_WISHLIST_SEED = [
       { wiki: ['en', 'Metropolitan_Area_Outer_Underground_Discharge_Channel'], backupQuery: 'Metropolitan Area Outer Underground Discharge Channel Saitama temple', caption: '日本埼玉首都圈外郭放水路“地下神殿”——59根500吨巨柱撑起的《G弦上的魔王》地下圣地原型' }
     ]
   },
+  {
+    id: 'wish-korea-dmz',
+    lineId: 'line-brutalist', lineOrder: 11,
+    extraLines: ['line-ruins'],
+    name: '韩国 · DMZ 非军事区 & 首尔战争纪念馆',
+    country: '韩国', region: '京畿道坡州市三八线 · 首尔龙山区（冷战边界与军事史料）',
+    lat: 37.9163, lng: 126.6989, zoom: 10,
+    source: 'user', category: 'mega',
+    aesthetics: ['巨大·无机质', '消逝的文明·诸神遗迹'],
+    work: '地球现存最直观冷战三八线前线 · 深入地下73米第三渗透地道 & 首尔龙山冷峻巨构战争纪念馆',
+    bgmScore: null,
+    summary: '深入坡州三八线地下 73 米第三渗透地道与都罗展望台直望北侧，顺游首尔龙山停满实机轰炸机的韩国战争纪念馆',
+    intro: '横亘朝鲜半岛北纬 38 度线的 DMZ 非军事区，是当今世界最直观的冷战活化石：从首尔参团持护照通过军方检查站进入民统线后，可戴上安全帽弯腰深入地下 73 米的「第三渗透地道」，再登「都罗展望台」用望远镜直视三八线对岸的哨所与宣传村。\n回到首尔龙山区，建筑体量宏大冷峻的「韩国战争纪念馆」室外广场成排停放 B-52 轰炸机、坦克与重武器，室内系统呈现朝鲜战争与冷战历史——而且与《蔚蓝档案》Cafe Memorial 同在龙山区，半天即可顺路串联。',
+    subSpots: [
+      { name: '坡州 DMZ · 第三渗透地道 · 都罗展望台 & 临津阁', detail: '37.9163°N, 126.6989°E · 不可自由行进入，需提前预订首尔出发正规半日/一日团并携带护照原件' },
+      { name: '首尔龙山 · 韩国战争纪念馆（室外战机广场 & 主展馆）', detail: '37.5365°N, 126.9771°E · 地铁三角地站步行 5 分钟，常设展免费参观（周一闭馆）' }
+    ],
+    photos: [
+      { wiki: ['en', 'Korean_Demilitarized_Zone'], backupQuery: 'Korean Demilitarized Zone Panmunjom JSA', caption: '韩国 DMZ 非军事区——地球上现存最直观的冷战三八线边境现场' },
+      { wiki: ['en', 'War_Memorial_of_Korea'], backupQuery: 'War Memorial of Korea Seoul building aircraft', caption: '首尔龙山韩国战争纪念馆——冷峻巨构纪念建筑与室外实机兵器广场' }
+    ]
+  },
 
   // ==================== Line 07 ·【黄沙与孤岛掩埋的诸神】(7) ====================
   {
@@ -1229,6 +1251,29 @@ const ATLAS_WISHLIST_SEED = [
     ],
     photos: [
       { wiki: ['en', 'Dracaena_cinnabari'], backupQuery: 'Socotra Island dragon blood trees Yemen', caption: '也门索科特拉岛——地球独有的倒伞状远古龙血树森林与外星地貌' }
+    ]
+  },
+  {
+    id: 'wish-jeju-volcano',
+    lineId: 'line-nature', lineOrder: 16,
+    extraLines: ['line-fantasy'],
+    name: '济州岛 · 汉拿山雪山 & 城山日出峰 & 柱状节理带',
+    country: '韩国', region: '济州特别自治道 · 汉拿山国立公园 · 西归浦市（免签直飞！）',
+    lat: 33.3617, lng: 126.5292, zoom: 10,
+    source: 'user', category: 'mega',
+    aesthetics: ['巨大·无机质', '西幻·巨人·矮人·精灵'],
+    work: '1947m 火山口白鹿潭冬季雪山徒步 · 海底火山绝壁城山日出峰 & 六棱黑色玄武岩巨柱峭壁',
+    bgmScore: null,
+    summary: '上海直飞约 1.5 小时免签可达的火山奇观岛：冬季登顶汉拿山白鹿潭实测雪山装备，打卡海底火山口与六棱玄武岩崖',
+    intro: '整座济州岛都是一座从大海隆起的盾状火山，对国内直飞免签且航程极短，是一处兼顾硬核户外徒步与火山地质奇观的高性价比秘境：\n① 韩国最高峰「汉拿山（1,947m）」山顶藏着巨大的白鹿潭火山口湖，每年冬季积雪覆林，极适合穿硬壳、羽绒与轻冰爪进行单日雪山徒步实测；② 东端「城山日出峰」为 10 万年前海底火山喷发形成的巨大碗状火山口绝壁，三面悬崖直插碧海；③ 西归浦「中文大浦柱状节理带」则是整齐裂成六角形的黑色玄武岩巨柱断崖，与英国巨人堤道同属一类熔岩奇观。',
+    subSpots: [
+      { name: '汉拿山国立公园（城板岳 / 观音寺登顶白鹿潭）', detail: '33.3617°N, 126.5292°E · 登顶路线需提前在汉拿山官网免费预约入山时段；冬季必带轻冰爪与防风保暖层' },
+      { name: '城山日出峰（海底火山口绝壁）', detail: '33.4585°N, 126.9420°E · 登顶约 25 分钟俯瞰巨大碗状火山口与济州东海' },
+      { name: '中文大浦海岸 · 柱状节理带（六棱玄武岩巨柱）', detail: '33.2377°N, 126.4250°E · 熔岩急冷裂成的六角形黑色玄武岩悬崖直面太平洋怒涛' }
+    ],
+    photos: [
+      { wiki: ['en', 'Hallasan'], backupQuery: 'Hallasan Baengnokdam crater snow Jeju', caption: '韩国济州岛汉拿山白鹿潭——海拔1947米死火山口与雪山徒步圣地' },
+      { wiki: ['en', 'Seongsan_Ilchulbong'], backupQuery: 'Seongsan Ilchulbong tuff cone Jeju aerial', caption: '济州岛城山日出峰——三面悬崖直插碧海的碗状海底火山口' }
     ]
   },
 
@@ -2217,6 +2262,26 @@ const ATLAS_WISHLIST_SEED = [
     photos: [
       { wiki: ['ja', 'うきは市'], backupQuery: 'Ukiha Inari Shrine torii Chikugo plain Fukuoka', caption: '九州福冈筑后川与浮羽山麓田园——《天降之物》空美町温柔原风景' }
     ]
+  },
+  {
+    id: 'wish-seoul-bluearchive',
+    lineId: 'line-acg',
+    name: '首尔龙山 · 《蔚蓝档案》Cafe Memorial 官方常设店',
+    country: '韩国', region: '首尔特别市龙山区 · I\'Park Mall Living Park 3F',
+    lat: 37.5298, lng: 126.9648, zoom: 16,
+    source: 'user', category: 'acg',
+    aesthetics: ['圣地巡礼'],
+    work: '《蔚蓝档案 Blue Archive》首家官方常设主题咖啡馆与正版周边店',
+    workKey: '蔚蓝档案 Blue Archive',
+    bgmScore: null,
+    summary: '坐落于首尔龙山站 I\'Park Mall 3 层 Dopamine Station 的《蔚蓝档案》官方常设咖啡馆与谷子店',
+    intro: '韩国 Nexon 开发的《蔚蓝档案（Blue Archive）》全球首家官方常设主题咖啡馆——「Cafe Memorial（카페 메모리얼）」，坐落于首尔龙山站直连的 I\'Park Mall Living Park 3 楼「Dopamine Station」内。店内定期轮换各学院主题装潢、限定印象餐点与杯垫特典，并设有官方正版周边商店；同层紧邻任天堂官方店、PlayStation 与高达基地，出商场步行/打车 10 分钟内即可衔接龙山韩国战争纪念馆。',
+    subSpots: [
+      { name: '龙山 I\'Park Mall 3F · Cafe Memorial & 官方周边店', detail: '37.5298°N, 126.9648°E · 地铁1号线/京义中央线龙山站直达；咖啡区需通过 Catch Table 提前预约（通常每月第三个周三 20:00 KST 放次月名额）' }
+    ],
+    photos: [
+      { wiki: ['en', 'Yongsan_Station'], backupQuery: 'Yongsan IPark Mall Seoul station', caption: '首尔龙山站 I\'Park Mall——《蔚蓝档案》官方常设主题咖啡馆 Cafe Memorial 所在地' }
+    ]
   }
 ];
 
@@ -2258,6 +2323,7 @@ const ATLAS_WISHLIST_SEED = [
     'wish-muralla-roja':       { lineId: 'line-brutalist' },
     'wish-bigsight-madoka':    { lineId: 'line-brutalist', extraLines: ['line-acg'], workKey: '魔法少女小圆', anitabiId: 9717 },
     'wish-saitama-gcans':      { lineId: 'line-brutalist', extraLines: ['line-acg'], workKey: 'G弦上的魔王' },
+    'wish-korea-dmz':          { lineId: 'line-brutalist', extraLines: ['line-ruins'] },
 
     // 4. 🏛️ 神代线 (line-ruins)
     'wish-parthenon':          { lineId: 'line-ruins' },
@@ -2292,6 +2358,7 @@ const ATLAS_WISHLIST_SEED = [
     'wish-antarctica-chaldea': { lineId: 'line-nature', extraLines: ['line-acg'], workKey: 'Fate/Grand Order' },
     'wish-darvaza-crater':     { lineId: 'line-nature' },
     'wish-socotra-island':     { lineId: 'line-nature' },
+    'wish-jeju-volcano':       { lineId: 'line-nature', extraLines: ['line-fantasy'] },
 
     // 6. 🔥 生灵祭典线 (line-bloom)
     'wish-hitachi-nemophila':  { lineId: 'line-bloom', extraLines: ['line-acg'], workKey: '葬送的芙莉莲', anitabiId: 400602 },
@@ -2327,7 +2394,8 @@ const ATLAS_WISHLIST_SEED = [
     'wish-seto-hanayome':      { lineId: 'line-acg', workKey: '濑户的花嫁', anitabiId: 805 },
     'wish-shimonada':          { lineId: 'line-acg', workKey: '下滩海站 (青春18)' },
     'wish-suwa-lake':          { lineId: 'line-acg', workKey: '你的名字。', anitabiId: 160209 },
-    'wish-kamishikimi':        { lineId: 'line-acg', workKey: '萤火之森' }
+    'wish-kamishikimi':        { lineId: 'line-acg', workKey: '萤火之森' },
+    'wish-seoul-bluearchive':  { lineId: 'line-acg', workKey: '蔚蓝档案 Blue Archive' }
   };
   for (const item of ATLAS_WISHLIST_SEED) {
     const patch = ENRICH_MAP[item.id];
