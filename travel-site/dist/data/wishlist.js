@@ -1586,20 +1586,92 @@ const ATLAS_WISHLIST_SEED = [
   {
     id: 'wish-yurucamp',
     lineId: 'line-acg-jp', lineOrder: 8,
-    name: '本栖湖浩庵露营场 & 朝雾高原',
-    country: '日本', region: '山梨县身延町 · 静冈县富士宫 · 长野县信州',
+    name: '富士五湖 · 本栖湖浩庵 & 朝雾高原 & 四尾连湖 & 山中湖',
+    country: '日本', region: '山梨县身延町·市川三乡町·山中湖村 · 静冈县富士宫朝雾高原',
     lat: 35.4728, lng: 138.5753, zoom: 10,
     source: 'user', category: 'acg',
     aesthetics: ['圣地巡礼'],
-    work: '《摇曳露营△》',
+    work: '《摇曳露营△》富士山麓四大湖畔与草原核心营地',
     bgmScore: 8,
-    summary: '志摩凛与抚子冬夜初遇的千元日钞富士山湖畔营地，串联山梨·静冈·长野',
-    intro: '《摇曳露营△》（8/10）第1话凛与抚子篝火吃泡面的「本栖湖浩庵露营场」（旧版千圆纸币逆富士机位），向南串联静冈朝雾高原麓露营场，向北深入长野雾ヶ峰与高远城。',
+    summary: '集合 S1/S2 富士山麓四大标志营地：浩庵逆富士、ふもとっぱら大草原、四尾连湖独轮车营地与山中湖岬',
+    intro: '《摇曳露营△》（8/10）最核心的富士山麓露营圈四合一点位：① 第1话凛与抚子篝火吃泡面的「本栖湖浩庵露营场」（旧版千圆纸币逆富士机位，需官网预约含 Day Camp）；② 无遮挡直面巨型富士山的静冈「朝雾高原 ふもとっぱら 麓露营场」（官网预约，门口有外部租借店）；③ 凛与抚子首次双人露营的「四尾连湖水明荘」（海拔 850m，推独轮车搬行李）；④ 第2季千明、葵、惠那体验极寒冻僵的「山中湖岬露营场」。',
     subSpots: [
-      { name: '本栖湖浩庵露营场 & 朝雾高原麓露营场', detail: '35.4728°N, 138.5753°E · 秋冬晴朗清晨最易拍到无风逆富士' }
+      { name: '本栖湖 · 浩庵露营场（S1E1 千元钞逆富士）', detail: '35.4728°N, 138.5753°E · 官网完全事前预约制（不过夜参观也需预约 Day Camp），秋冬晴朗清晨逆富士最佳' },
+      { name: '朝雾高原 · ふもとっぱら 麓露营场（S1 富士山正面大草原）', detail: '35.4004°N, 138.5612°E · 官网预约制；营地无官方帐篷租借，可预约步行可达的「麓のキャンプ道具レンタル屋」' },
+      { name: '四尾连湖 · 水明荘露营场（S1 首次双人露营）', detail: '35.5298°N, 138.5173°E · 车不可入营位，需在管理栋租独轮车推行李进湖畔，需提前预约' },
+      { name: '山中湖 · 岬露营场（S2 极寒三人露营地）', detail: '35.4256°N, 138.8842°E · 伸入山中湖畔的半岛林间营地，冬夜极寒注意重装防寒' }
     ],
     photos: [
-      { src: 'photos/wishlist/yurucamp.jpg', caption: '山梨本栖湖仰望白雪富士山——《摇曳露营△》第1话核心营地' }
+      { src: 'photos/wishlist/yurucamp.jpg', caption: '山梨本栖湖仰望白雪富士山——《摇曳露营△》第1话浩庵露营场' },
+      { wiki: ['ja', '四尾連湖'], backupQuery: 'Lake Shibire Yamanashi autumn camp', caption: '山梨四尾连湖——凛与抚子初次双人露营的幽静山上湖' }
+    ]
+  },
+  {
+    id: 'wish-yurucamp-hottarakashi',
+    lineId: 'line-acg-jp', lineOrder: 8.2,
+    name: '山梨 · ほったらかし温泉 & 笛吹川水果公园',
+    country: '日本', region: '山梨县山梨市 · 甲府盆地北侧山丘（S1 山顶温泉与夜景）',
+    lat: 35.7061, lng: 138.6522, zoom: 13,
+    source: 'user', category: 'acg',
+    aesthetics: ['圣地巡礼'],
+    work: '《摇曳露营△》作中「ほっとけや温泉」日出泡汤与新日本三大夜景',
+    workKey: '摇曳露营△',
+    anitabiId: 207195,
+    bgmScore: 8,
+    summary: '日出前 1 小时开门的山顶绝景露天温泉与紧邻的新日本三大夜景公园，泡完必吃温泉蛋炸物「温玉あげ」',
+    intro: '《摇曳露营△》（8/10）第1季中抚子、凛与千明泡露天温泉吃「温玉あげ」的实景原型——位于山梨市半山腰的「ほったらかし温泉」与紧邻的「笛吹川水果公园」同在一座山丘上（相距约 500 米）。清晨在「あっちの湯」一边泡露天热汤一边看朝阳越过富士山与甲府盆地，入夜则可在水果公园玻璃穹顶俯瞰新日本三大夜景，是无需露营装备也能轻松打卡的高满意度圣地。',
+    subSpots: [
+      { name: 'ほったらかし温泉（作中：ほっとけや温泉）', detail: '35.7061°N, 138.6522°E · 日出前1小时–22:00（最终入场 21:30）全年无休，JR山梨市站打车约 10 分钟，必吃「温玉あげ」' },
+      { name: '笛吹川水果公园（新日本三大夜景展望点）', detail: '35.7022°N, 138.6653°E · 紧邻温泉，傍晚顺路看甲府盆地万家灯火与富士山剪影' }
+    ],
+    photos: [
+      { wiki: ['ja', 'ほったらかし温泉'], backupQuery: 'Hottarakashi Onsen Yamanashi Mount Fuji', caption: '山梨ほったらかし温泉——《摇曳露营△》日出泡汤俯瞰富士山与甲府盆地圣地' },
+      { wiki: ['ja', '山梨県笛吹川フルーツ公園'], backupQuery: 'Fuefukigawa Fruit Park Yamanashi night view', caption: '山梨笛吹川水果公园——紧邻温泉的新日本三大夜景展望点' }
+    ]
+  },
+  {
+    id: 'wish-yurucamp-izu',
+    lineId: 'line-acg-jp', lineOrder: 8.4,
+    name: '伊豆半岛 · 大室山 & 稻取细野高原 & 西伊豆堂岛',
+    country: '日本', region: '静冈县伊东市 · 东伊豆町 · 西伊豆町（S2 伊豆露营篇）',
+    lat: 34.9031, lng: 139.0944, zoom: 10,
+    source: 'user', category: 'acg',
+    aesthetics: ['圣地巡礼'],
+    work: '《摇曳露营△ SEASON 2》野クル全员伊豆春游圣地圈',
+    workKey: '摇曳露营△',
+    anitabiId: 207195,
+    bgmScore: 8,
+    summary: '集合第 2 季伊豆篇三大绝景：抹茶碗形大室山火山口、俯瞰相模湾的稻取细野高原与西伊豆堂岛天窗洞',
+    intro: '《摇曳露营△》第 2 季后半段主角团全员集结的「伊豆露营篇」核心三地合集：先在伊东乘缆车登顶抹茶布丁般的「大室山」绕火山口漫步 360° 远眺富士山与相模湾（就在已收《碧蓝之海》城崎海岸隔壁！），再一路南下探访芒草漫山的「稻取细野高原」，最后绕至西伊豆「堂岛」乘游览船驶入天然海蚀洞窟「天窗洞」。',
+    subSpots: [
+      { name: '伊豆 · 大室山（火山口一周步道）', detail: '34.9031°N, 139.0944°E · 乘缆车登顶绕行约 1km 火山口步道，紧邻《碧蓝之海》伊东城崎海岸' },
+      { name: '东伊豆 · 稻取细野高原（相模湾芒草高原）', detail: '34.7875°N, 139.0103°E · 视野开阔的山岳高原与海景公路，自驾最顺畅' },
+      { name: '西伊豆 · 堂岛（天窗洞海蚀洞窟游览船）', detail: '34.7800°N, 138.7600°E · 乘船穿入天然采光海蚀穹顶洞窟，傍晚看西伊豆海岸夕阳' }
+    ],
+    photos: [
+      { wiki: ['ja', '大室山_(静岡県)'], backupQuery: 'Mount Omuro Izu Peninsula Mount Fuji', caption: '静冈伊豆大室山与富士山——《摇曳露营△》第2季伊豆春游地标' },
+      { wiki: ['ja', '堂ヶ島'], backupQuery: 'Dogashima Tensodo cave Nishiizu', caption: '西伊豆堂岛海岸与天窗洞——《摇曳露营△》第2季海蚀洞游船圣地' }
+    ]
+  },
+  {
+    id: 'wish-yurucamp-hamanako',
+    lineId: 'line-acg-jp', lineOrder: 8.6,
+    name: '滨名湖 · 辨天岛红鸟居 & 渚园露营场',
+    country: '日本', region: '静冈县滨松市中央区 · 辨天岛（S2 凛跨年单人露营）',
+    lat: 34.6967, lng: 137.5965, zoom: 13,
+    source: 'user', category: 'acg',
+    aesthetics: ['圣地巡礼'],
+    work: '《摇曳露营△ SEASON 2》志摩凛跨年单人露营与滨名湖骑行圣地',
+    workKey: '摇曳露营△',
+    anitabiId: 207195,
+    bgmScore: 8,
+    summary: '静冈滨名湖矗立水中的赤红辨天岛鸟居与凛因大雪改道的跨年单人露营芝生营地「渚园」',
+    intro: '《摇曳露营△》第 2 季开篇志摩凛骑机车驰骋静冈滨名湖、因大雪无法返程而临时驻扎跨年的「渚园露营场（Nagisaen）」，以及湖面上标志性的赤红「辨天岛象征塔（水中红鸟居）」。与高海拔山区营地相比，渚园距 JR 东海道本线「辨天岛站」步行可达、公营草坪费用亲民，管理栋内常设摇曳露营联名展角，还可在周边大啖滨名湖鳗鱼饭。',
+    subSpots: [
+      { name: '辨天岛海中红鸟居 & 渚园露营场', detail: '34.6967°N, 137.5965°E · JR东海道本线辨天岛站步行可达，公共交通最友好的摇曳露营营地之一' }
+    ],
+    photos: [
+      { wiki: ['ja', '弁天島_(浜松市)'], backupQuery: 'Bentenjima Lake Hamana torii Hamamatsu', caption: '静冈滨名湖辨天岛与渚园——《摇曳露营△》第2季志摩凛跨年单人露营圣地' }
     ]
   },
   {
@@ -2243,6 +2315,9 @@ const ATLAS_WISHLIST_SEED = [
     'wish-sakura-no-uta':      { lineId: 'line-acg', workKey: '樱之诗 / 樱之刻' },
     'wish-hakone-eva':         { lineId: 'line-acg', workKey: '新世纪福音战士 EVA', anitabiId: 265 },
     'wish-yurucamp':           { lineId: 'line-acg', workKey: '摇曳露营△', anitabiId: 207195 },
+    'wish-yurucamp-hottarakashi': { lineId: 'line-acg', workKey: '摇曳露营△', anitabiId: 207195 },
+    'wish-yurucamp-izu':       { lineId: 'line-acg', workKey: '摇曳露营△', anitabiId: 207195 },
+    'wish-yurucamp-hamanako':  { lineId: 'line-acg', workKey: '摇曳露营△', anitabiId: 207195 },
     'wish-grandblue':          { lineId: 'line-acg', workKey: '碧蓝之海', anitabiId: 235130 },
     'wish-shiga-keion':        { lineId: 'line-acg', workKey: '轻音少女', anitabiId: 1424 },
     'wish-kasamatsu':          { lineId: 'line-acg', workKey: '赛马娘', anitabiId: 509297 },
