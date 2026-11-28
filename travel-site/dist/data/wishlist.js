@@ -801,6 +801,27 @@ const ATLAS_WISHLIST_SEED = [
       { wiki: ['en', 'La_Muralla_Roja'], backupQuery: 'La Muralla Roja Calpe Ricardo Bofill', caption: '西班牙卡尔佩「红墙（La Muralla Roja）」——地中海悬崖上的超现实几何色彩迷宫' }
     ]
   },
+  {
+    id: 'wish-saitama-gcans',
+    lineId: 'line-brutalist', lineOrder: 10,
+    extraLines: ['line-acg'],
+    name: '埼玉 · 首都圈外郭放水路（地下神殿）',
+    country: '日本', region: '埼玉县春日部市 · 龙Q馆地下调压水槽（东京出发约 1h）',
+    lat: 35.9975, lng: 139.8117, zoom: 15,
+    source: 'user', category: 'mega',
+    aesthetics: ['巨大·无机质', '圣地巡礼'],
+    work: '《G弦上的魔王》地下决战圣地原型 · 地下22米由59根500吨巨柱撑起的防洪巨构神殿',
+    workKey: 'G弦上的魔王',
+    bgmScore: null,
+    summary: '地下 22 米深处长达 177 米的素混凝土巨柱洞窟，59 根 18 米高巨柱整齐列阵，《G弦上的魔王》经典地下决战原型',
+    intro: '坐落于埼玉县春日部市的「首都圈外郭放水路」是世界最大规模的地下防洪调压工程之一。沿阶梯步入地下 22 米深的调压水槽，眼前骤然展开 59 根高达 18 米、单根重达 500 吨的巨型素混凝土方柱方阵，幽冷空旷的压迫感宛如古希腊地下神殿——它正是 Galgame 名作《G弦上的魔王》中充满宿命感的地下决战场景现实原型，同时也频频作为“地下圣殿 / 异空间基地”出现在《假面骑士》《奥特曼》与众多科幻动画之中。',
+    subSpots: [
+      { name: '龙Q馆集合 · 地下神殿调压水槽见学路线', detail: '35.9975°N, 139.8117°E · 东武野田线南樱井站打车约 7 分钟，需提前在官方网站预约见学场次' }
+    ],
+    photos: [
+      { wiki: ['en', 'Metropolitan_Area_Outer_Underground_Discharge_Channel'], backupQuery: 'Metropolitan Area Outer Underground Discharge Channel Saitama temple', caption: '日本埼玉首都圈外郭放水路“地下神殿”——59根500吨巨柱撑起的《G弦上的魔王》地下圣地原型' }
+    ]
+  },
 
   // ==================== Line 07 ·【黄沙与孤岛掩埋的诸神】(7) ====================
   {
@@ -1170,6 +1191,44 @@ const ATLAS_WISHLIST_SEED = [
     ],
     photos: [
       { wiki: ['en', 'Niagara_Falls'], backupQuery: 'Niagara Falls Horseshoe Falls aerial', caption: '美加边境尼亚加拉大瀑布——雷霆万钧倾泻入渊的马蹄形巨瀑' }
+    ]
+  },
+  {
+    id: 'wish-darvaza-crater',
+    lineId: 'line-nature', lineOrder: 14,
+    name: '达瓦札 · “地狱之门”巨型燃烧火坑（Darvaza）',
+    country: '土库曼斯坦', region: '阿哈尔州 · 卡拉库姆沙漠腹地（距阿什哈巴德约 260km）',
+    lat: 40.2525, lng: 58.4396, zoom: 13,
+    source: 'user', category: 'mega',
+    aesthetics: ['巨大·无机质'],
+    work: '1971年苏联天然气钻井塌陷点燃后持续燃烧逾半个世纪的沙漠烈焰深渊',
+    bgmScore: null,
+    summary: '荒凉卡拉库姆沙漠中央直径约 69 米、深 30 米的烈焰巨坑，日夜不息喷涌火焰把沙漠夜空染成暗红',
+    intro: '位于土库曼斯坦卡拉库姆沙漠腹地的达瓦札天然气坑（Darvaza Gas Crater），被当地人与旅人称为“地狱之门”。1971 年苏联地质队钻探天然气时意外引发地下空腔塌陷，为防有毒气体逸散遂点火焚烧，原以为数周即熄，不料至今已昼夜不息燃烧五十余年。黄昏抵坑守候天幕彻底沉黑，站在毫无护栏的滚烫坑沿俯视坑底成百上千股赤红火舌与地底轰鸣，抬头却是极暗荒漠的璀璨星河，荒诞而震撼。',
+    subSpots: [
+      { name: '达瓦札火坑边缘营地（日落至深夜星空观火）', detail: '40.2525°N, 58.4396°E · 近年当地屡传研究封灭计划，宜作远期高优先荒野目标' }
+    ],
+    photos: [
+      { wiki: ['en', 'Darvaza_gas_crater'], backupQuery: 'Darvaza gas crater Door to Hell Turkmenistan night', caption: '土库曼斯坦达瓦札“地狱之门”——卡拉库姆沙漠中燃烧逾半个世纪的巨型天然气火坑' }
+    ]
+  },
+  {
+    id: 'wish-socotra-island',
+    lineId: 'line-nature', lineOrder: 15,
+    name: '索科特拉岛 · 外星龙血树森林（Socotra）',
+    country: '也门', region: '阿拉伯海与印度洋交界孤岛 · 迪克萨姆高原（Diksam）',
+    lat: 12.5100, lng: 53.9200, zoom: 10,
+    source: 'user', category: 'fantasy',
+    aesthetics: ['西幻·巨人·矮人·精灵'],
+    work: '超过三分之一植物地球仅此一岛独有 · 伞状巨型龙血树与沙漠玫瑰构成的“外星生态”',
+    bgmScore: null,
+    summary: '与大陆隔绝演化出的印度洋外星秘境，满山倒伞状龙血树划开会渗出鲜红树脂，宛如异星植物园',
+    intro: '孤悬于阿拉伯海与印度洋交界处的索科特拉岛（Socotra），因长期地理隔绝保留了地球上最奇异的特有生态系统——岛上约 37% 的植物为全世界仅此独有。海拔数百米的迪克萨姆高原上，一株株枝干虬结、树冠紧簇如巨大倒撑蘑菇伞的「龙血树（Dracaena cinnabari）」成片伫立（划破树皮会流出鲜红如血的树脂），配以形态胖似花瓶的沙漠玫瑰树、纯白海岸沙丘与翡翠泻湖，被誉为“地球上最像外星的地方”。',
+    subSpots: [
+      { name: '迪克萨姆高原（Diksam Plateau）龙血树林 & Detwah 泻湖', detail: '12.5100°N, 53.9200°E · 通常需经阿布扎比转固定包机入岛，适合作为远期终极秘境收藏' }
+    ],
+    photos: [
+      { wiki: ['en', 'Dracaena_cinnabari'], backupQuery: 'Socotra Island dragon blood trees Yemen', caption: '也门索科特拉岛——地球独有的倒伞状远古龙血树森林与外星地貌' }
     ]
   },
 
@@ -2105,6 +2164,7 @@ const ATLAS_WISHLIST_SEED = [
     'wish-marriott-marquis':   { lineId: 'line-brutalist' },
     'wish-muralla-roja':       { lineId: 'line-brutalist' },
     'wish-bigsight-madoka':    { lineId: 'line-brutalist', extraLines: ['line-acg'], workKey: '魔法少女小圆', anitabiId: 9717 },
+    'wish-saitama-gcans':      { lineId: 'line-brutalist', extraLines: ['line-acg'], workKey: 'G弦上的魔王' },
 
     // 4. 🏛️ 神代线 (line-ruins)
     'wish-parthenon':          { lineId: 'line-ruins' },
@@ -2137,6 +2197,8 @@ const ATLAS_WISHLIST_SEED = [
     'wish-symmes-chapel':      { lineId: 'line-nature' },
     'wish-niagara-falls':      { lineId: 'line-nature' },
     'wish-antarctica-chaldea': { lineId: 'line-nature', extraLines: ['line-acg'], workKey: 'Fate/Grand Order' },
+    'wish-darvaza-crater':     { lineId: 'line-nature' },
+    'wish-socotra-island':     { lineId: 'line-nature' },
 
     // 6. 🔥 生灵祭典线 (line-bloom)
     'wish-hitachi-nemophila':  { lineId: 'line-bloom', extraLines: ['line-acg'], workKey: '葬送的芙莉莲', anitabiId: 400602 },
