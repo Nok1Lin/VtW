@@ -1288,6 +1288,23 @@ const ATLAS_WISHLIST_SEED = [
       { wiki: ['en', 'Fainting_goat'], backupQuery: 'Myotonic fainting goat Tennessee pasture', caption: '美国田纳西“晕倒羊”（Myotonic Goat）——一激动便四腿僵直倒地的神奇山羊' }
     ]
   },
+  {
+    id: 'wish-wuhan-onodera-coffee',
+    lineId: 'line-bloom', lineOrder: 8,
+    name: '武汉 · 小野寺咖啡',
+    country: '中国', region: '湖北省武汉市洪山区 · 东湖植物园路52号',
+    lat: 30.5445, lng: 114.4228, zoom: 15,
+    source: 'user', category: 'festival',
+    aesthetics: ['人文祭典'],
+    work: '武汉东湖与植物园路片区独立咖啡馆打卡点',
+    bgmScore: null,
+    summary: '位于武汉洪山区植物园路52号、毗邻东湖风景区与武汉植物园一带的独立咖啡馆',
+    intro: '坐落于湖北省武汉市洪山区植物园路 52 号的「小野寺咖啡」，紧邻东湖生态旅游风景区、中国科学院武汉植物园与大李文创村片区。适合在东湖漫步或游览武汉植物园时顺路探店小坐，出行前建议在地图或大众点评确认当日营业时间。',
+    subSpots: [
+      { name: '小野寺咖啡（洪山区植物园路52号）', detail: '30.5445°N, 114.4228°E · 毗邻东湖风景区与中国科学院武汉植物园，到店前可核对当日营业状态' }
+    ],
+    photos: []
+  },
 
   // ==================== Line 10 ·【极夜烈火、万寿菊与迦勒底】(3) ====================
   {
@@ -2110,6 +2127,7 @@ const ATLAS_WISHLIST_SEED = [
     'wish-fainting-goat':      { lineId: 'line-bloom' },
     'wish-shetland-uphellyaa': { lineId: 'line-bloom', extraLines: ['line-acg'], workKey: '冰海战记' },
     'wish-mexico-muertos':     { lineId: 'line-bloom' },
+    'wish-wuhan-onodera-coffee': { lineId: 'line-bloom' },
 
     // 7. 🎬 圣地巡礼 (line-acg)
     'wish-kanazawa-u':         { lineId: 'line-acg', extraLines: ['line-brutalist'], workKey: 'Angel Beats!', anitabiId: 1851 },
