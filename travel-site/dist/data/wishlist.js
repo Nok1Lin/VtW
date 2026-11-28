@@ -1604,6 +1604,25 @@ const ATLAS_WISHLIST_SEED = [
     ],
     photos: []
   },
+  {
+    id: 'wish-tianjin-xiangsheng',
+    lineId: 'line-bloom', lineOrder: 9,
+    name: '天津 · 津味相声茶馆（名流茶馆 & 谦祥益）',
+    country: '中国', region: '天津市南开区古文化街 · 红桥区估衣街（京津高铁 30min）',
+    lat: 39.1422, lng: 117.1930, zoom: 15,
+    source: 'user', category: 'festival',
+    aesthetics: ['人文祭典'],
+    work: '中国曲艺之乡 · 捧着大碗茶嗑瓜子听老字号剧场现挂津味相声',
+    bgmScore: null,
+    summary: '在古文化街名流茶馆或百年老戏楼谦祥益点一壶茉莉花茶、磕着瓜子听原汁原味天津相声与现挂包袱',
+    intro: '天津素有“曲艺之乡”与相声大本营之称，比起屏幕里看晚会相声，坐进古文化街「名流茶馆」或百年老字号「谦祥益文苑」的木方桌前、捧一碗大碗茶听台下观众和演员实时互动接茬（“搭茬现挂”），才是津味市井文化的灵魂。从北京南站乘京津城际 30 分钟即达，听完一场正好顺逛古文化街、五大道与海河夜景。',
+    subSpots: [
+      { name: '古文化街 · 名流茶馆 & 谦祥益文苑（陆家嘴/估衣街老馆）', detail: '39.1422°N, 117.1930°E · 平日/周末均有午场与晚场，建议提前在小程序或大麦选前排中区桌位' }
+    ],
+    photos: [
+      { wiki: ['en', 'Xiangsheng'], backupQuery: 'Tianjin Mingliu Teahouse Xiangsheng performance', caption: '天津名流茶馆相声演出现场——原汁原味津味市井曲艺体验' }
+    ]
+  },
 
   // ==================== Line 10 ·【极夜烈火、万寿菊与迦勒底】(3) ====================
   {
@@ -2555,6 +2574,7 @@ const ATLAS_WISHLIST_SEED = [
     'wish-shetland-uphellyaa': { lineId: 'line-bloom', extraLines: ['line-acg'], workKey: '冰海战记' },
     'wish-mexico-muertos':     { lineId: 'line-bloom' },
     'wish-wuhan-onodera-coffee': { lineId: 'line-bloom' },
+    'wish-tianjin-xiangsheng': { lineId: 'line-bloom' },
 
     // 7. 🎬 圣地巡礼 (line-acg)
     'wish-kanazawa-u':         { lineId: 'line-acg', extraLines: ['line-brutalist'], workKey: 'Angel Beats!', anitabiId: 1851 },
