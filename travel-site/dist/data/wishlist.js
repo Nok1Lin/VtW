@@ -1660,6 +1660,27 @@ const ATLAS_WISHLIST_SEED = [
     ]
   },
   {
+    id: 'wish-tokyo-racecourse',
+    lineId: 'line-acg-jp', lineOrder: 11.5,
+    name: '东京 · 东京竞马场（府中 G1 德比圣殿）',
+    country: '日本', region: '东京都府中市 · 京王线府中竞马正门前站直达',
+    lat: 35.6625, lng: 139.4850, zoom: 15,
+    source: 'user', category: 'acg',
+    aesthetics: ['圣地巡礼'],
+    work: '《赛马娘 Pretty Derby》·《剧场版 新时代之门》日本德比 / 天皇赏(秋) / 日本杯主战场',
+    workKey: '赛马娘',
+    anitabiId: 509297,
+    bgmScore: 9,
+    summary: '全长 525.9 米超长直线与招牌大斜坡，剧场版《新时代之门》日本德比与无数中央 G1 决战的终极舞台',
+    intro: '坐落于东京都府中市的「东京竞马场（府中马场）」，是日本中央竞马（JRA）规格最高的核心主场，也是《赛马娘》（9/10）与剧场版《新时代之门》里日本德比（东京优骏）、日本杯、秋季天皇赏、安田纪念与维多利亚一哩赛等巅峰 G1 大赛的实景圣地！\n拥有全长 525.9 米的漫长最后直线与著名“府中大斜坡”，可容纳十余万观众的巨型富士景观看台在冲刺瞬间声浪震天；非赛事日也能参观免费的 JRA 赛马博物馆，感受从小栗帽、鲁道夫象征到丛林口袋的世代传奇（与已收的岐阜「笠松赛马场」恰好构成地方起点 ↔ 中央巅峰双璧）。',
+    subSpots: [
+      { name: '富士景观看台（Fuji View Stand）终点线 & JRA 赛马博物馆', detail: '35.6625°N, 139.4850°E · 京王线「府中竞马正门前站」步行 2 分钟；G1 大赛日需提前在 JRA 官网抽选指定席' }
+    ],
+    photos: [
+      { wiki: ['en', 'Tokyo_Racecourse'], backupQuery: 'Tokyo Racecourse Fuchu JRA grandstand track', caption: '东京都府中市东京竞马场——《赛马娘》日本德比与中央 G1 巅峰决战主战场' }
+    ]
+  },
+  {
     id: 'wish-shirakawago',
     lineId: 'line-acg-jp', lineOrder: 12,
     name: '飞驒 · 白川乡合掌村（雏见泽原型）',
@@ -2225,6 +2246,7 @@ const ATLAS_WISHLIST_SEED = [
     'wish-grandblue':          { lineId: 'line-acg', workKey: '碧蓝之海', anitabiId: 235130 },
     'wish-shiga-keion':        { lineId: 'line-acg', workKey: '轻音少女', anitabiId: 1424 },
     'wish-kasamatsu':          { lineId: 'line-acg', workKey: '赛马娘', anitabiId: 509297 },
+    'wish-tokyo-racecourse':   { lineId: 'line-acg', workKey: '赛马娘', anitabiId: 509297 },
     'wish-shirakawago':        { lineId: 'line-acg', workKey: '寒蝉鸣泣之时', anitabiId: 289 },
     'wish-kobe-fate':          { lineId: 'line-acg', workKey: 'Fate / stay night & Zero', anitabiId: 95225 },
     'wish-seto-hanayome':      { lineId: 'line-acg', workKey: '濑户的花嫁', anitabiId: 805 },
