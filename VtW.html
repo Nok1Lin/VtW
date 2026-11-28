@@ -2611,14 +2611,31 @@ const OBSIDIAN_WISHLIST_SEED=[
   {id:'w-5',cat:'徒步',title:'香港 + 麦理浩径徒步',quote:'“5. hk+麦理浩径？”',source:'Diary/2026-11-12 寒假旅行选址与滑雪片.md',place:'中国香港 · 麦理浩径',done:false},
   {id:'w-6',cat:'冬季赏雪',title:'河南老君山雪景',quote:'“4. 河南老君山”',source:'Diary/2026-11-12 寒假旅行选址与滑雪片.md',place:'河南洛阳 · 老君山',done:false},
   {id:'w-7',cat:'冬季远行',title:'UK 英国冬季旅行',quote:'“1. uk旅行……我的旅游需要一个故事，还是去uk吧？”',source:'Diary/2026-11-12 寒假旅行选址与滑雪片.md',place:'英国 · UK',done:false},
-  {id:'w-8',cat:'冬季远行',title:'北海道冬季旅行',quote:'“我想要狂风暴雪 想要一览众山小……或者北海道也不错”',source:'Diary/2026-11-12 寒假旅行选址与滑雪片.md',place:'日本 · 北海道',done:false}
+  {id:'w-8',cat:'冬季远行',title:'北海道冬季旅行',quote:'“我想要狂风暴雪 想要一览众山小……或者北海道也不错”',source:'Diary/2026-11-12 寒假旅行选址与滑雪片.md',place:'日本 · 北海道',done:false},
+  {id:'w-9',cat:'手艺学徒',title:'上海居酒屋烧鸟店 学徒学习手艺',quote:'“上海居酒屋烧鸟店 学徒学习手艺”',source:'2026-11-28 TODO 更新',place:'中国 · 上海',done:false}
 ];
-if(!Array.isArray(state.wishlist)||!state.wishlistSeeded_20261124_v2){
-  const existingDone=new Map((state.wishlist||[]).map(x=>[x.id,!!x.done]));
-  state.wishlist=OBSIDIAN_WISHLIST_SEED.map(s=>({...s,done:existingDone.has(s.id)?existingDone.get(s.id):s.done}));
-  state.wishlistSeeded_20261124_v2=true;
-  try{localStorage.setItem(VERSION,JSON.stringify(state))}catch(e){}
+function vtwSyncWishlistUpdates(targetState=state){
+  let changed=false;
+  if(!Array.isArray(targetState.wishlist)||!targetState.wishlistSeeded_20261124_v2){
+    const existingDone=new Map((targetState.wishlist||[]).map(x=>[x.id,!!x.done]));
+    targetState.wishlist=OBSIDIAN_WISHLIST_SEED.map(s=>({...s,done:existingDone.has(s.id)?existingDone.get(s.id):s.done}));
+    targetState.wishlistSeeded_20261124_v2=true;
+    targetState.yakitoriTodo20261128=true;
+    changed=true;
+  }
+  if(!targetState.yakitoriTodo20261128){
+    const item=OBSIDIAN_WISHLIST_SEED.find(x=>x.id==='w-9');
+    const exists=targetState.wishlist.some(x=>x.id==='w-9'||String(x.title||'').trim()==='上海居酒屋烧鸟店 学徒学习手艺');
+    if(item&&!exists)targetState.wishlist.push({...item});
+    targetState.yakitoriTodo20261128=true;
+    changed=true;
+  }
+  if(changed&&targetState===state){
+    try{localStorage.setItem(VERSION,JSON.stringify(state))}catch(e){}
+  }
+  return changed;
 }
+vtwSyncWishlistUpdates();
 function renderWishlist(){
   const wishes=state.wishlist||[];
   const doneCount=wishes.filter(x=>x.done).length;
@@ -2671,8 +2688,8 @@ if($('addWishBtn'))$('addWishBtn').onclick=()=>{
 if($('newWishTitle'))$('newWishTitle').addEventListener('keydown',e=>{if(e.key==='Enter')$('addWishBtn')?.click()});
 $('exportJson').onclick=()=>download('我的旅行地图_数据备份.json',JSON.stringify({version:VERSION,exportedAt:new Date().toISOString(),state},null,2),'application/json');
 $('exportCsv').onclick=()=>{let rows=[['类别','装备','纳入预算','承担方','价格元','价格类别','状态'],...state.gear.map(x=>[x.group,x.name,x.selected?'是':'否',x.fund==='family'?'家庭':'个人',x.price??'',x.type,x.status]),['背包',bag().name,state.bagIncluded?'是':'否','个人',bag().price,'对应选定候选',bag().note]];download('2027装备清单.csv','\ufeff'+rows.map(x=>x.map(csvCell).join(',')).join('\r\n'),'text/csv;charset=utf-8')};
-$('importJson').onchange=async e=>{let f=e.target.files?.[0];if(!f)return;try{let data=JSON.parse(await f.text());if(!data.state||!Array.isArray(data.state.legs)||!Array.isArray(data.state.gear))throw Error('格式不正确');if(!confirm('导入将覆盖当前保存的数据，继续吗？'))return;state=Object.assign(init(),data.state);vtwAddRequestedVisits(state);vtwSeedAuroraRoute(state);vtwSyncGearUpdates(state);trRouteId=storedTrace();trIndex=0;trFocusedCountry='';if(!Array.isArray(state.pins))state.pins=[];if(!Array.isArray(state.doneGoodieIds))state.doneGoodieIds=[];if(!state.customGoodies||typeof state.customGoodies!=='object')state.customGoodies={};if(!state.routeLayers)state.routeLayers={silk:true,mediterranean:true,ancient:true};atlasDataRev++;persist();view('map');alert('导入成功')}catch(err){alert('导入失败：'+err.message)}finally{e.target.value=''}};
-$('resetAll').onclick=()=>{if(confirm('确认恢复初始数据？所有修改都会被覆盖。')){state=init();vtwAddRequestedVisits(state);vtwSeedAuroraRoute(state);vtwSyncGearUpdates(state);trRouteId='modular';trIndex=0;trFocusedCountry='';atlasDataRev++;persist();view('map')}};
+$('importJson').onchange=async e=>{let f=e.target.files?.[0];if(!f)return;try{let data=JSON.parse(await f.text());if(!data.state||!Array.isArray(data.state.legs)||!Array.isArray(data.state.gear))throw Error('格式不正确');if(!confirm('导入将覆盖当前保存的数据，继续吗？'))return;state=Object.assign(init(),data.state);vtwAddRequestedVisits(state);vtwSeedAuroraRoute(state);vtwSyncGearUpdates(state);vtwSyncWishlistUpdates(state);trRouteId=storedTrace();trIndex=0;trFocusedCountry='';if(!Array.isArray(state.pins))state.pins=[];if(!Array.isArray(state.doneGoodieIds))state.doneGoodieIds=[];if(!state.customGoodies||typeof state.customGoodies!=='object')state.customGoodies={};if(!state.routeLayers)state.routeLayers={silk:true,mediterranean:true,ancient:true};atlasDataRev++;persist();view('map');alert('导入成功')}catch(err){alert('导入失败：'+err.message)}finally{e.target.value=''}};
+$('resetAll').onclick=()=>{if(confirm('确认恢复初始数据？所有修改都会被覆盖。')){state=init();vtwAddRequestedVisits(state);vtwSeedAuroraRoute(state);vtwSyncGearUpdates(state);vtwSyncWishlistUpdates(state);trRouteId='modular';trIndex=0;trFocusedCountry='';atlasDataRev++;persist();view('map')}};
 
 // =========================  GITHUB CLOUD SYNC =========================
 const CLOUD_CFG_KEY='vtw_gh_sync_cfg', CLOUD_TS_KEY='vtw_local_updated_at', CLOUD_DIRTY_KEY='vtw_cloud_dirty';
@@ -2772,6 +2789,7 @@ function vtwApplyCloudState(payload){
   vtwAddRequestedVisits(state);
   vtwSeedAuroraRoute();
   vtwSyncGearUpdates();
+  vtwSyncWishlistUpdates(state);
   persist(false);
   try{
     localStorage.setItem(CLOUD_TS_KEY,String(payload.updatedAt||Date.now()));
