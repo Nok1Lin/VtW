@@ -1060,6 +1060,103 @@ const ATLAS_WISHLIST_SEED = [
     ]
   },
   {
+    id: 'wish-beijing-forbidden-city',
+    lineId: 'line-ruins', lineOrder: 6.91,
+    name: '北京 · 故宫博物院（紫禁城）',
+    country: '中国', region: '北京市东城区 · 中轴线核心（补完北京未去遗珠）',
+    lat: 39.9158, lng: 116.3908, zoom: 16,
+    source: 'user', category: 'ruins',
+    aesthetics: ['消逝的文明·诸神遗迹', '巨大·无机质'],
+    work: '明清两代皇家宫殿紫禁城 · 世界上现存规模最宏大的木结构古建筑群',
+    bgmScore: null,
+    summary: '红墙黄瓦绵延近千米的帝王中轴线巨构，太和殿广场、珍宝馆与景山万春亭俯瞰全景一次补齐',
+    intro: '始建于明永乐年间（1406—1420 年）的北京故宫（紫禁城），占地 72 万平方米、殿宇九千余间，是中式古典皇权礼制与巨型木构建筑的巅峰。穿过午门踏入开阔冷峻的太和殿汉白玉三台广场，对称压迫感极强；游完可出神武门登景山万春亭，俯瞰整片琉璃金瓦中轴线与落日余晖。',
+    subSpots: [
+      { name: '午门 · 太和殿广场 · 珍宝馆 & 景山万春亭俯瞰机位', detail: '39.9158°N, 116.3908°E · 提前 7 天在故宫小程序实名预约（周一闭馆）；冬雪天红墙白雪最出片' }
+    ],
+    photos: [
+      { wiki: ['en', 'Forbidden_City'], backupQuery: 'Forbidden City Beijing view from Jingshan', caption: '北京故宫（紫禁城）——景山俯瞰明清帝王中轴线金瓦红墙建筑群' }
+    ]
+  },
+  {
+    id: 'wish-harbin-sophia',
+    lineId: 'line-gothic', lineOrder: 9.5,
+    extraLines: ['line-ruins'],
+    name: '哈尔滨 · 圣索菲亚大教堂',
+    country: '中国', region: '黑龙江省哈尔滨市道里区 · 透笼街索菲亚广场',
+    lat: 45.7681, lng: 126.6215, zoom: 16,
+    source: 'user', category: 'ruins',
+    aesthetics: ['消逝的文明·诸神遗迹', '巨大·无机质'],
+    work: '1907年远东最大新拜占庭式东正教堂 · 清水红砖墙与巨型墨绿洋葱头穹顶',
+    bgmScore: null,
+    summary: '东北冰城中心的百年俄式新拜占庭红砖教堂，冬夜飘雪暖灯映照巨型墨绿洋葱头穹顶宛如异国',
+    intro: '始建于 1907 年、1932 年改建定型的哈尔滨圣索菲亚教堂，是中国现存最完整、体量最宏大的新拜占庭风格东正教红砖建筑（高 53.35 米）。巨大厚重的清水红砖外墙配以错落耸立的墨绿色洋葱头穹顶与金色十字架，冬季零下二十度大雪纷飞、广场暖金灯光点亮之时，与你的俄罗斯红场/冬宫审美一脉相承。',
+    subSpots: [
+      { name: '索菲亚广场雪夜全景 & 教堂内部穹顶建筑艺术馆', detail: '45.7681°N, 126.6215°E · 步行 10 分钟可达中央大街与防洪纪念塔，12—2月冰雪季夜景最绝' }
+    ],
+    photos: [
+      { wiki: ['en', 'Saint_Sophia_Cathedral,_Harbin'], backupQuery: 'Saint Sophia Cathedral Harbin winter snow', caption: '哈尔滨圣索菲亚大教堂——远东百年新拜占庭红砖与墨绿洋葱头穹顶建筑' }
+    ]
+  },
+  {
+    id: 'wish-lhasa-potala',
+    lineId: 'line-ruins', lineOrder: 6.92,
+    extraLines: ['line-brutalist'],
+    name: '拉萨 · 布达拉宫（Potala Palace）',
+    country: '中国', region: '西藏自治区拉萨市城关区 · 玛布日山（红山）',
+    lat: 29.6578, lng: 91.1169, zoom: 16,
+    source: 'user', category: 'ruins',
+    aesthetics: ['消逝的文明·诸神遗迹', '巨大·无机质'],
+    work: '海拔3700米红山之巅依山垒起的十三层红白巨构宫堡 · 世界海拔最高古代宫殿',
+    bgmScore: null,
+    summary: '矗立在拉萨河谷海拔 3,700 米玛布日山巅的红白巨型石木宫堡，药王山五十元钞票机位仰望震撼',
+    intro: '始建于公元 7 世纪吐蕃王朝、17 世纪重建成今貌的布达拉宫，高 117 米、东西绵延 360 余米，整座宫殿如从岩石山体中生长出来一般层叠耸立在高原蓝天之下。底部雪白厚重的白宫墙体托起顶端深沉威严的红宫与鎏金屋顶，兼具雪域神圣感与惊人的巨构建筑尺度。',
+    subSpots: [
+      { name: '药王山观景台（50元纸币同款机位）& 红宫白宫主殿', detail: '29.6578°N, 91.1169°E · 旺季需提前在官方小程序预约门票；初抵拉萨（3650m）建议先适应海拔再登长阶' }
+    ],
+    photos: [
+      { wiki: ['en', 'Potala_Palace'], backupQuery: 'Potala Palace Lhasa Tibet blue sky', caption: '西藏拉萨布达拉宫——海拔3700米红山之巅的雪域红白巨构宫堡' }
+    ]
+  },
+  {
+    id: 'wish-xian-terracotta',
+    lineId: 'line-ruins', lineOrder: 6.93,
+    name: '西安 · 秦始皇兵马俑（Terracotta Army）',
+    country: '中国', region: '陕西省西安市临潼区 · 秦始皇陵东侧',
+    lat: 34.3850, lng: 109.2731, zoom: 15,
+    source: 'user', category: 'ruins',
+    aesthetics: ['消逝的文明·诸神遗迹', '巨大·无机质'],
+    work: '公元前210年大秦帝国地下军团 · 八千余尊千人千面真人比例陶俑战阵',
+    bgmScore: null,
+    summary: '跨入一号坑巨型拱棚瞬间被数千尊面朝东方、千人千面的两千年前秦军地下方阵迎面震撼',
+    intro: '埋藏于秦始皇陵东侧地下逾两千两百年的兵马俑坑，一号坑长达 230 米，六千余尊真人等高的武士陶俑、战马与战车按严密古代军阵排列面朝东方，每一尊面容、发髻与甲片皆不重复，是人类历史上规模最骇人的帝王地下守卫奇观。',
+    subSpots: [
+      { name: '兵马俑一号坑主战阵 · 二号/三号坑 & 丽山园铜车马博物馆', detail: '34.3850°N, 109.2731°E · 建议一早开馆入园避开旅行团，顺游免费摆渡衔接的秦始皇陵丽山园' }
+    ],
+    photos: [
+      { wiki: ['en', 'Terracotta_Army'], backupQuery: 'Terracotta Army Pit 1 Xian China', caption: '陕西西安秦始皇兵马俑一号坑——两千两百年前的大秦地下军团方阵' }
+    ]
+  },
+  {
+    id: 'wish-dunhuang-mogao',
+    lineId: 'line-ruins', lineOrder: 6.94,
+    name: '敦煌 · 莫高窟（千佛洞）',
+    country: '中国', region: '甘肃省酒泉市敦煌市 · 鸣沙山东麓大泉河谷断崖',
+    lat: 40.0372, lng: 94.8042, zoom: 15,
+    source: 'user', category: 'ruins',
+    aesthetics: ['消逝的文明·诸神遗迹'],
+    work: '跨越十六国至元代千年丝路艺术宝库 · 735座峭壁洞窟与4.5万平方米壁画彩塑',
+    bgmScore: null,
+    summary: '戈壁黄沙断崖上蜂巢般开凿逾千年的 735 座佛窟与九层楼大佛，丝绸之路文明交汇的终极圣殿',
+    intro: '自公元 366 年开凿延续千年的敦煌莫高窟，绵延于大泉河谷 1.6 公里砂砾岩绝壁之上，现存 735 座洞窟、4.5 万平方米壁画与两千余尊彩塑，将中原、西域、印度与波斯艺术在荒漠绿洲中熔于一炉。标志性的九层楼内端坐 35.5 米唐代北大像，步入幽暗洞窟随讲解员手电光束扫过千年飞天与经变画，震撼直击灵魂。',
+    subSpots: [
+      { name: '九层楼（96窟北大像）& 藏经洞 · 周边顺游鸣沙山月牙泉', detail: '40.0372°N, 94.8042°E · 务必提前 30 天在「莫高窟参观预约网」抢 A 类票（含 8 个实体窟 + 球幕电影）' }
+    ],
+    photos: [
+      { wiki: ['en', 'Mogao_Caves'], backupQuery: 'Mogao Caves Dunhuang Nine-Story Building', caption: '甘肃敦煌莫高窟九层楼与绝壁千佛洞——跨越千年的丝路佛教艺术宝库' }
+    ]
+  },
+  {
     id: 'wish-easter-island',
     lineId: 'line-ruins', lineOrder: 7,
     name: '复活节岛 · 拉帕努伊摩艾石像群（Easter Island）',
@@ -1274,6 +1371,84 @@ const ATLAS_WISHLIST_SEED = [
     photos: [
       { wiki: ['en', 'Hallasan'], backupQuery: 'Hallasan Baengnokdam crater snow Jeju', caption: '韩国济州岛汉拿山白鹿潭——海拔1947米死火山口与雪山徒步圣地' },
       { wiki: ['en', 'Seongsan_Ilchulbong'], backupQuery: 'Seongsan Ilchulbong tuff cone Jeju aerial', caption: '济州岛城山日出峰——三面悬崖直插碧海的碗状海底火山口' }
+    ]
+  },
+  {
+    id: 'wish-mohe-beijicun',
+    lineId: 'line-nature', lineOrder: 17,
+    name: '漠河 · 北极村（中国最北端极寒林海）',
+    country: '中国', region: '黑龙江省大兴安岭地区漠河市 · 北纬 53.5° 中俄界江黑龙江畔',
+    lat: 53.4783, lng: 122.3578, zoom: 11,
+    source: 'user', category: 'mega',
+    aesthetics: ['巨大·无机质'],
+    work: '中国纬度最高极寒村落 · -30°C 泼水成冰、白桦林海雪原与强地磁暴低空极光彩蛋',
+    bgmScore: null,
+    summary: '中国最北端北纬 53.5° 的冰封界江村落，主打 -30°C 极寒雪原与最北仪式感（强地磁暴期间偶见红紫极光）',
+    intro: '坐落于北纬 53°29′ 中俄界江黑龙江畔的漠河北极村，是中国最北端的城镇村落。冬季气温常下探至 -30°C～-40°C，冰封江面、白桦雪林、最北邮局与泼水成冰构成纯粹的极寒北国体验。\n注：漠河尚在北极圈（66.5°N）以南，常态下看不到极光，只有在太阳高年遇上强地磁暴（Kp≥6–7）时才偶现北天低空红紫色极光（长曝光比肉眼更明显），看极光主力仍以你的俄罗斯摩尔曼斯克/捷里别尔卡线为主，漠河当作极寒体验与彩蛋更稳妥。',
+    subSpots: [
+      { name: '北极沙洲（中国最北点石碑）· 最北邮局 & 龙江第一湾', detail: '53.4783°N, 122.3578°E · 可乘哈尔滨直达漠河「雪国列车」K7041/K7042 夜卧前往' }
+    ],
+    photos: [
+      { wiki: ['en', 'Beiji,_Heilongjiang'], backupQuery: 'Mohe Beiji Village Heilongjiang winter snow', caption: '黑龙江漠河北极村——中国最北端北纬 53.5° 极寒林海雪原与中俄界江' }
+    ]
+  },
+  {
+    id: 'wish-yunnan-yulong-hutiaoxia',
+    lineId: 'line-nature', lineOrder: 18,
+    name: '丽江 · 玉龙雪山 & 虎跳峡高路徒步',
+    country: '中国', region: '云南省丽江市玉龙县 & 迪庆香格里拉交界 · 金沙江大峡谷',
+    lat: 27.0983, lng: 100.1750, zoom: 11,
+    source: 'user', category: 'mega',
+    aesthetics: ['巨大·无机质'],
+    work: '北半球最南端5596米巨型雪山 + 金沙江切开玉龙与哈巴两座五千米雪山的绝壁峡谷高路',
+    bgmScore: null,
+    summary: '一边仰望海拔 5,596 米玉龙雪山冰川与蓝月谷，一边沿金沙江 28 道拐绝壁徒步世界级经典「虎跳峡高路」',
+    intro: '玉龙雪山（5,596m）与哈巴雪山（5,396m）夹峙金沙江，劈出落差高达 3,900 米的「虎跳峡」深渊。一地可同时体验两种玩法：在玉龙雪山乘大索道上至 4,680m 冰川公园、漫步蒂芙尼蓝的蓝月谷；再花 1–2 天走经典的「虎跳峡高路徒步」（纳西雅阁 → 28 道拐 → 茶马客栈 → Halfway 爽死你阳台 → 中虎跳），全程脚下奔雷巨浪、对面整面雪山绝壁压境，极适合实测你的徒步背包与装备！',
+    subSpots: [
+      { name: '玉龙雪山（4680m 冰川公园大索道 & 蓝月谷）', detail: '27.0983°N, 100.1750°E · 冰川大索道门票需提前抢票；11月—次年4月旱季雪峰最清透' },
+      { name: '虎跳峡高路徒步（28道拐 · Halfway 阳台 · 中虎跳江心石）', detail: '27.2300°N, 100.1400°E · 世界级经典轻装/两日徒步线，沿途客栈补给完善' }
+    ],
+    photos: [
+      { wiki: ['en', 'Jade_Dragon_Snow_Mountain'], backupQuery: 'Jade Dragon Snow Mountain Lijiang Yunnan', caption: '云南丽江玉龙雪山——海拔5596米的横断山脉终年积雪巨峰' },
+      { wiki: ['en', 'Tiger_Leaping_Gorge'], backupQuery: 'Tiger Leaping Gorge Jinsha River Yunnan', caption: '云南虎跳峡——金沙江切开玉龙与哈巴两座雪山的绝壁大峡谷' }
+    ]
+  },
+  {
+    id: 'wish-yunnan-meili',
+    lineId: 'line-nature', lineOrder: 19,
+    name: '迪庆德钦 · 梅里雪山（卡瓦格博日照金山）',
+    country: '中国', region: '云南省迪庆藏族自治州德钦县 · 飞来寺 & 雨崩村',
+    lat: 28.4383, lng: 98.6833, zoom: 11,
+    source: 'user', category: 'mega',
+    aesthetics: ['巨大·无机质'],
+    work: '海拔6740米人类至今未登顶的藏区八大神山之首 · 飞来寺破晓日照金山与雨崩徒步秘境',
+    bgmScore: null,
+    summary: '海拔 6,740 米至今无人登顶的雪山神殿卡瓦格博，破晓第一缕红金阳光点亮十三座连绵雪峰',
+    intro: '云南第一高峰、藏地八大神山之首的梅里雪山主峰「卡瓦格博（6,740m）」，至今仍是人类从未登顶的处女峰。清晨在德钦飞来寺或雾浓顶守候破晓，当深蓝天幕突然被一束炽烈金光劈开、十三座冰川尖峰次第烧成赤金，堪称中国雪山天花板；若体力充沛，可徒步进入山脚不通公路的「雨崩村」，深入冰湖与神瀑脚下近距离仰望雪山巨壁。',
+    subSpots: [
+      { name: '飞来寺 / 雾浓顶观景台（日照金山）& 雨崩村冰湖/神瀑徒步', detail: '28.4383°N, 98.6833°E · 11月—次年2月旱季看到完整日照金山概率最高（雨季常被云雾遮挡）' }
+    ],
+    photos: [
+      { wiki: ['en', 'Kawagarbo'], backupQuery: 'Meili Snow Mountain Kawagarbo sunrise Yunnan', caption: '云南梅里雪山卡瓦格博峰——海拔6740米至今未登顶的雪域神山' }
+    ]
+  },
+  {
+    id: 'wish-ningxia-tengger',
+    lineId: 'line-nature', lineOrder: 20,
+    name: '宁夏中卫 · 腾格里沙漠（沙坡头 & 沙漠观星）',
+    country: '中国', region: '宁夏回族自治区中卫市 · 沙坡头 & 腾格里沙漠腹地',
+    lat: 37.4561, lng: 105.0028, zoom: 11,
+    source: 'user', category: 'mega',
+    aesthetics: ['巨大·无机质'],
+    work: '中国第四大沙漠 · 黄河大拐弯与无垠金色沙海交汇，「大漠孤烟直，长河落日圆」实景地',
+    bgmScore: null,
+    summary: '黄河与腾格里浩瀚金色沙丘直接相撞的边塞奇观，深入沙漠腹地露营守极暗璀璨银河与“五湖穿越”',
+    intro: '王维名句“大漠孤烟直，长河落日圆”的灵感地——宁夏中卫沙坡头坐落在腾格里沙漠东南缘与黄河大拐弯交汇处，南岸是翠绿黄河灌区，北岸瞬间化作连绵起伏的纯金沙海。既可乘越野车深入腹地打卡粉红乌兰湖与五湖穿越，也可以在远离光污染的沙漠营地静待银河横跨沙脊，顺路还能打卡银川荒原上的「西夏王陵」。',
+    subSpots: [
+      { name: '沙坡头黄河大拐弯 · 66号公路 & 腾格里沙漠腹地星空营地', detail: '37.4561°N, 105.0028°E · 5—10月最适宜沙漠徒步与观星，昼夜温差大备防风抓绒' }
+    ],
+    photos: [
+      { wiki: ['en', 'Tengger_Desert'], backupQuery: 'Tengger Desert Shapotou Zhongwei Ningxia dunes', caption: '宁夏中卫腾格里沙漠——绵延无垠的金色沙海与大漠星空' }
     ]
   },
 
@@ -2310,6 +2485,7 @@ const ATLAS_WISHLIST_SEED = [
     'wish-bran-dracula':       { lineId: 'line-gothic' },
     'wish-sacred-house':       { lineId: 'line-gothic' },
     'wish-lithuania-crosses':  { lineId: 'line-gothic' },
+    'wish-harbin-sophia':      { lineId: 'line-gothic', extraLines: ['line-ruins'] },
 
     // 3. 🏗️ 粗野巨构线 (line-brutalist)
     'wish-georgia-didgori':    { lineId: 'line-brutalist', extraLines: ['line-acg'], workKey: 'Fate / stay night & Zero' },
@@ -2333,6 +2509,10 @@ const ATLAS_WISHLIST_SEED = [
     'wish-moscow-red-square':  { lineId: 'line-ruins', extraLines: ['line-gothic'] },
     'wish-stpetersburg-hermitage': { lineId: 'line-ruins' },
     'wish-kyoto-kiyomizudera': { lineId: 'line-ruins' },
+    'wish-beijing-forbidden-city': { lineId: 'line-ruins' },
+    'wish-lhasa-potala':       { lineId: 'line-ruins', extraLines: ['line-brutalist'] },
+    'wish-xian-terracotta':    { lineId: 'line-ruins' },
+    'wish-dunhuang-mogao':     { lineId: 'line-ruins' },
     'wish-uruk':               { lineId: 'line-ruins', extraLines: ['line-acg'], workKey: 'Fate/Grand Order', anitabiId: 109378 },
     'wish-giza-pyramids':      { lineId: 'line-ruins', extraLines: ['line-acg'], workKey: 'JOJO的奇妙冒险', anitabiId: 85631 },
     'wish-petra':              { lineId: 'line-ruins' },
@@ -2359,6 +2539,10 @@ const ATLAS_WISHLIST_SEED = [
     'wish-darvaza-crater':     { lineId: 'line-nature' },
     'wish-socotra-island':     { lineId: 'line-nature' },
     'wish-jeju-volcano':       { lineId: 'line-nature', extraLines: ['line-fantasy'] },
+    'wish-mohe-beijicun':      { lineId: 'line-nature' },
+    'wish-yunnan-yulong-hutiaoxia': { lineId: 'line-nature' },
+    'wish-yunnan-meili':       { lineId: 'line-nature' },
+    'wish-ningxia-tengger':    { lineId: 'line-nature' },
 
     // 6. 🔥 生灵祭典线 (line-bloom)
     'wish-hitachi-nemophila':  { lineId: 'line-bloom', extraLines: ['line-acg'], workKey: '葬送的芙莉莲', anitabiId: 400602 },
